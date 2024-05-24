@@ -1,0 +1,104 @@
+﻿S. No,Building Type,Space type,Lighting Power density (W/sqft),Lighting Power density (W/sqm),Equipment Power Density (W/sqft),Equipment Power Density (W/sqm),Occupancy (Sqft/person),Occupancy (Sqm/person),Fresh air per person (CFM/person),Fresh air per area (CFM/sqft),Activity Area
+1,Automotive,Service/Repair,0.67,,,,,,7.5,0.06,1
+2,Bank/Office,BankingActivityArea,1.38,,,,,,7.5,0.06,2
+3,Convention Center,Audience Seating,0.82,,,,,,5,0.06,3
+4,Convention Center,Exhibit Space,1.45,,,,,,5,0.06,4
+5,Courthouse/PoliceStation/Penitentiary,Courtroom,1.72,,,,,,5,0.06,5
+6,Courthouse/PoliceStation/Penitentiary,ConfinementCells,1.1,,,,,,5,0.06,6
+7,Courthouse/PoliceStation/Penitentiary,Judges’Chambers,1.17,,,,,,5,0.06,7
+8,Courthouse/PoliceStation/Penitentiary,Penitentiary Audience Seating,0.43,,,,,,5,0.06,8
+9,Courthouse/PoliceStation/Penitentiary,Penitentiary Classroom,1.34,,,,,,10,0.12,9
+10,Courthouse/PoliceStation/Penitentiary,Penitentiary Dining,1.07,,,,,,7.5,0.18,10
+11, Dormitory,Living Quarters,0.38,,,,,,5,0.06,11
+12, Fire Stations, Engine Room,0.56,,,,,,,,12
+13, Fire Stations, Sleeping Quarters,0.25,,,,,,5,0.06,13
+14, Gymnasium/FitnessCenter, Fitness Area,0.72,,,,,,0,30,14
+15, Gymnasium/FitnessCenter,Gymnasium Audience Seating,0.43,,,,,,5,0.06,15
+16, Gymnasium/FitnessCenter,Playing Area,1.2,,,,,,0,30,16
+17,Hospital, Corridor/Transition,0.89,,1,,200,,0,0.06,17
+18,Hospital,Emergency,2.26,,1,,200,,,,18
+19,Hospital,Exam/Treatment,1.66,,1,,200,,,,19
+20,Hospital,Laundry/Washing,0.6,,1,,200,,5,0.12,20
+21,Hospital,Lounge/Recreation,1.07,,1,,200,,,,21
+22,Hospital,Medical Supply,1.27,,1,,200,,,,22
+23,Hospital,Nursery,0.88,,1,,200,,,,23
+24,Hospital,Nurses’Station,0.87,,1,,200,,,,24
+25,Hospital,Operating Room,1.89,,1,,200,,,,25
+26,Hospital,Patient Room,0.62,,1,,200,,,,26
+27,Hospital,Pharmacy,1.14,,1,,200,,,,27
+28,Hospital,Physical Therapy,0.91,,1,,200,,,,28
+29,Hospital,Radiology/Imaging,1.32,,1,,200,,,,29
+30,Hospital,Recovery,1.15,,1,,200,,,,30
+31, Hotel/Highway Lodging,Hotel Dining,0.82,,0.25,,250,,7.5,0.18,31
+32, Hotel/Highway Lodging,Hotel Guest Rooms,1.11,,0.25,,250,,5,0.06,32
+33, Hotel/Highway Lodging,Hotel Lobby,1.06,,0.25,,250,,7.5,0.06,33
+34, Hotel/Highway Lodging,Highway Lodging Dining,0.88,,0.25,,250,,7.5,0.18,34
+35, Hotel/Highway Lodging,Highway Lodging Guest Rooms,0.75,,0.25,,250,,5,0.06,35
+36, Library,Card File and Cataloging,0.72,,1,,200,,5,0.12,36
+37, Library,Reading Area,0.93,,1,,200,,5,0.12,37
+38, Library,Stacks,1.71,,1,,200,,5,0.12,38
+39, Manufacturing,Corridor/Transition,0.41,,0.2,,750,,0,0.06,39
+40, Manufacturing,Detailed Manufacturing,1.29,,0.2,,750,,10,0.18,40
+41, Manufacturing,Equipment Room,0.95,,0.2,,750,,,,41
+42, Manufacturing,"Extra High Bay
+ (>50ft Floor to Ceiling Height)",1.05,,0.2,,750,,,,42
+43, Manufacturing,"High Bay
+ (25–50ft Floor to Ceiling
+ Height)",1.23,,0.2,,750,,,,43
+44, Manufacturing,"Low Bay
+ (<25ft Floor to Ceiling Height)",1.19,,0.2,,750,,,,44
+45, Museum,General Exhibition,1.05,,,,,,7.5,0.06,45
+46, Museum,Restoration,1.02,,,,,,7.5,0.06,46
+47, Parking Garage,Garage Area,0.19,,,,,,,,47
+48,Post Office,Sorting Area,0.94,,,,,,7.5,0.12,48
+49, Religious Buildings,Audience Seating,1.53,,,,,,5,0.06,49
+50, Religious Buildings,Fellowship Hall,0.64,,,,,,5,0.06,50
+51, Religious Buildings,"Worship Pulpit,Choir",1.53,,,,,,5,0.06,51
+52, Retail,Dressing/FittingRoom,0.87,,0.25,,300,,,,52
+53, Retail,Mall Concourse,1.1,,0.25,,300,,7.5,0.06,53
+54, Retail,Sales Area,1.68,,0.25,,300,,7.5,0.12,54
+55,Sports Arena,Audience Seating,0.43,,,,,,5,0.06,55
+56,Sports Arena,Court Sports Arena—Class 4,0.72,,,,,,,,56
+57,Sports Arena,Court Sports Arena—Class 3,1.2,,,,,,,,57
+58,Sports Arena,Court Sports Arena—Class 2,1.92,,,,,,,,58
+59,Sports Arena,Court Sports Arena—Class 1,3.01,,,,,,,,59
+60,Sports Arena,Ring Sports Arena,2.68,,,,,,,,60
+61,Transportation,Air/Train/Bus—BaggageArea,0.76,,,,,,,,61
+62,Transportation,Airport—Concourse,0.36,,,,,,,,62
+63,Transportation,Audience Seating,0.54,,,,,,5,0.06,63
+64,Transportation,Terminal—TicketCounter,1.08,,,,,,7.5,0.06,64
+65, Warehouse,Fine Material Storage,0.95,,0.1,,15000,,10,0.06,65
+66, Warehouse,Medium/Bulky Material Storage,0.58,,0.1,,15000,,10,0.06,66
+67, Atrium,First 40ft in height," 0.03 per ft
+ (height)",,,,,,,,67
+68, Atrium,Height above 40ft," 0.02 per ft
+ (height)",,,,,,,,68
+69,Audience/Seating Area—Permanent,Auditorium,0.79,,,,,,5,0.06,69
+70,Audience/Seating Area—Permanent,Performing Arts Theater,2.43,,,,,,5,0.06,70
+71,Audience/Seating Area—Permanent,Motion Picture Theater,1.14,,,,,,5,0.06,71
+72, Laboratory,Classrooms,1.28,,,,,,10,0.18,72
+73, Laboratory,Medical/Industrial/Research,1.81,,,,,,10,0.18,73
+74,Office,Enclosed,1.11,,0.75,,275,,5,0.06,74
+75,Office,Open ,0.98,,0.75,,275,,,,75
+76,Common Spaces,Lecture,1.24,,1,,200,,7.5,0.06,76
+77,Common Spaces,Classroom/Lecture/Training,1.24,,1,,200,,10,0.12,77
+78,Common Spaces,Conference/Meeting/Multipurpose,1.23,,1,,200,,7.5,0.06,78
+79,Common Spaces,Corridor/Transition,0.66,,,,,,0,0.06,79
+80,Common Spaces,Dining Area,0.65,,,,,,7.5,0.18,80
+81,Common Spaces,Bar Lounge/Leisure Dining,1.31,,,,,,7.5,0.18,81
+82,Common Spaces,Family Dining,0.89,,0.1,,200,,7.5,0.18,82
+83,Common Spaces,"Dressing/Fitting Room for Perform
+ingArtsTheater",0.4,,,,,,10,0.06,83
+84,Common Spaces,Mechanical/Electrical Room,0.95,,,,,,,,84
+85,Common Spaces,Food Preparation,0.99,,,,,,7.5,0.12,85
+86,Common Spaces,Lobby,0.9,,,,,,5,0.06,86
+87,Common Spaces,Elevator,0.64,,,,,,,,87
+88,Common Spaces,Performing Arts Theater,2,,,,,,10,0.06,88
+89,Common Spaces,Motion Picture Theater,0.52,,,,,,10,0.06,89
+90,Common Spaces,Locker Room,0.75,,,,,,,,90
+91,Common Spaces,Lounge/Recreation,0.73,,,,,,7.5,0.18,91
+92,Common Spaces,Restrooms,0.98,,,,,,5,0.06,92
+93,Common Spaces,Sales Area,1.68,,,,,,,,93
+94,Common Spaces,Stairs,0.69,,,,,,,,94
+95,Common Spaces,Storage,0.63,,,,,,5,0.06,95
+96,Common Spaces,Workshop,1.59,,,,,,,,
