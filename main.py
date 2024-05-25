@@ -1,41 +1,37 @@
 import streamlit as st
 from INP_Parser import inp_parserv01
-from Perging_INP import perge  # Import the perge function directly
+from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
-from BaselineAutomation import baselineAuto  # Import the baseline automation script
+from BaselineAutomation import baselineAuto
 import tempfile
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
-    # Add custom CSS to set the background color
     st.markdown(
         """
         <style>
         body {
-            background-color: #f0f2f6;  /* Set your desired background color here */
+            background-color: #f0f2f6;
         }
         .css-18e3th9 {
-            padding-top: 0rem;  /* Adjust the padding at the top */
+            padding-top: 0rem;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    # Initialize session state for script_choice if it does not exist
     if 'script_choice' not in st.session_state:
-        st.session_state.script_choice = "about"  # Set default to "about"
+        st.session_state.script_choice = "about"
 
-    # Header section with logo and title
     col1, col2 = st.columns([1, 3])
     with col1:
-        st.image("EDSlogo.png", width=120)  # Replace with the path to your logo file
+        st.image("EDSlogo.png", width=120)
     with col2:
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
-    # Navigation bar with buttons below the header
     st.markdown("---")
     col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
     with col3:
@@ -59,13 +55,12 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
 
-    # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         st.header("About eQuest")
         st.markdown("""
         ### Welcome to eQuest Utilities
 
-        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
+        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently.
         Our utilities include:
 
         - **INP Parser:** A tool to parse INP files and extract meaningful data.
@@ -73,8 +68,8 @@ def main():
         - **SIM Parser:** A parser for SIM files to streamline your simulation data processing.
         - **SIM to PDF Converter:** Easily convert your SIM files into PDF format for better sharing and documentation.
 
-        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify
+        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother
         and more productive.
         """)
 
