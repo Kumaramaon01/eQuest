@@ -13,8 +13,10 @@
 #             st.error("Invalid directory path.")
 
 import os
+import streamlit as st
 import shutil
 from fpdf import FPDF
+from SIM2PDF.src_pdf import readSim
 import PyPDF2
 
 def main(input_sim_files, reports):
@@ -26,9 +28,16 @@ def main(input_sim_files, reports):
                 print("Directory path is valid.")
                 readSim.extractReport(input_sim_files, reports)
                 print("PDFs Generated Successfully!")
+                return "PDFs Generated Successfully!"
             else:
-                print("Path exists but is not a directory.")
+                error_message = "Path exists but is not a directory."
+                print(error_message)
+                return error_message
         else:
-            print("Path does not exist.")
+            error_message = "Path does not exist."
+            print(error_message)
+            return error_message
     except Exception as e:
-        print("Error:", e)
+        error_message = f"Error: {e}"
+        print(error_message)
+        return error_message
