@@ -26,7 +26,6 @@ def main(uploaded_file):
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as temp_dir:
                 inp_path = os.path.join(temp_dir, uploaded_file.name)
-                st.info(f"Saving uploaded file to {inp_path}")
                 
                 # Write the uploaded file to the temporary directory
                 with open(inp_path, "wb") as f:
