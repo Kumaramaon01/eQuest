@@ -25,6 +25,7 @@ def main():
         header .stApp [title="View source on GitHub"] {
             display: none;
         }
+        .stApp header, .stApp footer {visibility: hidden;}
         </style>
         """,
         unsafe_allow_html=True
