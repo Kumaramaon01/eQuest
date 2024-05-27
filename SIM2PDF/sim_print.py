@@ -21,7 +21,9 @@ def main(input_sim_files, reports):
     try:
         print("Received directory path:", input_sim_files)  # Debugging output
         if os.path.exists(input_sim_files):
+            print("Directory path exists.")
             if os.path.isdir(input_sim_files):
+                print("Directory path is valid.")
                 readSim.extractReport(input_sim_files, reports)
                 print("PDFs Generated Successfully!")
             else:
