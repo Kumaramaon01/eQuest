@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import streamlit as st
+import tempfile
 from INP_Parser.src_inp import hvac_system
 
 def get_report_and_save(report_function, inp_path, file_suffix):
@@ -20,12 +21,12 @@ def get_report_and_save(report_function, inp_path, file_suffix):
 def main(uploaded_file):
     if uploaded_file is not None:
         try:
-            # Save the uploaded file temporarily
-            inp_path = os.path.join(os.path.expanduser("~"), "Downloads", uploaded_file.name)
-            st.info(f"Saving uploaded file to {inp_path}")
-            
-            with open(inp_path, "wb") as f:
-                f.write(uploaded_file.getbuffer())
+            # Create a temporary file
+            with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+                inp_path = temp_file.name
+                st.info(f"Saving uploaded file to {inp_path}")
+                
+                temp_file.write(uploaded_file.getbuffer())
             
             # Generate reports
             get_report_and_save(hvac_system.get_HVAC_System_report, inp_path, 'Sys_INP')
