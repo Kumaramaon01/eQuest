@@ -20,11 +20,13 @@ import PyPDF2
 def main(input_sim_files, reports):
     try:
         print("Received directory path:", input_sim_files)  # Debugging output
-        input_sim_files = os.path.normpath(input_sim_files)  # Normalize the path
-        if os.path.isdir(input_sim_files):
-            readSim.extractReport(input_sim_files, reports)
-            print("PDFs Generated Successfully!")
+        if os.path.exists(input_sim_files):
+            if os.path.isdir(input_sim_files):
+                readSim.extractReport(input_sim_files, reports)
+                print("PDFs Generated Successfully!")
+            else:
+                print("Path exists but is not a directory.")
         else:
-            print("Directory does not exist or is not a directory.")
+            print("Path does not exist.")
     except Exception as e:
         print("Error:", e)
