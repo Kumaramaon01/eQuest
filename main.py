@@ -113,9 +113,13 @@ def main():
         reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
         reports = [r.strip() for r in reports_input.split(',')]
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
-
+    
         if st.button("Generate PDFs"):
-            sim_print.main(input_sim_files, reports)
+            # Check if input_sim_files is a valid directory
+            if input_sim_files and st.session_state.get("sim_files_validated"):
+                sim_print.main(input_sim_files, reports)
+            else:
+                st.error("Invalid directory path.")
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
