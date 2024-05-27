@@ -103,49 +103,57 @@ def generate_pdf(output_directory):
         
 # Function to extract relevent data from SIM file to based in input reports
 def extractReport(input_sim_files, reports):
-    simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
-    
-    # Create "Report Outputs" folder inside the folder containing SIM files
-    output_directory = os.path.join(input_sim_files, "Report Outputs")
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
-    else:
-        shutil.rmtree(output_directory)
-        os.makedirs(output_directory)
+    print(f"Extracting reports from directory: {input_sim_files}")
+    try:
+        simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
+        print(f"Found SIM files: {simfiles}")
 
-    # Process each SIM file
-    for name in simfiles:
-        with open(name) as f:
-            f_list = f.readlines()
-            for num, line in enumerate(f_list):
-                for r in reports:
-                    if r in line:
-                        rptstart = num - 2
-                        lines = 0
-                        for line in f_list[rptstart + 3:]:
-                            if "REPORT" in line:
-                                rptlen = lines
-                                break
-                            lines += 1
-                        section = f_list[rptstart:rptstart + rptlen + 4]
-                        file_name = "Reports_" + os.path.basename(name)
-                        with open(os.path.join(output_directory, file_name), "a") as output:
-                            for l in section:
-                                output.write(l)
-                        break
+        # Create "Report Outputs" folder inside the folder containing SIM files
+        output_directory = os.path.join(input_sim_files, "Report Outputs")
+        if not os.path.exists(output_directory):
+            os.makedirs(output_directory)
+        else:
+            shutil.rmtree(output_directory)
+            os.makedirs(output_directory)
 
-    # Clean generated SIM files in "Report Outputs" folder
-    for filename in os.listdir(output_directory):
-        file_path = os.path.join(output_directory, filename)
-        cleaned_content = clean_sim(file_path)  # Call your clean_sim function here
-        
-        # Convert cleaned_content to string if it's a list
-        if isinstance(cleaned_content, list):
-            cleaned_content = "\n".join(cleaned_content)
-        
-        # Write the cleaned content back to the file
-        with open(file_path, "w") as cleaned_file:
-            cleaned_file.write(cleaned_content)
+        # Process each SIM file
+        for name in simfiles:
+            with open(name) as f:
+                f_list = f.readlines()
+                for num, line in enumerate(f_list):
+                    for r in reports:
+                        if r in line:
+                            rptstart = num - 2
+                            lines = 0
+                            for line in f_list[rptstart + 3:]:
+                                if "REPORT" in line:
+                                    rptlen = lines
+                                    break
+                                lines += 1
+                            section = f_list[rptstart:rptstart + rptlen + 4]
+                            file_name = "Reports_" + os.path.basename(name)
+                            with open(os.path.join(output_directory, file_name), "a") as output:
+                                for l in section:
+                                    output.write(l)
+                            break
 
-    # Generate PDF reports from the cleaned SIM files in "Report Outputs" folder
-    generate_pdf(output_directory)
+        # Clean generated SIM files in "Report Outputs" folder
+        for filename in os.listdir(output_directory):
+            file_path = os.path.join(output_directory, filename)
+            cleaned_content = clean_sim(file_path)  # Call your clean_sim function here
+            
+            # Convert cleaned_content to string if it's a list
+            if isinstance(cleaned_content, list):
+                cleaned_content = "\n".join(cleaned_content)
+            
+            # Write the cleaned content back to the file
+            with open(file_path, "w") as cleaned_file:
+                cleaned_file.write(cleaned_content)
+
+        # Generate PDF reports from the cleaned SIM files in "Report Outputs" folder
+        generate_pdf(output_directory)
+        return "Extraction and PDF generation completed successfully."
+    except Exception as e:
+        error_message = f"Error during extraction: {e}"
+        print(error_message)
+        return error_message
