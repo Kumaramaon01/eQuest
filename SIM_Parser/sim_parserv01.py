@@ -48,7 +48,7 @@ def main(uploaded_file):
                 st.download_button(
                     label="Download All Reports",
                     data=f,
-                    file_name="SIM_Reports.zip",
+                    file_name = uploaded_file + "_Reports.zip",
                     mime='application/zip'
                 )
 
