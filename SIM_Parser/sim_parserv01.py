@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 import tempfile
+from zipfile import ZipFile
 from SIM_Parser.src_sim import lv_b, ls_c, lv_d, pv_a, sv_a, beps, bepu, lvd_summary, sva_zone, ps_e, ps_f
 
 def get_report_and_save(report_function, name1, sim_path, file_suffix):
@@ -20,24 +21,40 @@ def main(uploaded_file):
 
         sim_path = temp_file_path
 
-        download_links = []
+        download_files = []
 
-        download_links.append(("LSC", get_report_and_save(ls_c.get_LSC_report, None, sim_path, 'lsc')))
-        download_links.append(("LVD", get_report_and_save(lv_d.get_LVD_report, None, sim_path, 'lvd')))
-        download_links.append(("LVD Summary", get_report_and_save(lvd_summary.get_LVD_Summary_report, None, sim_path, 'lvd_Summary')))
-        download_links.append(("PVA", get_report_and_save(pv_a.get_PVA_report, None, sim_path, 'pva')))
-        download_links.append(("SVA", get_report_and_save(sv_a.get_SVA_report, None, sim_path, 'sva')))
-        download_links.append(("SVA Zone", get_report_and_save(sva_zone.get_SVA_Zone_report, None, sim_path, 'sva_Zone')))
-        download_links.append(("BEPS", get_report_and_save(beps.get_BEPS_report, None, sim_path, 'beps')))
-        download_links.append(("BEPU", get_report_and_save(bepu.get_BEPU_report, None, sim_path, 'bepu')))
-        download_links.append(("LVB", get_report_and_save(lv_b.get_LVB_report, None, sim_path, 'lvb')))
-        download_links.append(("PSE", get_report_and_save(ps_e.get_PSE_report, None, sim_path, 'pse')))
-        download_links.append(("PSF", get_report_and_save(ps_f.get_PSF_report, None, sim_path, 'psf')))
+        download_files.append(("LSC.csv", get_report_and_save(ls_c.get_LSC_report, None, sim_path, 'lsc')))
+        download_files.append(("LVD.csv", get_report_and_save(lv_d.get_LVD_report, None, sim_path, 'lvd')))
+        download_files.append(("LVD_Summary.csv", get_report_and_save(lvd_summary.get_LVD_Summary_report, None, sim_path, 'lvd_Summary')))
+        download_files.append(("PVA.csv", get_report_and_save(pv_a.get_PVA_report, None, sim_path, 'pva')))
+        download_files.append(("SVA.csv", get_report_and_save(sv_a.get_SVA_report, None, sim_path, 'sva')))
+        download_files.append(("SVA_Zone.csv", get_report_and_save(sva_zone.get_SVA_Zone_report, None, sim_path, 'sva_Zone')))
+        download_files.append(("BEPS.csv", get_report_and_save(beps.get_BEPS_report, None, sim_path, 'beps')))
+        download_files.append(("BEPU.csv", get_report_and_save(bepu.get_BEPU_report, None, sim_path, 'bepu')))
+        download_files.append(("LVB.csv", get_report_and_save(lv_b.get_LVB_report, None, sim_path, 'lvb')))
+        download_files.append(("PSE.csv", get_report_and_save(ps_e.get_PSE_report, None, sim_path, 'pse')))
+        download_files.append(("PSF.csv", get_report_and_save(ps_f.get_PSF_report, None, sim_path, 'psf')))
 
         st.success("SIM Parsed Successfully!!")
 
-        for report_name, file_path in download_links:
-            st.markdown(f"[Download {report_name} Report](file://{file_path})")
+        # Create a zip file containing all generated reports
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
+            with ZipFile(temp_zip, 'w') as zipf:
+                for file_name, file_path in download_files:
+                    zipf.write(file_path, file_name)
+
+            # Provide download link for the zip file
+            with open(temp_zip.name, 'rb') as f:
+                st.download_button(
+                    label="Download All Reports",
+                    data=f,
+                    file_name="SIM_Reports.zip",
+                    mime='application/zip'
+                )
 
     else:
         st.error("Please upload a SIM file.")
+
+if __name__ == "__main__":
+    uploaded_file = st.file_uploader("Upload your SIM file", type=["sim"])
+    main(uploaded_file)
