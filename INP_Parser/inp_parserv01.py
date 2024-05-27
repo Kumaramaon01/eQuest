@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 import tempfile
-from zipfile import ZipFile
 from Perging_INP.src_perge import perging, CLM_delete
 
 def update_inp_file(uploaded_file):
@@ -31,26 +30,26 @@ def update_inp_file(uploaded_file):
                 with open(updated_file_path, 'w') as file:
                     file.writelines(material_delete)
 
-                return inp_path, updated_file_path  # Return the paths of the original and updated INP files
+                return updated_file_path  # Return the path of the updated INP file
         except Exception as e:
             st.error(f"An error occurred while updating INP file: {e}")
 
 def main(uploaded_file):
-    original_file_path, updated_file_path = update_inp_file(uploaded_file)
-    if original_file_path and updated_file_path:
-        # Create a zip file containing both original and updated INP files
-        with tempfile.NamedTemporaryFile(delete=False) as temp_zip:
-            with ZipFile(temp_zip, 'w') as zipf:
-                zipf.write(original_file_path, os.path.basename(original_file_path))
-                zipf.write(updated_file_path, os.path.basename(updated_file_path))
-        
-        # Provide download link for the zip file
-        with open(temp_zip.name, 'rb') as f:
+    updated_file_path = update_inp_file(uploaded_file)
+    if updated_file_path:
+        # Move the updated INP file to the Downloads directory
+        downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
+        updated_file_name = os.path.basename(updated_file_path)
+        new_file_path = os.path.join(downloads_path, updated_file_name)
+        os.rename(updated_file_path, new_file_path)
+
+        # Provide download link for the updated INP file
+        with open(new_file_path, 'rb') as f:
             st.download_button(
-                label="Download INP Files",
+                label="Download Updated INP",
                 data=f,
-                file_name="INP_Files.zip",
-                mime='application/zip'
+                file_name=updated_file_name,
+                mime='text/plain'
             )
 
 if __name__ == "__main__":
