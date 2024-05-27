@@ -43,6 +43,9 @@ def main(uploaded_file):
         new_file_path = os.path.join(downloads_path, updated_file_name)
         os.rename(updated_file_path, new_file_path)
 
+        # Display success message
+        st.success("INP Updated Successfully!")
+
         # Provide download link for the updated INP file
         with open(new_file_path, 'rb') as f:
             st.download_button(
