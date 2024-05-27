@@ -14,9 +14,10 @@ def get_report_and_save(report_function, inp_path, file_suffix):
         if os.path.isfile(file_path):
             os.remove(file_path)
         report.to_csv(file_path, index=False)
-        st.success(f"{file_suffix} Report Generated!")
+        return file_path
     except Exception as e:
         st.error(f"Error generating {file_suffix} report: {e}")
+        return None
 
 def main(uploaded_file):
     if uploaded_file is not None:
@@ -29,12 +30,31 @@ def main(uploaded_file):
                 temp_file.write(uploaded_file.getbuffer())
             
             # Generate reports
-            get_report_and_save(hvac_system.get_HVAC_System_report, inp_path, 'Sys_INP')
-            get_report_and_save(hvac_system.get_HVAC_Zone_report, inp_path, 'Zone_INP')
-            st.success("INP Parsed Successfully!!")
+            sys_report_path = get_report_and_save(hvac_system.get_HVAC_System_report, inp_path, 'Sys_INP')
+            zone_report_path = get_report_and_save(hvac_system.get_HVAC_Zone_report, inp_path, 'Zone_INP')
+            
+            if sys_report_path and zone_report_path:
+                st.success("INP Parsed Successfully!!")
+                
+                # Provide download links for the generated reports
+                with open(sys_report_path, 'rb') as f:
+                    st.download_button(
+                        label="Download System Report",
+                        data=f,
+                        file_name=os.path.basename(sys_report_path),
+                        mime='text/csv'
+                    )
+                with open(zone_report_path, 'rb') as f:
+                    st.download_button(
+                        label="Download Zone Report",
+                        data=f,
+                        file_name=os.path.basename(zone_report_path),
+                        mime='text/csv'
+                    )
 
             # Optionally, clean up the temp file after processing
             os.remove(inp_path)
+            st.info(f"Temporary file {inp_path} deleted.")
         except FileNotFoundError as fnf_error:
             st.error(f"FileNotFoundError: {fnf_error}")
         except Exception as e:
