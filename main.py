@@ -22,6 +22,9 @@ def main():
         footer {visibility: hidden;}
         .viewerBadge_container__1QSob {visibility: hidden;}
         .stActionButton {margin: 5px;} /* Optional: Adjust button spacing */
+        header .stApp [title="View source on GitHub"] {
+            display: none;
+        }
         </style>
         """,
         unsafe_allow_html=True
