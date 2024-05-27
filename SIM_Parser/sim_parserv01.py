@@ -20,6 +20,7 @@ def main(uploaded_file):
             temp_file_path = temp_file.name
 
         sim_path = temp_file_path
+        sim_file_name = os.path.splitext(uploaded_file.name)[0]
 
         download_files = []
 
@@ -39,6 +40,7 @@ def main(uploaded_file):
 
         # Create a zip file containing all generated reports
         with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
+            zip_folder_name = f"{sim_file_name}_SIM_reports"
             with ZipFile(temp_zip, 'w') as zipf:
                 for file_name, file_path in download_files:
                     zipf.write(file_path, file_name)
@@ -48,7 +50,7 @@ def main(uploaded_file):
                 st.download_button(
                     label="Download All Reports",
                     data=f,
-                    file_name = uploaded_file + "_Reports.zip",
+                    file_name=f"{zip_folder_name}.zip",
                     mime='application/zip'
                 )
 
