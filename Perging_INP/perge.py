@@ -10,7 +10,6 @@ def update_inp_file(uploaded_file):
             with tempfile.TemporaryDirectory() as temp_dir:
                 # Save the uploaded file temporarily
                 inp_path = os.path.join(temp_dir, uploaded_file.name)
-                st.info(f"Saving uploaded file to {inp_path}")
                 
                 with open(inp_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
