@@ -114,6 +114,8 @@ def main():
         reports = [r.strip() for r in reports_input.split(',')]
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
     
+        st.write("Provided directory path:", input_sim_files)  # Debugging output
+    
         if st.button("Generate PDFs"):
             # Check if input_sim_files is a valid directory
             if input_sim_files and st.session_state.get("sim_files_validated"):
