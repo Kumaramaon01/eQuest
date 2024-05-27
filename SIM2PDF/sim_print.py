@@ -18,10 +18,9 @@ from fpdf import FPDF
 import PyPDF2
 
 def main(input_sim_files, reports):
+    print("Received directory path:", input_sim_files)  # Debugging output
     if os.path.isdir(input_sim_files):
         readSim.extractReport(input_sim_files, reports)
         print("PDFs Generated Successfully!")
     else:
         print("Invalid directory path.")
-
-# The rest of your sim_print.py code remains unchanged
