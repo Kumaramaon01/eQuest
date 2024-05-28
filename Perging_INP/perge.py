@@ -36,6 +36,7 @@ def update_inp_file(uploaded_file):
 
 def main(uploaded_file):
     updated_file_path = update_inp_file(uploaded_file)
+    print(updated_file_path)
     if updated_file_path:
         st.success("INP Updated Successfully!")
         # Provide download link for the updated INP file
