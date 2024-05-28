@@ -68,7 +68,7 @@ def main():
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
-        st.header("About eQuest")
+        # st.header("About eQuest")
         st.markdown("""
         ### Welcome to eQuest Utilities
 
