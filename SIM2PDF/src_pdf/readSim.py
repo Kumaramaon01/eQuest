@@ -4,6 +4,7 @@ import shutil
 from fpdf import FPDF
 # from src import readSim
 import PyPDF2
+import streamlit as st
 
 # Reading sim files line by line
 def read_sim_file(sim_file_path):
