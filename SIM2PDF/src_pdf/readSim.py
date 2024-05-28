@@ -107,7 +107,7 @@ def extractReport(input_sim_files, reports):
     st.success("in extract report")
     try:
         # Create the search pattern for .sim files
-        search_pattern = os.path.join(input_sim_files, '*.sim')
+        search_pattern = os.path.join(input_sim_files, '*.SIM')
 
         # Debugging: Print the search pattern to ensure it's correct
         st.write(f"Search pattern: {search_pattern}")
