@@ -118,6 +118,7 @@ def main():
         
         if input_sim_files is not None:
             if st.button("Generate PDFs"):
+                print("input_sim_files")
                 sim_print.main(input_sim_files, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
