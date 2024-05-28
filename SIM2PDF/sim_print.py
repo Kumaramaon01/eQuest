@@ -6,11 +6,21 @@ from SIM2PDF.src_pdf import readSim
 import PyPDF2
 
 def main(input_sim_files, reports):
+    # Debugging print statement
+    print(f"Received input_sim_files: {input_sim_files}")
+    
+    # Check if the path exists and is a directory
+    if os.path.exists(input_sim_files):
         if os.path.isdir(input_sim_files):
             readSim.extractReport(input_sim_files, reports)
             st.success("PDFs Generated Successfully!")
         else:
-            st.error("Invalid directory path.")
+            st.error("The path exists but is not a directory.")
+            print("Error: The path exists but is not a directory.")
+    else:
+        st.error("Invalid directory path.")
+        print("Error: Invalid directory path.")
+
 
 # import os
 # import shutil
