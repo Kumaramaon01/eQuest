@@ -107,6 +107,7 @@ def extractReport(input_sim_files, reports):
     st.success("in extract report")
     try:
         simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
+        st.success(simfiles)
         print(f"Found SIM files: {simfiles}")
 
         # Create "Report Outputs" folder inside the folder containing SIM files
