@@ -1,3 +1,5 @@
+# readSim.py
+
 import glob as gb
 import os
 import shutil
@@ -31,7 +33,7 @@ def clean_sim(name):
     return ''.join(cleaned_lines)
 
 # Function to modify generated pdf and override in the same folder
-def get_report_as_pdf(report_content, folder_name, path):
+def get_report_as_pdf(report_content, folder_name, path, temp_pdf_file):
     pdf = FPDF()
     pdf.set_font("Courier", size=6.5)
     pdf.add_page(orientation='L')
@@ -44,23 +46,10 @@ def get_report_as_pdf(report_content, folder_name, path):
             pdf.add_page()
         pdf.multi_cell(0, 4, line)
 
-    temp_file = os.path.join(path, f'{folder_name}_temp.pdf')
-    file_path = os.path.join(path, f'{folder_name}.pdf')
-    pdf.output(temp_file)
+    pdf.output(temp_pdf_file)
     print(f"PDF report Generated!")
 
-    with open(temp_file, 'rb') as file:
-        reader = PyPDF2.PdfReader(file)
-        writer = PyPDF2.PdfWriter()
-        for page_num in range(1, len(reader.pages)):
-            writer.add_page(reader.pages[page_num])
-        
-        with open(file_path, 'wb') as output_file:
-            writer.write(output_file)
-
-    os.remove(temp_file)
-
-# Function to generate PDF in the same directory where the generated SIM is located
+# Function to generate PDF in the "Report Outputs" folder
 def generate_pdf(output_directory):
     simfiles = gb.glob(os.path.join(output_directory, '*.sim'))
     if simfiles:
@@ -71,7 +60,10 @@ def generate_pdf(output_directory):
 
             if report_content:
                 print("\nGenerating PDF report...")
-                get_report_as_pdf(report_content, folder_name, output_directory)
+                temp_pdf_file = os.path.join(parent_directory, f'{folder_name}.pdf')  # Temporarily store PDF in the same directory as the SIM file
+                get_report_as_pdf(report_content, folder_name, parent_directory, temp_pdf_file)
+                destination_pdf_file = os.path.join(output_directory, f'{folder_name}.pdf')
+                shutil.move(temp_pdf_file, destination_pdf_file)  # Move PDF to "Report Outputs" folder
                 print("PDF report generation complete.\n")
     else:
         print("No SIM files found in the specified directory.")
