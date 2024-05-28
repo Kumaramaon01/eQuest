@@ -30,13 +30,16 @@ def update_inp_file(uploaded_file):
                 with open(updated_file_path, 'w') as file:
                     file.writelines(material_delete)
 
-                return updated_file_path  # Return the path of the updated INP file
+                # Copy the updated file to a known location
+                final_updated_file_path = os.path.join(os.path.expanduser("~"), "Downloads", updated_file_name)
+                os.rename(updated_file_path, final_updated_file_path)
+
+                return final_updated_file_path  # Return the path of the updated INP file
         except Exception as e:
             st.error(f"An error occurred while updating INP file: {e}")
 
 def main(uploaded_file):
     updated_file_path = update_inp_file(uploaded_file)
-    st.success(updated_file_path)
     if updated_file_path:
         st.success("INP Updated Successfully!")
         # Provide download link for the updated INP file
@@ -47,3 +50,7 @@ def main(uploaded_file):
                 file_name=os.path.basename(updated_file_path),
                 mime='text/plain'
             )
+
+if __name__ == "__main__":
+    uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
+    main(uploaded_file)
