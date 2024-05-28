@@ -13,3 +13,5 @@ def main(input_sim_files, reports):
         if os.path.isdir(input_sim_files):
             result_message = readSim.extractReport(input_sim_files, reports)
             st.success(result_message)
+    else:
+        st.success("path not exist")
