@@ -106,22 +106,11 @@ def generate_pdf(output_directory):
 def extractReport(input_sim_files, reports):
     st.success("in extract report")
     try:
-        # Create the search pattern for .sim files
-        search_pattern = os.path.join(input_sim_files, '*.SIM')
-
-        # Debugging: Print the search pattern to ensure it's correct
-        st.write(f"Search pattern: {search_pattern}")
-
         # Use glob to find all .sim files in the directory
-        simfiles = gb.glob(search_pattern)
+        simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
 
         # Debugging: Print the result of glob to check the found files
         st.write(f"Found .sim files: {simfiles}")
-
-        if not simfiles:
-            st.warning("No .sim files found in the specified directory.")
-        else:
-            st.success(f"Found .sim files: {simfiles}")
 
         # Create "Report Outputs" folder inside the folder containing SIM files
         output_directory = os.path.join(input_sim_files, "Report Outputs")
