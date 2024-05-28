@@ -1,13 +1,14 @@
 import os
 import streamlit as st
-import shutil
-from fpdf import FPDF
 from SIM2PDF.src_pdf import readSim
-import PyPDF2
 
 def main(input_sim_files, reports):
+    # Validate path
+    if not os.path.isabs(input_sim_files):
+        input_sim_files = os.path.abspath(input_sim_files)
+    
     # Debugging print statement
-    print(f"Received input_sim_files: {input_sim_files}")
+    print(f"Resolved input_sim_files: {input_sim_files}")
     
     # Check if the path exists and is a directory
     if os.path.exists(input_sim_files):
@@ -20,6 +21,7 @@ def main(input_sim_files, reports):
     else:
         st.error("Invalid directory path.")
         print("Error: Invalid directory path.")
+
 
 
 # import os
