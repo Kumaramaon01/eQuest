@@ -115,7 +115,7 @@ def main():
         reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
         reports = [r.strip() for r in reports_input.split(',')]
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
-
+        
         if input_sim_files is not None:
             if st.button("Generate PDFs"):
                 sim_print.main(input_sim_files, reports)
