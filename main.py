@@ -99,9 +99,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Run INP Purging"):
-                updated_file_path = perge.update_inp_file(uploaded_file)
-                if updated_file_path:
-                    st.success(f"INP Updated Successfully! Updated file saved at: {updated_file_path}")
+                perge.update_inp_file(uploaded_file)
 
     elif st.session_state.script_choice == "SIM Parser":
         st.header("SIM Parser")
