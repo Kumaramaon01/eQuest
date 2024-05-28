@@ -120,7 +120,7 @@ def main():
             # st.success(input_sim_files)
             # sim_print.main(input_sim_files, reports)
 
-    elif st.session_state.script_choice == "baselineAutomation":
+     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
         uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
