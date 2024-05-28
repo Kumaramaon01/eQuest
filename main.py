@@ -114,11 +114,15 @@ def main():
         reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         reports = [r.strip() for r in reports_input.split(',')]
-        # input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
-        
+
         if uploaded_file is not None:
             if st.button("Generate PDFs"):
-                # st.success(input_sim_files)  # Debugging statement
+                # Get the path to the user's Downloads directory
+                downloads_path = os.path.expanduser("~/Downloads")
+                # Create a folder named "Report Outputs" in the Downloads directory
+                report_outputs_folder = os.path.join(downloads_path, "Report Outputs")
+                os.makedirs(report_outputs_folder, exist_ok=True)
+                # Call the main function from sim_print.py with the uploaded file and reports
                 sim_print.main(uploaded_file, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
