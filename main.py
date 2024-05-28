@@ -115,9 +115,9 @@ def main():
         reports = [r.strip() for r in reports_input.split(',')]
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
         print("input_sim_files:", input_sim_files)
-        if st.button("Generate PDFs"):
-            print("input_sim_files:", input_sim_files)  # Debugging statement
-            sim_print.main(input_sim_files, reports)
+        # if st.button("Generate PDFs"):
+        #     print("input_sim_files:", input_sim_files)  # Debugging statement
+        #     sim_print.main(input_sim_files, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
