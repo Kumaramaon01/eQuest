@@ -120,10 +120,11 @@ def extractReport(input_sim_files, reports):
         
         # # simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
         simfiles = [f for f in os.listdir(input_sim_files) if fnmatch.fnmatch(f, '*.sim')]
-        st.success(simfiles)
+        if simfiles:
+            st.success(f"Found .sim files: {simfiles}")
+        else:
+            st.warning("No .sim files found in the directory.")
 
-        # Debugging: Print the result of glob to check the found files
-        st.write(f"Found .sim files: {simfiles}")
 
         # Create "Report Outputs" folder inside the folder containing SIM files
         output_directory = os.path.join(input_sim_files, "Report Outputs")
