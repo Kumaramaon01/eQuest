@@ -117,9 +117,9 @@ def main():
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
     
         if st.button("Generate PDFs"):
-            pdf_generation_result = sim_print.main(input_sim_files, reports)
-            st.write("PDF Generation Result:", pdf_generation_result)
-            st.write("Provided directory path:", input_sim_files)
+            st.success("input_sim_files")
+            sim_print.main(input_sim_files, reports)
+            
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
