@@ -7,6 +7,7 @@ import PyPDF2
 
 def main(input_sim_files, reports):
     if os.path.isdir(input_sim_files):
+        st.success(input_sim_files)
         readSim.extractReport(input_sim_files, reports)
         st.success("PDFs Generated Successfully!")
     else:
