@@ -46,7 +46,3 @@ def main(uploaded_file):
                 file_name=os.path.basename(updated_file_path),
                 mime='text/plain'
             )
-
-if __name__ == "__main__":
-    uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
-    main(uploaded_file)
