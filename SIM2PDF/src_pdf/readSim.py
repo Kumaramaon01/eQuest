@@ -1,5 +1,8 @@
+# readSim.py
+
 import glob as gb
 import os
+import shutil
 from fpdf import FPDF
 
 # Reading sim files line by line
