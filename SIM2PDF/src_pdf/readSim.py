@@ -5,6 +5,7 @@ from fpdf import FPDF
 # from src import readSim
 import PyPDF2
 import streamlit as st
+from pathlib import Path
 
 # Reading sim files line by line
 def read_sim_file(sim_file_path):
@@ -106,8 +107,16 @@ def generate_pdf(output_directory):
 def extractReport(input_sim_files, reports):
     st.success("in extract report")
     try:
-        # Use glob to find all .sim files in the directory
-        simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
+        # Create a Path object for the input directory
+        input_path = Path(input_sim_files)
+
+        # Use the glob method of the Path object to find all .sim files
+        simfiles = list(input_path.glob('*.sim'))
+
+        # Optionally, convert Path objects to strings if needed
+        simfiles = [str(file) for file in simfiles]
+        
+        # simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
 
         # Debugging: Print the result of glob to check the found files
         st.write(f"Found .sim files: {simfiles}")
