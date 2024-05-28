@@ -66,8 +66,8 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("Baseline Automation"):
-            st.session_state.script_choice = "baselineAutomation"
+        if st.button("Baseline Aut"):
+            st.session_state.script_choice = ""
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
