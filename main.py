@@ -117,7 +117,7 @@ def main():
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
     
         if st.button("Generate PDFs"):
-            st.success("input_sim_files")
+            st.success(input_sim_files)
             sim_print.main(input_sim_files, reports)
             
 
