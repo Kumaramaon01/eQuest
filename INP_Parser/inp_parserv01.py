@@ -13,6 +13,7 @@ def update_inp_file(uploaded_file):
                 
                 with open(inp_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
+                st.write(f"File saved temporarily at {inp_path}")
 
                 # Perform perging operations
                 perge_data_annual = perging.perging_data_annual(inp_path)
@@ -29,32 +30,43 @@ def update_inp_file(uploaded_file):
 
                 with open(updated_file_path, 'w') as file:
                     file.writelines(material_delete)
+                st.write(f"Updated file created at {updated_file_path}")
 
                 return updated_file_path  # Return the path of the updated INP file
         except Exception as e:
             st.error(f"An error occurred while updating INP file: {e}")
+            st.write(f"Error details: {e}")
+            return None
 
 def main(uploaded_file):
     updated_file_path = update_inp_file(uploaded_file)
-    if updated_file_path:
-        # Move the updated INP file to the Downloads directory
-        downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
-        updated_file_name = os.path.basename(updated_file_path)
-        new_file_path = os.path.join(downloads_path, updated_file_name)
-        os.rename(updated_file_path, new_file_path)
+    if updated_file_path and os.path.exists(updated_file_path):
+        try:
+            # Move the updated INP file to the Downloads directory
+            downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
+            updated_file_name = os.path.basename(updated_file_path)
+            new_file_path = os.path.join(downloads_path, updated_file_name)
+            os.rename(updated_file_path, new_file_path)
+            st.write(f"Updated file moved to {new_file_path}")
 
-        # Display success message
-        st.success("INP Updated Successfully!")
+            # Display success message
+            st.success("INP Updated Successfully!")
 
-        # Provide download link for the updated INP file
-        with open(new_file_path, 'rb') as f:
-            st.download_button(
-                label="Download Updated INP",
-                data=f,
-                file_name=updated_file_name,
-                mime='text/plain'
-            )
+            # Provide download link for the updated INP file
+            with open(new_file_path, 'rb') as f:
+                st.download_button(
+                    label="Download Updated INP",
+                    data=f,
+                    file_name=updated_file_name,
+                    mime='text/plain'
+                )
+        except Exception as e:
+            st.error(f"An error occurred while moving the updated INP file: {e}")
+            st.write(f"Error details: {e}")
+    else:
+        st.error("The updated INP file was not created successfully.")
 
 if __name__ == "__main__":
     uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
-    main(uploaded_file)
+    if uploaded_file is not None:
+        main(uploaded_file)
