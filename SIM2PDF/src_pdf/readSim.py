@@ -106,8 +106,8 @@ def generate_pdf(output_directory):
 def extractReport(input_sim_files, reports):
     try:
         simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
-        st.success(input_sim_files)
-        st.success(simfiles)
+        print("Input SIM files directory:", input_sim_files)
+        print("SIM files found:", simfiles)
 
         # Create "Report Outputs" folder inside the folder containing SIM files
         output_directory = os.path.join(input_sim_files, "Report Outputs")
