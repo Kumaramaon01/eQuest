@@ -117,9 +117,9 @@ def main():
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
     
         if st.button("Generate PDFs"):
-            st.success(input_sim_files)
-            sim_print.main(input_sim_files, reports)
-            
+             st.write('This application is currently under maintenance. Please try again later.')
+            # st.success(input_sim_files)
+            # sim_print.main(input_sim_files, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
@@ -132,15 +132,16 @@ def main():
         heat_type = st.selectbox("Select Heating Type:", [("Hybrid/Fossil", 0), ("Electric", 1)])
 
         if st.button("Run Baseline Automation"):
-            baselineAuto.run_baseline_automation(
-                uploaded_inp_file,
-                uploaded_sim_file,
-                input_climate,
-                input_building_type[1],
-                input_area,
-                number_floor,
-                heat_type[1]
-            )
+            st.write('This application is currently under maintenance. Please try again later.')
+            # baselineAuto.run_baseline_automation(
+            #     uploaded_inp_file,
+            #     uploaded_sim_file,
+            #     input_climate,
+            #     input_building_type[1],
+            #     input_area,
+            #     number_floor,
+            #     heat_type[1]
+            # )
 
 if __name__ == "__main__":
     main()
