@@ -115,11 +115,10 @@ def main():
         reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
         reports = [r.strip() for r in reports_input.split(',')]
         input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
-    
-        if st.button("Generate PDFs"):
-            pdf_generation_result = sim_print.main(input_sim_files, reports)
-            st.write("PDF Generation Result:", pdf_generation_result)
-            st.write("Provided directory path:", input_sim_files)
+
+        if input_sim_files is not None:
+            if st.button("Generate PDFs"):
+                sim_print.main(input_sim_files, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
