@@ -4,11 +4,11 @@ from SIM2PDF.src_pdf import readSim
 
 def main(input_sim_files, reports):
     # Validate path
+    st.success(input_sim_files)
+    st.success(reports)
+    
     if not os.path.isabs(input_sim_files):
         input_sim_files = os.path.abspath(input_sim_files)
-    
-    # Debugging print statement
-    print(f"Resolved input_sim_files: {input_sim_files}")
     
     # Check if the path exists and is a directory
     if os.path.exists(input_sim_files):
