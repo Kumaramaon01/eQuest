@@ -108,24 +108,28 @@ def generate_pdf(output_directory):
 def extractReport(input_sim_files, reports):
     st.success("in extract report")
     try:
-        # # Create a Path object for the input directory
-        # input_path = Path(input_sim_files)
-
-        # # Use the glob method of the Path object to find all .sim files
-        # simfiles = list(input_path.glob('*.sim'))
-        # st.success(simfiles)
-
-        # # Optionally, convert Path objects to strings if needed
-        # simfiles = [str(file) for file in simfiles]
-        
-        # # simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
-        simfiles = [f for f in os.listdir(input_sim_files) if fnmatch.fnmatch(f, '*.sim')]
-        if simfiles:
-            st.success(f"Found .sim files: {simfiles}")
+        # Ensure the directory exists
+        if not os.path.exists(input_sim_files):
+            st.error(f"The directory {input_sim_files} does not exist.")
         else:
-            st.warning("No .sim files found in the directory.")
-
-
+            # List all files and directories in the specified directory
+            all_files = os.listdir(input_sim_files)
+            
+            # Print the directory path and its contents for debugging
+            st.write(f"Directory: {input_sim_files}")
+            st.write(f"Contents: {all_files}")
+            
+            # Find all .sim files in the directory
+            simfiles = [f for f in all_files if fnmatch.fnmatch(f, '*.sim')]
+            
+            # Print the filtered .sim files for debugging
+            st.write(f"Filtered .sim files: {simfiles}")
+            
+            if simfiles:
+                st.success(f"Found .sim files: {simfiles}")
+            else:
+                st.warning("No .sim files found in the directory.")
+        
         # Create "Report Outputs" folder inside the folder containing SIM files
         output_directory = os.path.join(input_sim_files, "Report Outputs")
         if not os.path.exists(output_directory):
