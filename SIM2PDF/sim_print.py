@@ -3,17 +3,17 @@ import streamlit as st
 from SIM2PDF.src_pdf import readSim
 
 def main(input_sim_files, reports):
-    
     # Check if the path exists and is a directory
     input_sim_files = input_sim_files.strip()
-    st.success(input_sim_files)
     
-    if os.path.exists(input_sim_files):
-        st.success(input_sim_files)
-        if os.path.isdir(input_sim_files):
-            result_message = readSim.extractReport(input_sim_files, reports)
-            st.success(result_message)
-        else:
-            st.error("The provided path is not a directory.")
+    if os.path.isdir(input_sim_files):
+        st.success(f"The provided path '{input_sim_files}' exists and is a directory.")
+        result_message = readSim.extractReport(input_sim_files, reports)
+        st.success(result_message)
     else:
-        st.error("The provided path does not exist.")
+        st.error(f"The provided path '{input_sim_files}' does not exist or is not a directory.")
+
+# Example usage:
+input_path = r'C:\Users\rajee\OneDrive\Desktop\SIM Files'
+reports = ...  # define your reports variable
+main(input_path, reports)
