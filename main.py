@@ -119,7 +119,7 @@ def main():
         if uploaded_file is not None:
             if st.button("Generate PDFs"):
                 # st.success(input_sim_files)  # Debugging statement
-                sim_print.main(input_sim_files, reports)
+                sim_print.main(uploaded_file, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
