@@ -112,12 +112,14 @@ def main():
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
         reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         reports = [r.strip() for r in reports_input.split(',')]
-        input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
+        # input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
         
-        if st.button("Generate PDFs"):
-            st.success(input_sim_files)  # Debugging statement
-            sim_print.main(input_sim_files, reports)
+        if uploaded_file is not None:
+            if st.button("Generate PDFs"):
+                # st.success(input_sim_files)  # Debugging statement
+                sim_print.main(input_sim_files, reports)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
