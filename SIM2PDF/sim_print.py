@@ -12,8 +12,3 @@ def main(input_sim_files, reports):
         st.success(result_message)
     else:
         st.error(f"The provided path '{input_sim_files}' does not exist or is not a directory.")
-
-# Example usage:
-input_path = r'C:\Users\rajee\OneDrive\Desktop\SIM Files'
-reports = ...  # define your reports variable
-main(input_path, reports)
