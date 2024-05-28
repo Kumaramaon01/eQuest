@@ -105,7 +105,7 @@ def generate_pdf(output_directory):
 # Function to extract relevent data from SIM file to based in input reports
 def extractReport(input_sim_files, reports):
     try:
-        simfiles = gb.glob(os.path.join(input_sim_files, '*.SIM'))
+        simfiles = gb.glob(os.path.join(input_sim_files, '*'))
         print("Input SIM files directory:", input_sim_files)
         print("SIM files found:", simfiles)
 
