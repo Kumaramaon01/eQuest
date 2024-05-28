@@ -1,73 +1,112 @@
-# readSim.py
-
 import glob as gb
 import os
 import shutil
 from fpdf import FPDF
+# from src import readSim
+import PyPDF2
 
 # Reading sim files line by line
 def read_sim_file(sim_file_path):
-    if os.path.isfile(sim_file_path):
-        with open(sim_file_path, 'r', encoding='utf-8') as f:
+    if os.path.isfile(sim_file_path): # if the sim file exist, then open in read mode
+        with open(sim_file_path, 'r', encoding='utf-8') as f: #  function is used to specify the character encoding of the file being opened
             return f.read()
     else:
         print("SIM file does not exist.")
         return None
-
-# Removed some useless lines of SIM files that were repeated many times
+    
+# removed some useless lines of SIM files, that was repeated many times.
 def clean_sim(name):
     with open(name, 'r', encoding='utf-8') as file:
         lines = file.readlines()
+
         cleaned_lines = []
         i = 0
-        while i < len(lines) - 1:
+        while i < len(lines) - 1:  # Iterate until the second to last element
+            # Check if "REPORT" is present in the current line and "RUN" in the next line
             if "REPORT" in lines[i] and "RUN" in lines[i + 1]:
-                i += 2
-            elif "RUN" in lines[i] and i == len(lines) - 2:
+                i += 2  # Skip both lines if both conditions are met
+            elif ("RUN" in lines[i] and i == len(lines) - 2):
+                i += 1
+            elif ("RUN" in lines[i] and i == len(lines) - 3):
+                i += 1
+            elif ("RUN" in lines[i] and i == len(lines) - 4):
+                i += 1
+            elif ("RUN" in lines[i] and i == len(lines) - 5):
+                i += 1
+            elif ("RUN" in lines[i] and i == len(lines) - 6):
                 i += 1
             else:
-                cleaned_lines.append(lines[i])
-                i += 1
+                cleaned_lines.append(lines[i])  # Otherwise, keep the current line
+                i += 1  # Move to the next line
 
+    # Join the cleaned lines into a single string
     return ''.join(cleaned_lines)
 
-# Function to modify generated pdf and override in the same folder
-def get_report_as_pdf(report_content, folder_name, output_directory, pdf_file_path):
-    pdf = FPDF()
-    pdf.set_font("Courier", size=6.5)
-    pdf.add_page(orientation='L')
-    pdf.set_auto_page_break(auto=True, margin=10)
+######################################################################################
 
+# Function to modify generated pdf and override in same folder.
+def get_report_as_pdf(report_content, folder_name, path):
+    # Create a PDF object
+    pdf = FPDF()
+    
+    # Set font for the PDF
+    pdf.set_font("Courier", size=6.5)
+
+    # Add a page with increased horizontal width
+    pdf.add_page(orientation='L')  # 'L' stands for landscape orientation
+    pdf.set_auto_page_break(auto=True, margin=10) # Setting automatic page break with a margin of 10
+
+    # Split the report content by lines
     report_lines = report_content.strip().split('\n')
 
+    # Add content from the SIM report, starting a new page for each section starting with "REPORT"
     for line in report_lines:
         if "RUN" in line:
-            pdf.add_page()
-        pdf.multi_cell(0, 4, line)
+            pdf.add_page()  # Start a new page
+        pdf.multi_cell(0, 4, line)  # Adjust spacing to 5
 
-    pdf.output(pdf_file_path)
-    print(f"PDF report Generated: {pdf_file_path}")
+    # Save the PDF to the specified file path
+    temp_file = os.path.join(path, f'{folder_name}_temp.pdf')
+    file_path = os.path.join(path, f'{folder_name}.pdf')
+    pdf.output(temp_file)
+    print(f"PDF report Generated!")
 
-# Function to generate PDF directly in the "Report Outputs" folder
+    # Remove the first page using PyPDF2
+    with open(temp_file, 'rb') as file:
+        reader = PyPDF2.PdfReader(file)
+        writer = PyPDF2.PdfWriter()
+        for page_num in range(1, len(reader.pages)):
+            writer.add_page(reader.pages[page_num])
+        
+        # Write to the final PDF file
+        with open(file_path, 'wb') as output_file:
+            writer.write(output_file)
+
+    # Remove the temporary file
+    os.remove(temp_file)
+
+# Function to get pdf in same directory where generated sim is located.
 def generate_pdf(output_directory):
     simfiles = gb.glob(os.path.join(output_directory, '*.sim'))
-    if simfiles:
+    if simfiles:  # Check if simfiles list is not empty
         for sim_file in simfiles:
             folder_name = os.path.splitext(os.path.basename(sim_file))[0]
+            parent_directory = os.path.dirname(sim_file)
             report_content = read_sim_file(sim_file)
 
             if report_content:
                 print("\nGenerating PDF report...")
-                pdf_file_path = os.path.join(output_directory, f'{folder_name}.pdf')
-                get_report_as_pdf(report_content, folder_name, output_directory, pdf_file_path)
-                print("PDF report generation complete.")
+                get_report_as_pdf(report_content, folder_name, output_directory)
+                print("PDF report generation complete.\n")
     else:
         print("No SIM files found in the specified directory.")
-
-# Function to extract relevant data from SIM file based on input reports
+        
+# Function to extract relevent data from SIM file to based in input reports
 def extractReport(input_sim_files, reports):
+    print(f"Extracting reports from directory: {input_sim_files}")
     try:
         simfiles = gb.glob(os.path.join(input_sim_files, '*.sim'))
+        print(f"Found SIM files: {simfiles}")
 
         # Create "Report Outputs" folder inside the folder containing SIM files
         output_directory = os.path.join(input_sim_files, "Report Outputs")
@@ -93,8 +132,7 @@ def extractReport(input_sim_files, reports):
                                 lines += 1
                             section = f_list[rptstart:rptstart + rptlen + 4]
                             file_name = "Reports_" + os.path.basename(name)
-                            file_path = os.path.join(output_directory, file_name)
-                            with open(file_path, "a") as output:
+                            with open(os.path.join(output_directory, file_name), "a") as output:
                                 for l in section:
                                     output.write(l)
                             break
@@ -102,9 +140,13 @@ def extractReport(input_sim_files, reports):
         # Clean generated SIM files in "Report Outputs" folder
         for filename in os.listdir(output_directory):
             file_path = os.path.join(output_directory, filename)
-            cleaned_content = clean_sim(file_path)
+            cleaned_content = clean_sim(file_path)  # Call your clean_sim function here
+            
+            # Convert cleaned_content to string if it's a list
             if isinstance(cleaned_content, list):
                 cleaned_content = "\n".join(cleaned_content)
+            
+            # Write the cleaned content back to the file
             with open(file_path, "w") as cleaned_file:
                 cleaned_file.write(cleaned_content)
 
