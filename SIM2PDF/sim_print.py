@@ -3,8 +3,6 @@ import streamlit as st
 from SIM2PDF.src_pdf import readSim
 
 def main(input_sim_files, reports):
-    if not os.path.isabs(input_sim_files):
-        input_sim_files = os.path.abspath(input_sim_files)
     
     # Check if the path exists and is a directory
     if os.path.exists(input_sim_files):
