@@ -112,11 +112,11 @@ def main():
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
         st.write('This application is currently under maintenance. Please try again later.')
-        reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
-        reports = [r.strip() for r in reports_input.split(',')]
-        input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
+        # reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
+        # reports = [r.strip() for r in reports_input.split(',')]
+        # input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
     
-        if st.button("Generate PDFs"):
+        # if st.button("Generate PDFs"):
             # st.success(input_sim_files)
             # sim_print.main(input_sim_files, reports)
 
