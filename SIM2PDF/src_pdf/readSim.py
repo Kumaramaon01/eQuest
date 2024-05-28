@@ -112,17 +112,16 @@ def extractReport(input_sim_files, reports):
         if not os.path.exists(input_sim_files):
             st.error(f"The directory {input_sim_files} does not exist.")
         else:
-            # List all files and directories in the specified directory
-            all_files = os.listdir(input_sim_files)
+            # List all files in the directory and subdirectories
+            simfiles = []
+            for root, dirs, files in os.walk(input_sim_files):
+                for filename in files:
+                    if fnmatch.fnmatch(filename, '*.sim'):
+                        simfiles.append(os.path.join(root, filename))
             
             # Print the directory path and its contents for debugging
             st.write(f"Directory: {input_sim_files}")
-            st.write(f"Contents: {all_files}")
-            
-            # Find all .sim files in the directory
-            simfiles = [f for f in all_files if fnmatch.fnmatch(f, '*.sim')]
-            
-            # Print the filtered .sim files for debugging
+            st.write(f"Contents: {os.listdir(input_sim_files)}")
             st.write(f"Filtered .sim files: {simfiles}")
             
             if simfiles:
