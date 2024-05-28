@@ -10,9 +10,3 @@ def main(input_sim_files, reports):
         if os.path.isdir(input_sim_files):
             result_message = readSim.extractReport(input_sim_files, reports)
             st.success(result_message)
-        else:
-            st.error("The path exists but is not a directory.")
-            print("Error: The path exists but is not a directory.")
-    else:
-        st.error("Invalid directory path.")
-        print("Error: Invalid directory path.")
