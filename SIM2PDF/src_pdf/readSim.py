@@ -109,10 +109,10 @@ def extractReport(input_sim_files, reports):
     try:
         # Create a Path object for the input directory
         input_path = Path(input_sim_files)
-        st.success(input_path)
 
         # Use the glob method of the Path object to find all .sim files
         simfiles = list(input_path.glob('*.sim'))
+        st.success(simfiles)
 
         # Optionally, convert Path objects to strings if needed
         simfiles = [str(file) for file in simfiles]
