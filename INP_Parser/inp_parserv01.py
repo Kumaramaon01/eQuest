@@ -17,11 +17,34 @@ def update_inp_file(uploaded_file):
 
                 # Perform perging operations
                 perge_data_annual = perging.perging_data_annual(inp_path)
+                if not perge_data_annual:
+                    st.error("Failed during perging_data_annual")
+                    return None
+
                 perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
+                if not perge_data_weekly:
+                    st.error("Failed during perging_data_weekly")
+                    return None
+
                 perge_data_day = perging.perging_data_day(perge_data_weekly)
+                if not perge_data_day:
+                    st.error("Failed during perging_data_day")
+                    return None
+
                 construction_delete = CLM_delete.perging_data_const(perge_data_day)
+                if not construction_delete:
+                    st.error("Failed during perging_data_const")
+                    return None
+
                 layers_delete = CLM_delete.perging_data_layer(construction_delete)
+                if not layers_delete:
+                    st.error("Failed during perging_data_layer")
+                    return None
+
                 material_delete = CLM_delete.perging_data_material(layers_delete)
+                if not material_delete:
+                    st.error("Failed during perging_data_material")
+                    return None
                 
                 # Create the updated INP file
                 base_name, ext = os.path.splitext(uploaded_file.name)
@@ -31,6 +54,12 @@ def update_inp_file(uploaded_file):
                 with open(updated_file_path, 'w') as file:
                     file.writelines(material_delete)
                 st.write(f"Updated file created at {updated_file_path}")
+
+                if os.path.exists(updated_file_path):
+                    st.write(f"Verified: Updated file exists at {updated_file_path}")
+                else:
+                    st.error(f"Updated file does not exist at {updated_file_path}")
+                    return None
 
                 return updated_file_path  # Return the path of the updated INP file
         except Exception as e:
