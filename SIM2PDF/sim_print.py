@@ -6,8 +6,8 @@ def main(input_sim_files, reports):
     
     # Check if the path exists and is a directory
     input_sim_files = input_sim_files.strip()
-    input_sim_files = rinput_sim_files
     st.success(input_sim_files)
+    
     if os.path.exists(input_sim_files):
         st.success(input_sim_files)
         if os.path.isdir(input_sim_files):
