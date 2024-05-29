@@ -2,8 +2,13 @@ import os
 import streamlit as st
 from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir
 
-def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type):
+def main(input_inp_file, input_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type):
     # Convert input_climate to an integer
+    input_climate = int(input_climate)
+    input_building_type = int(input_building_type)
+    input_area = float(input_area)
+    floor = int(number_floor)
+    heat_type = int(heat_type)
 
     st.success(input_climate)
     st.success(input_building_type)
@@ -77,9 +82,9 @@ def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input
 if __name__ == "__main__":
     uploaded_file1 = st.file_uploader("Upload your INP file", type=["inp"])
     uploaded_file2 = st.file_uploader("Upload your SIM file", type=["sim"])
-    input_climate = int(input_climate)
-    input_building_type = int(input_building_type)
-    input_area = float(input_area)
-    floor = int(number_floor)
-    heat_type = int(heat_type)
+    # input_climate = int(input_climate)
+    # input_building_type = int(input_building_type)
+    # input_area = float(input_area)
+    # floor = int(number_floor)
+    # heat_type = int(heat_type)
     main(uploaded_file, uploaded_file2, input_climate, input_building_type, input_area, floor, heat_type)
