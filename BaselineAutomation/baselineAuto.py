@@ -1,8 +1,9 @@
 import os
 import streamlit as st
 from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir
+import tempfile
 
-def main(input_inp_path, input_sim_path, input_climate, input_building_type, input_area, number_floor, heat_type):
+def main(input_inp_file, input_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type):
     # Convert input_climate to an integer
     input_climate = int(input_climate)
     input_building_type = int(input_building_type)
@@ -17,14 +18,18 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
     climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
     system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
         
-    if os.path.isfile(input_inp_path):
-        mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
+    if input_inp_file is not None:
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(input_inp_file.getvalue())
+            temp_file_path = temp_file.name
+        
+        mat_data = update_MLC.insert_material_data(climate_path, temp_file_path)
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
         const_data = update_MLC.insert_const_data(climate_path, lyr_data)
         update_ConstName = insertConst.update_external_wall_roof_undergrnd(const_data)
         updateGlass = insertGlass.update_glass(climate_path, update_ConstName)
         updateGlassType = insertGlass.update_glass_type(updateGlass)
-        updateWWR = wwr.UpdateWWR(input_sim_path, updateGlassType)
+        updateWWR = wwr.UpdateWWR(input_sim_file, updateGlassType)
         modifyHVAC = updateHVAC.HVAC_Modification(updateWWR)
         hvac_sys = HVAC_sys.systems(modifyHVAC, system_path)
         
@@ -40,10 +45,10 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
         construction_delete = CLM_delete.perging_data_const(perge_data_day)
         layers_delete = CLM_delete.perging_data_layer(construction_delete)
         material_delete = CLM_delete.perging_data_material(layers_delete)
-        modify_lpd = update_lpd.updateLPD(material_delete, input_sim_path)
-        modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, input_sim_path)
+        modify_lpd = update_lpd.updateLPD(material_delete, input_sim_file)
+        modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, input_sim_file)
             
-        directory_path, filename = os.path.split(input_inp_path)
+        directory_path, filename = os.path.split(temp_file_path)
         new_filename = filename.replace(".inp", "_Baseline_Automation.inp")
         output_file = os.path.join(directory_path, new_filename)
 
@@ -56,7 +61,7 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
         # Add a download button
         st.download_button(
             label="Download Updated INP File",
-            data=open(output_file, 'rb'),
+            data=open(output_file, 'rb').read(),
             file_name=new_filename,
             mime="text/plain"
         )
