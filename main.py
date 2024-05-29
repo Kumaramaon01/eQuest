@@ -142,10 +142,10 @@ def main():
                 uploaded_inp_file,
                 uploaded_sim_file,
                 input_climate,
-                input_building_type[1],
+                input_building_type,
                 input_area,
                 number_floor,
-                heat_type[1]
+                heat_type
             )
 
 if __name__ == "__main__":
