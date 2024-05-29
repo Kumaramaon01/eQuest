@@ -18,10 +18,8 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
     else:
         climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
         system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
+        climate_path = os.path.abspath(climate_path)
         st.success(climate_path)
-        st.success(system_path)
-        # climate_path = os.path.abspath(climate_path)
-        # st.success(climate_path)
 
         if os.path.isfile(input_inp_path):
             mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
