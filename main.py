@@ -132,6 +132,12 @@ def main():
 
         if st.button("Run Baseline Automation"):
             # st.write('This application is currently under maintenance. Please try again later.')
+            st.success(uploaded_inp_file)
+            st.success(uploaded_sim_file)
+            st.success(input_climate)
+            st.success(input_building_type)
+            st.success(input_area)
+            
             baselineAuto.run_baseline_automation(
                 uploaded_inp_file,
                 uploaded_sim_file,
