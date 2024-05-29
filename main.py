@@ -133,14 +133,6 @@ def main():
 
         if st.button("Run Baseline Automation"):
             if uploaded_inp_file is not None and uploaded_sim_file is not None:
-                # with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as inp_tempfile:
-                #     inp_tempfile.write(uploaded_inp_file.read())
-                #     inp_file_path = inp_tempfile.name
-
-                # with tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as sim_tempfile:
-                #     sim_tempfile.write(uploaded_sim_file.read())
-                #     sim_file_path = sim_tempfile.name
-
                 st.write(f"INP file path: {uploaded_inp_file}")
                 st.write(f"SIM file path: {uploaded_sim_file}")
 
