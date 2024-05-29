@@ -4,11 +4,16 @@ from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, up
 
 def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type):
     # Convert input_climate to an integer
+    
     input_climate = int(input_climate)
     input_building_type = int(input_building_type)
     input_area = float(input_area)
     floor = int(number_floor)
     heat_type = int(heat_type)
+
+    st.success(input_climate)
+    st.success(input_building_type)
+    st.success(input_area)
     
     if input_climate < 1 or input_climate > 8 or input_building_type > 1 or input_building_type < 0:
         st.success("Climate input or Building type is Wrong!\n")
