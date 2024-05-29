@@ -67,7 +67,7 @@ def insert_material_data(climate_zone_file, amenity_file):
     start_marker1 = "= MATERIAL"
     end_marker1 = ".."
     climate_zone_file = "D:\EDS\S2302 eQuest Automation\S2302.1 Baseline Automation\S2302.1_GIT\" + climate_zone_file
-    
+    st.success(climate_zone_file)
     with open(climate_zone_file, 'r') as file:
         data_climate_zone = file.readlines()
 
