@@ -10,17 +10,15 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
     floor = int(number_floor)
     heat_type = int(heat_type)
 
-    # st.success(input_inp_path)
-    # st.success(input_sim_path)
+    st.success(input_inp_path)
+    st.success(input_sim_path)
     
     if input_climate < 1 or input_climate > 8 or input_building_type > 1 or input_building_type < 0:
         st.success("Climate input or Building type is Wrong!\n")
     else:
         climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
         system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
-        climate_path = os.path.abspath(climate_path)
-        st.success(climate_path)
-
+    
         if os.path.isfile(input_inp_path):
             mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
             st.success("Inserted Material Data")
