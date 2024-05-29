@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 import tempfile
 from INP_Parser import inp_parserv01
 from Perging_INP import perge  # Import the perge function directly
@@ -133,9 +132,21 @@ def main():
 
         if st.button("Run Baseline Automation"):
             if uploaded_inp_file is not None and uploaded_sim_file is not None:
-                st.write(f"INP file path: {uploaded_inp_file}")
-                st.write(f"SIM file path: {uploaded_sim_file}")
+                # Save INP file to a temporary location
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as inp_tempfile:
+                    inp_tempfile.write(uploaded_inp_file.getbuffer())
+                    inp_file_path = inp_tempfile.name
 
+                # Save SIM file to a temporary location
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as sim_tempfile:
+                    sim_tempfile.write(uploaded_sim_file.getbuffer())
+                    sim_file_path = sim_tempfile.name
+
+                # Display the paths of the temporary files
+                st.write(f"INP file path: {inp_file_path}")
+                st.write(f"SIM file path: {sim_file_path}")
+
+                # Run baseline automation
                 baselineAuto.run_baseline_automation(inp_file_path, sim_file_path, input_climate, input_building_type, input_area, number_floor, heat_type)
                 st.success("Baseline automation run successfully.")
             else:
