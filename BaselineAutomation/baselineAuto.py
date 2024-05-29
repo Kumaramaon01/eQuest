@@ -7,7 +7,7 @@ def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input
     input_sim_path = input_sim_file.name
 
     if input_climate < 1 or input_climate > 8 or input_building_type > 1 or input_building_type < 0:
-        print("Climate input or Building type is Wrong!\n")
+        st.success("Climate input or Building type is Wrong!\n")
     else:
         climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
         system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
@@ -16,7 +16,7 @@ def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input
 
         if os.path.isfile(input_inp_path):
             mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
-            print("\nInserted Material Data")
+            st.success("Inserted Material Data")
             lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
             print("Inserted Layer Data")
             const_data = update_MLC.insert_const_data(climate_path, lyr_data)
