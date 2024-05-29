@@ -134,16 +134,7 @@ def main():
             # st.write('This application is currently under maintenance. Please try again later.')
             st.success(uploaded_inp_file)
             st.success(uploaded_sim_file)
-            
-            baselineAuto.run_baseline_automation(
-                uploaded_inp_file,
-                uploaded_sim_file,
-                input_climate,
-                input_building_type,
-                input_area,
-                number_floor,
-                heat_type
-            )
+            baselineAuto.run_baseline_automation(uploaded_inp_file, uploaded_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type )
 
 if __name__ == "__main__":
     main()
