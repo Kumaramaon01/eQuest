@@ -15,7 +15,7 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
     else:
         climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
         system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
-        climate_zone_file = "D:\\EDS\\S2302 eQuest Automation\\S2302.1 Baseline Automation\\S2302.1_GIT\\" + climate_path
+        climate_zone_file = r"D:\EDS\S2302 eQuest Automation\S2302.1 Baseline Automation\S2302.1_GIT\\" + climate_path
         st.success(climate_zone_file)
 
         mat_data = update_MLC.insert_material_data(climate_zone_file, input_inp_path)
