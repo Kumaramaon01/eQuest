@@ -1,5 +1,6 @@
 import json
 import os
+import streamlit as st
 
 # function to take climate_zone path from JSON file based on input!
 def get_climate_path(climate_zone, building_type):
