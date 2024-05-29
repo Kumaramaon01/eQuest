@@ -125,10 +125,10 @@ def main():
         uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.number_input("Enter the Climate Zone (1 to 8):", min_value=1, max_value=8, step=1)
-        input_building_type = st.selectbox("Select the Building Type, (Residential - 0), (Non-Residential - 1):", min_value=0, max_value=1, step=1)
+        input_building_type = st.number_input("Select the Building Type, (Residential - 0), (Non-Residential - 1):", min_value=0, max_value=1, step=1)
         input_area = st.number_input("Enter area:", min_value=0.0, step=0.01)
         number_floor = st.number_input("Enter floor number:", min_value=1, step=1)
-        heat_type = st.selectbox("Select Heating Type, (Hybrid/Fossil - 0), (Electric - 1):", min_value=0, max_value=1, step=1)
+        heat_type = st.number_input("Select Heating Type, (Hybrid/Fossil - 0), (Electric - 1):", min_value=0, max_value=1, step=1)
 
         if st.button("Run Baseline Automation"):
             # st.write('This application is currently under maintenance. Please try again later.')
