@@ -87,4 +87,4 @@ if __name__ == "__main__":
     # input_area = float(input_area)
     # floor = int(number_floor)
     # heat_type = int(heat_type)
-    main(uploaded_file, uploaded_file2, input_climate, input_building_type, input_area, floor, heat_type)
+    main(uploaded_file1, uploaded_file2, input_climate, input_building_type, input_area, floor, heat_type)
