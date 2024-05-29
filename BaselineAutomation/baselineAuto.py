@@ -27,29 +27,29 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
             mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
             st.success("Inserted Material Data")
             lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
-            print("Inserted Layer Data")
+            st.success("Inserted Layer Data")
             const_data = update_MLC.insert_const_data(climate_path, lyr_data)
-            print("Construction Data Inserted")
+            st.success("Construction Data Inserted")
             update_ConstName = insertConst.update_external_wall_roof_undergrnd(const_data)
-            print("Construction name based on Wall, roof and underground is updated")
+            st.success("Construction name based on Wall, roof and underground is updated")
             updateGlass = insertGlass.update_glass(climate_path, update_ConstName)
-            print("Inserted Glass Data")
+            st.success("Inserted Glass Data")
             updateGlassType = insertGlass.update_glass_type(updateGlass)
-            print("Glass-Type Data is Updated by All Win")
+            st.success("Glass-Type Data is Updated by All Win")
             updateWWR = wwr.UpdateWWR(input_sim_path, updateGlassType)
-            print("Updated WWR")
+            st.success("Updated WWR")
             modifyHVAC = updateHVAC.HVAC_Modification(updateWWR)
-            print("HVAC_Updated")
+            st.success("HVAC_Updated")
             hvac_sys = HVAC_sys.systems(modifyHVAC, system_path)
-            print("System_updated")
+            st.success("System_updated")
             
             value = system_path.split(".inp")[0][-1]
             if value in ['1', '2', '3', '4']:
                 update_zone = HVAC_sys.modify_conditioned(hvac_sys, system_path)
-                print("Conditioned_zone updated")
+                st.success("Conditioned_zone updated")
             else:
                 update_zone = HVAC_sys.modify_floor(hvac_sys, system_path)
-                print("Floor updated")
+                st.success("Floor updated")
             
             ###### removing unique value from data or perging ######
             perge_data_annual = perging.perging_data_annual(update_zone)
@@ -61,10 +61,10 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
         
         ######################################################################################
             modify_lpd = update_lpd.updateLPD(material_delete, input_sim_path)
-            print("LPD Updated")
+            st.success("LPD Updated")
 
             modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, input_sim_path)
-            print("FreshAir Updated!!\n")
+            st.success("FreshAir Updated!!\n")
 
         ######################################################################################
         ################################## CLEAN INP FILE ####################################
