@@ -80,6 +80,9 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
             
             return output_file
             
+        else:
+            st.error("Not reading INP File")
+            
 if __name__ == "__main__":
     uploaded_file1 = st.file_uploader("Upload your INP file", type=["inp"])
     uploaded_file2 = st.file_uploader("Upload your SIM file", type=["sim"])
