@@ -137,7 +137,7 @@ def main():
                 st.success(uploaded_sim_file)
 
                 # Run baseline automation
-                baselineAuto.main(uploaded_inp_file.name, uploaded_sim_file.name, input_climate, input_building_type, input_area, number_floor, heat_type)
+                baselineAuto.main(uploaded_inp_file, uploaded_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type)
                 st.success("Baseline automation run successfully.")
             else:
                 st.error("Please upload both INP and SIM files.")
