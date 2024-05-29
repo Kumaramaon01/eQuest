@@ -133,8 +133,8 @@ def main():
         if st.button("Run Baseline Automation"):
             if uploaded_inp_file is not None and uploaded_sim_file is not None:
                 # Display the paths of the temporary files
-                st.write(f"INP file path: {uploaded_inp_file}")
-                st.write(f"SIM file path: {uploaded_sim_file}")
+                st.write(f"INP file path: {uploaded_inp_file.name}")
+                st.write(f"SIM file path: {uploaded_sim_file.name}")
 
                 # Run baseline automation
                 baselineAuto.main(inp_file_path, sim_file_path, input_climate, input_building_type, input_area, number_floor, heat_type)
