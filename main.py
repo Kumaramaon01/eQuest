@@ -122,8 +122,8 @@ def main():
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
-        uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-        uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        uploaded_inp_file = st.text_input("Upload an INP file", type="inp", accept_multiple_files=False)
+        uploaded_sim_file = st.text_input("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.number_input("Enter the Climate Zone (1 to 8):", min_value=1, max_value=8, step=1)
         input_building_type = st.number_input("Select the Building Type, (Residential - 0), (Non-Residential - 1):", min_value=0, max_value=1, step=1)
         input_area = st.number_input("Enter area:", min_value=0.0, step=0.01)
