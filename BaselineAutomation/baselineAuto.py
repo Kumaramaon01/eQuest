@@ -10,16 +10,17 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
     floor = int(number_floor)
     heat_type = int(heat_type)
 
-    st.success(input_inp_path)
-    st.success(input_sim_path)
+    # st.success(input_inp_path)
+    # st.success(input_sim_path)
     
     if input_climate < 1 or input_climate > 8 or input_building_type > 1 or input_building_type < 0:
         st.success("Climate input or Building type is Wrong!\n")
     else:
         climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
         system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
-
+        st.success(climate_path)
         climate_path = os.path.abspath(climate_path)
+        st.success(climate_path)
 
         if os.path.isfile(input_inp_path):
             mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
@@ -81,9 +82,4 @@ def main(input_inp_path, input_sim_path, input_climate, input_building_type, inp
 if __name__ == "__main__":
     uploaded_file1 = st.file_uploader("Upload your INP file", type=["inp"])
     uploaded_file2 = st.file_uploader("Upload your SIM file", type=["sim"])
-    # input_climate = int(input_climate)
-    # input_building_type = int(input_building_type)
-    # input_area = float(input_area)
-    # floor = int(number_floor)
-    # heat_type = int(heat_type)
     main(uploaded_file1, uploaded_file2, input_climate, input_building_type, input_area, floor, heat_type)
