@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir
 
 def run_baseline_automation(input_inp_file, input_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type):
