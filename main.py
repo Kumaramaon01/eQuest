@@ -131,16 +131,16 @@ def main():
         heat_type = st.selectbox("Select Heating Type:", [("Hybrid/Fossil", 0), ("Electric", 1)])
 
         if st.button("Run Baseline Automation"):
-            st.write('This application is currently under maintenance. Please try again later.')
-            # baselineAuto.run_baseline_automation(
-            #     uploaded_inp_file,
-            #     uploaded_sim_file,
-            #     input_climate,
-            #     input_building_type[1],
-            #     input_area,
-            #     number_floor,
-            #     heat_type[1]
-            # )
+            # st.write('This application is currently under maintenance. Please try again later.')
+            baselineAuto.run_baseline_automation(
+                uploaded_inp_file,
+                uploaded_sim_file,
+                input_climate,
+                input_building_type[1],
+                input_area,
+                number_floor,
+                heat_type[1]
+            )
 
 if __name__ == "__main__":
     main()
