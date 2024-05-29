@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+import tempfile
 from INP_Parser import inp_parserv01
 from Perging_INP import perge  # Import the perge function directly
 from SIM_Parser import sim_parserv01
@@ -68,7 +70,6 @@ def main():
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
-        # st.header("About eQuest")
         st.markdown("""
         ### Welcome to eQuest Utilities
 
@@ -131,10 +132,22 @@ def main():
         heat_type = st.number_input("Select Heating Type, (Hybrid/Fossil - 0), (Electric - 1):", min_value=0, max_value=1, step=1)
 
         if st.button("Run Baseline Automation"):
-            # st.write('This application is currently under maintenance. Please try again later.')
-            st.success(uploaded_inp_file)
-            st.success(uploaded_sim_file)
-            baselineAuto.run_baseline_automation(uploaded_inp_file, uploaded_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type )
+            if uploaded_inp_file is not None and uploaded_sim_file is not None:
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as inp_tempfile:
+                    inp_tempfile.write(uploaded_inp_file.read())
+                    inp_file_path = inp_tempfile.name
+
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as sim_tempfile:
+                    sim_tempfile.write(uploaded_sim_file.read())
+                    sim_file_path = sim_tempfile.name
+
+                st.write(f"INP file path: {inp_file_path}")
+                st.write(f"SIM file path: {sim_file_path}")
+
+                baselineAuto.run_baseline_automation(inp_file_path, sim_file_path, input_climate, input_building_type, input_area, number_floor, heat_type)
+                st.success("Baseline automation run successfully.")
+            else:
+                st.error("Please upload both INP and SIM files.")
 
 if __name__ == "__main__":
     main()
