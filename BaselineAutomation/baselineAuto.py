@@ -19,6 +19,11 @@ def main(input_inp_path, sim_content, input_climate, input_building_type, input_
 
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
+    system_path = os.path.abspath(system_path)
+
+    # Debugging: print the paths to verify correctness
+    print(f"Climate Path: {climate_path}")
+    print(f"System Path: {system_path}")
 
     if os.path.isfile(input_inp_path):
         mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
