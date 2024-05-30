@@ -2,6 +2,9 @@ import os
 from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir
 
 def main(input_inp_path, sim_content, input_climate, input_building_type, input_area, number_floor, heat_type, output_file):
+    st.success(input_inp_path)
+    st.success(sim_content)
+
     # Convert inputs to appropriate types
     input_climate = int(input_climate)
     input_building_type = int(input_building_type)
