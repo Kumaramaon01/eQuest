@@ -25,6 +25,11 @@ def main(input_inp_path, sim_content, input_climate, input_building_type, input_
     print(f"Climate Path: {climate_path}")
     print(f"System Path: {system_path}")
 
+    # Check if the climate file exists
+    if not os.path.isfile(climate_path):
+        print(f"Error: Climate zone file not found at {climate_path}")
+        return
+
     if os.path.isfile(input_inp_path):
         mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
         print("\nInserted Material Data")
