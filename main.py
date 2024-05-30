@@ -130,9 +130,6 @@ def main():
         number_floor = st.number_input("Enter floor number", min_value=1, step=1)
         heat_type = st.selectbox("Enter Heating Type (Hybrid/Fossil - 0), (Electric - 1)", options=[0, 1])
         
-        st.success(uploaded_inp_file)
-        st.success(uploaded_sim_file)
-
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
