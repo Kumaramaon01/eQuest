@@ -23,6 +23,7 @@ def main(input_inp_path, sim_content, input_climate, input_building_type, input_
     climate_path = os.path.abspath(climate_path)
     system_path = os.path.abspath(system_path)
 
+    st.success(climate_path)
     # Debugging: print the paths to verify correctness
     print(f"Climate Path: {climate_path}")
     print(f"System Path: {system_path}")
