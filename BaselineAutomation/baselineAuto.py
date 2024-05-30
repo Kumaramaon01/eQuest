@@ -22,7 +22,6 @@ def main(input_inp_path, sim_content, input_climate, input_building_type, input_
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
     system_path = os.path.abspath(system_path)
-    st.success(os.getcwd(climate_path))
 
     st.success(climate_path)
     # Debugging: print the paths to verify correctness
