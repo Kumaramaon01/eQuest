@@ -111,13 +111,14 @@ def main():
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        st.success("Will be updated soon")
+        # uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
-        if uploaded_file is not None:
-            if st.button("Convert to PDF"):
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-                    sim_print.main(uploaded_file, tmp_file.name)
-                    st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
+        # if uploaded_file is not None:
+        #     if st.button("Convert to PDF"):
+        #         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+        #             sim_print.main(uploaded_file, tmp_file.name)
+        #             st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
