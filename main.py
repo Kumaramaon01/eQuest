@@ -145,16 +145,20 @@ def main():
                     output_temp_file_path = output_temp_file.name
                     
                     # Run baseline automation
-                    baselineAuto.main(inp_temp_file_path, sim_temp_file_path, input_climate, input_building_type, input_area, number_floor, heat_type, output_temp_file_path)
-                    st.success("Baseline automation run successfully.")
+                    try:
+                        baselineAuto.main(inp_temp_file_path, sim_temp_file_path, input_climate, input_building_type, input_area, number_floor, heat_type, output_temp_file_path)
+                        st.success("Baseline automation run successfully.")
 
-                    # Provide a download link for the output file
-                    with open(output_temp_file_path, "rb") as file:
-                        st.download_button(
-                            label="Download updated INP file",
-                            data=file,
-                            file_name="updated_baseline.inp"
-                        )
+                        # Provide a download link for the output file
+                        with open(output_temp_file_path, "rb") as file:
+                            st.download_button(
+                                label="Download updated INP file",
+                                data=file,
+                                file_name="updated_baseline.inp"
+                            )
+                    except FileNotFoundError as e:
+                        st.error(f"File not found: {e}")
+                        st.stop()
             else:
                 st.error("Please upload both INP and SIM files.")
 
