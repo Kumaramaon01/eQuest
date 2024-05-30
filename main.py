@@ -111,56 +111,38 @@ def main():
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
-        st.write('This application is currently under maintenance. Please try again later.')
-        # reports_input = st.text_input("Enter the desired reports (comma-separated, case-sensitive):")
-        # reports = [r.strip() for r in reports_input.split(',')]
-        # input_sim_files = st.text_input("Enter the path of the directory containing SIM files:")
-    
-        # if st.button("Generate PDFs"):
-            # st.success(input_sim_files)
-            # sim_print.main(input_sim_files, reports)
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        
+        if uploaded_file is not None:
+            if st.button("Convert to PDF"):
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+                    sim_print.main(uploaded_file, tmp_file.name)
+                    st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
 
     elif st.session_state.script_choice == "baselineAutomation":
-        st.header("INP Baseline Automation")
-        uploaded_inp_file = st.file_uploader("Upload a INP file", type="inp", accept_multiple_files=False)
+        st.header("Baseline Automation")
+        uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
-        input_climate = st.number_input("Enter the Climate Zone (1 to 8):", min_value=1, max_value=8, step=1)
-        input_building_type = st.number_input("Select the Building Type, (Residential - 0), (Non-Residential - 1):", min_value=0, max_value=1, step=1)
-        input_area = st.number_input("Enter area:", min_value=0.0, step=0.01)
-        number_floor = st.number_input("Enter floor number:", min_value=1, step=1)
-        heat_type = st.number_input("Select Heating Type, (Hybrid/Fossil - 0), (Electric - 1):", min_value=0, max_value=1, step=1)
+        input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
+        input_building_type = st.selectbox("Enter the Building Type", options=[0, 1])
+        input_area = st.number_input("Enter area", min_value=0.0, step=0.1)
+        number_floor = st.number_input("Enter floor number", min_value=0, step=1)
+        heat_type = st.selectbox("Enter Heating Type", options=[0, 1])
 
-        if st.button("Run Baseline Automation"):
-            if uploaded_inp_file is not None and uploaded_sim_file is not None:
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as inp_temp_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as sim_temp_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as output_temp_file:
-                    
-                    # Write the uploaded files to the temporary files
-                    inp_temp_file.write(uploaded_inp_file.read())
-                    sim_temp_file.write(uploaded_sim_file.read())
-                    
-                    inp_temp_file_path = inp_temp_file.name
-                    sim_temp_file_path = sim_temp_file.name
-                    output_temp_file_path = output_temp_file.name
-                    
-                    # Run baseline automation
-                    try:
-                        baselineAuto.main(inp_temp_file_path, sim_temp_file_path, input_climate, input_building_type, input_area, number_floor, heat_type, output_temp_file_path)
-                        st.success("Baseline automation run successfully.")
-
-                        # Provide a download link for the output file
-                        with open(output_temp_file_path, "rb") as file:
-                            st.download_button(
-                                label="Download updated INP file",
-                                data=file,
-                                file_name="updated_baseline.inp"
-                            )
-                    except FileNotFoundError as e:
-                        st.error(f"File not found: {e}")
-                        st.stop()
-            else:
-                st.error("Please upload both INP and SIM files.")
+        if uploaded_inp_file and uploaded_sim_file:
+            if st.button("Run Baseline Automation"):
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_file:
+                    baselineAuto.main(
+                        uploaded_inp_file.name,
+                        uploaded_sim_file.name,
+                        input_climate,
+                        input_building_type,
+                        input_area,
+                        number_floor,
+                        heat_type,
+                        tmp_file.name
+                    )
+                    st.download_button("Download Updated INP File", data=tmp_file.name, file_name="updated_baseline.inp")
 
 if __name__ == "__main__":
     main()
