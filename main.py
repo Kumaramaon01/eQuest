@@ -1,6 +1,5 @@
 import streamlit as st
 import tempfile
-import os
 from INP_Parser import inp_parserv01
 from Perging_INP import perge  # Import the perge function directly
 from SIM_Parser import sim_parserv01
@@ -123,7 +122,7 @@ def main():
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("INP Baseline Automation")
-        uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
+        uploaded_inp_file = st.file_uploader("Upload a INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.number_input("Enter the Climate Zone (1 to 8):", min_value=1, max_value=8, step=1)
         input_building_type = st.number_input("Select the Building Type, (Residential - 0), (Non-Residential - 1):", min_value=0, max_value=1, step=1)
@@ -133,17 +132,29 @@ def main():
 
         if st.button("Run Baseline Automation"):
             if uploaded_inp_file is not None and uploaded_sim_file is not None:
-                # Create temporary file
-                with tempfile.NamedTemporaryFile(delete=False, suffix='.inp') as tmpfile:
-                    temp_inp_path = tmpfile.name
-                
-                # Run baseline automation
-                baselineAuto.main(uploaded_inp_file, uploaded_sim_file, input_climate, input_building_type, input_area, number_floor, heat_type, temp_inp_path)
-                st.success("Baseline automation run successfully.")
-                
-                # Provide download button
-                with open(temp_inp_path, "rb") as file:
-                    st.download_button(label="Download Updated INP", data=file, file_name="updated_baseline.inp", mime="text/plain")
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as inp_temp_file, \
+                     tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as sim_temp_file, \
+                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as output_temp_file:
+                    
+                    # Write the uploaded files to the temporary files
+                    inp_temp_file.write(uploaded_inp_file.read())
+                    sim_temp_file.write(uploaded_sim_file.read())
+                    
+                    inp_temp_file_path = inp_temp_file.name
+                    sim_temp_file_path = sim_temp_file.name
+                    output_temp_file_path = output_temp_file.name
+                    
+                    # Run baseline automation
+                    baselineAuto.main(inp_temp_file_path, sim_temp_file_path, input_climate, input_building_type, input_area, number_floor, heat_type, output_temp_file_path)
+                    st.success("Baseline automation run successfully.")
+
+                    # Provide a download link for the output file
+                    with open(output_temp_file_path, "rb") as file:
+                        st.download_button(
+                            label="Download updated INP file",
+                            data=file,
+                            file_name="updated_baseline.inp"
+                        )
             else:
                 st.error("Please upload both INP and SIM files.")
 
