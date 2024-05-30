@@ -132,8 +132,6 @@ def main():
         
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                st.success(uploaded_inp_file)
-                st.success(uploaded_sim_file) 
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
                      tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file:
 
@@ -143,6 +141,8 @@ def main():
                     
                     tmp_inp_file.write(inp_content.encode('utf-8'))
                     tmp_inp_file.flush()
+                    st.success(tmp_inp_file.name)
+                    # st.success(uploaded_sim_file) 
                     
                     tmp_out_file.close()  # Close the output file to pass its name
 
