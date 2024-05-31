@@ -22,12 +22,12 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
     climate_path = os.path.abspath(climate_path)
     st.success(input_inp_path)
     if os.path.isfile(input_inp_path):
-        try:
-            st.success("inside if")
-            st.success(input_inp_path)
-            # Your other code here
-        except Exception as e:
-            st.error(f"Error: {e}")
+        print("File exists:", input_inp_path)
+        st.success(input_inp_path)
+        # Your other code here
+    else:
+        print("File does not exist at:", input_inp_path)
+
         mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
         print("\nInserted Material Data")
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
