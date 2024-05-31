@@ -111,9 +111,9 @@ def main():
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
-        st.success("Will be updated soon")
+        # st.success("Will be updated soon")
         # Uncomment and modify below code when SIM to PDF conversion is ready
-        # uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
         # if uploaded_file is not None:
         #     if st.button("Convert to PDF"):
