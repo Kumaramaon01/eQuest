@@ -144,7 +144,13 @@ def main():
                     tmp_sim_file.write(uploaded_sim_file.read())
                     sim_file_path = tmp_sim_file.name
                 
-                logging.debug(f"Running Baseline Automation with INP file: {inp_file_path}, SIM file: {sim_file_path}")
+                logging.debug(f"INP file path: {inp_file_path}")
+                logging.debug(f"SIM file path: {sim_file_path}")
+                logging.debug(f"Climate Zone: {input_climate}")
+                logging.debug(f"Building Type: {input_building_type}")
+                logging.debug(f"Area: {input_area}")
+                logging.debug(f"Number of Floors: {number_floor}")
+                logging.debug(f"Heating Type: {heat_type}")
 
                 try:
                     baselineAuto.main(
