@@ -73,18 +73,13 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
     ################################## CLEAN INP FILE ####################################
     ######################################################################################
          
-        directory_path, filename = os.path.split(input_inp_path)
-        new_filename = filename.replace(".inp", "_Baseline_Automation.inp")
-        output_file = os.path.join(directory_path, new_filename)
-    
         # Write modified inp file 
-        with open(output_file, 'w') as file:
+        with open(input_inp_path, 'w') as file:
             file.writelines(modify_freshAir)
-        
-        # Provide download button for the updated INP file
-        with open(output_file, 'rb') as file:
-            st.download_button(label='Download Updated INP File', data=file, file_name=new_filename)
-    st.error("Error Occurs")
+
+        # Provide a success message
+        st.success("INP file has been successfully updated.")
 
 if __name__ == "__main__":
-    getInp()  # Replace with appropriate arguments
+    # Replace arguments with appropriate values
+    getInp(input_inp_path, sim_content, input_climate, input_building_type, input_area, number_floor, heat_type)
