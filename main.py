@@ -5,6 +5,11 @@ from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
+import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
@@ -124,23 +129,51 @@ elif st.session_state.script_choice == "baselineAutomation":
     uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
     uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
     input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
-    input_building_type = st.selectbox("Enter the Building Type (0 - Resdential), (1 - Non-Residential)", options=[0, 1])
+    input_building_type = st.selectbox("Enter the Building Type (0 - Residential), (1 - Non-Residential)", options=[0, 1])
     input_area = st.number_input("Enter area", min_value=0.0, step=0.1)
     number_floor = st.number_input("Enter floor number", min_value=1, step=1)
     heat_type = st.selectbox("Enter Heating Type (Hybrid/Fossil - 0), (Electric - 1)", options=[0, 1])
-    
+
     if uploaded_inp_file and uploaded_sim_file:
         if st.button("Run Baseline Automation"):
             st.success("in main.py")
             st.success(uploaded_inp_file)
-            baselineAuto.getInp(
-                uploaded_inp_file.name, 
-                uploaded_sim_file.name, 
-                input_climate, 
-                input_building_type, 
-                input_area, 
-                number_floor, 
-                heat_type
-            )
-            # Provide download button for the updated INP file
-            st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
+
+            # Ensure temporary file path is defined
+            tmp_out_file_path = os.path.join(tempfile.gettempdir(), 'updated_baseline.inp')
+
+            try:
+                # Log the parameters being passed
+                logging.debug(f"uploaded_inp_file.name: {uploaded_inp_file.name}")
+                logging.debug(f"uploaded_sim_file.name: {uploaded_sim_file.name}")
+                logging.debug(f"input_climate: {input_climate}")
+                logging.debug(f"input_building_type: {input_building_type}")
+                logging.debug(f"input_area: {input_area}")
+                logging.debug(f"number_floor: {number_floor}")
+                logging.debug(f"heat_type: {heat_type}")
+
+                # Call the getInp method
+                baselineAuto.getInp(
+                    uploaded_inp_file.name, 
+                    uploaded_sim_file.name, 
+                    input_climate, 
+                    input_building_type, 
+                    input_area, 
+                    number_floor, 
+                    heat_type
+                )
+
+                # Check if the file exists and is accessible
+                if os.path.exists(tmp_out_file_path):
+                    with open(tmp_out_file_path, 'rb') as file:
+                        st.download_button(
+                            "Download Updated INP File", 
+                            data=file.read(), 
+                            file_name="updated_baseline.inp"
+                        )
+                else:
+                    st.error("The updated INP file was not created.")
+            
+            except Exception as e:
+                logging.error(f"An error occurred: {str(e)}")
+                st.error(f"An error occurred: {str(e)}")
