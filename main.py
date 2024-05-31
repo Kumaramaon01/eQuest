@@ -146,8 +146,9 @@ def main():
 
                 # Run baseline automation
                 st.success(uploaded_inp_file)
+                st.success(uploaded_sim_file)
                 baselineAuto.main(
-                    tmp_inp_file.name,
+                    uploaded_inp_file,
                     tmp_sim_file.name,
                     input_climate,
                     input_building_type,
