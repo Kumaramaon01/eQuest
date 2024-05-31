@@ -1,12 +1,12 @@
 import streamlit as st
 import tempfile
+import os
+import logging
 from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
-from BaselineAutomation import baselineAuto
-import os
-import logging
+from BaselineAutomation import baselineAuto  # Ensure this is the correct import
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -152,27 +152,31 @@ elif st.session_state.script_choice == "baselineAutomation":
                 logging.debug(f"number_floor: {number_floor}")
                 logging.debug(f"heat_type: {heat_type}")
 
-                # Call the getInp method
-                baselineAuto.getInp(
-                    uploaded_inp_file.name, 
-                    uploaded_sim_file.name, 
-                    input_climate, 
-                    input_building_type, 
-                    input_area, 
-                    number_floor, 
-                    heat_type
-                )
+                # Ensure the method exists in the module
+                if hasattr(baselineAuto, 'getInp'):
+                    # Call the getInp method
+                    baselineAuto.getInp(
+                        uploaded_inp_file.name, 
+                        uploaded_sim_file.name, 
+                        input_climate, 
+                        input_building_type, 
+                        input_area, 
+                        number_floor, 
+                        heat_type
+                    )
 
-                # Check if the file exists and is accessible
-                if os.path.exists(tmp_out_file_path):
-                    with open(tmp_out_file_path, 'rb') as file:
-                        st.download_button(
-                            "Download Updated INP File", 
-                            data=file.read(), 
-                            file_name="updated_baseline.inp"
-                        )
+                    # Check if the file exists and is accessible
+                    if os.path.exists(tmp_out_file_path):
+                        with open(tmp_out_file_path, 'rb') as file:
+                            st.download_button(
+                                "Download Updated INP File", 
+                                data=file.read(), 
+                                file_name="updated_baseline.inp"
+                            )
+                    else:
+                        st.error("The updated INP file was not created.")
                 else:
-                    st.error("The updated INP file was not created.")
+                    st.error("The getInp method does not exist in baselineAuto module.")
             
             except Exception as e:
                 logging.error(f"An error occurred: {str(e)}")
