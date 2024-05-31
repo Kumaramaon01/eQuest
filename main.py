@@ -147,14 +147,13 @@ def main():
 
                     # Run baseline automation
                     baselineAuto.main(
-                        tmp_inp_file.name,
-                        sim_content,
+                        uploaded_inp_file.name,
+                        uploaded_sim_file.name,
                         input_climate,
                         input_building_type,
                         input_area,
                         number_floor,
-                        heat_type,
-                        tmp_out_file.name
+                        heat_type
                     )
 
                     # Provide download button for the updated INP file
