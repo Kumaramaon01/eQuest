@@ -128,7 +128,7 @@ def main():
         input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
         input_building_type = st.selectbox("Enter the Building Type (0 - Residential), (1 - Non-Residential)", options=[0, 1])
         input_area = st.number_input("Enter area", min_value=0.0, step=0.1)
-        number_floor = st.number_input("Enter floor number", min_value=0, step=1)
+        number_floor = st.number_input("Enter floor number", min_value=1, step=1)
         heat_type = st.selectbox("Enter Heating Type (Hybrid/Fossil - 0), (Electric - 1)", options=[0, 1])
 
         if uploaded_inp_file and uploaded_sim_file:
