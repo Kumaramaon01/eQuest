@@ -66,6 +66,8 @@ def get_system_path(building_type, heat_type, area, floor):
 def insert_material_data(climate_zone_file, amenity_file):
     start_marker1 = "= MATERIAL"
     end_marker1 = ".."
+
+    climate_zone_file = os.path.abspath(climate_zone_file)
     st.success(climate_zone_file)
     st.success(amenity_file)
     with open(climate_zone_file, 'r') as file:
