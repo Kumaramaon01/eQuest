@@ -113,12 +113,11 @@ def main():
         st.header("SIM to PDF Converter")
         # st.success("Will be updated soon")
         # Uncomment and modify below code when SIM to PDF conversion is ready
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         
-        # if uploaded_file is not None:
-        #     if st.button("Convert to PDF"):
-        #         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-        #             sim_print.main(uploaded_file, tmp_file.name)
+        if uploaded_file is not None:
+            if st.button("Convert to PDF"):
+                sim_print.main(uploaded_file, uploaded_file.name)
         #             st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
 
     elif st.session_state.script_choice == "baselineAutomation":
