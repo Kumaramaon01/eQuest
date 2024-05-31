@@ -133,30 +133,30 @@ def main():
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
+                # with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
+                #      tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file, \
+                #      tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
 
-                    # Write the uploaded INP and SIM files to temporary files
-                    tmp_inp_file.write(uploaded_inp_file.read())
-                    tmp_inp_file.flush()
+                #     # Write the uploaded INP and SIM files to temporary files
+                #     tmp_inp_file.write(uploaded_inp_file.read())
+                #     tmp_inp_file.flush()
                     
-                    tmp_sim_file.write(uploaded_sim_file.read())
-                    tmp_sim_file.flush()
+                #     tmp_sim_file.write(uploaded_sim_file.read())
+                #     tmp_sim_file.flush()
 
-                    # Run baseline automation
-                    st.success(tmp_inp_file)
-                    baselineAuto.main(
-                        tmp_inp_file.name,
-                        tmp_sim_file.name,
-                        input_climate,
-                        input_building_type,
-                        input_area,
-                        number_floor,
-                        heat_type)
+                # Run baseline automation
+                st.success(tmp_inp_file)
+                baselineAuto.main(
+                    tmp_inp_file.name,
+                    tmp_sim_file.name,
+                    input_climate,
+                    input_building_type,
+                    input_area,
+                    number_floor,
+                    heat_type)
 
-                    # Provide download button for the updated INP file
-                    st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
+                # Provide download button for the updated INP file
+                st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
 
 if __name__ == "__main__":
     main()
