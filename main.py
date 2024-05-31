@@ -144,8 +144,5 @@ def main():
                     heat_type
                 )
 
-                # Provide download button for the updated INP file
-                st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
-
 if __name__ == "__main__":
     main()
