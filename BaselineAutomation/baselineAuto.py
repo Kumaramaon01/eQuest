@@ -82,7 +82,8 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
             file.writelines(modify_freshAir)
         
         # Provide download button for the updated INP file
-        st.markdown(f"## [Download Updated INP File]({output_file})")
+        with open(output_file, 'rb') as file:
+            st.download_button(label='Download Updated INP File', data=file, file_name=new_filename)
 
 if __name__ == "__main__":
     getInp()  # Replace with appropriate arguments
