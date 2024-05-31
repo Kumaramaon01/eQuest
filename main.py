@@ -111,13 +111,14 @@ def main():
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
-        # st.success("Will be updated soon")
         # Uncomment and modify below code when SIM to PDF conversion is ready
+        reports_input = st.textbox("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ").split(',')
+        reports = [r.strip() for r in reports_input]
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
-                sim_print.main(uploaded_file.name)
+                sim_print.main(reports, uploaded_file.name)
         #             st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
 
     elif st.session_state.script_choice == "baselineAutomation":
