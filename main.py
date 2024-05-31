@@ -155,7 +155,7 @@ elif st.session_state.script_choice == "baselineAutomation":
                 # Ensure the method exists in the module
                 if hasattr(baselineAuto, 'getInp'):
                     # Call the getInp method
-                    baselineAuto.getInp(
+                    tmp_out_file_path = baselineAuto.getInp(
                         uploaded_inp_file.name, 
                         uploaded_sim_file.name, 
                         input_climate, 
@@ -167,17 +167,16 @@ elif st.session_state.script_choice == "baselineAutomation":
 
                     # Check if the file exists and is accessible
                     if os.path.exists(tmp_out_file_path):
-                        with open(tmp_out_file_path, 'rb') as file:
-                            st.download_button(
-                                "Download Updated INP File", 
-                                data=file.read(), 
-                                file_name="updated_baseline.inp"
-                            )
+                        # Provide download button for the updated INP file
+                        st.download_button(
+                            "Download Updated INP File",
+                            data=open(tmp_out_file_path, 'rb').read(),
+                            file_name="updated_baseline.inp"
+                        )
                     else:
                         st.error("The updated INP file was not created.")
                 else:
-                    st.error("The getInp method does not exist in baselineAuto module.")
-            
+                    st.error("The getInp method does not exist in the baselineAuto module.")
             except Exception as e:
-                logging.error(f"An error occurred: {str(e)}")
-                st.error(f"An error occurred: {str(e)}")
+                logging.error(f"Error in baseline automation: {e}")
+                st.error(f"An error occurred: {e}")
