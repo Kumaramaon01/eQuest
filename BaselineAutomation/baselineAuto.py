@@ -73,7 +73,3 @@ def main(input_inp_path, sim_content, input_climate, input_building_type, input_
         # Write modified inp file 
         with open(output_file, 'w') as file:
             file.writelines(modify_freshAir)
-
-if __name__ == "__main__":
-    # You can add code here to accept input from the command line if desired
-    pass
