@@ -111,15 +111,13 @@ def main():
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
-        # Uncomment and modify below code when SIM to PDF conversion is ready
-        reports_input = st.textbox("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ").split(',')
-        reports = [r.strip() for r in reports_input]
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        reports_input = st.text_input("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ")
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
-                sim_print.main(reports, uploaded_file.name)
-        #             st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
+                reports = [r.strip() for r in reports_input.split(',')]
+                sim_print.main(reports, uploaded_file)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
@@ -133,21 +131,6 @@ def main():
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                # with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
-                #      tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file, \
-                #      tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
-
-                #     # Write the uploaded INP and SIM files to temporary files
-                #     tmp_inp_file.write(uploaded_inp_file.read())
-                #     tmp_inp_file.flush()
-                    
-                #     tmp_sim_file.write(uploaded_sim_file.read())
-                #     tmp_sim_file.flush()
-
-                # Run baseline automation
-                st.success("in main")
-                st.success(uploaded_inp_file.name)
-                st.success(uploaded_sim_file.name)
                 baselineAuto.getInp(
                     uploaded_inp_file.name,
                     uploaded_sim_file.name,
@@ -156,9 +139,6 @@ def main():
                     input_area,
                     number_floor,
                     heat_type)
-
-                # Provide download button for the updated INP file
-                # st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
 
 if __name__ == "__main__":
     main()
