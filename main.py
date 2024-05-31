@@ -145,6 +145,7 @@ def main():
                 #     tmp_sim_file.flush()
 
                 # Run baseline automation
+                st.success("in main")
                 st.success(uploaded_inp_file.name)
                 st.success(uploaded_sim_file.name)
                 baselineAuto.getInp(
