@@ -26,6 +26,7 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
     st.success(input_inp_path)
     if os.path.isfile(input_inp_path):
         try:
+            st.success("inside if")
             st.success(input_inp_path)
             # Your other code here
         except Exception as e:
