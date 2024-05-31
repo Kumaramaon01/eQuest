@@ -9,7 +9,7 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
     input_area = float(input_area)
     number_floor = int(number_floor)
     heat_type = int(heat_type)
-
+    st.success("in baselineAuto.py")
     st.success(input_inp_path)
     st.success(sim_content)
 
