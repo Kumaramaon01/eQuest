@@ -1,14 +1,10 @@
 import streamlit as st
 import tempfile
-import logging
 from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
-
-# Set up logging
-logging.basicConfig(level=logging.DEBUG)
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
@@ -136,36 +132,32 @@ def main():
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file:
-                    tmp_inp_file.write(uploaded_inp_file.read())
-                    inp_file_path = tmp_inp_file.name
-                
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
-                    tmp_sim_file.write(uploaded_sim_file.read())
-                    sim_file_path = tmp_sim_file.name
-                
-                logging.debug(f"INP file path: {inp_file_path}")
-                logging.debug(f"SIM file path: {sim_file_path}")
-                logging.debug(f"Climate Zone: {input_climate}")
-                logging.debug(f"Building Type: {input_building_type}")
-                logging.debug(f"Area: {input_area}")
-                logging.debug(f"Number of Floors: {number_floor}")
-                logging.debug(f"Heating Type: {heat_type}")
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
+                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file:
 
-                try:
+                    # Read and write the uploaded INP and SIM files to temporary files
+                    inp_content = uploaded_inp_file.read().decode('utf-8')
+                    sim_content = uploaded_sim_file.read().decode('utf-8')
+                    
+                    tmp_inp_file.write(inp_content.encode('utf-8'))
+                    tmp_inp_file.flush()
+                    
+                    tmp_out_file.close()  # Close the output file to pass its name
+
+                    # Run baseline automation
                     baselineAuto.main(
-                        inp_file_path,
-                        sim_file_path,
+                        tmp_inp_file.name,
+                        sim_content,
                         input_climate,
                         input_building_type,
                         input_area,
                         number_floor,
-                        heat_type
+                        heat_type,
+                        tmp_out_file.name
                     )
-                    st.success("Baseline Automation ran successfully!")
-                except Exception as e:
-                    logging.error(f"Error running Baseline Automation: {e}")
-                    st.error("An error occurred while running Baseline Automation. Please check the logs for details.")
+
+                    # Provide download button for the updated INP file
+                    st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
 
 if __name__ == "__main__":
     main()
