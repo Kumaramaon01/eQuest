@@ -142,19 +142,21 @@ def main():
                     
                     tmp_inp_file.write(inp_content.encode('utf-8'))
                     tmp_inp_file.flush()
-                    
+                    tmp_out_file.close()  # Close the output file to pass its name
+
+                    tmp_sim_file.write(sim_content.encode('utf-8'))
+                    tmp_sim_file.flush()
                     tmp_out_file.close()  # Close the output file to pass its name
 
                     # Run baseline automation
                     baselineAuto.main(
                         tmp_inp_file.name,
-                        sim_content,
+                        tmp_sim_file.name,
                         input_climate,
                         input_building_type,
                         input_area,
                         number_floor,
-                        heat_type,
-                        tmp_out_file.name
+                        heat_type
                     )
 
                     # Provide download button for the updated INP file
