@@ -144,11 +144,12 @@ def main():
                     tmp_inp_file.flush()
                     
                     tmp_out_file.close()  # Close the output file to pass its name
-
+                    inp = uploaded_inp_file.name
+                    sim = uploaded_sim_file.name,
                     # Run baseline automation
                     baselineAuto.main(
-                        uploaded_inp_file.name,
-                        uploaded_sim_file.name,
+                        inp,
+                        sim,
                         input_climate,
                         input_building_type,
                         input_area,
