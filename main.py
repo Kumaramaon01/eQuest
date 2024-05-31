@@ -111,7 +111,7 @@ def main():
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
         reports_input = st.text_input("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ")
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
