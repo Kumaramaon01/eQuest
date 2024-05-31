@@ -145,7 +145,7 @@ def main():
                     tmp_sim_file.flush()
 
                     # Run baseline automation
-                    baselineAuto.main(
+                   baselineAuto.main(
                         tmp_inp_file.name,
                         tmp_sim_file.name,
                         input_climate,
