@@ -17,11 +17,13 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
     # Get climate and system paths
     climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
     system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
+    
+    input_inp_path = os.path.dirname(input_inp_path)
     st.success(input_inp_path)
     st.success(system_path)
 
     # Convert paths to absolute paths
-    climate_path = os.path.abspath(climate_path)
+    climate_path = os.path.dirname(climate_path)
     st.success(climate_path)
     if os.path.isfile(input_inp_path):
         st.success("inside if")
