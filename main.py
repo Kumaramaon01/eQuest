@@ -145,8 +145,8 @@ def main():
                 #     tmp_sim_file.flush()
 
                 # Run baseline automation
-                st.success(uploaded_inp_file)
-                st.success(uploaded_sim_file)
+                st.success(uploaded_inp_file.name)
+                st.success(uploaded_sim_file.name)
                 baselineAuto.main(
                     uploaded_inp_file.name,
                     uploaded_inp_file.name,
