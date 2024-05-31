@@ -1,10 +1,14 @@
 import streamlit as st
 import tempfile
+import logging
 from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
@@ -132,17 +136,30 @@ def main():
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                t = (uploaded_inp_file.name)
-                # Run baseline automation
-                baselineAuto.main(
-                    t,
-                    t,
-                    input_climate,
-                    input_building_type,
-                    input_area,
-                    number_floor,
-                    heat_type
-                )
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file:
+                    tmp_inp_file.write(uploaded_inp_file.read())
+                    inp_file_path = tmp_inp_file.name
+                
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
+                    tmp_sim_file.write(uploaded_sim_file.read())
+                    sim_file_path = tmp_sim_file.name
+                
+                logging.debug(f"Running Baseline Automation with INP file: {inp_file_path}, SIM file: {sim_file_path}")
+
+                try:
+                    baselineAuto.main(
+                        inp_file_path,
+                        sim_file_path,
+                        input_climate,
+                        input_building_type,
+                        input_area,
+                        number_floor,
+                        heat_type
+                    )
+                    st.success("Baseline Automation ran successfully!")
+                except Exception as e:
+                    logging.error(f"Error running Baseline Automation: {e}")
+                    st.error("An error occurred while running Baseline Automation. Please check the logs for details.")
 
 if __name__ == "__main__":
     main()
