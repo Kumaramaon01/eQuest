@@ -148,8 +148,8 @@ def main():
                 st.success(uploaded_inp_file)
                 st.success(uploaded_sim_file)
                 baselineAuto.main(
-                    uploaded_inp_file,
-                    uploaded_inp_file,
+                    uploaded_inp_file.name,
+                    uploaded_inp_file.name,
                     input_climate,
                     input_building_type,
                     input_area,
