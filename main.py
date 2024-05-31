@@ -112,6 +112,7 @@ def main():
     elif st.session_state.script_choice == "SIM to PDF":
         st.header("SIM to PDF Converter")
         st.success("Will be updated soon")
+        # Uncomment and modify below code when SIM to PDF conversion is ready
         # uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
         # if uploaded_file is not None:
@@ -125,28 +126,23 @@ def main():
         uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
-        input_building_type = st.selectbox("Enter the Building Type (0 - Resdential), (1 - Non-Residential)", options=[0, 1])
+        input_building_type = st.selectbox("Enter the Building Type (0 - Residential), (1 - Non-Residential)", options=[0, 1])
         input_area = st.number_input("Enter area", min_value=0.0, step=0.1)
         number_floor = st.number_input("Enter floor number", min_value=0, step=1)
         heat_type = st.selectbox("Enter Heating Type (Hybrid/Fossil - 0), (Electric - 1)", options=[0, 1])
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                st.success(uploaded_inp_file.name)
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file:
+                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file, \
+                     tempfile.NamedTemporaryFile(delete=False, suffix=".sim") as tmp_sim_file:
 
-                    # Read and write the uploaded INP and SIM files to temporary files
-                    inp_content = uploaded_inp_file.read().decode('utf-8')
-                    sim_content = uploaded_sim_file.read().decode('utf-8')
-                    
-                    tmp_inp_file.write(inp_content.encode('utf-8'))
+                    # Write the uploaded INP and SIM files to temporary files
+                    tmp_inp_file.write(uploaded_inp_file.read())
                     tmp_inp_file.flush()
-                    tmp_out_file.close()  # Close the output file to pass its name
-
-                    tmp_sim_file.write(sim_content.encode('utf-8'))
+                    
+                    tmp_sim_file.write(uploaded_sim_file.read())
                     tmp_sim_file.flush()
-                    tmp_out_file.close()  # Close the output file to pass its name
 
                     # Run baseline automation
                     baselineAuto.main(
