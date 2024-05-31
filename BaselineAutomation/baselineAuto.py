@@ -22,6 +22,7 @@ def getInp(input_inp_path, sim_content, input_climate, input_building_type, inpu
 
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
+    st.success(climate_path)
     if os.path.isfile(input_inp_path):
         st.success("inside if")
         st.success(input_inp_path)
