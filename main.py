@@ -134,7 +134,7 @@ def main():
             if st.button("Run Baseline Automation"):
                 st.success("in main.py")
                 st.success(uploaded_inp_file)
-                baselineAuto.main(uploaded_inp_file.name, uploaded_sim_file.name, input_climate, input_building_type, input_area, number_floor, heat_type)
+                baselineAuto.getInp(uploaded_inp_file.name, uploaded_sim_file.name, input_climate, input_building_type, input_area, number_floor, heat_type)
                 # Provide download button for the updated INP file
                 st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
 
