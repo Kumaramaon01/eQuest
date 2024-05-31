@@ -132,11 +132,11 @@ def main():
 
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
-                st.success(uploaded_inp_file.name)
+                t = (uploaded_inp_file.name)
                 # Run baseline automation
                 baselineAuto.main(
-                    uploaded_inp_file.name,
-                    uploaded_sim_file.name,
+                    t,
+                    t,
                     input_climate,
                     input_building_type,
                     input_area,
