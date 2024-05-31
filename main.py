@@ -149,7 +149,7 @@ def main():
                 st.success(uploaded_sim_file)
                 baselineAuto.main(
                     uploaded_inp_file,
-                    tmp_sim_file.name,
+                    uploaded_inp_file,
                     input_climate,
                     input_building_type,
                     input_area,
