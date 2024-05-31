@@ -133,32 +133,19 @@ def main():
         if uploaded_inp_file and uploaded_sim_file:
             if st.button("Run Baseline Automation"):
                 st.success(uploaded_inp_file)
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_inp_file, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".inp") as tmp_out_file:
+                # Run baseline automation
+                baselineAuto.main(
+                    uploaded_inp_file.name,
+                    uploaded_sim_file.name,
+                    input_climate,
+                    input_building_type,
+                    input_area,
+                    number_floor,
+                    heat_type
+                )
 
-                    # Read and write the uploaded INP and SIM files to temporary files
-                    inp_content = uploaded_inp_file.read().decode('utf-8')
-                    sim_content = uploaded_sim_file.read().decode('utf-8')
-                    
-                    tmp_inp_file.write(inp_content.encode('utf-8'))
-                    tmp_inp_file.flush()
-                    
-                    tmp_out_file.close()  # Close the output file to pass its name
-                    inp = uploaded_inp_file.name
-                    sim = uploaded_sim_file.name,
-                    # Run baseline automation
-                    baselineAuto.main(
-                        inp,
-                        sim,
-                        input_climate,
-                        input_building_type,
-                        input_area,
-                        number_floor,
-                        heat_type
-                    )
-
-                    # Provide download button for the updated INP file
-                    st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
+                # Provide download button for the updated INP file
+                st.download_button("Download Updated INP File", data=open(tmp_out_file.name, 'rb').read(), file_name="updated_baseline.inp")
 
 if __name__ == "__main__":
     main()
