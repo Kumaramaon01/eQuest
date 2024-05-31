@@ -1,10 +1,7 @@
 import os
-import streamlit as st
 from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir
 
-def updateInp(input_inp_path, sim_content, input_climate, input_building_type, input_area, number_floor, heat_type, output_file):
-    st.success(input_inp_path)
-    
+def main(input_inp_path, sim_content, input_climate, input_building_type, input_area, number_floor, heat_type, output_file):
     # Convert inputs to appropriate types
     input_climate = int(input_climate)
     input_building_type = int(input_building_type)
@@ -22,17 +19,6 @@ def updateInp(input_inp_path, sim_content, input_climate, input_building_type, i
 
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
-    system_path = os.path.abspath(system_path)
-
-    st.success(climate_path)
-    # Debugging: print the paths to verify correctness
-    print(f"Climate Path: {climate_path}")
-    print(f"System Path: {system_path}")
-
-    # Check if the climate file exists
-    if not os.path.isfile(climate_path):
-        print(f"Error: Climate zone file not found at {climate_path}")
-        return
 
     if os.path.isfile(input_inp_path):
         mat_data = update_MLC.insert_material_data(climate_path, input_inp_path)
@@ -87,3 +73,7 @@ def updateInp(input_inp_path, sim_content, input_climate, input_building_type, i
         # Write modified inp file 
         with open(output_file, 'w') as file:
             file.writelines(modify_freshAir)
+
+if __name__ == "__main__":
+    # You can add code here to accept input from the command line if desired
+    pass
