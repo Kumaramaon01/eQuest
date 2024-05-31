@@ -117,7 +117,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
-                sim_print.main(uploaded_file, uploaded_file.name)
+                sim_print.main(uploaded_file.name)
         #             st.download_button("Download PDF", data=tmp_file.name, file_name="converted.pdf")
 
     elif st.session_state.script_choice == "baselineAutomation":
