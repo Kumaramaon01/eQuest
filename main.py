@@ -47,14 +47,14 @@ def main():
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
     icon_with_tooltip = """
-        <div style="text-align:center">
-            <span style="font-size:44px">
-                <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?'))">
-                    <span style="color: red;">&#x1F4AC;</span>
-                </a>
-            </span>
-        </div>
-        """
+    <div style="text-align:center">
+        <span style="font-size:44px">
+            <a href="https://mail.google.com/mail/u/0/#inbox" title="Need help? Click here!" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F9D0;</span>
+            </a>
+        </span>
+    </div>
+"""
     # Add icon and tooltip to col3
     with col3:
         st.write(icon_with_tooltip, unsafe_allow_html=True)
