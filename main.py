@@ -129,8 +129,8 @@ def main():
         col1, col2, col3 = st.columns(3)
         with col1:
             card(
-                title="EXE 1",
-                text="INP Parser",
+                title="INP Parser",
+                text="Parsing INP files",
                 image="INP_Parser_logo.png",
                 url="url_to_exe_1"
             )
