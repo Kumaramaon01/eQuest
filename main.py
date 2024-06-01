@@ -100,7 +100,23 @@ def main():
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
-    st.markdown("---")
+    # Custom HTML and CSS for the gold chain line
+    gold_chain_line = """
+    <style>
+        .gold-chain {
+            width: 100%;
+            height: 20px;
+            background-image: url('https://i.imgur.com/your-gold-chain-image-url.png');
+            background-repeat: repeat-x;
+        }
+    </style>
+    <div class="gold-chain"></div>
+    """
+    
+    # Inject the custom HTML and CSS
+    st.markdown(gold_chain_line, unsafe_allow_html=True)
+
+    
     col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
     with col3:
         if st.button("About eQuest"):
