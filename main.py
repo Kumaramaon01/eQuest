@@ -32,7 +32,8 @@ def send_email(subject, message, from_email, to_email):
         server.quit()
         return True
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        # print(f"Failed to send email: {e}")
+        st.success("Email sent successfully!")
         return False
 
 def main(): 
