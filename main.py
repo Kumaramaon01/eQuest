@@ -129,17 +129,17 @@ def main():
         # st.header("All exe Files")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
+            # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             st.write("Parsing INP files")
             st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
             st.write("[Download](url_to_exe_1)")
         with col2:
-            st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
+            # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
             st.write("Parsing SIM files")
             st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
             st.write("[Download](url_to_exe_2)")
         with col3:
-            st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
+            # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             st.write("Purging INP")
             st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
