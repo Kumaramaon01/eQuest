@@ -131,7 +131,7 @@ def main():
             card(
                 title="EXE 1",
                 text="INP Parser",
-                image="path_to_image_1.jpg",
+                image="INP_Parser_logo.png",
                 url="url_to_exe_1"
             )
         with col2:
