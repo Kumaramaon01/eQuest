@@ -69,8 +69,8 @@ def main():
     #     if st.button("All EXE"):
     #         st.session_state.script_choice = "exe"
     with col9:
-        if st.button("Feedback"):
-            st.session_state.script_choice = "issue"
+        if st.button("All EXE Files"):
+            st.session_state.script_choice = "exe"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
