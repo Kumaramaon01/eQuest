@@ -6,9 +6,7 @@ from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
-
-# Directory containing the .exe files
-EXE_DIR = "path/to/your/exe_files"
+from streamlit_card import card
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
@@ -128,28 +126,6 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
-
-        # Ensure the directory exists
-        if not os.path.exists(EXE_DIR):
-            os.makedirs(EXE_DIR)
-
-        # Get the list of .exe files
-        exe_files = [f for f in os.listdir(EXE_DIR) if f.endswith('.exe')]
-
-        # Display buttons for each .exe file
-        for exe_file in exe_files:
-            file_path = os.path.join(EXE_DIR, exe_file)
-            
-            if st.button(f"Run {exe_file}"):
-                try:
-                    # Run the .exe file
-                    result = subprocess.run([file_path], capture_output=True, text=True)
-                    st.write(f"Execution Output of {exe_file}:")
-                    st.write(result.stdout)
-                    st.write("Execution Error (if any):")
-                    st.write(result.stderr)
-                except Exception as e:
-                    st.error(f"Error running {exe_file}: {e}")
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
