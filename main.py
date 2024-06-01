@@ -197,8 +197,8 @@ def main():
                 EMAIL = email
                 if send_email(subject, message, EMAIL, TO_EMAIL):
                     st.success("Email sent successfully!")
-                else:
-                    st.error("Failed to send email.")
+                # else:
+                #     st.error("Failed to send email.")
             else:
                 st.warning("Please enter some text.")
 
