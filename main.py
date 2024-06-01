@@ -79,7 +79,7 @@ def main():
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
-    col7, col8, col9, col10 = st.columns([1, 2, 1, 1])
+    col7, col8, col9, col10 = st.columns([1, 1, 1, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
