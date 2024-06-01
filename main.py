@@ -7,6 +7,7 @@ from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
 from streamlit_card import card
+from PIL import Image as PILImage
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
@@ -128,41 +129,20 @@ def main():
         st.header("All exe Files")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown(
-                """
-                <div style='text-align:center'>
-                <h2>INP Parser</h2>
-                <p>Parsing INP files</p>
-                <img src='INP_Parser_logo.png' alt='INP Parser Logo' style='width:100px; height:100px'/>
-                <a href='url_to_exe_1'>Download</a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
+            st.write("Parsing INP files")
+            st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_1)")
         with col2:
-            st.markdown(
-                """
-                <div style='text-align:center'>
-                <h2>SIM Parser</h2>
-                <p>Parsing SIM files</p>
-                <img src='SIM_Parser_logo.png' alt='SIM Parser Logo' style='width:100px; height:100px'/>
-                <a href='url_to_exe_2'>Download</a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
+            st.write("Parsing SIM files")
+            st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_2)")
         with col3:
-            st.markdown(
-                """
-                <div style='text-align:center'>
-                <h2>EXE 3</h2>
-                <p>Purging INP</p>
-                <img src='path_to_image_3.jpg' alt='Image 3' style='width:100px; height:100px'/>
-                <a href='url_to_exe_3'>Download</a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
+            st.write("Purging INP")
+            st.image(PILImage.open("path_to_image_3.jpg"), use_column_width=True)
+            st.write("[Download](url_to_exe_3)")
         # Add more cards as needed
 
 
