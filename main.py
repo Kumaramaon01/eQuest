@@ -169,7 +169,7 @@ def main():
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
             st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            st.write("[Download](https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link)")
         with col2:
             # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing SIM files")
@@ -179,7 +179,7 @@ def main():
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
             st.image(PILImage.open("images/perging_inp_logo.ico"), use_column_width=True)
-            st.write("[Download](url_to_exe_3)")
+            st.write("[Download](https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link)")
         with col4:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
