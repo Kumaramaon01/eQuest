@@ -78,19 +78,43 @@ def main():
     with col6:
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
+
+    # Define CSS style for the buttons
+    button_style = """
+        <style>
+        .button {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50px;
+            color: #ffffff;
+            background-color: #007bff;
+            border-color: #007bff;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            font-size: 1rem;
+        }
+        </style>
+        """
+    # Apply the CSS style
+    st.markdown(button_style, unsafe_allow_html=True)
     
     col7, col8, col9, col10 = st.columns([1, 1, 1, 1])
     with col7:
-        if st.button("SIM to PDF"):
+        if st.button("SIM to PDF", key='1'):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
-        if st.button("Baseline Automation"):
+        if st.button("Baseline Automation", key='2'):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("All EXE Files"):
+        if st.button("All EXE Files", key='3'):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Queries?"):
+        if st.button("Queries?", key='4'):
             st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
