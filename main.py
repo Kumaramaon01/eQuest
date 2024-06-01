@@ -155,13 +155,13 @@ def main():
             st.write("[Download](url_to_exe_1)")
         with col6:
             st.image(PILImage.open("x.jpg"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            # st.write("[Download](url_to_exe_1)")
         with col7:
             st.image(PILImage.open("x.jpg"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            # st.write("[Download](url_to_exe_1)")
         with col8:
             st.image(PILImage.open("x.jpg"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            # st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
 
 
