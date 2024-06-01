@@ -49,12 +49,13 @@ def main():
     icon_with_tooltip = """
     <div style="text-align:center">
         <span style="font-size:44px">
-            <a href="https://mail.google.com/mail/u/0/#inbox" title="Need help? Click here!" onmouseover="if (confirm('Do you want to ask a question?'))">
-                <span>&#x1F9D0;</span>
+            <a href="https://mail.google.com/mail/u/0/#inbox" title="Got questions? Ask away!" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4AC;</span>
             </a>
         </span>
     </div>
 """
+
     # Add icon and tooltip to col3
     with col3:
         st.write(icon_with_tooltip, unsafe_allow_html=True)
