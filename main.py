@@ -11,22 +11,22 @@ from PIL import Image as PILImage
 
 def main():
        
-    st.markdown(
-        """
-        <style>
-        @keyframes changeColor {
-            0% { background-color: #f0f2f6; }
-            50% { background-color: #cfd9df; }
-            100% { background-color: #f0f2f6; }
-        }
+    # st.markdown(
+    #     """
+    #     <style>
+    #     @keyframes changeColor {
+    #         0% { background-color: #f0f2f6; }
+    #         50% { background-color: #cfd9df; }
+    #         100% { background-color: #f0f2f6; }
+    #     }
 
-        body {
-            animation: changeColor 5s infinite;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    #     body {
+    #         animation: changeColor 5s infinite;
+    #     }
+    #     </style>
+    #     """,
+    #     unsafe_allow_html=True
+    # )
     
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
