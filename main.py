@@ -79,7 +79,7 @@ def main():
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
-    col7, col8, col9 = st.columns([1, 2, 1])
+    col7, col8, col9, col10 = st.columns([1, 2, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
@@ -89,7 +89,6 @@ def main():
     with col9:
         if st.button("All EXE Files"):
             st.session_state.script_choice = "exe"
-    col10 = st.columns(1)
     with col10:
         if st.button("Queries?"):
             st.session_state.script_choice = "ask"
