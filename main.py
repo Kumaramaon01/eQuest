@@ -12,6 +12,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Email credentials and recipient
+TO_EMAIL = "rajeev@edsglobal.com"
+
 # Function to send email
 def send_email(subject, message, from_email, from_password, to_email):
     msg = MIMEMultipart()
@@ -185,13 +188,14 @@ def main():
         st.write(icon_with_tooltip1, unsafe_allow_html=True)
         st.write(icon_with_tooltip2, unsafe_allow_html=True)
         user_input = st.text_area("Enter some text:")
-
+        email = st.text_input("Enter your mail:")
         # Submit button
         if st.button("Submit"):
             if user_input:
                 subject = "Text Area Submission"
                 message = user_input
-                if send_email(subject, message, EMAIL, PASSWORD, TO_EMAIL):
+                EMAIL = email
+                if send_email(subject, message, EMAIL, TO_EMAIL):
                     st.success("Email sent successfully!")
                 else:
                     st.error("Failed to send email.")
