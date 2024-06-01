@@ -86,8 +86,8 @@ def main():
             display: inline-block;
             margin: 0;
             padding: 0;
-            width: 100px;
-            # height: 50px;
+            width: 200px;
+            height: 50px;
             text-align: center;
             vertical-align: middle;
             line-height: 50px;
