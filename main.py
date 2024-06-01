@@ -161,6 +161,11 @@ def main():
         st.header("Reach Out to Queries")
         st.write(icon_with_tooltip1, unsafe_allow_html=True)
         st.write(icon_with_tooltip2, unsafe_allow_html=True)
+        user_input = st.text_area("Enter some text:")
+
+        # Displaying the user input
+        st.write("You entered:")
+        st.write(user_input)
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
