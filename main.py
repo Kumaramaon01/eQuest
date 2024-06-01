@@ -175,7 +175,7 @@ def main():
 
         col5, col6, col7, col8 = st.columns(4)
         with col5:
-            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
+            st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             st.write("[Download](url_to_exe_1)")
         with col6:
             st.image(PILImage.open("images/x.jpg"), use_column_width=True)
