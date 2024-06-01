@@ -89,9 +89,10 @@ def main():
     with col9:
         if st.button("All EXE Files"):
             st.session_state.script_choice = "exe"
-    # with col10:
-    #     if st.button("Queries?"):
-    #         st.session_state.script_choice = "ask"
+    col10 = st.columns([1])
+    with col10:
+        if st.button("Queries?"):
+            st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
