@@ -18,7 +18,7 @@ def main():
         """
         <style>
         body {
-            background-color: #f0f2f6;  /* Set your desired background color here */
+            background-color: #bfe1ff;  /* Set your desired background color here */
             animation: changeColor 5s infinite;
         }
         .css-18e3th9 {
