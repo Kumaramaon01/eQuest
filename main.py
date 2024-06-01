@@ -79,7 +79,7 @@ def main():
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
-    col7, col8, col9 = st.columns([1, 2, 1])
+    col7, col8, col9,col10 = st.columns([1, 1, 1, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
@@ -91,9 +91,9 @@ def main():
             st.session_state.script_choice = "exe"
             
     # col10, col11, col12 = st.columns([1, 1, 1])
-    # with col10:/
-        # if st.button("Reach Out for any Queries"):
-        #     st.session_state.script_choice = "ask"
+    with col10:
+        if st.button("Ask"):
+            st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
