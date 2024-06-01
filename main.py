@@ -50,7 +50,7 @@ def main():
         <div style="text-align:center">
             <span style="font-size:44px">
                 <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?'))">
-                    <span style="color: blue;">&#x1F4AC;</span>
+                    <span style="color: red;">&#x1F4AC;</span>
                 </a>
             </span>
         </div>
