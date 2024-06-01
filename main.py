@@ -184,7 +184,7 @@ def main():
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
             st.image(PILImage.open("images/SIM_pdf.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_3)")
+            st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
 
         col5, col6, col7, col8 = st.columns(4)
         with col5:
