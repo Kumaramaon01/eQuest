@@ -146,7 +146,7 @@ def main():
         with col4:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
-            st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
+            st.image(PILImage.open("SIM_pdf.png"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
 
         col5, col6, col7, col8 = st.columns(4)
