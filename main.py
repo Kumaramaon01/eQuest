@@ -8,9 +8,32 @@ from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
 from streamlit_card import card
 from PIL import Image as PILImage
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+# Function to send email
+def send_email(subject, message, from_email, from_password, to_email):
+    msg = MIMEMultipart()
+    msg['From'] = from_email
+    msg['To'] = to_email
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(message, 'plain'))
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(from_email, from_password)
+        text = msg.as_string()
+        server.sendmail(from_email, to_email, text)
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+        return False
 
 def main(): 
-    
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
     # Add custom CSS to set the background color and hide Streamlit branding elements
@@ -163,9 +186,17 @@ def main():
         st.write(icon_with_tooltip2, unsafe_allow_html=True)
         user_input = st.text_area("Enter some text:")
 
-        # Displaying the user input
-        st.write("You entered:")
-        st.write(user_input)
+        # Submit button
+        if st.button("Submit"):
+            if user_input:
+                subject = "Text Area Submission"
+                message = user_input
+                if send_email(subject, message, EMAIL, PASSWORD, TO_EMAIL):
+                    st.success("Email sent successfully!")
+                else:
+                    st.error("Failed to send email.")
+            else:
+                st.warning("Please enter some text.")
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
