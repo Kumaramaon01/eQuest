@@ -58,6 +58,16 @@ def main():
     </div>
     """
 
+    icon_with_tooltip2 = """
+    <div style="text-align:center">
+        <span style="font-size:44px">
+            <a href="https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER_HERE" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4DE;</span>
+            </a>
+        </span>
+    </div>
+    """
+
     # Add icon and tooltip to col3
     with col3:
         st.write(icon_with_tooltip1, unsafe_allow_html=True)
@@ -149,6 +159,7 @@ def main():
     elif st.session_state.script_choice == "ask":
         st.header("Reach Out to Queries")
         st.write(icon_with_tooltip1, unsafe_allow_html=True)
+        st.write(icon_with_tooltip2, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
@@ -188,7 +199,6 @@ def main():
             st.image(PILImage.open("images/x.jpg"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
-
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
