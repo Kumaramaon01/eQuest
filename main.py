@@ -199,10 +199,9 @@ def main():
         with col8:
             st.image(PILImage.open("images/x.jpg"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
-
+        # Add more cards as needed
         st.markdown("""
-        ### Welcome to eQuest Utilities
-
+        ## Note:
         eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
         Our utilities include:
 
@@ -211,10 +210,6 @@ def main():
         - **SIM Parser:** A parser for SIM files to streamline your simulation data processing.
         - **SIM to PDF Converter:** Easily convert your SIM files into PDF format for better sharing and documentation.
         - **Baseline Automation:** Modifies INP files based on the user input.
-
-        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-        and more productive.
         """)
         # Add more cards as needed
 
