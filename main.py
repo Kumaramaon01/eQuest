@@ -7,6 +7,9 @@ from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
 
+# Directory containing the .exe files
+EXE_DIR = "path/to/your/exe_files"
+
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
@@ -125,8 +128,6 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
-
-        EXE_DIR = "exe_files"
 
         # Ensure the directory exists
         if not os.path.exists(EXE_DIR):
