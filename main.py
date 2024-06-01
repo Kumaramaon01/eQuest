@@ -149,16 +149,19 @@ def main():
             st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
 
-        # col4, col5, col6 = st.columns(3)
-        # with col4:
-        #     st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
-        #     st.write("[Download](url_to_exe_1)")
-        # with col5:
-        #     st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
-        #     st.write("[Download](url_to_exe_1)")
-        # with col6:
-        #     st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
-        #     st.write("[Download](url_to_exe_1)")
+        col5, col6, col7, col8 = st.columns(4)
+        with col5:
+            st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_1)")
+        with col6:
+            # st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_1)")
+        with col7:
+            # st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_1)")
+        with col8:
+            # st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
 
 
