@@ -81,28 +81,18 @@ def main():
     
     # Use a fixed width for the columns to ensure buttons have the same size
     col7, col8, col9, col10 = st.columns([1, 1, 1, 1])
-    
-    # Add padding to the buttons to make sure they look consistent in size
-    button_padding = 1
     with col7:
         if st.button("SIM to PDF", key='1'):
             st.session_state.script_choice = "SIM to PDF"
-        st.write(f"<div style='height: {button_padding}px'></div>", unsafe_allow_html=True)
-        
     with col8:
         if st.button("Baseline Automation", key='2'):
             st.session_state.script_choice = "baselineAutomation"
-        st.write(f"<div style='height: {button_padding}px'></div>", unsafe_allow_html=True)
-        
     with col9:
         if st.button("All EXE Files", key='3'):
             st.session_state.script_choice = "exe"
-        st.write(f"<div style='height: {button_padding}px'></div>", unsafe_allow_html=True)
-        
     with col10:
         if st.button("Queries?", key='4'):
             st.session_state.script_choice = "ask"
-        st.write(f"<div style='height: {button_padding}px'></div>", unsafe_allow_html=True)
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
