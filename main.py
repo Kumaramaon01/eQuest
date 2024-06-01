@@ -16,7 +16,7 @@ from email.mime.multipart import MIMEMultipart
 TO_EMAIL = "rajeev@edsglobal.com"
 
 # Function to send email
-def send_email(subject, message, from_email, from_password, to_email):
+def send_email(subject, message, from_email, to_email):
     msg = MIMEMultipart()
     msg['From'] = from_email
     msg['To'] = to_email
