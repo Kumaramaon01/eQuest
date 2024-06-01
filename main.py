@@ -116,6 +116,7 @@ def main():
         - **Purging INP:** A utility to update and clean your INP files.
         - **SIM Parser:** A parser for SIM files to streamline your simulation data processing.
         - **SIM to PDF Converter:** Easily convert your SIM files into PDF format for better sharing and documentation.
+        - **Baseline Automation:** Modifies INP files based on the user input.
 
         Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
