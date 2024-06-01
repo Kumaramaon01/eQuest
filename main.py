@@ -1,4 +1,6 @@
 import streamlit as st
+import subprocess
+import os
 from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
@@ -65,9 +67,6 @@ def main():
     with col8:
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
-    # with col9:
-    #     if st.button("All EXE"):
-    #         st.session_state.script_choice = "exe"
     with col9:
         if st.button("All EXE Files"):
             st.session_state.script_choice = "exe"
@@ -124,12 +123,32 @@ def main():
                 reports = [r.strip() for r in reports_input.split(',')]
                 sim_print.main(reports, uploaded_file)
 
-    # elif st.session_state.script_choice == "issue":
-    #     st.header("Give Feedback")
-    #     st.text_input("Enter feedback of any issues or improvement")
-        
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
+
+        EXE_DIR = "exe_files"
+
+        # Ensure the directory exists
+        if not os.path.exists(EXE_DIR):
+            os.makedirs(EXE_DIR)
+
+        # Get the list of .exe files
+        exe_files = [f for f in os.listdir(EXE_DIR) if f.endswith('.exe')]
+
+        # Display buttons for each .exe file
+        for exe_file in exe_files:
+            file_path = os.path.join(EXE_DIR, exe_file)
+            
+            if st.button(f"Run {exe_file}"):
+                try:
+                    # Run the .exe file
+                    result = subprocess.run([file_path], capture_output=True, text=True)
+                    st.write(f"Execution Output of {exe_file}:")
+                    st.write(result.stdout)
+                    st.write("Execution Error (if any):")
+                    st.write(result.stderr)
+                except Exception as e:
+                    st.error(f"Error running {exe_file}: {e}")
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
