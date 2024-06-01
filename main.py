@@ -58,17 +58,17 @@ def main():
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
-    col7, col8, col9, col10 = st.columns([1, 1, 1, 1])
+    col7, col8, col9 = st.columns([1, 1, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
+    # with col9:
+    #     if st.button("All EXE"):
+    #         st.session_state.script_choice = "exe"
     with col9:
-        if st.button("All EXE"):
-            st.session_state.script_choice = "exe"
-    with col10:
         if st.button("Feedback"):
             st.session_state.script_choice = "issue"
 
@@ -124,9 +124,9 @@ def main():
                 reports = [r.strip() for r in reports_input.split(',')]
                 sim_print.main(reports, uploaded_file)
 
-    elif st.session_state.script_choice == "issue":
-        st.header("Give Feedback")
-        st.text_input("Enter feedback of any issues or improvement")
+    # elif st.session_state.script_choice == "issue":
+    #     st.header("Give Feedback")
+    #     st.text_input("Enter feedback of any issues or improvement")
         
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
