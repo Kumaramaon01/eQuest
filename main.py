@@ -89,7 +89,7 @@ def main():
     with col9:
         if st.button("All EXE Files"):
             st.session_state.script_choice = "exe"
-    col10 = st.columns([1])
+    col10 = st.columns(1)
     with col10:
         if st.button("Queries?"):
             st.session_state.script_choice = "ask"
