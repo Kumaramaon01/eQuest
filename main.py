@@ -201,15 +201,10 @@ def main():
             # st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
         st.markdown("""
-        ## Note:
-        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
-        Our utilities include:
+        #### Note:
+        eQuest Utilities exe files are of large size, that cannot be fit for website, once can get from drive.
 
         - **INP Parser:** A tool to parse INP files and extract meaningful data.
-        - **Purging INP:** A utility to update and clean your INP files.
-        - **SIM Parser:** A parser for SIM files to streamline your simulation data processing.
-        - **SIM to PDF Converter:** Easily convert your SIM files into PDF format for better sharing and documentation.
-        - **Baseline Automation:** Modifies INP files based on the user input.
         """)
         # Add more cards as needed
 
