@@ -127,7 +127,7 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
@@ -143,17 +143,22 @@ def main():
             # st.write("Purging INP")
             st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
-
-        col4, col5, col6 = st.columns(3)
         with col4:
-            st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
-        with col5:
-            st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
-        with col6:
-            st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
+            # st.write("Purging INP")
+            st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
+            st.write("[Download](url_to_exe_3)")
+
+        # col4, col5, col6 = st.columns(3)
+        # with col4:
+        #     st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
+        #     st.write("[Download](url_to_exe_1)")
+        # with col5:
+        #     st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+        #     st.write("[Download](url_to_exe_1)")
+        # with col6:
+        #     st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+        #     st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
 
 
