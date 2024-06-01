@@ -48,7 +48,7 @@ def main():
 
     icon_with_tooltip1 = """
     <div style="text-align:center">
-        <span style="font-size:44px">
+        <span style="font-size:34px">
             <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
                 <span>&#x1F4E7;</span>
             </a>
@@ -57,7 +57,7 @@ def main():
     """
     icon_with_toolti2 = """
     <div style="text-align:center">
-        <span style="font-size:44px">
+        <span style="font-size:34px">
             <a href="https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER_HERE" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
                 <span>&#x1F4DE;</span>
             </a>
