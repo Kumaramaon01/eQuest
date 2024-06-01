@@ -58,13 +58,16 @@ def main():
         if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
-    col7, col8 = st.columns([1, 1])
+    col7, col8, col9 = st.columns([1, 1, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
+    with col9:
+        if st.button("All exe files"):
+            st.session_state.script_choice = "exe"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
