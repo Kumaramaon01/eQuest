@@ -136,9 +136,9 @@ def main():
             )
         with col2:
             card(
-                title="EXE 2",
-                text="SIM Parser",
-                image="path_to_image_2.jpg",
+                title="SIM Parser",
+                text="Parsing SIM files",
+                image="SIM_Parser_logo.png",
                 url="url_to_exe_2"
             )
         with col3:
