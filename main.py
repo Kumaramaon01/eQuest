@@ -47,19 +47,17 @@ def main():
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
     icon_with_tooltip = """
-        <div style="text-align:center">
-            <span style="font-size:34px">
-                <a href="#" title="Reach out for any queries">&#x1F4AC;</a>
-            </span>
-        </div>
+    <div style="text-align:center">
+        <span style="font-size:24px">
+            <a href="#" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">&#x1F4AC;</a>
+        </span>
+    </div>
     """
 
     # Add icon and tooltip to col3
+    # Add icon and tooltip to col3
     with col3:
         st.write(icon_with_tooltip, unsafe_allow_html=True)
-        # Handle action when the icon is clicked
-        if st.button("Ask"):
-            st.session_state.script_choice = "ask"
 
     # Navigation bar with buttons below the header
     st.markdown("---")
