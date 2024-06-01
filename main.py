@@ -51,12 +51,10 @@ def main():
             <span style="font-size:44px">
                 <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?'))">
                     <span style="color: blue;">&#x1F4AC;</span>
-                    <span style="font-size: 20px; background-color: #f0f0f0; padding: 5px; border-radius: 10px;">ask</span>
                 </a>
             </span>
         </div>
         """
-    # Add icon and tooltip to col3
     # Add icon and tooltip to col3
     with col3:
         st.write(icon_with_tooltip, unsafe_allow_html=True)
