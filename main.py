@@ -72,8 +72,8 @@ def main():
     with col9:
         if st.button("All EXE File"):
             st.session_state.script_choice = "exe"
-    col1 = st.columns(1)
-    with col1:
+    col10 = st.columns(1)
+    with col10:
         if st.button("Reach Out"):
             st.session_state.script_choice = "ask"
             
