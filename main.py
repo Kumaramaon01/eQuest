@@ -66,10 +66,10 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("All exe files"):
+        if st.button("All EXE"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Issues or Feedback"):
+        if st.button("Feedback"):
             st.session_state.script_choice = "issue"
 
     # Based on the user selection, display appropriate input fields and run the script
