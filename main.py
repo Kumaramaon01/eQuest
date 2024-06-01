@@ -11,6 +11,7 @@ from PIL import Image as PILImage
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
+    st.markdown("[Email me](mailto:your-email@example.com)")
 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     st.markdown(
