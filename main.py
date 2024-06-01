@@ -204,8 +204,6 @@ def main():
         #### Note:
         Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
         However, they are available for download from our drive. We apologize for any inconvenience this may cause and appreciate your understanding.
-
-        # - **INP Parser:** A tool to parse INP files and extract meaningful data.
         """)
         # Add more cards as needed
 
