@@ -40,13 +40,22 @@ def main():
         st.session_state.script_choice = "about"  # Set default to "about"
 
     # Header section with logo and title
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3, col4 = st.columns([1, 2, 1, 1])
     with col1:
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
-    icon_with_tooltip = """
+    icon_with_tooltip1 = """
+    <div style="text-align:center">
+        <span style="font-size:44px">
+            <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4E7;</span>
+            </a>
+        </span>
+    </div>
+    """
+    icon_with_toolti2 = """
     <div style="text-align:center">
         <span style="font-size:44px">
             <a href="https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER_HERE" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
@@ -58,7 +67,10 @@ def main():
 
     # Add icon and tooltip to col3
     with col3:
-        st.write(icon_with_tooltip, unsafe_allow_html=True)
+        st.write(icon_with_tooltip1, unsafe_allow_html=True)
+    # Add icon and tooltip to col3
+    with col4:
+        st.write(icon_with_toolti2, unsafe_allow_html=True)
 
     # Navigation bar with buttons below the header
     st.markdown("---")
