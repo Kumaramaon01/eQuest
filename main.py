@@ -100,7 +100,7 @@ def main():
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
-    st.markdown('<hr style="border:2px solid red">', unsafe_allow_html=True)
+    st.markdown('<hr style="border:1px solid red">', unsafe_allow_html=True)
     
     col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
     with col3:
