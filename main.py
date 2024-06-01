@@ -40,11 +40,14 @@ def main():
         st.session_state.script_choice = "about"  # Set default to "about"
 
     # Header section with logo and title
-    col1, col2 = st.columns([1, 3])
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+    with col3:
+        if st.button("Reach Out for any Queries"):
+            st.session_state.script_choice = "ask"
 
     # Navigation bar with buttons below the header
     st.markdown("---")
@@ -73,17 +76,10 @@ def main():
         if st.button("All EXE File"):
             st.session_state.script_choice = "exe"
             
-    col10, col11, col12 = st.columns([1, 1, 1])
-    with col10:
-        if st.button("Reach Out for any Queries"):
-            st.session_state.script_choice = "ask"
-    with col11:
-        if st.button("Baseline Automation"):
-            st.session_state.script_choice = "b"
-    with col12:
-        if st.button("All EXE File"):
-            st.session_state.script_choice = "e"
-            
+    # col10, col11, col12 = st.columns([1, 1, 1])
+    # with col10:/
+        # if st.button("Reach Out for any Queries"):
+        #     st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
@@ -138,12 +134,6 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
-        st.header("Reach Out to Queries")
-        st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
-    elif st.session_state.script_choice == "b":
-        st.header("Reach Out to Queries")
-        st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
-    elif st.session_state.script_choice == "e":
         st.header("Reach Out to Queries")
         st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
 
