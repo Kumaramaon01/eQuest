@@ -87,10 +87,8 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("All EXE File"):
+        if st.button("All EXE"):
             st.session_state.script_choice = "exe"
-            
-    # col10, col11, col12 = st.columns([1, 1, 1])
     with col10:
         if st.button("Ask"):
             st.session_state.script_choice = "ask"
