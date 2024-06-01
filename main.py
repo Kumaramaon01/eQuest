@@ -48,10 +48,10 @@ def main():
 
     icon_with_tooltip = """
     <div style="text-align:center">
-        <span style="font-size:44px">
+        <span style="font-size:44px; color: green;">
             <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">
-                <span style="color: blue;">&#x1F4AC;</span>
-                <span style="font-size: 20px; background-color: #f0f0f0; padding: 5px; border-radius: 10px;">ask</span>
+                &#x1F4AC; <br>
+                <span style="font-size: 20px;">ask</span>
             </a>
         </span>
     </div>
