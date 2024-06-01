@@ -133,8 +133,7 @@ def main():
                 <div style='text-align:center'>
                 <h2>INP Parser</h2>
                 <p>Parsing INP files</p>
-                # <img src='INP_Parser_logo.png' alt='INP Parser Logo' style='width:100px; height:100px'/>
-                st.image("EDSlogo.png", width=120)
+                <img src='INP_Parser_logo.png' alt='INP Parser Logo' style='width:100px; height:100px'/>
                 <a href='url_to_exe_1'>Download</a>
                 </div>
                 """,
