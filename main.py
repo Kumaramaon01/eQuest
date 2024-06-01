@@ -49,12 +49,12 @@ def main():
     icon_with_tooltip = """
     <div style="text-align:center">
         <span style="font-size:44px">
-            <a href="https://mail.google.com/mail/u/0/#inbox" title="Got questions? Ask away!" onmouseover="if (confirm('Do you want to ask a question?'))">
-                <span>&#x1F4AC;</span>
+            <a href="https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER_HERE" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4DE;</span>
             </a>
         </span>
     </div>
-"""
+    """
 
     # Add icon and tooltip to col3
     with col3:
