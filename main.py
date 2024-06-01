@@ -84,7 +84,7 @@ def main():
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
-        if st.button("Baseline"):
+        if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
         if st.button("All EXE Files"):
