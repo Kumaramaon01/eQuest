@@ -58,7 +58,7 @@ def main():
     </div>
     """
 
-    icon_with_tooltip = """
+    icon_with_tooltip2 = """
     <div style="text-align:center">
         <span style="font-size:44px">
             <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
