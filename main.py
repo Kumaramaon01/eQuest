@@ -48,12 +48,11 @@ def main():
 
     icon_with_tooltip = """
     <div style="text-align:center">
-        <span style="font-size:44px; color: green;">
-            <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">
-                &#x1F4AC; <br>
-                <span style="font-size: 20px;">ask</span>
-            </a>
-        </span>
+        <a href="https://mail.google.com/mail/u/0/#inbox" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">
+            <span style="font-size: 44px; color: green;">&#x1F4AC;</span>
+            <br>
+            <span style="font-size: 20px;">ask</span>
+        </a>
     </div>
     """
 
