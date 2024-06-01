@@ -45,8 +45,20 @@ def main():
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+
+    icon_with_tooltip = """
+        <div style="text-align:center">
+            <span style="font-size:24px">
+                <a href="#" title="Reach out for any queries">&#x1F4AC;</a>
+            </span>
+        </div>
+    """
+
+    # Add icon and tooltip to col3
     with col3:
-        if st.button("Reach Out for any Queries"):
+        st.write(icon_with_tooltip, unsafe_allow_html=True)
+        # Handle action when the icon is clicked
+        if st.button("Ask"):
             st.session_state.script_choice = "ask"
 
     # Navigation bar with buttons below the header
