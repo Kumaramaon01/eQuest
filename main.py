@@ -49,7 +49,7 @@ def main():
     icon_with_tooltip = """
     <div style="text-align:center">
         <span style="font-size:24px">
-            <a href="#" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">&#x1F4AC;</a>
+            <a href="www.google.com" title="Reach out for any queries" onmouseover="if (confirm('Do you want to ask a question?')) { window.sessionStorage.setItem('script_choice', 'ask'); }">&#x1F4AC;</a>
         </span>
     </div>
     """
