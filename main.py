@@ -10,7 +10,8 @@ from streamlit_card import card
 from PIL import Image as PILImage
 
 def main():
-       st.markdown(
+       
+    st.markdown(
         """
         <style>
         @keyframes changeColor {
@@ -25,7 +26,7 @@ def main():
         </style>
         """,
         unsafe_allow_html=True
-              )
+    )
     
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
