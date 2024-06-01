@@ -150,7 +150,7 @@ def main():
             st.write("[Download](url_to_exe_1)")
         with col5:
             st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
-                st.write("[Download](url_to_exe_1)")
+            st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
 
 
