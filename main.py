@@ -72,7 +72,7 @@ def main():
     with col1:
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
-        st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: left; color:green;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
     icon_with_tooltip1 = """
     <div style="text-align:center">
