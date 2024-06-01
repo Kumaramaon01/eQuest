@@ -87,7 +87,7 @@ def main():
             margin: 0;
             padding: 0;
             width: 200px;
-            height: 50px;
+            height: 150px;
             text-align: center;
             vertical-align: middle;
             line-height: 50px;
