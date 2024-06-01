@@ -73,16 +73,16 @@ def main():
         if st.button("All EXE File"):
             st.session_state.script_choice = "exe"
             
-    # col10, col11, col12 = st.columns([1, 1, 1])
-    # with col10:
-    #     if st.button("Reach Out for any Queries"):
-    #         st.session_state.script_choice = "ask"
-    # with col11:
-    #     if st.button("Baseline Automation"):
-    #         st.session_state.script_choice = "baselineAutomation"
-    # with col12:
-    #     if st.button("All EXE File"):
-    #         st.session_state.script_choice = "exe"
+    col10, col11, col12 = st.columns([1, 1, 1])
+    with col10:
+        if st.button("Reach Out for any Queries"):
+            st.session_state.script_choice = "ask"
+    with col11:
+        if st.button("Baseline Automation"):
+            st.session_state.script_choice = "b"
+    with col12:
+        if st.button("All EXE File"):
+            st.session_state.script_choice = "e"
             
 
     # Based on the user selection, display appropriate input fields and run the script
@@ -138,6 +138,12 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
+        st.header("Reach Out to Queries")
+        st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
+    elif st.session_state.script_choice == "b":
+        st.header("Reach Out to Queries")
+        st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
+    elif st.session_state.script_choice == "e":
         st.header("Reach Out to Queries")
         st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
 
