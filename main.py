@@ -27,7 +27,6 @@ def send_email(subject, message, from_email, to_email):
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
-        server.login(from_email, from_password)
         text = msg.as_string()
         server.sendmail(from_email, to_email, text)
         server.quit()
