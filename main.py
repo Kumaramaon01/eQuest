@@ -128,27 +128,43 @@ def main():
         st.header("All exe Files")
         col1, col2, col3 = st.columns(3)
         with col1:
-            card(
-                title="INP Parser",
-                text="Parsing INP files",
-                image="INP_Parser_logo.png",
-                url="url_to_exe_1"
+            st.markdown(
+                """
+                <div style='text-align:center'>
+                <h2>INP Parser</h2>
+                <p>Parsing INP files</p>
+                <img src='INP_Parser_logo.png' alt='INP Parser Logo' style='width:100px; height:100px'/>
+                <a href='url_to_exe_1'>Download</a>
+                </div>
+                """,
+                unsafe_allow_html=True
             )
         with col2:
-            card(
-                title="SIM Parser",
-                text="Parsing SIM files",
-                image="SIM_Parser_logo.png",
-                url="url_to_exe_2"
+            st.markdown(
+                """
+                <div style='text-align:center'>
+                <h2>SIM Parser</h2>
+                <p>Parsing SIM files</p>
+                <img src='SIM_Parser_logo.png' alt='SIM Parser Logo' style='width:100px; height:100px'/>
+                <a href='url_to_exe_2'>Download</a>
+                </div>
+                """,
+                unsafe_allow_html=True
             )
         with col3:
-            card(
-                title="EXE 3",
-                text="Purging INP",
-                image="path_to_image_3.jpg",
-                url="url_to_exe_3"
+            st.markdown(
+                """
+                <div style='text-align:center'>
+                <h2>EXE 3</h2>
+                <p>Purging INP</p>
+                <img src='path_to_image_3.jpg' alt='Image 3' style='width:100px; height:100px'/>
+                <a href='url_to_exe_3'>Download</a>
+                </div>
+                """,
+                unsafe_allow_html=True
             )
         # Add more cards as needed
+
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
