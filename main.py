@@ -131,36 +131,36 @@ def main():
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
-            st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
+            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
             st.write("[Download](url_to_exe_1)")
         with col2:
             # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing SIM files")
-            st.image(PILImage.open("SIM_Parser_logo.png"), use_column_width=True)
+            st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True)
             st.write("[Download](url_to_exe_2)")
         with col3:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
-            st.image(PILImage.open("perging_inp_logo.ico"), use_column_width=True)
+            st.image(PILImage.open("images/perging_inp_logo.ico"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
         with col4:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
-            st.image(PILImage.open("SIM_pdf.png"), use_column_width=True)
+            st.image(PILImage.open("images/SIM_pdf.png"), use_column_width=True)
             st.write("[Download](url_to_exe_3)")
 
         col5, col6, col7, col8 = st.columns(4)
         with col5:
-            st.image(PILImage.open("INP_Parser_logo.png"), use_column_width=True)
+            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
             st.write("[Download](url_to_exe_1)")
         with col6:
-            st.image(PILImage.open("x.jpg"), use_column_width=True)
+            st.image(PILImage.open("images/x.jpg"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
         with col7:
-            st.image(PILImage.open("x.jpg"), use_column_width=True)
+            st.image(PILImage.open("images/x.jpg"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
         with col8:
-            st.image(PILImage.open("x.jpg"), use_column_width=True)
+            st.image(PILImage.open("images/x.jpg"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
         # Add more cards as needed
 
