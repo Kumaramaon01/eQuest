@@ -126,6 +126,29 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.header("All exe Files")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            card(
+                title="EXE 1",
+                text="Description of EXE 1",
+                image="path_to_image_1.jpg",
+                url="url_to_exe_1"
+            )
+        with col2:
+            card(
+                title="EXE 2",
+                text="Description of EXE 2",
+                image="path_to_image_2.jpg",
+                url="url_to_exe_2"
+            )
+        with col3:
+            card(
+                title="EXE 3",
+                text="Description of EXE 3",
+                image="path_to_image_3.jpg",
+                url="url_to_exe_3"
+            )
+        # Add more cards as needed
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.header("Baseline Automation")
