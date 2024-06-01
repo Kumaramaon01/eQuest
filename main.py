@@ -11,7 +11,6 @@ from PIL import Image as PILImage
 
 def main():
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
-    st.markdown("[Email me](mailto:your-email@example.com)")
 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     st.markdown(
@@ -46,6 +45,7 @@ def main():
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("[Email me](mailto:your-rajeev@edsglobal.com)")
 
     # Navigation bar with buttons below the header
     st.markdown("---")
