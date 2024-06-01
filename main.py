@@ -10,22 +10,6 @@ from streamlit_card import card
 from PIL import Image as PILImage
 
 def main(): 
-    st.markdown(
-        """
-        <style>
-        @keyframes changeColor {
-            0% { background-color: #f0f2f6; }
-            50% { background-color: #cfd9df; }
-            100% { background-color: #f0f2f6; }
-        }
-
-        body {
-            animation: changeColor 5s infinite;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
@@ -35,6 +19,7 @@ def main():
         <style>
         body {
             background-color: #f0f2f6;  /* Set your desired background color here */
+            animation: changeColor 5s infinite;
         }
         .css-18e3th9 {
             padding-top: 0rem;  /* Adjust the padding at the top */
