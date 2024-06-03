@@ -36,21 +36,6 @@ def send_email(subject, message, from_email, to_email):
         st.success("Email sent successfully!")
         return False
 
-def set_button_style():
-    st.markdown(
-        """
-        <style>
-        .st-eb {
-            background-color: red !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# Set the theme
-set_button_style()
-
 def main(): 
     st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
