@@ -104,8 +104,8 @@ def main():
     
     col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
     with col3:
-        if st.button("About eQuest"):
-            st.session_state.script_choice = "about"
+        if st.button("About eQuest", key="eQuest_button"):
+            st.markdown("""<style>.stButton button:active:after { background-color: red; }</style> <button>About eQuest</button>""", unsafe_allow_html=True)
     with col4:
         if st.button("INP Parser"):
             st.session_state.script_choice = "INP Parser"
