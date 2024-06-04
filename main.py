@@ -209,7 +209,7 @@ def main():
                 st.warning("Please enter some text.")
 
     elif st.session_state.script_choice == "exe":
-        st.header("All exe Files")
+        st.header("EXE Files")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
@@ -249,7 +249,7 @@ def main():
         st.markdown("""
         #### Note:
         Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
-        However, they are available for download from our drive. We apologize for any inconvenience this may cause and appreciate your understanding.
+        However, they are available for download from our drive.
         """)
         # Add more cards as needed
 
