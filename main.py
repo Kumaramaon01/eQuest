@@ -159,7 +159,9 @@ def main():
                 inp_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "Purging INP":
+        st.markdown("""
         <h3 style="color:red;">Purging INP</h3>
+        """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
