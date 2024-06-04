@@ -72,7 +72,7 @@ def main():
     with col1:
         st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
     with col2:
-        st.markdown("<h1 style='text-align: left; color:green;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
     icon_with_tooltip1 = """
     <div style="text-align:center">
@@ -139,11 +139,11 @@ def main():
         eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
         Our utilities include:
 
-        - <b style="color:green;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
-        - <b style="color:green;">Purging INP:</b> A utility to update and clean your INP files.
-        - <b style="color:green;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
-        - <b style="color:green;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
-        - <b style="color:green;">Baseline Automation:</b> Modifies INP files based on the user input.
+        - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
+        - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
+        - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
+        - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
+        - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
 
         Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
