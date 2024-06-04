@@ -125,10 +125,10 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("All EXE Files"):
+        if st.button("EXE Files"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Queries?"):
+        if st.button("Queries"):
             st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
@@ -185,7 +185,7 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
-        st.header("Reach Out to Queries")
+        # st.header("Reach Out to Queries")
         col1, col2 = st.columns(2)
         with col1:
             st.write(icon_with_tooltip1, unsafe_allow_html=True)
