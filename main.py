@@ -290,7 +290,7 @@ def main():
         with col1:
             input_area = st.number_input("Enter Area (Sqft)", min_value=0.0, step=0.1)
         with col2:
-        number_floor = st.number_input("Number of Floors", min_value=1, step=1)
+            number_floor = st.number_input("Number of Floors", min_value=1, step=1)
         heat_type = st.selectbox("Heating Type (Hybrid/Fossil - 0), (Electric - 1)", options=[0, 1])
 
         if uploaded_inp_file and uploaded_sim_file:
