@@ -134,7 +134,7 @@ def main():
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         st.markdown("""
-        <h3 style="color:green;">Welcome to eQuest Utilities</h3>
+        <h3 style="color:red;">Welcome to eQuest Utilities</h3>
 
         eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
         Our utilities include:
