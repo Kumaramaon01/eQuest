@@ -189,10 +189,10 @@ def main():
         Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
         """, unsafe_allow_html=True)
         
-        col1 = st.columns([1.1])
+        col1, col2 = st.columns([1.1, 0])
         with col1:
             uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
-        col1 = st.columns([1.1])
+        col1, col2 = st.columns([1.1, 0])
         with col1:
             reports_input = st.text_input("Enter Reports")
         
