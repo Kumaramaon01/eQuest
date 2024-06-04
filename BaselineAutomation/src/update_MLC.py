@@ -67,9 +67,6 @@ def insert_material_data(climate_zone_file, amenity_file):
     start_marker1 = "= MATERIAL"
     end_marker1 = ".."
 
-    climate_zone_file = os.path.abspath(climate_zone_file)
-    st.success(climate_zone_file)
-    st.success(amenity_file)
     with open(climate_zone_file, 'r') as file:
         data_climate_zone = file.readlines()
 
@@ -171,3 +168,4 @@ def insert_const_data(climate_zone_file, lyr_data):
         lyr_data = lyr_data[:construction_index] + material_data + lyr_data[construction_index:]
 
     return lyr_data
+    
