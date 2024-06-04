@@ -192,8 +192,12 @@ def main():
         col1, col2 = st.columns([1.1, 0])
         with col1:
             uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        with col2:
+            reports_input = st.text_input("Enter Reports")
         col1, col2 = st.columns([1.1, 0])
         with col1:
+            reports_input = st.text_input("Enter Reports")
+        with col2:
             reports_input = st.text_input("Enter Reports")
         
         if uploaded_file is not None:
