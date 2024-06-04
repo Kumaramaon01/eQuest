@@ -220,7 +220,7 @@ def main():
         st.markdown("""
         <h3 style="color:red;">EXE Files</h3>
         """, unsafe_allow_html=True)
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4, col5 = st.columns(5)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
@@ -241,20 +241,24 @@ def main():
             # st.write("Purging INP")
             st.image(PILImage.open("images/SIM_pdf.png"), use_column_width=True)
             st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-
-        col5, col6, col7, col8 = st.columns(4)
         with col5:
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             st.write("[Download](url_to_exe_1)")
-        with col6:
-            # st.image(PILImage.open("images/x.jpg"), use_column_width=True)
-            # st.write("[Download](url_to_exe_1)")
-        with col7:
-            # st.image(PILImage.open("images/x.jpg"), use_column_width=True)
-            # st.write("[Download](url_to_exe_1)")
-        with col8:
-            # st.image(PILImage.open("images/x.jpg"), use_column_width=True)
-            # st.write("[Download](url_to_exe_1)")
+
+        # col5, col6, col7, col8 = st.columns(4)
+        # with col5:
+        #     st.image(PILImage.open("images/baseline.png"), use_column_width=True)
+        #     st.write("[Download](url_to_exe_1)")
+        # with col6:
+        #     st.image(PILImage.open("images/x.jpg"), use_column_width=True)
+        #     # st.write("[Download](url_to_exe_1)")
+        # with col7:
+        #     st.image(PILImage.open("images/x.jpg"), use_column_width=True)
+        #     # st.write("[Download](url_to_exe_1)")
+        # with col8:
+        #     st.image(PILImage.open("images/x.jpg"), use_column_width=True)
+        #     # st.write("[Download](url_to_exe_1)")
+        
         # Add more cards as needed
         st.markdown("""
         #### Note:
