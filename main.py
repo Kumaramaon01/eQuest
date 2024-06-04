@@ -151,7 +151,9 @@ def main():
         """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "INP Parser":
-        st.header("INP Parser")
+        st.markdown("""
+        <h3 style="color:red;">INP Parser</h3>
+        """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
@@ -169,7 +171,9 @@ def main():
                 perge.main(uploaded_file)
 
     elif st.session_state.script_choice == "SIM Parser":
-        st.header("SIM Parser")
+        st.markdown("""
+        <h3 style="color:red;">SIM Parser</h3>
+        """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
         if uploaded_file is not None:
@@ -177,7 +181,9 @@ def main():
                 sim_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "SIM to PDF":
-        st.header("SIM to PDF Converter")
+        st.markdown("""
+        <h3 style="color:red;">SIM to PDF Converter</h3>
+        """, unsafe_allow_html=True)
         reports_input = st.text_input("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ")
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         
@@ -211,7 +217,9 @@ def main():
                 st.warning("Please enter some text.")
 
     elif st.session_state.script_choice == "exe":
-        st.header("EXE Files")
+        st.markdown("""
+        <h3 style="color:red;">EXE Files</h3>
+        """, unsafe_allow_html=True)
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
@@ -256,7 +264,9 @@ def main():
         # Add more cards as needed
 
     elif st.session_state.script_choice == "baselineAutomation":
-        st.header("Baseline Automation")
+        st.markdown("""
+        <h3 style="color:red;">Baseline Automation</h3>
+        """, unsafe_allow_html=True)
         uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
