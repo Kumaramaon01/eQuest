@@ -271,7 +271,7 @@ def main():
         with col1:
             input_climate = st.selectbox("Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
         with col2:
-            input_building_type = st.selectbox("Building Type (0 - Residential), (1 - Non-Residential)", options=[0, 1])
+            input_building_type = st.selectbox("Enter the Building Type", options=[0, 1], format_func=lambda x: "Residential" if x == 0 else "Non-Residential")
         col1, col2 = st.columns(2)
         with col1:
             input_area = st.number_input("Enter Area (Sqft)", min_value=0.0, step=0.1)
