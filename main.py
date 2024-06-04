@@ -153,6 +153,9 @@ def main():
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
         <h3 style="color:red;">INP Parser</h3>
+        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
+        Our utilities include:
+
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
