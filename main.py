@@ -189,11 +189,8 @@ def main():
         Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
         """, unsafe_allow_html=True)
         
-        col1, col2 = st.columns([1, 1])
-        with col1:
-            uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
-        with col2:
-            reports_input = st.text_input("Enter Reports")
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        reports_input = st.text_input("Enter Reports")
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
