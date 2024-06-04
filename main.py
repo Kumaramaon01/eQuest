@@ -184,8 +184,16 @@ def main():
         st.markdown("""
         <h3 style="color:red;">SIM to PDF Converter</h3>
         """, unsafe_allow_html=True)
-        reports_input = st.text_input("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ")
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        
+        # st.markdown("""
+        # SIM to PDF Converter
+        # """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            reports_input = st.text_input("Enter the desired reports in the following sample format (comma-separated, case-sensitive): ")
+        with col2:
+            uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
