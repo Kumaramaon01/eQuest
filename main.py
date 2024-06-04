@@ -273,7 +273,9 @@ def main():
         # Add more cards as needed
 
     elif st.session_state.script_choice == "baselineAutomation":
-        st.header("Baseline Automation")
+        st.markdown("""
+        <h3 style="color:red;">Baseline Automation</h3>
+        """, unsafe_allow_html=True)
         uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         input_climate = st.selectbox("Enter the Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
