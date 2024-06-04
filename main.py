@@ -191,9 +191,10 @@ def main():
             st.write(icon_with_tooltip1, unsafe_allow_html=True)
         with col2:
             st.write(icon_with_tooltip2, unsafe_allow_html=True)
-            
-        user_input = st.text_area("Enter some text:")
+
         email = st.text_input("Enter your mail:")
+        user_input = st.text_area("Enter your Queries:")
+    
         # Submit button
         if st.button("Submit"):
             if user_input:
