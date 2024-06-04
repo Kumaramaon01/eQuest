@@ -151,7 +151,7 @@ def main():
         """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "INP Parser":
-        st.header("INP Parser")
+        <h3 style="color:red;">INP Parser</h3>
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
@@ -159,7 +159,7 @@ def main():
                 inp_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "Purging INP":
-        st.header("Purging INP")
+        <h3 style="color:red;">Purging INP</h3>
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
