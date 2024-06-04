@@ -151,7 +151,6 @@ def main():
         """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "INP Parser":
-        st.markdown("""
         st.header("INP Parser")
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
