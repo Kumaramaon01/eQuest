@@ -189,7 +189,7 @@ def main():
         Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
         """, unsafe_allow_html=True)
         
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([0.8,1.2])
         with col1:
             reports_input = st.text_input("Enter Reports")
         with col2:
