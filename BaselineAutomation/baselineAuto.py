@@ -36,8 +36,6 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     climate_path = os.path.abspath(climate_path)
     
     if os.path.isfile(inp_path):
-        st.success(inp_path)
-        st.success(climate_path)
         mat_data = update_MLC.insert_material_data(climate_path, inp_path)
         st.success("Inserted Material Data")
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
