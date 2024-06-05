@@ -10,7 +10,6 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
             temp_file.write(input_inp_path.getbuffer())
             temp_file_path = temp_file.name
         inp_path = temp_file_path
-    st.success(inp_path)
 
     if sim_file_path is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
