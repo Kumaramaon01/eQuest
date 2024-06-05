@@ -76,7 +76,7 @@ def insert_material_data(climate_zone_file, amenity_file):
     end_indices1 = []
     for i in range(0, len(start_indices1)):
         end_indices1.append(end_indice1[i])
-    st.success(amenity_file)
+
     with open(amenity_file, 'r', encoding='utf-8') as file:
         amenity_data = file.readlines()
     layer_index = None
