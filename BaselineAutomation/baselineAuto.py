@@ -32,7 +32,11 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     # Get climate and system paths
     climate_path = update_MLC.get_climate_path(input_climate, input_building_type)
     system_path = update_MLC.get_system_path(input_building_type, heat_type, input_area, number_floor)
-
+    st.success(inp_path)
+    st.success(sim_path)
+    st.success(climate_path)
+    st.success(system_path)
+    
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
     # climate_path = "D:\EDS\Test Projects\web equest\BaselineAutomation\library\Residential_Construction\Climate zone 1.inp"
