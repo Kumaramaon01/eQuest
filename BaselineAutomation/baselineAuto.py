@@ -37,6 +37,8 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     # climate_path = "D:\EDS\Test Projects\web equest\BaselineAutomation\library\Residential_Construction\Climate zone 1.inp"
 
     if os.path.isfile(inp_path):
+        st.success(inp_path)
+        st.success(climate_path)
         mat_data = update_MLC.insert_material_data(climate_path, inp_path)
         st.success("Inserted Material Data")
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
