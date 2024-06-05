@@ -52,7 +52,7 @@ def insert_material_data(climate_zone_file, amenity_file):
     start_marker1 = "= MATERIAL"
     end_marker1 = ".."
     try:
-        with open(climate_zone_file, 'r', encoding='utf-8') as file:  # Specify the encoding
+        with open(climate_zone_file, 'r', encoding='utf-8', errors='ignore') as file:
             data_climate_zone = file.readlines()
     except UnicodeDecodeError as e:
         st.error(f"Error reading {climate_zone_file}: {e}")
@@ -65,7 +65,7 @@ def insert_material_data(climate_zone_file, amenity_file):
         end_indices1.append(end_indice1[i])
 
     try:
-        with open(amenity_file, 'r', encoding='utf-8') as file:  # Specify the encoding
+        with open(amenity_file, 'r', encoding='utf-8', errors='ignore')) as file:  # Specify the encoding
             amenity_data = file.readlines()
     except UnicodeDecodeError as e:
         st.error(f"Error reading {amenity_file}: {e}")
