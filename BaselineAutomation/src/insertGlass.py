@@ -34,7 +34,6 @@ def update_glass(climate_zone_file, amenity_data):
 
     return amenity_data
 
-
 def update_glass_type(amenity_data):
     start_marker = "Glass Types"
     end_marker = "Window Layers"
@@ -42,8 +41,7 @@ def update_glass_type(amenity_data):
     start_indice = [i for i, line in enumerate(amenity_data) if start_marker in line]
 
     if not start_indice:  # Check if the list is empty
-        st.error("No start marker found.")
-        return []
+        raise ValueError("No start marker found.")
 
     start_indices = []
     start_indices.append(start_indice[-1])
