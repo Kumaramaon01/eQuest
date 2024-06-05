@@ -35,6 +35,8 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
     # climate_path = "D:\EDS\Test Projects\web equest\BaselineAutomation\library\Residential_Construction\Climate zone 1.inp"
+    st.success(inp_path)
+    st.success(climate_path)
 
     if os.path.isfile(inp_path):
         st.success(inp_path)
