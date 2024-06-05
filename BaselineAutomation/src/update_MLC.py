@@ -79,7 +79,7 @@ def insert_material_data(climate_zone_file, amenity_file):
 
     with open(amenity_file, 'r', encoding='utf-8') as file:
         amenity_data = file.readlines()
-
+    st.success(amenity_file)
     layer_index = None
 
     # Finding index where "= LAYERS" occur
