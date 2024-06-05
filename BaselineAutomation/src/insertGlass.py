@@ -39,32 +39,33 @@ def update_glass_type(amenity_data):
     start_marker = "Glass Types"
     end_marker = "Window Layers"
 
-    # Extract material data for the specified climate zone
     start_indice = [i for i, line in enumerate(amenity_data) if start_marker in line]
-    end_indices = [i for i, line in enumerate(amenity_data) if end_marker in line]
-    start_indices = []
-    start_indices.append(start_indice[len(start_indice) - 1])
 
-    # Find material data for the specified climate zone
+    if not start_indice:  # Check if the list is empty
+        st.error("No start marker found.")
+        return []
+
+    start_indices = []
+    start_indices.append(start_indice[-1])
+
+    end_indices = [i for i, line in enumerate(amenity_data) if end_marker in line]
+
     material_data = []
     for start_idx, end_idx in zip(start_indices, end_indices):
         material_data += amenity_data[start_idx+2:end_idx-1]
 
-    # Assuming material_data is a list of strings
     all_win_value = None
     for line in material_data:
         if "All Win" in line:
             match = re.search(r'"([^"]+)"', line)
             if match:
                 all_win_value = match.group(1)
-                break  # Assuming there's only one "All Win" line
+                break
 
     if all_win_value is not None:
-        ## Paste all_win_value in range "Floors / Spaces / Walls / Windows / Doors" and "Electric & Fuel Meters" ##
         start_marker1 = "Floors / Spaces / Walls / Windows / Doors"
         end_marker1 = "Electric & Fuel Meters"
 
-        # Finding start and end indices
         start_index1 = None
         end_index1 = None
 
