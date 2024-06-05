@@ -239,7 +239,7 @@ def main():
         with col3:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
             # st.write("Purging INP")
-            st.image(PILImage.open("images/purging_inp_logo.png"), use_column_width=True)
+            st.image(PILImage.open("images/perging_inp_logo.ico"), use_column_width=True)
             st.write("[Download](https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link)")
         with col4:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
