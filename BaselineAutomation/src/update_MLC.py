@@ -70,8 +70,6 @@ def insert_material_data(climate_zone_file, amenity_file):
     except UnicodeDecodeError as e:
         st.error(f"Error reading {amenity_file}: {e}")
         return []
-    st.success(amenity_file)
-    st.success(climate_zone_file)
 
     layer_index = None
     for i, line in enumerate(amenity_data):
