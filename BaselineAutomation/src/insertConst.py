@@ -34,7 +34,10 @@ def update_external_wall_roof_undergrnd(data):
             index = line.find('=')
             if index != -1:
                 value_before_equal_roof = line[:index].strip()
-
+    st.success(value_before_equal_wall)
+    st.success(value_before_equal_roof)
+    st.success(value_before_equal_under)
+    
     if start_index is not None and end_index is not None:
         inside_exterior_wall = False
         inside_underground_wall = False
@@ -67,4 +70,4 @@ def update_external_wall_roof_undergrnd(data):
                     if "BOTTOM" not in data[line_index + 1]:
                         data[line_index] = '   CONSTRUCTION     = {}\n'.format(value_before_equal_under)
 
-    return data  
+    return data
