@@ -57,14 +57,14 @@ def update_external_wall_roof_undergrnd(data):
                     construction_value = re.search(r'CONSTRUCTION\s*=\s*(\S+)', line).group(1)
                     if "TOP" not in construction_value and "extroof" not in line:
                         data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*(\S+)', r'CONSTRUCTION     = {}'.format(value_before_equal_wall), line)
-                    elif "extroof" in construction_value:
+                    elif "extroof" in construction_value and value_before_equal_roof is not None:
                         data[line_index] = re.sub(r'extroof', value_before_equal_roof, line)
 
             elif inside_underground_wall:
                 if ".." in line:
                     inside_underground_wall = False
-                elif "CONSTRUCTION" in line:
+                elif "CONSTRUCTION" in line and value_before_equal_under is not None:
                     if "BOTTOM" not in data[line_index + 1]:
                         data[line_index] = '   CONSTRUCTION     = {}\n'.format(value_before_equal_under)
 
-    return data
+    return data  
