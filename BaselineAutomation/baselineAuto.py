@@ -37,9 +37,9 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     climate_path = os.path.abspath(climate_path)
     system_path = os.path.abspath(system_path)
     st.success(f"INP Selected: {inp_path}")
-    st.success(f"SIM Selected:  " + {sim_path})
-    st.success(f"Climate INP:  " + {climate_path})
-    st.success(f"System data:  " + {system_path})
+    st.success(f"SIM Selected: {sim_path}")
+    st.success(f"Climate INP: {climate_path}")
+    st.success(f"System data: {system_path}")
     
     if os.path.isfile(inp_path):
         ######################################################## MLC INSERTION #############################################
