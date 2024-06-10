@@ -58,13 +58,8 @@ def update_external_wall_roof_undergrnd(data):
                         if value_before_equal_roof is not None:
                             data[line_index] = re.sub(r'extroof', value_before_equal_roof, line)
                     else:
-                        construction_value = re.search(r'CONSTRUCTION\s*=\s*"(\S+)"', line)
-                        if construction_value and value_before_equal_wall is not None:
-                            data[line_index] = line.replace(construction_value.group(1), value_before_equal_wall)
-                elif "LOCATION" in line:
-                    location_value = re.search(r'LOCATION\s*=\s*(\S+)', line).group(1)
-                    if "TOP" not in location_value:
-                        data[line_index] = re.sub(r'LOCATION\s*=\s*(\S+)', r'LOCATION         = TOP', line)
+                        if value_before_equal_wall is not None:
+                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_wall), line)
 
             elif inside_underground_wall:
                 if ".." in line:
@@ -72,6 +67,6 @@ def update_external_wall_roof_undergrnd(data):
                 elif "CONSTRUCTION" in line:
                     if "BOTTOM" not in data[line_index + 1]:
                         if value_before_equal_under is not None:
-                            data[line_index] = '   CONSTRUCTION     = "{}"\n'.format(value_before_equal_under)
+                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_under), line)
 
     return data  
