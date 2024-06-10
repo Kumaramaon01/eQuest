@@ -73,5 +73,7 @@ def UpdateWWR(sim_file, amenity_data):
                                 existing_height = float(height_str.group(1))
                                 new_height = existing_height * height_factor
                                 amenity_data[line_index] = re.sub(r'(HEIGHT\s*=\s*\S+)', 'HEIGHT           = {}'.format(round(new_height, 2)), line)
+        else:
+            st.success("WWR is <= 0.4")
     
     return amenity_data
