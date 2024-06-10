@@ -89,17 +89,31 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         new_filename = re.sub(r'\.inp?$', '_Baseline_Automation.inp', filename, flags=re.IGNORECASE)
         input_inp_ = input_inp_path.name.split('.')[0]
 
-        # Write modified inp file 
-        with open(new_filename, 'w') as file:
+        # Writing modified INP file
+        with open(os.path.join(directory_path, new_filename), 'w') as file:
             file.writelines(modify_freshAir)
-
-        # Provide download link for the zip file
-        with open(new_filename, 'rb') as f:
+        
+        # Providing download link for the modified INP file
+        with open(os.path.join(directory_path, new_filename), 'rb') as f:
             st.download_button(
                 label="Download Updated INP",
                 data=f,
-                file_name=f"{os.path.basename(input_inp_)}_Baseline_Automation.inp",
+                file_name=new_filename,
             )
+        
+        # Displaying success message
+        st.success(f"Modified INP file saved as: {new_filename}")
+
+        # # Write modified inp file 
+        # with open(new_filename, 'w') as file:
+        #     file.writelines(modify_freshAir)
+
+        # with open(new_filename, 'rb') as f:
+        #     st.download_button(
+        #         label="Download Updated INP",
+        #         data=f,
+        #         file_name=f"{os.path.basename(input_inp_)}_Baseline_Automation.inp",
+        #     )
 
 if __name__ == "__main__":
     # You can add code here to accept input from the command line if desired
