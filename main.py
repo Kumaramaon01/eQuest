@@ -248,7 +248,7 @@ def main():
             st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
         with col5:
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
-            st.write("[Download](url_to_exe_1)")
+            # st.write("[Download](url_to_exe_1)")
         
         # Add more cards as needed
         st.markdown("""
