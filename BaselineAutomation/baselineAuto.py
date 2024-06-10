@@ -118,12 +118,3 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
 if __name__ == "__main__":
     # You can add code here to accept input from the command line if desired
     pass
-
-
-  # ###### removing unique value from data or perging ######
-  #       perge_data_annual = perging.perging_data_annual(update_zone)
-  #       perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
-  #       perge_data_day = perging.perging_data_day(perge_data_weekly)
-  #       construction_delete = CLM_delete.perging_data_const(perge_data_day)
-  #       layers_delete = CLM_delete.perging_data_layer(construction_delete)
-  #       material_delete = CLM_delete.perging_data_material(layers_delete)
