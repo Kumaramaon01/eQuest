@@ -99,8 +99,8 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
                 file_name=new_filename,
             )
         
-        # Displaying success message
-        st.success(f"Modified INP file saved as: {new_filename}")
+        # # Displaying success message
+        # st.success(f"Modified INP file saved as: {new_filename}")
 
         # # Write modified inp file 
         # with open(new_filename, 'w') as file:
