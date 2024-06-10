@@ -76,7 +76,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
             st.success("Floor updated")
     
         ######################################################## LPD #########################################################
-        modify_lpd = update_lpd.updateLPD(update_zone, im_path)
+        modify_lpd = update_lpd.updateLPD(update_zone, sim_path)
         st.success("LPD Updated")
 
         ######################################################## FRESH AIR ###################################################
