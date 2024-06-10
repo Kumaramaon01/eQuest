@@ -39,7 +39,8 @@ def UpdateWWR(sim_file, amenity_data):
     lvd_summ['WINDOW+WALL(AREA)(SQFT)'] = pd.to_numeric(lvd_summ['WINDOW+WALL(AREA)(SQFT)'])
 
     pc_wwr = (lvd_summ['WINDOW(AREA)(SQFT)'] / lvd_summ['WINDOW+WALL(AREA)(SQFT)'])
-    st.success(pc_wwr)
+    if(pc_wwr <= 0.4):
+        st.success("WWR Ratio is < 0.4")
     for value in pc_wwr:
         if value > 0.4:
             height_factor = 0.4 / value
