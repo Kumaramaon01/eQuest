@@ -63,7 +63,7 @@ def updateBCVentilation(inp_data, sim_data):
         total_area = lvb_df['AREA(SQFT)'].sum()
         total_people = lvb_df['PEOPLE'].sum()
 
-    print(total_area, total_people)
+    # print(total_area, total_people)
 
     ############################################# NOW INP FILE ################################################
     # C-ACTIVITY-DESC
