@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import re
+import streamlit as st
 
 def UpdateWWR(sim_file, amenity_data):
     with open(sim_file, 'r') as file:
@@ -38,6 +39,7 @@ def UpdateWWR(sim_file, amenity_data):
     lvd_summ['WINDOW+WALL(AREA)(SQFT)'] = pd.to_numeric(lvd_summ['WINDOW+WALL(AREA)(SQFT)'])
 
     pc_wwr = (lvd_summ['WINDOW(AREA)(SQFT)'] / lvd_summ['WINDOW+WALL(AREA)(SQFT)'])
+    st.success(pc_wwr)
     for value in pc_wwr:
         if value > 0.4:
             height_factor = 0.4 / value
