@@ -25,15 +25,15 @@ def update_external_wall_roof_undergrnd(data):
         if "BL Wall" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_wall = line[:index].strip()
+                value_before_equal_wall = line[:index].strip().strip('"')
         elif "Undergrd W" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_under = line[:index].strip()
+                value_before_equal_under = line[:index].strip().strip('"')
         elif "BL Roof" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_roof = line[:index].strip()
+                value_before_equal_roof = line[:index].strip().strip('"')
 
     if start_index is not None and end_index is not None:
         inside_exterior_wall = False
