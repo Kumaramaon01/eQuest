@@ -83,7 +83,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     ######################################################################################
          
         directory_path, filename = os.path.split(inp_path)
-        new_filename = filename.replace(".inp", "_Baseline_Automation.inp")
+        new_filename = re.sub(r'\.inp?$', '_Baseline_Automation.inp', filename, flags=re.IGNORECASE)
         input_inp_ = input_inp_path.name.split('.')[0]
 
         # Write modified inp file 
