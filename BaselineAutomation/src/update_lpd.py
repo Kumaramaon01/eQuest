@@ -25,7 +25,7 @@ def updateLPD(inp_data, sim_data):
     end_marker = "Electric & Fuel Meters"
 
     # Load database
-    database = pd.read_csv("BaselineAutomation/database/eQUEST_database.csv")
+    database = pd.read_csv("database/eQUEST_database.csv")
 
     # Preprocess database Activity Description_eQUEST type column
     database['Activity Description_eQUEST'] = database['Activity Description_eQUEST'].str.strip().str.lower()
