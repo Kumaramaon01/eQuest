@@ -35,27 +35,40 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     
     # Convert paths to absolute paths
     climate_path = os.path.abspath(climate_path)
+    system_path = os.path.abspath(system_path)
+    st.success("INP Selected:  " +  input_inp_path)
+    st.success("SIM Selected:  " + input_sim_path)
+    st.success("Climate INP:  " + climate_path)
+    st.success("System data:  " + system_path)
     
     if os.path.isfile(inp_path):
+        ######################################################## MLC INSERTION #############################################
         mat_data = update_MLC.insert_material_data(climate_path, inp_path)
         st.success("Inserted Material Data")
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
         st.success("Inserted Layer Data")
         const_data = update_MLC.insert_const_data(climate_path, lyr_data)
         st.success("Construction Data Inserted")
+
+        ######################################################## W,R,U Updated ##############################################
         update_ConstName = insertConst.update_external_wall_roof_undergrnd(const_data)
-        st.success("Construction name based on Wall, roof and underground is updated")
+        st.success("In MLC:- Construction name based on Wall, roof and underground is updated")
+
+        ######################################################## GLASS INSERTION #############################################
         updateGlass = insertGlass.update_glass(climate_path, update_ConstName)
         st.success("Inserted Glass Data")
-        updateGlassType = insertGlass.update_glass_type(updateGlass)
+        updateGlassType = insertGlass.update_glass_type(climate_path, updateGlass)
         st.success("Glass-Type Data is Updated by All Win")
+
+        ######################################################## WWR #########################################################
         updateWWR = wwr.UpdateWWR(sim_path, updateGlassType)
-        st.success("Updated WWR")
+        st.success("Updated WWR if ratio > 0.4")
+
+        ######################################################## HVAC #########################################################
         modifyHVAC = updateHVAC.HVAC_Modification(updateWWR)
-        st.success("HVAC_Updated")
+        st.success("HVAC_Updated (All System Deleted)")
         hvac_sys = HVAC_sys.systems(modifyHVAC, system_path)
-        st.success("System_updated")
-        
+        st.success("Data Replaces HVAC")
         value = system_path.split(".inp")[0][-1]
         if value in ['1', '2', '3', '4']:
             update_zone = HVAC_sys.modify_conditioned(hvac_sys, system_path)
@@ -63,25 +76,14 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         else:
             update_zone = HVAC_sys.modify_floor(hvac_sys, system_path)
             st.success("Floor updated")
-        
-        ###### removing unique value from data or perging ######
-        perge_data_annual = perging.perging_data_annual(update_zone)
-        perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
-        perge_data_day = perging.perging_data_day(perge_data_weekly)
-        construction_delete = CLM_delete.perging_data_const(perge_data_day)
-        layers_delete = CLM_delete.perging_data_layer(construction_delete)
-        material_delete = CLM_delete.perging_data_material(layers_delete)
     
-    ######################################################################################
-        modify_lpd = update_lpd.updateLPD(material_delete, sim_path)
+        ######################################################## LPD #########################################################
+        modify_lpd = update_lpd.updateLPD(update_zone, im_path)
         st.success("LPD Updated")
 
+        ######################################################## FRESH AIR ###################################################
         modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, sim_path)
         st.success("FreshAir Updated!!\n")
-
-    ######################################################################################
-    ################################## CLEAN INP FILE ####################################
-    ######################################################################################
          
         directory_path, filename = os.path.split(inp_path)
         new_filename = re.sub(r'\.inp?$', '_Baseline_Automation.inp', filename, flags=re.IGNORECASE)
@@ -102,3 +104,12 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
 if __name__ == "__main__":
     # You can add code here to accept input from the command line if desired
     pass
+
+
+  # ###### removing unique value from data or perging ######
+  #       perge_data_annual = perging.perging_data_annual(update_zone)
+  #       perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
+  #       perge_data_day = perging.perging_data_day(perge_data_weekly)
+  #       construction_delete = CLM_delete.perging_data_const(perge_data_day)
+  #       layers_delete = CLM_delete.perging_data_layer(construction_delete)
+  #       material_delete = CLM_delete.perging_data_material(layers_delete)
