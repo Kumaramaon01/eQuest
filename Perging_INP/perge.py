@@ -13,7 +13,7 @@ def update_inp_file(uploaded_file):
                 
                 with open(inp_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
-
+                
                 # Perform perging operations
                 perge_data_annual = perging.perging_data_annual(inp_path)
                 perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
@@ -26,8 +26,9 @@ def update_inp_file(uploaded_file):
                 base_name, ext = os.path.splitext(uploaded_file.name)
                 updated_file_name = f"{base_name}_updated{ext}"
                 updated_file_path = os.path.join(temp_dir, updated_file_name)
-
-                with open(updated_file_path, 'w') as file:
+                
+                # Write the updated content to the new file
+                with open(updated_file_path, 'w', encoding='utf-8') as file:
                     file.writelines(material_delete)
                 
                 # Read the updated file content
@@ -39,18 +40,19 @@ def update_inp_file(uploaded_file):
             st.error(f"An error occurred while updating INP file: {e}")
             return None, None
 
-def main(uploaded_file):
-    file_content, updated_file_name = update_inp_file(uploaded_file)
-    if file_content and updated_file_name:
-        st.success("INP Updated Successfully!")
-        # Provide download link for the updated INP file
-        st.download_button(
-            label="Download Updated INP",
-            data=file_content,
-            file_name=updated_file_name,
-            mime='text/plain'
-        )
+def main():
+    uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
+    if uploaded_file:
+        file_content, updated_file_name = update_inp_file(uploaded_file)
+        if file_content and updated_file_name:
+            st.success("INP Updated Successfully!")
+            # Provide download link for the updated INP file
+            st.download_button(
+                label="Download Updated INP",
+                data=file_content,
+                file_name=updated_file_name,
+                mime='text/plain'
+            )
 
 if __name__ == "__main__":
-    uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
-    main(uploaded_file)
+    main()
