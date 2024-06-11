@@ -1,6 +1,6 @@
 ## eQuest Website:
 ### Welcome to eQuest Utilities 
-- eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. Our utilities include:
+ eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. Our utilities include:
 Link (https://equest-utilities-edsglobal.streamlit.app/):
 - INP Parser: A tool to parse INP files and extract meaningful data.
 - Purging INP: A utility to update and clean your INP files.
