@@ -25,15 +25,15 @@ def update_external_wall_roof_undergrnd(data):
         if "BL Wall" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_wall = line[:index].strip().strip('"')
+                value_before_equal_wall = line[:index].strip()
         elif "Undergrd W" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_under = line[:index].strip().strip('"')
+                value_before_equal_under = line[:index].strip()
         elif "BL Roof" in line:
             index = line.find('=')
             if index != -1:
-                value_before_equal_roof = line[:index].strip().strip('"')
+                value_before_equal_roof = line[:index].strip()
 
     if start_index is not None and end_index is not None:
         inside_exterior_wall = False
@@ -56,14 +56,14 @@ def update_external_wall_roof_undergrnd(data):
                 elif "CONSTRUCTION" in line:
                     if "extroof" in line:
                         if value_before_equal_roof is not None:
-                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_roof), line)
+                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = {}'.format(value_before_equal_roof), line)
                     else:
                         if "LOCATION" in data[line_index + 1] and "TOP" in data[line_index + 1]:
                             if value_before_equal_roof is not None:
-                                data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_roof), line)
+                                data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = {}'.format(value_before_equal_roof), line)
                         else:
                             if value_before_equal_wall is not None:
-                                data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_wall), line)
+                                data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = {}'.format(value_before_equal_wall), line)
 
             elif inside_underground_wall:
                 if ".." in line:
@@ -71,6 +71,6 @@ def update_external_wall_roof_undergrnd(data):
                 elif "CONSTRUCTION" in line:
                     if "BOTTOM" not in data[line_index + 1]:
                         if value_before_equal_under is not None:
-                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = "{}"'.format(value_before_equal_under), line)
+                            data[line_index] = re.sub(r'CONSTRUCTION\s*=\s*".*?"', 'CONSTRUCTION     = {}'.format(value_before_equal_under), line)
 
-    return data  
+    return data
