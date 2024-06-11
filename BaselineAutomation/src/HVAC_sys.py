@@ -133,11 +133,10 @@ def modify_floor(data, system_data):
     start_marker1 = "= SYSTEM"
     end_marker1 = ".."
 
-    # Read system_data from file
     with open(system_data, 'r') as file:
         system_data_lines = file.readlines()
 
-    # Find start and end indices in system_data
+    # Finding start and end indices in system_data
     start_index1 = None
     end_index1 = None
 
@@ -146,11 +145,10 @@ def modify_floor(data, system_data):
             start_index1 = i
         if end_marker1 in line:
             end_index1 = i + 1
-            break  # Assuming there's only one block of interest
 
     extracted_data = system_data_lines[start_index1:end_index1]
 
-    # Find start and end indices in data
+    # Finding start and end indices in data
     start_index = None
     end_index = None
 
@@ -161,51 +159,61 @@ def modify_floor(data, system_data):
             end_index = i - 4
             break
 
-    # Extract and store zone data
+    zone_list = []
     zone_dict = {}
-    i = start_index
-    while i < end_index:
-        line = data[i].strip()
+    for i in range(start_index, end_index):
+        line = data[i].strip()  # Remove leading and trailing whitespaces
         if "= ZONE" in line:
-            zone_id = line[1:3]  # Extract the first 2 characters
-            zone_object_data = []
-            while i < end_index and data[i].strip() != "..":
-                zone_object_data.append(data[i])
-                i += 1
-            if i < end_index:
-                zone_object_data.append(data[i])
-            zone_dict[zone_id] = "\n".join(zone_object_data)
-        i += 1
+            zone_id = line[1:4]  # Extract the first 2 characters
+            zone_object_data = ""
+            j = i  # Start from the current line
+            while j < end_index and data[j].strip() != "..":  # Continue till ".." is encountered or reach end_index
+                zone_object_data += data[j]
+                j += 1
+            if j < end_index:
+                zone_object_data += data[j]
+            # print(zone_object_data)  # Add debug print statement
+            if zone_id in zone_dict:
+                zone_dict[zone_id] += zone_object_data
+            else:
+                zone_dict[zone_id] = zone_object_data
+            zone_list.append(zone_id)
 
-    # Remove old zone data from the list
+    # Remove duplicates from zone_list
+    zone_list = list(set(zone_list))
+
     if start_index is not None and end_index is not None:
         del data[start_index:end_index+1]
 
-    # Insert zone_dict values back into the data list
-    for zone_id in zone_dict:
+    # Insert zone_dict values into data list
+    for zone_id in zone_list:
         data.insert(start_index, zone_dict[zone_id])
         start_index += 1
+    
+    for i, line in enumerate(data):
+        if start_marker in line:
+            start_index2 = i + 4
+        if end_marker in line:
+            end_index2 = i - 4
+            break 
 
-    # Locate indices to insert the system data
+    j = 0
     record_index = []
-    i = start_index
-    while i < len(data):
-        line = data[i].strip()
-        if "= ZONE" in line:
-            zone_id = line[1:3]
-            if zone_id in zone_dict:
-                record_index.append(i)
-        i += 1
-
-    # Insert the system data before each identified zone
+    for i in range(start_index2, end_index2 + 1):
+        if "= ZONE" in data[i] and j < len(zone_list) and zone_list[j] in data[i]:
+            insert_index = i
+            record_index.append(insert_index)
+            j += 1
+    
+    # Insert 
     for i in range(len(record_index) - 1, -1, -1):
-        index = record_index[i]
+        x = record_index[i]
         system_text = ""
         for line in extracted_data:
             if "= SYSTEM" in line:
-                system_text += "\"HVAC SYSTEM " + str(i + 1) + "\" = SYSTEM\n"
+                system_text += "\"HVAC SYSTEM " + str(i + 1) + "\" = SYSTEM  \n"
             else:
-                system_text += line
-        data.insert(index, system_text)
+                system_text += line 
+        data[x] = "\n" + system_text +"\n" + data[x]
 
     return data
