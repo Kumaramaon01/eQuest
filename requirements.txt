@@ -4,7 +4,7 @@ blinker==1.8.2
 cachetools==5.3.3
 certifi==2024.6.2
 charset-normalizer==3.3.2
-click>=7.0,<8.0
+click==8.1.7
 colorama==0.4.6
 fpdf==1.7.2
 fuzzywuzzy==0.18.0
