@@ -203,6 +203,14 @@ def main():
             # """, unsafe_allow_html=True)
             gif_path = "images/Translational_motion.gif"
             st.image(gif_path, use_column_width=True)
+            
+        col1, col2 = st.columns([1,1])
+        with col1:
+            gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
+            st.image(gif_path, use_column_width=True)
+        with col2:
+            gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
+            st.image(gif_path, use_column_width=True)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
