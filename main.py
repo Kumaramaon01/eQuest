@@ -190,7 +190,10 @@ def main():
         """, unsafe_allow_html=True)
         
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
-        reports_input = st.text_input("Enter Reports")
+        reports_input = st.multiselect(
+                    "Enter Reports",
+                    ["LV-B", "LV-D", "LS-C", "PV-A"],
+                    ["BEPU", "BEPS", "SV-A"])
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
