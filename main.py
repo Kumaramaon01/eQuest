@@ -204,8 +204,7 @@ def main():
             gif_path = "images/Translational_motion.gif"
             st.image(gif_path, use_column_width=True)
 
-            audio_path = "path_to_audio_file.mp3"  # Specify the path to your audio file
-            st.audio(audio_path, format='audio/mp3')
+            st.audio("cat-purr.mp3", format="audio/mpeg", loop=True)
             
         col1, col2 = st.columns([1,1])
         with col1:
