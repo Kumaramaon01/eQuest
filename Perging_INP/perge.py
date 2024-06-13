@@ -28,7 +28,7 @@ def update_inp_file(uploaded_file):
                 updated_file_name = f"{base_name}_updated{ext}"
                 updated_file_path = os.path.join(temp_dir, updated_file_name)
 
-                with open(updated_file_path, 'w') as file:
+                with open(updated_file_path, 'w',newline= '\r\n') as file:
                     file.writelines(material_delete)
                 
                 # Read the updated file content
