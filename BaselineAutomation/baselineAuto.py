@@ -89,7 +89,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         input_inp_ = input_inp_path.name.split('.')[0]
         # updateWWR = updateWWR.replace('\n', '\r\n')
         # Write modified inp file 
-        with open(new_filename, 'w', '\r\n') as file:
+        with open(new_filename, 'w',newline= '\r\n') as file:
             file.writelines(updateWWR)
 
         with open(new_filename, 'rb') as f:
