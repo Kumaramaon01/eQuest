@@ -203,20 +203,23 @@ def main():
         fig, ax = plt.subplots()
         ax.set_xlim(0, num_steps*dt)
         ax.set_ylim(np.min(W), np.max(W))
-        ax.set_title('Brownian Motion')
+        ax.set_title('Brownian Motion with Particles')
         ax.set_xlabel('Time')
         ax.set_ylabel('Value')
         ax.grid(True)
     
         # Initialize particles
-        particles, = ax.plot([], [], 'bo', ms=8)
+        particles = [ax.plot([], [], 'bo', ms=8)[0] for _ in range(num_particles)]
     
         # Function to update plot
         def update(frame):
-            particles.set_data(t[frame], W[:, frame])
-            return particles,
+            for i in range(num_particles):
+                particles[i].set_data(t[frame], W[i, frame])
+            return particles
+    
         # Animation
         animation = FuncAnimation(fig, update, frames=num_steps, blit=True, interval=50)
+    
         # Display the animation
         st.pyplot(fig)
 
