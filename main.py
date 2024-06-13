@@ -102,8 +102,8 @@ def main():
     # Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
     
-    col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
-    with col3:
+    col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
+    with col2:
         if st.button("About EDS"):
             st.session_state.script_choice = "eds"
     with col3:
