@@ -214,7 +214,7 @@ def main():
         # Function to update plot
         def update(frame):
             for i in range(num_particles):
-                particles[i].set_data(t[frame], W[i, frame])
+                particles[i].set_data([t[frame]], W[i, frame])
             return particles
     
         # Animation
