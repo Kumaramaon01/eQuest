@@ -198,18 +198,20 @@ def main():
         dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=num_steps)
         W = np.cumsum(dW)
     
-        # Function to update plot
-        def update(frame):
-            ax.clear()
-            ax.plot(t[:frame], W[:frame], color='blue')
-            ax.set_title('Brownian Motion')
-            ax.set_xlabel('Time')
-            ax.set_ylabel('Value')
-            ax.grid(True)
-    
         # Create a plot
         fig, ax = plt.subplots()
-        animation = FuncAnimation(fig, update, frames=num_steps, interval=50)
+        line, = ax.plot([], [], color='blue')
+        ax.set_title('Brownian Motion')
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Value')
+        ax.grid(True)
+    
+        # Function to update plot
+        def update(frame):
+            line.set_data(t[:frame], W[:frame])
+    
+        # Animation
+        animation = FuncAnimation(fig, update, frames=num_steps, blit=False, interval=50)
     
         # Display the animation
         st.pyplot(fig)
