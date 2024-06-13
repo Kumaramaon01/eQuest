@@ -192,7 +192,7 @@ def main():
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         reports_input = st.multiselect(
                     "Enter Reports",
-                    ["LV-B", "LV-D", "LS-C", "PV-A"],
+                    ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
                     ["LV-B"])
         
         if uploaded_file is not None:
