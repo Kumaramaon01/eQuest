@@ -189,14 +189,12 @@ def main():
         col1, col2 = st.columns([1,1])
         with col1:
             st.markdown("""
-            <b>Design and Visuals:</b> Brownian motion, named after the botanist Robert Brown who first observed it in 1827, is the random motion of 
+            <b>Design and Visuals:</b> Random motion of 
             particles suspended in a fluid (liquid or gas) resulting from their collision with the fast-moving molecules in the fluid. This motion is
             a consequence of the kinetic energy present in the molecules of the fluid.<br>
             Brownian motion plays a significant role in various fields, including physics, chemistry, biology, and finance. 
             It has applications ranging from explaining the behavior of microscopic particles (like pollen grains in water) to understanding diffusion
             processes in chemical reactions and the movement of stock prices in financial markets.<br>
-            The mathematical description of Brownian motion was first provided by Albert Einstein in 1905, who explained it as evidence of the existence of 
-            atoms and molecules, providing a bridge between macroscopic and microscopic phenomena. 
             """, unsafe_allow_html=True)
 
         with col2:
