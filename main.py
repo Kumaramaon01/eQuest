@@ -253,12 +253,14 @@ def main():
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
         st.markdown("""
-        <h3 style="color:red;">Documents to read</h3>
-        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-        """, unsafe_allow_html=True)
+            <h3 style="color:red;">Documents to read</h3>
+            <ul>
+                <li><b style="color:red;">Document 1:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
+                <li><b style="color:red;">Document 2:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
+                <li><b style="color:red;">Document 3:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
+                <li><b style="color:red;">Document 4:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
+            </ul>
+            """, unsafe_allow_html=True)
         
         # Add more cards as needed
         st.markdown("""
