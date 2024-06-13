@@ -193,7 +193,7 @@ def main():
         reports_input = st.multiselect(
                     "Enter Reports",
                     ["LV-B", "LV-D", "LS-C", "PV-A"],
-                    ["BEPU", "BEPS", "SV-A"])
+                    ["LV-B", "LV-D", "LS-C"])
         
         if uploaded_file is not None:
             if st.button("Convert to PDF"):
