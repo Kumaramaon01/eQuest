@@ -192,27 +192,31 @@ def main():
         dt = 0.01  # Time step
         mu = 0.0   # Drift
         sigma = 1.0 # Volatility
+        num_particles = 10  # Number of particles
     
         # Generate Brownian motion
         t = np.arange(0, num_steps*dt, dt)
-        dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=num_steps)
-        W = np.cumsum(dW)
+        dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=(num_particles, num_steps))
+        W = np.cumsum(dW, axis=1)
     
         # Create a plot
         fig, ax = plt.subplots()
-        line, = ax.plot([], [], color='blue')
+        ax.set_xlim(0, num_steps*dt)
+        ax.set_ylim(np.min(W), np.max(W))
         ax.set_title('Brownian Motion')
         ax.set_xlabel('Time')
         ax.set_ylabel('Value')
         ax.grid(True)
     
+        # Initialize particles
+        particles, = ax.plot([], [], 'bo', ms=8)
+    
         # Function to update plot
         def update(frame):
-            line.set_data(t[:frame], W[:frame])
-    
+            particles.set_data(t[frame], W[:, frame])
+            return particles,
         # Animation
-        animation = FuncAnimation(fig, update, frames=num_steps, blit=False, interval=50)
-    
+        animation = FuncAnimation(fig, update, frames=num_steps, blit=True, interval=50)
         # Display the animation
         st.pyplot(fig)
 
