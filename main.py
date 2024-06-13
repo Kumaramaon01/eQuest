@@ -252,6 +252,7 @@ def main():
         with col5:
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
+        st.write("check out this [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)")
         
         # Add more cards as needed
         st.markdown("""
