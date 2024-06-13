@@ -155,6 +155,32 @@ def main():
         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
         and more productive.
         """, unsafe_allow_html=True)
+        
+    elif st.session_state.script_choice == "eds":
+        st.markdown("""
+        <h3 style="color:red;">Overview</h3>
+
+        Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
+        EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
+        climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
+        simulation and green building certification.<br>
+
+        EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
+        level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
+        policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
+        Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
+        implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
+        large scale implementation programs.<br>
+
+        EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
+        - Sustainable Solutions for the Built Environment
+        - Strategy Consulting for Policy & Codes, and Research
+        - Outreach, Communication, Documentation, and Training
+
+        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
+        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+        and more productive.
+        """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
