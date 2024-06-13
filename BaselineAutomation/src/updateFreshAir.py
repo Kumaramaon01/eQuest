@@ -61,6 +61,9 @@ def updateBCVentilation(zone_space_df, inp_data, sim_data):
         
 
     ############################################# NOW INP FILE ################################################
+    with open(inp_data, 'r') as file:
+        inp_data = file.readlines()
+        
     # C-ACTIVITY-DESC
     start_marker = "Floors / Spaces / Walls / Windows / Doors"
     end_marker = "Electric & Fuel Meters"

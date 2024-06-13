@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-import streamlit as st
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -80,11 +79,11 @@ def get_system_path(building_type, heat_type, area, floor):
     return None
 
 # function to insert matarials, layers and construction at specific position
-def insert_material_data(climate_zone_file, amenity_file):
+def insert_material_data(climate_zone_file, amenity_data):
     start_marker1 = "= MATERIAL"
     end_marker1 = ".."
 
-    with open(climate_zone_file, 'r', encoding='utf-8', errors='ignore') as file:
+    with open(climate_zone_file, 'r') as file:
         data_climate_zone = file.readlines()
 
     # Finding start and end indices
@@ -94,8 +93,8 @@ def insert_material_data(climate_zone_file, amenity_file):
     for i in range(0, len(start_indices1)):
         end_indices1.append(end_indice1[i])
 
-    with open(amenity_file, 'r', encoding='utf-8', errors='ignore') as file:
-        amenity_data = file.readlines()
+    # with open(amenity_file, 'r') as file:
+    #     amenity_data = file.readlines()
 
     layer_index = None
 
@@ -119,7 +118,7 @@ def insert_layers_data(climate_zone_file, mat_data):
     strt_mrk1 = "TYPE             = LAYERS"
     end_marker2 = ".."
 
-    with open(climate_zone_file, 'r', encoding='utf-8', errors='ignore') as file:
+    with open(climate_zone_file, 'r') as file:
         data_climate_zone = file.readlines()
 
     # Finding start and end indices
@@ -155,7 +154,7 @@ def insert_const_data(climate_zone_file, lyr_data):
     start_marker3 = "= CONSTRUCTION"
     end_marker3 = ".."
     
-    with open(climate_zone_file, 'r', encoding='utf-8', errors='ignore') as file:
+    with open(climate_zone_file, 'r') as file:
         data_climate_zone = file.readlines()
 
     # Finding start and end indices
