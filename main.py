@@ -185,6 +185,25 @@ def main():
         <h3 style="color:red;">Design and Visuals</h3>
         """, unsafe_allow_html=True)
 
+        # Parameters
+        num_steps = 1000
+        dt = 0.01  # Time step
+        mu = 0.0   # Drift
+        sigma = 1.0 # Volatility
+        
+        # Generate Brownian motion
+        t = np.arange(0, num_steps*dt, dt)
+        dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=num_steps)
+        W = np.cumsum(dW)
+        
+        # Plot Brownian motion
+        plt.plot(t, W)
+        plt.title('Brownian Motion')
+        plt.xlabel('Time')
+        plt.ylabel('Value')
+        plt.grid(True)
+        plt.show()
+
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
         <h3 style="color:red;">INP Parser</h3>
