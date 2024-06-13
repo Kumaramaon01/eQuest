@@ -186,9 +186,18 @@ def main():
         st.markdown("""
         <h3 style="color:red;">Design and Visuals</h3>
         """, unsafe_allow_html=True)
-        
-        gif_path = "images/Translational_motion.gif"
-        st.image(gif_path, use_column_width=True)
+        col1, col2 = st.columns([1,1])
+        with col1:
+            st.markdown("""
+            Design and Visuals: such as video games and producing 3D photo-realistic models and pictures
+            """, unsafe_allow_html=True)
+
+        with col2:
+            # st.markdown("""
+            # <h3 style="color:red;">Design and Visuals</h3>
+            # """, unsafe_allow_html=True)
+            gif_path = "images/Translational_motion.gif"
+            st.image(gif_path, use_column_width=True)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
