@@ -38,7 +38,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     system_path = os.path.abspath(system_path)
     st.success(f"Climate INP: {climate_path}")
     st.success(f"System data: {system_path}")
-    inp_path = inp_path.replace('\n', '\r\n')
+    # inp_path = inp_path.replace('\n', '\r\n')
     
     if os.path.isfile(inp_path):
         ######################################################## MLC INSERTION #############################################
@@ -89,7 +89,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         input_inp_ = input_inp_path.name.split('.')[0]
         # updateWWR = updateWWR.replace('\n', '\r\n')
         # Write modified inp file 
-        with open(new_filename, 'w') as file:
+        with open(new_filename, 'wb') as file:
             file.writelines(updateWWR)
 
         with open(new_filename, 'rb') as f:
