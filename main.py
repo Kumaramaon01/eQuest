@@ -255,10 +255,10 @@ def main():
         st.markdown("""
             <h3 style="color:red;">Documents to read</h3>
             <ul>
-                <li><b style="color:red;">Document 1:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
-                <li><b style="color:red;">Document 2:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
-                <li><b style="color:red;">Document 3:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
-                <li><b style="color:red;">Document 4:</b> <a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link" target="_blank">Download</a></li>
+                <li><b style="color:red;">SIM to PDF:</b> <a href="https://docs.google.com/presentation/d/1WTdX3zmSMmyp0h1E5lfOsER8EkvFoOEj/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Data Extraction Tool: SIM to PDF</a></li>
+                <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
+                <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
+                <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual</a></li>
             </ul>
             """, unsafe_allow_html=True)
         
