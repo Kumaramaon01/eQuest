@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
@@ -180,6 +181,7 @@ def main():
         - Outreach, Communication, Documentation, and Training
 
         """, unsafe_allow_html=True)
+        
     elif st.session_state.script_choice == "visual":
         st.markdown("""
         <h3 style="color:red;">Design and Visuals</h3>
@@ -196,14 +198,28 @@ def main():
         dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=num_steps)
         W = np.cumsum(dW)
     
-        # Plot Brownian motion
+        # Function to update particles' position
+        def update(frame):
+            # Clear previous frame
+            ax.clear()
+    
+            # Plot Brownian motion
+            ax.plot(t[:frame], W[:frame], color='blue')
+            ax.set_title('Brownian Motion')
+            ax.set_xlabel('Time')
+            ax.set_ylabel('Value')
+            ax.grid(True)
+    
+            # Plot animated particle
+            ax.scatter(t[frame], W[frame], color='red')
+    
+        # Create a plot
         fig, ax = plt.subplots()
-        ax.plot(t, W)
-        ax.set_title('Brownian Motion')
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Value')
-        ax.grid(True)
+        animation = FuncAnimation(fig, update, frames=num_steps, interval=50)
+    
+        # Display the animation
         st.pyplot(fig)
+
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
