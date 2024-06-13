@@ -198,20 +198,14 @@ def main():
         dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=num_steps)
         W = np.cumsum(dW)
     
-        # Function to update particles' position
+        # Function to update plot
         def update(frame):
-            # Clear previous frame
             ax.clear()
-    
-            # Plot Brownian motion
             ax.plot(t[:frame], W[:frame], color='blue')
             ax.set_title('Brownian Motion')
             ax.set_xlabel('Time')
             ax.set_ylabel('Value')
             ax.grid(True)
-    
-            # Plot animated particle
-            ax.scatter(t[frame], W[frame], color='red')
     
         # Create a plot
         fig, ax = plt.subplots()
@@ -219,7 +213,6 @@ def main():
     
         # Display the animation
         st.pyplot(fig)
-
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
