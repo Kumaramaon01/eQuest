@@ -42,9 +42,9 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     
     if os.path.isfile(inp_path):
         ###################################################### FRESH AIR ##################################################
-        zone_space_df = aa.zoneSpace(input_inp_path)
-        modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, input_inp_path, input_sim_path)
-        modify_freshAi = freshAir.updateFresh(modify_dataframe, input_inp_path)
+        zone_space_df = aa.zoneSpace(inp_path)
+        modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, inp_path, sim_path)
+        modify_freshAi = freshAir.updateFresh(modify_dataframe, inp_path)
         modify_freshAir = freshAir.remove_OAs(modify_freshAi)
         
         ######################################################## MLC INSERTION #############################################
