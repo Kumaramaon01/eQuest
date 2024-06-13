@@ -41,14 +41,19 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
     inp_path = inp_path.replace('\n', '\r\n')
     
     if os.path.isfile(inp_path):
+        ###################################################### FRESH AIR ##################################################
+        zone_space_df = aa.zoneSpace(inp_path)
+        modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, inp_path, sim_path)
+        modify_freshAir = freshAir.updateFresh(modify_dataframe, inp_path)
+        
         ######################################################## MLC INSERTION #############################################
-        mat_data = update_MLC.insert_material_data(climate_path, inp_path)
+        mat_data = update_MLC.insert_material_data(climate_path, modify_freshAir)
         st.success("Inserted Material Data")
         lyr_data = update_MLC.insert_layers_data(climate_path, mat_data)
         st.success("Inserted Layer Data")
         const_data = update_MLC.insert_const_data(climate_path, lyr_data)
         st.success("Construction Data Inserted")
-
+        
         ######################################################## W,R,U Updated ##############################################
         update_ConstName = insertConst.update_external_wall_roof_undergrnd(const_data)
         st.success("In MLC:- Construction name based on Wall, roof and underground is updated")
@@ -79,19 +84,20 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         ######################################################### LPD #########################################################
         modify_lpd = update_lpd.updateLPD(update_zone, sim_path)
         st.success("LPD Updated")
+        st.success("FreshAir Updated!!")
 
-        ######################################################### FRESH AIR ###################################################
-        zone_space_df = aa.zoneSpace(input_inp_path)
-        modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, modify_lpd, input_sim_path)
-        modify_freshAir = freshAir.updateFresh(modify_dataframe, modify_lpd)
+        # ######################################################### FRESH AIR ###################################################
+        # zone_space_df = aa.zoneSpace(input_inp_path)
+        # modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, modify_lpd, input_sim_path)
+        # modify_freshAir = freshAir.updateFresh(modify_dataframe, modify_lpd)
 
-        ######################################################### FRESH AIR ###################################################
-        modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, sim_path)
-        st.success("FreshAir Updated!!\n")
+        # ######################################################### FRESH AIR ###################################################
+        # modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, sim_path)
+        # st.success("FreshAir Updated!!\n")
 
         ###################################################### PURGING #######################################################
         ##### Removing unique value from data or purging ######
-        perge_data_annual = perging.perging_data_annual(modify_freshAir)
+        perge_data_annual = perging.perging_data_annual(modify_lpd)
         perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
         perge_data_day = perging.perging_data_day(perge_data_weekly)
         construction_delete = CLM_delete.perging_data_const(perge_data_day)
