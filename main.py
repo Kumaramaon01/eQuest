@@ -190,11 +190,7 @@ def main():
         with col1:
             st.markdown("""
             <b>Design and Visuals:</b> Random motion of 
-            particles suspended in a fluid (liquid or gas) resulting from their collision with the fast-moving molecules in the fluid. This motion is
-            a consequence of the kinetic energy present in the molecules of the fluid.<br>
-            Brownian motion plays a significant role in various fields, including physics, chemistry, biology, and finance. 
-            It has applications ranging from explaining the behavior of microscopic particles (like pollen grains in water) to understanding diffusion
-            processes in chemical reactions and the movement of stock prices in financial markets.<br>
+            particles suspended in a fluid (liquid or gas) resulting from their collision with the fast-moving molecules in the fluid.<br>
             """, unsafe_allow_html=True)
 
         with col2:
@@ -219,13 +215,13 @@ def main():
             
             st.audio(note_la, sample_rate=sample_rate)
             
-        col1, col2 = st.columns([1,1])
-        with col1:
-            gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
-            st.image(gif_path, use_column_width=True)
-        with col2:
-            gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
-            st.image(gif_path, use_column_width=True)
+        # col1, col2 = st.columns([1,1])
+        # with col1:
+        #     gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
+        #     st.image(gif_path, use_column_width=True)
+        # with col2:
+        #     gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
+        #     st.image(gif_path, use_column_width=True)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
