@@ -186,42 +186,6 @@ def main():
         st.markdown("""
         <h3 style="color:red;">Design and Visuals</h3>
         """, unsafe_allow_html=True)
-    
-        # Parameters
-        num_steps = 1000
-        dt = 0.01  # Time step
-        mu = 0.0   # Drift
-        sigma = 1.0 # Volatility
-        num_particles = 10  # Number of particles
-    
-        # Generate Brownian motion
-        t = np.arange(0, num_steps*dt, dt)
-        dW = np.random.normal(loc=mu*dt, scale=sigma*np.sqrt(dt), size=(num_particles, num_steps))
-        W = np.cumsum(dW, axis=1)
-    
-        # Create a plot
-        fig, ax = plt.subplots()
-        ax.set_xlim(0, num_steps*dt)
-        ax.set_ylim(np.min(W), np.max(W))
-        ax.set_title('Brownian Motion with Particles')
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Value')
-        ax.grid(True)
-    
-        # Initialize particles
-        particles = [ax.plot([], [], 'bo', ms=8)[0] for _ in range(num_particles)]
-    
-        # Function to update plot
-        def update(frame):
-            for i in range(num_particles):
-                particles[i].set_data([t[frame]], [W[i, frame]])
-            return particles
-    
-        # Animation
-        animation = FuncAnimation(fig, update, frames=num_steps, blit=True, interval=50)
-    
-        # Display the animation
-        st.pyplot(fig)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
