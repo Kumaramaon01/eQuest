@@ -10,7 +10,7 @@
 9,Courthouse/PoliceStation/Penitentiary,Police,Penitentiary Classroom,Classroom,9_Police_Classroom,1.34,,,,,,10,0.12,
 10,Courthouse/PoliceStation/Penitentiary,Police, Penitentiary Dining, Penitentiary Dining,10_Police_ Penitentiary Dining,1.07,,,,,,7.5,0.18,
 11, Dormitory,Dor,Living Quarters,Living Quarters,11_Dor_Living Quarters,0.38,,,,,,5,0.06,
-12, Fire Stations,FireStn, Engine Room, Engine Room,12_FireStn_ Engine Room,0.56,,,,,,,,
+12, Fire Stations,FireStn, Engine Room, Engine Room,12_FireStn_ Engine Room,0.56,,,,,,5,0.06,
 13, Fire Stations,FireStn, Sleeping Quarters, Sleeping Quarters,13_FireStn_ Sleeping Quarters,0.25,,,,,,5,0.06,
 14, Gymnasium/FitnessCenter,Gym_Fit, Fitness Area, Fitness Area,14_Gym_Fit_ Fitness Area,0.72,,,,,,0,30,
 15, Gymnasium/FitnessCenter,Gym_Fit,Gymnasium Audience Seating,Audience Seating,15_Gym_Fit_Audience Seating,0.43,,,,,,5,0.06,
@@ -102,7 +102,7 @@ ingArtsTheater",ArtTheatre_Dressing/Fitting Room,83_CO_ArtTheatre_Dressing/Fitti
 94,Common Spaces,CO, Stairway, Stairway,94_CO_ Stairway,0.69,,,,,,0,0.06,
 95,Common Spaces,CO,Storage,Storage,95_CO_Storage,0.63,,,,,,5,0.06,
 96,Common Spaces,CO,Workshop,Workshop,96_CO_Workshop,1.59,,,,,,10,0.18,
-,,,,,,,,,,,,,,
+97,Common Spaces,CO,Unknown,Unknown,97_CO_Unknown,0,,0,,0,,0,0,0
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
