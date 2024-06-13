@@ -11,6 +11,8 @@ from PIL import Image as PILImage
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
