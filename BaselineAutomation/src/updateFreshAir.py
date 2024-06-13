@@ -2,7 +2,7 @@ import pandas as pd
 import re
 import ast
 
-def updateBCVentilation(inp_data, sim_data):
+def updateBCVentilation(zone_space_df, inp_data, sim_data):
     # Calculate Total People and Total Area from LV-B report
     with open(sim_data, 'r') as file:
         sim = file.readlines()
@@ -51,35 +51,23 @@ def updateBCVentilation(inp_data, sim_data):
         lvb_df.columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
                              'LIGHTS(WATT / SQFT)', 'PEOPLE', 'EQUIP(WATT / SQFT)', 'INFILTRATION_METHOD', 'ACH',
                              'AREA(SQFT)', 'VOLUME(CUFT)']
+
+        lvb_df = lvb_df[['SPACE', 'PEOPLE', 'AREA(SQFT)']]
         
         # convert below columns of lvb_df to numeric datatypes
         lvb_df['AREA(SQFT)'] = pd.to_numeric(lvb_df['AREA(SQFT)'])
-        lvb_df['VOLUME(CUFT)'] = pd.to_numeric(lvb_df['VOLUME(CUFT)'])
-        lvb_df['SPACE*FLOOR'] = pd.to_numeric(lvb_df['SPACE*FLOOR'])
-        lvb_df['LIGHTS(WATT / SQFT)'] = pd.to_numeric(lvb_df['LIGHTS(WATT / SQFT)'])
-        lvb_df['EQUIP(WATT / SQFT)'] = pd.to_numeric(lvb_df['EQUIP(WATT / SQFT)'])
         lvb_df['PEOPLE'] = pd.to_numeric(lvb_df['PEOPLE'])
-
-        total_area = lvb_df['AREA(SQFT)'].sum()
-        total_people = lvb_df['PEOPLE'].sum()
-
-    # print(total_area, total_people)
+        
+        
 
     ############################################# NOW INP FILE ################################################
     # C-ACTIVITY-DESC
     start_marker = "Floors / Spaces / Walls / Windows / Doors"
     end_marker = "Electric & Fuel Meters"
 
-    # Conditioned or UnConditioned Zone
-    start_marker1 = "HVAC Systems / Zones"
-    end_marker1 = "Metering & Misc HVAC"
-
     # Finding start and end indices in data
     start_index = None
     end_index = None
-
-    start_index1 = None
-    end_index1 = None
 
     # Loop through each line of the input data to find the start and end indices
     for i, line in enumerate(inp_data):
@@ -89,65 +77,111 @@ def updateBCVentilation(inp_data, sim_data):
             end_index = i - 4  # End index is 4 lines above the end marker
             break
 
-    for i, line in enumerate(inp_data):
-        if start_marker1 in line:
-            start_index1 = i + 4  # Start index is 4 lines below the start marker
-        if end_marker1 in line:
-            end_index1 = i - 4  # End index is 4 lines above the end marker
-            break
+     # Extract the relevant section
+    relevant_section = inp_data[start_index:end_index]
+    
+    # Initialize lists to store SPACE and C-ACTIVITY-DESC values
+    spaces = []
+    activity_descs = []
+    
+    # Initialize variables to hold current SPACE and C-ACTIVITY-DESC
+    current_space = None
+    current_activity_desc = None
+    
+    # Parse the relevant section
+    for line in relevant_section:
+        line = line.strip()
+        if line.startswith('"') and '=' in line:
+            if current_space and current_activity_desc:
+                spaces.append(current_space)
+                activity_descs.append(current_activity_desc)
+            current_space = line.split('=', 1)[0].strip().strip('"')
+            current_activity_desc = None
+        elif 'C-ACTIVITY-DESC' in line:
+            current_activity_desc = line.split('=', 1)[1].strip().strip('*')
+        elif line == '..':
+            if current_space and current_activity_desc:
+                spaces.append(current_space)
+                activity_descs.append(current_activity_desc)
+                current_space = None
+                current_activity_desc = None
+    
+    # Append the last space and activity description if present
+    if current_space and current_activity_desc:
+        spaces.append(current_space)
+        activity_descs.append(current_activity_desc)
+    
+    # Create the DataFrame
+    inp_df = pd.DataFrame({
+        'SPACE': spaces,
+        'C-ACTIVITY-DESC': activity_descs
+    })
+     
+    ################################################## MERGE WITH  CSVs ##############################################
+    # Merge the DataFrames on the 'SPACE' column
+    merged_df = pd.merge(lvb_df, inp_df, on='SPACE', how='inner')
+    csv_df = pd.read_csv('database/eQUEST_database.csv')
 
-    if start_index1 is not None and end_index1 is not None:
-        for i in range(start_index1, end_index1 - 1):
-            if "= ZONE" in inp_data[i] and "= CONDITIONED" in inp_data[i + 1]:
-                zone_name = re.search(r'"(.*?)"', inp_data[i]).group(1)
-                # Find the end of the zone section
-                end_of_zone_index = None
-                for k in range(i + 1, end_index1 - 1):
-                    if ".." in inp_data[k]:
-                        end_of_zone_index = k
-                        break
-                # Now, within the zone section, search for "OUTSIDE-AIR-FLOW"
-                if end_of_zone_index:
-                    for j in range(i, end_of_zone_index):
-                        if "OUTSIDE-AIR-FLOW" in inp_data[j]:
-                            # print("Debugging: ", inp_data[j])  # Debugging output
-                            current_value_match = re.search(r'OUTSIDE-AIR-FLOW\s*=\s*(.*?)$', inp_data[j])
-                            if current_value_match:
-                                current_value = current_value_match.group(1).strip()
-                                # Check if the value is enclosed within curly braces
-                                if "{" in current_value and "}" in current_value:
-                                    try:
-                                        # Evaluate the arithmetic expression
-                                        expression = current_value.strip('{}')
-                                        parts = expression.split('+')
-                                        result = 0
-                                        for part in parts:
-                                            if '*' in part:
-                                                factors = part.split('*')
-                                                product = 1
-                                                for factor in factors:
-                                                    product *= float(factor)
-                                                result += product
-                                            else:
-                                                result += float(part)
-                                        new_value = result
-                                    except ValueError:
-                                        print("Error: Invalid arithmetic expression inside curly braces.")
-                                        continue
-                                else:
-                                    # Directly take the number as the new value
-                                    try:
-                                        new_value = float(current_value)
-                                    except ValueError:
-                                        print("Error: Invalid numeric value.")
-                                        continue
-                                # Perform arithmetic operations
-                                new_value = new_value * total_area + new_value * total_people
-                                # Format the new value to have 2 decimal places
-                                new_value_str = "{:.2f}".format(new_value)
-                                # Replace the original string with the new value
-                                inp_data[j] = re.sub(r'OUTSIDE-AIR-FLOW\s*=\s*(.*?)$', f'OUTSIDE-AIR-FLOW = {new_value_str}', inp_data[j])
-                            else:
-                                print("No match found for OUTSIDE-AIR-FLOW pattern.")
+    # Merge the DataFrames on the matching activity description columns
+    final_df = pd.merge(merged_df, csv_df, left_on='C-ACTIVITY-DESC', right_on='Activity Description_eQUEST', how='left')
 
-    return inp_data
+    # Select relevant columns from the merged DataFrame
+    final_df = final_df[['SPACE', 'PEOPLE', 'AREA(SQFT)', 'C-ACTIVITY-DESC', 'Fresh air per person (CFM/person)', 'Fresh air per area (CFM/sqft)']]
+    # Calculate the OUTSIDE-AIR-FLOW
+    final_df['OUTSIDE-AIR-FLOW'] = (final_df['PEOPLE'] * final_df['Fresh air per person (CFM/person)'] + final_df['AREA(SQFT)'] * final_df['Fresh air per area (CFM/sqft)']).round(2)
+    final_df['OUTSIDE-AIR-FLOW'] = final_df['OUTSIDE-AIR-FLOW'].fillna(830.23)
+    # print(final_df)
+    # print(zone_space_df)
+    new_df = pd.merge(final_df, zone_space_df, on='SPACE', how='inner')
+
+    return new_df
+
+    #################################################################################################################################
+
+    # # Variables to store the start and end indices of the section
+    # start_index1 = 0
+    # end_index1 = len(inp_data) - 1
+    
+    # # Check if both start and end indices were found
+    # if start_index1 is not None and end_index1 is not None:
+    #     # Loop through the lines in the identified section
+    #     for i in range(start_index1, end_index1 + 1):
+    #         line = inp_data[i].strip()
+    #         if "= ZONE" in line and "= SYSTEM" not in line:
+    #             zone_name = line.split('=')[0].strip()
+    #             print(line)
+
+    #             end_of_zone_index = None
+    #             # Find the end of the current zone section
+    #             for k in range(i + 1, end_index1):
+    #                 zone_line = inp_data[k]
+    #                 if ".." in zone_line:
+    #                     end_of_zone_index = k
+    #                     break
+
+    #             # If no ".." found, this zone is the last in the section
+    #             if end_of_zone_index is None:
+    #                 end_of_zone_index = end_index1
+                
+    #             # Check if the ZONE name matches any row in the new_df dataframe
+    #             matched_row = new_df[new_df['ZONE'] == zone_name]
+                
+    #             # If a matching row was found in the dataframe
+    #             if not matched_row.empty:
+    #                 # Get the OUTSIDE-AIR-FLOW value from the dataframe
+    #                 outside_air_flow_value = matched_row['OUTSIDE-AIR-FLOW'].values[0]
+
+    #                 # Check if OUTSIDE-AIR-FLOW already exists in the zone section
+    #                 outside_air_flow_found = False
+    #                 for j in range(i, end_of_zone_index):
+    #                     if "OUTSIDE-AIR-FLOW" in inp_data[j]:
+    #                         # Update the existing OUTSIDE-AIR-FLOW value using regular expression substitution
+    #                         inp_data[j] = re.sub(r'OUTSIDE-AIR-FLOW\s*=\s*(.*?)$', f'OUTSIDE-AIR-FLOW = {outside_air_flow_value}', inp_data[j])
+    #                         outside_air_flow_found = True
+    #                         break
+                    
+    #                 # If OUTSIDE-AIR-FLOW was not found, insert it before the next ".." line
+    #                 if not outside_air_flow_found:
+    #                     inp_data.insert(end_of_zone_index, f'   OUTSIDE-AIR-FLOW = {outside_air_flow_value}')
+                    
+    # return inp_data
