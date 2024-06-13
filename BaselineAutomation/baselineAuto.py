@@ -83,6 +83,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         ######################################################### FRESH AIR ###################################################
         zone_space_df = aa.zoneSpace(input_inp_path)
         modify_dataframe = updateFreshAir.updateBCVentilation(zone_space_df, modify_lpd, input_sim_path)
+        modify_freshAir = freshAir.updateFresh(modify_dataframe, modify_lpd)
 
         ######################################################### FRESH AIR ###################################################
         modify_freshAir = updateFreshAir.updateBCVentilation(modify_lpd, sim_path)
