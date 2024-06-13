@@ -120,7 +120,7 @@ def main():
             st.session_state.script_choice = "SIM Parser"
     
     # Use a fixed width for the columns to ensure buttons have the same size
-    col7, col8, col9, col10 = st.columns([0.9, 1.3, 1, 1])
+    col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 1, 1])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
@@ -133,6 +133,9 @@ def main():
     with col10:
         if st.button("Queries"):
             st.session_state.script_choice = "ask"
+    with col11:
+        if st.button("Visual"):
+            st.session_state.script_choice = "visual"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
