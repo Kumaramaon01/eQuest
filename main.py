@@ -186,6 +186,8 @@ def main():
         st.markdown("""
         <h3 style="color:red;">Design and Visuals</h3>
         """, unsafe_allow_html=True)
+        
+        
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
