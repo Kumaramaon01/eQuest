@@ -252,7 +252,13 @@ def main():
         with col5:
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
-        st.write("check out this [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)")
+        st.markdown("""
+        <h3 style="color:red;">Documents to read</h3>
+        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
+        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
+        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
+        - <b style="color:red;">INP Parser:</b> st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
+        """, unsafe_allow_html=True)
         
         # Add more cards as needed
         st.markdown("""
