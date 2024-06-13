@@ -120,7 +120,7 @@ def main():
             st.session_state.script_choice = "SIM Parser"
     
     # Use a fixed width for the columns to ensure buttons have the same size
-    col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 1, 0.7])
+    col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.7])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
