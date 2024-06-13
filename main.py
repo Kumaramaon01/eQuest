@@ -204,7 +204,7 @@ def main():
             gif_path = "images/Translational_motion.gif"
             st.image(gif_path, use_column_width=True)
 
-            audio_file = open("myaudio.ogg", "rb")
+            audio_file = open("crash.mp3", "rb")
             audio_bytes = audio_file.read()
             
             st.audio(audio_bytes, format="audio/ogg")
