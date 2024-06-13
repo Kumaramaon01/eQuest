@@ -14,6 +14,7 @@ def update_inp_file(uploaded_file):
                 with open(inp_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
 
+                inp_path = inp_path.replace('\n', '\r\n')
                 # Perform perging operations
                 perge_data_annual = perging.perging_data_annual(inp_path)
                 perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
