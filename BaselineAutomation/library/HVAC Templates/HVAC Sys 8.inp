@@ -22,14 +22,6 @@ $ ---------------------------------------------------------
    MECH-EFF         = 0.64
    MOTOR-EFF        = 0.91
    ..
-"HW-PUMP" = PUMP            
-   FLOW-RATIO       = 1.1
-   HEAD             = 60
-   HEAD-RATIO       = 1.1
-   MECH-EFF         = 0.64
-   MOTOR-EFF        = 0.91
-   CAP-CTRL         = ONE-SPEED-PUMP
-   ..
 
 
 $ ---------------------------------------------------------
@@ -42,12 +34,6 @@ $ ---------------------------------------------------------
 $              Circulation Loops
 $ ---------------------------------------------------------
 
-"SYSTEM1,5,7-HW" = CIRCULATION-LOOP
-   TYPE             = HW
-   LOOP-DESIGN-DT   = 50
-   HEAT-SETPT-CTRL  = OA-RESET
-   HEAT-RESET-SCH   = "HW Reset Temp Ann"
-   ..
 "SYSTEM8-CHW" = CIRCULATION-LOOP
    TYPE             = CHW
    COOL-SETPT-CTRL  = OA-RESET
@@ -78,12 +64,7 @@ $ ---------------------------------------------------------
 $              Boilers
 $ ---------------------------------------------------------
 
-"SYSTEM 1 BOILER" = BOILER          
-   TYPE             = HW-BOILER
-   HEAT-INPUT-RATIO = 1.25
-   HW-LOOP          = "SYSTEM1,5,7-HW"
-   HW-PUMP          = "HW-PUMP"
-   ..
+
 
 
 $ ---------------------------------------------------------
