@@ -74,6 +74,12 @@ def get_system_path(building_type, heat_type, area, floor):
                     return construction_library_systems_paths[6] # 7
                 else:
                     return construction_library_systems_paths[7] # 8
+            else:
+                if heat_type == 0:
+                    return construction_library_systems_paths[6] # 7
+                else:
+                    return construction_library_systems_paths[7] # 8
+                
 
     # If the climate zone is not found, return None
     return None
