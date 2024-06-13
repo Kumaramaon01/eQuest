@@ -104,6 +104,9 @@ def main():
     
     col3, col4, col5, col6 = st.columns([1, 1, 1, 1])
     with col3:
+        if st.button("About EDS"):
+            st.session_state.script_choice = "eds"
+    with col3:
         if st.button("About eQuest"):
             st.session_state.script_choice = "about"
     with col4:
