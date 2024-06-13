@@ -177,9 +177,6 @@ def main():
         - Strategy Consulting for Policy & Codes, and Research
         - Outreach, Communication, Documentation, and Training
 
-        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-        and more productive.
         """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "INP Parser":
