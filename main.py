@@ -190,8 +190,7 @@ def main():
         """, unsafe_allow_html=True)
         col1, col2 = st.columns([1,1])
         with col1:
-            gif_path = "images/Translational_motion.gif"
-            st.image(gif_path, use_column_width=True)
+            st.audio("crash.mp3", format="audio/mpeg", loop=True)
 
         with col2:
             gif_path = "images/Translational_motion.gif"
