@@ -39,6 +39,35 @@ def send_email(subject, message, from_email, to_email):
         # print(f"Failed to send email: {e}")
         st.success("Email sent successfully!")
         return False
+# Header section with logo and title
+col1, col2, col3 = st.columns([1, 1, 0.5])
+with col1:
+    st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
+with col2:
+    st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+
+icon_with_tooltip1 = """
+<div style="text-align:center">
+    <span style="font-size:34px">
+        <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
+            <span>&#x1F4E7;</span>
+        </a>
+    </span>
+</div>
+"""
+
+icon_with_tooltip2 = """
+<div style="text-align:center">
+    <span style="font-size:44px">
+        <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
+            <span>&#x1F4F1;</span>
+        </a>
+    </span>
+</div>"""
+
+with col3:
+    # st.write(icon_with_tooltip1, unsafe_allow_html=True)
+    st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
 
 # Define button carousel items
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
@@ -95,37 +124,37 @@ def main():
     if 'script_choice' not in st.session_state:
         st.session_state.script_choice = "about"  # Set default to "about"
 
-    # Header section with logo and title
-    col1, col2, col3 = st.columns([1, 1, 0.5])
-    with col1:
-        st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
-    with col2:
-        st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+    # # Header section with logo and title
+    # col1, col2, col3 = st.columns([1, 1, 0.5])
+    # with col1:
+    #     st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
+    # with col2:
+    #     st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
-    icon_with_tooltip1 = """
-    <div style="text-align:center">
-        <span style="font-size:34px">
-            <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
-                <span>&#x1F4E7;</span>
-            </a>
-        </span>
-    </div>
-    """
+    # icon_with_tooltip1 = """
+    # <div style="text-align:center">
+    #     <span style="font-size:34px">
+    #         <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
+    #             <span>&#x1F4E7;</span>
+    #         </a>
+    #     </span>
+    # </div>
+    # """
 
-    icon_with_tooltip2 = """
-    <div style="text-align:center">
-        <span style="font-size:44px">
-            <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
-                <span>&#x1F4F1;</span>
-            </a>
-        </span>
-    </div>
-    """
+    # icon_with_tooltip2 = """
+    # <div style="text-align:center">
+    #     <span style="font-size:44px">
+    #         <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
+    #             <span>&#x1F4F1;</span>
+    #         </a>
+    #     </span>
+    # </div>
+    # """
 
-    # Add icon and tooltip to col3
-    with col3:
-        # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
+    # # Add icon and tooltip to col3
+    # with col3:
+    #     # st.write(icon_with_tooltip1, unsafe_allow_html=True)
+    #     st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
