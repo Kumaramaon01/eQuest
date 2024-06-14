@@ -216,7 +216,7 @@ def main():
         """, unsafe_allow_html=True)
         col1, col2 = st.columns([1,1])
         with col1:
-           st.success("")
+           st.audio("crash.mp3", format="audio/mpeg", loop=True)
 
         with col2:
             gif_path = "images/Translational_motion.gif"
