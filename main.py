@@ -18,6 +18,36 @@ from matplotlib.animation import FuncAnimation
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
 
+# Adding the Font Awesome CSS
+st.markdown("""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .social-media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .social-media a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: inherit;
+    }
+    .social-media i {
+        font-size: 24px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Adding the social media links
+st.markdown("""
+    <div class="social-media">
+        <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/your_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    """, unsafe_allow_html=True)
+
 # Function to send email
 def send_email(subject, message, from_email, to_email):
     msg = MIMEMultipart()
@@ -387,36 +417,6 @@ def main():
                     input_area,
                     number_floor,
                     heat_type)
-
-# Adding the Font Awesome CSS
-st.markdown("""
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-    .social-media {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .social-media a {
-        margin: 0 10px;
-        text-decoration: none;
-        color: inherit;
-    }
-    .social-media i {
-        font-size: 24px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Adding the social media links
-st.markdown("""
-    <div class="social-media">
-        <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/your_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
-    </div>
-    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
