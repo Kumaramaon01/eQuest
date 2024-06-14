@@ -17,7 +17,7 @@ from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
-st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
+st.set_page_config(page_title="eQuest Utilities", layout='wide', page_icon="💡")
 
 # Function to send email
 def send_email(subject, message, from_email, to_email):
