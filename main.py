@@ -40,6 +40,9 @@ def send_email(subject, message, from_email, to_email):
         st.success("Email sent successfully!")
         return False
 
+# Define button carousel items
+carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
+
 def main(): 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     st.markdown(
