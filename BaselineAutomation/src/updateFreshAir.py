@@ -125,6 +125,10 @@ def updateBCVentilation(zone_space_df, inp_data, sim_data):
     merged_df = pd.merge(lvb_df, inp_df, on='SPACE', how='inner')
     csv_df = pd.read_csv('database/eQUEST_database.csv')
 
+    # Clean and prepare the columns for merging
+    merged_df['C-ACTIVITY-DESC'] = merged_df['C-ACTIVITY-DESC'].str.strip().str.lower()
+    csv_df['Activity Description_eQUEST'] = csv_df['Activity Description_eQUEST'].str.strip().str.lower()
+
     # Merge the DataFrames on the matching activity description columns
     final_df = pd.merge(merged_df, csv_df, left_on='C-ACTIVITY-DESC', right_on='Activity Description_eQUEST', how='left')
 
