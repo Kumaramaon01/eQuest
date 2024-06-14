@@ -17,6 +17,7 @@ from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
+st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
 # Adding the Font Awesome CSS
 st.markdown("""
@@ -70,7 +71,7 @@ def send_email(subject, message, from_email, to_email):
         return False
 
 def main(): 
-    st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
+    # st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     st.markdown(
