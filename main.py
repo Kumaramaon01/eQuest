@@ -221,7 +221,7 @@ def main():
 
         with col2:
             gif_path = "images/Translational_motion.gif"
-            st.image(gif_path, use_column_width=True)
+            st.image(gif_path, use_column_width=True, width=80)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
