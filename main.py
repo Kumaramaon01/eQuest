@@ -110,37 +110,37 @@ def main():
     
     col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
     with col2:
-        if st.button("About EDS", type="primary"):
+        if st.button("About EDS"):
             st.session_state.script_choice = "eds"
     with col3:
-        if st.button("About eQuest", type="primary"):
+        if st.button("About eQuest"):
             st.session_state.script_choice = "about"
     with col4:
-        if st.button("INP Parser", type="primary"):
+        if st.button("INP Parser"):
             st.session_state.script_choice = "INP Parser"
     with col5:
-        if st.button("Purging INP", type="primary"):
+        if st.button("Purging INP"):
             st.session_state.script_choice = "Purging INP"
     with col6:
-        if st.button("SIM Parser", type="primary"):
+        if st.button("SIM Parser"):
             st.session_state.script_choice = "SIM Parser"
     
     # Use a fixed width for the columns to ensure buttons have the same size
     col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.8])
     with col7:
-        if st.button("SIM to PDF", type="primary"):
+        if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
-        if st.button("Baseline Automation", type="primary"):
+        if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("EXE Files", type="primary"):
+        if st.button("EXE Files"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Queries", type="primary"):
+        if st.button("Queries"):
             st.session_state.script_choice = "ask"
     with col11:
-        if st.button("Visual", type="primary"):
+        if st.button("Visual"):
             st.session_state.script_choice = "visual"
 
     # Based on the user selection, display appropriate input fields and run the script
