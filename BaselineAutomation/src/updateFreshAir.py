@@ -132,7 +132,6 @@ def updateBCVentilation(zone_space_df, inp_data, sim_data):
     final_df = final_df[['SPACE', 'PEOPLE', 'AREA(SQFT)', 'C-ACTIVITY-DESC', 'Fresh air per person (CFM/person)', 'Fresh air per area (CFM/sqft)']]
     # Calculate the OUTSIDE-AIR-FLOW
     final_df['OUTSIDE-AIR-FLOW'] = (final_df['PEOPLE'] * final_df['Fresh air per person (CFM/person)'] + final_df['AREA(SQFT)'] * final_df['Fresh air per area (CFM/sqft)']).round(2)
-    final_df['OUTSIDE-AIR-FLOW'] = final_df['OUTSIDE-AIR-FLOW'].fillna(830.23)
     # print(final_df)
     # print(zone_space_df)
     new_df = pd.merge(final_df, zone_space_df, on='SPACE', how='inner')
