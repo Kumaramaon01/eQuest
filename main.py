@@ -125,7 +125,7 @@ def main():
     # Add icon and tooltip to col3
     with col3:
         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
+        st.image("images/eQcb_142.gif", use_column_width=True, width=60)  # Replace with the path to your logo file
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
