@@ -164,6 +164,7 @@ def main():
             st.session_state.script_choice = "ask"
     with col11:
         if st.button("Visual"):
+            st.audio("song.oga", format="audio/mpeg", loop=True)
             st.session_state.script_choice = "visual"
 
     # Based on the user selection, display appropriate input fields and run the script
