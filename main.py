@@ -96,7 +96,7 @@ def main():
         st.session_state.script_choice = "about"  # Set default to "about"
 
     # Header section with logo and title
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1, 1, 2])
     with col1:
         st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
     with col2:
