@@ -189,13 +189,13 @@ def main():
         <h3 style="color:red;">Design and Visuals</h3>
         """, unsafe_allow_html=True)
         col1, col2 = st.columns([1,1])
-        # with col1:
-        #     gif_path = "images/Translational_motion.gif"
-        #     st.image(gif_path, use_column_width=True)
+        with col1:
+            gif_path = "images/Translational_motion.gif"
+            st.image(gif_path, use_column_width=True)
 
-        # with col2:
-        #     gif_path = "images/Translational_motion.gif"
-        #     st.image(gif_path, use_column_width=True)
+        with col2:
+            gif_path = "images/Translational_motion.gif"
+            st.image(gif_path, use_column_width=True)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
