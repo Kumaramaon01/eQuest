@@ -45,6 +45,29 @@ carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM
 
 def main(): 
     # Add custom CSS to set the background color and hide Streamlit branding elements
+    card_button_style = """
+        <style>
+        .card-button {
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s ease;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .card-button:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        </style>
+    """
+    
+    # Display the CSS style
+    st.markdown(card_button_style, unsafe_allow_html=True)
+    
     st.markdown(
         """
         <style>
@@ -110,7 +133,7 @@ def main():
     
     col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
     with col2:
-        if st.button("About EDS"):
+        if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
     with col3:
         if st.button("About eQuest"):
