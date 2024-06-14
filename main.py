@@ -217,7 +217,7 @@ def main():
         col1, col2 = st.columns([1,1])
         with col1:
            st.audio("crash.mp3", format="audio/mpeg", loop=True)
-           audio_file = open("myaudio.ogg", "rb")
+           # audio_file = open("myaudio.ogg", "rb")
            audio_bytes = audio_file.read()
             
            st.audio(audio_bytes, format="audio/ogg")
