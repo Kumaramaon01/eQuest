@@ -300,7 +300,7 @@ def main():
         st.markdown("""
         <h3 style="color:red;">EXE Files</h3>
         """, unsafe_allow_html=True)
-        col1, col2, col3, col4, col5 = st.columns(5)
+        col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
@@ -324,6 +324,17 @@ def main():
         with col5:
             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
             # st.write("[Download](url_to_exe_1)")
+        with col6:
+            # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
+            # st.write("Parsing INP files")
+            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link)")
+        with col7:
+            # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
+            # st.write("Parsing SIM files")
+            st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link)")
+            
         st.markdown("""
             <h5 style="color:black;">Documents to read</h5>
             <ul>
