@@ -180,7 +180,7 @@ def main():
         - Outreach, Communication, Documentation, and Training
 
         """, unsafe_allow_html=True)
-        st.button("Know More", type="primary"):
+        st.button("Know More")
             
         
     elif st.session_state.script_choice == "visual":
