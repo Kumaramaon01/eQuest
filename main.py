@@ -309,7 +309,7 @@ def main():
         with col2:
             # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing SIM files")
-            st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True, width = 60))
+            st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True, width = 60)
             st.write("[Download](https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link)")
         with col3:
             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
