@@ -72,7 +72,7 @@ def main():
     # Header section with logo and title
     col1, col2, col3 = st.columns([1.1, 2, 1])
     with col1:
-        st.image("images/EDSlogo.png", width=160)  # Replace with the path to your logo file
+        st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
 
