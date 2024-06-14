@@ -241,29 +241,6 @@ def main():
             gif_path = "images/Translational_motion.gif"
             st.image(gif_path, use_column_width=True)
 
-            # audio_file = open("crash.mp3", "rb")
-            # audio_bytes = audio_file.read()
-            
-            # st.audio(audio_bytes, format="audio/ogg")
-            
-            # sample_rate = 44100  # 44100 samples per second
-            # seconds = 2  # Note duration of 2 seconds
-            # frequency_la = 440  # Our played note will be 440 Hz
-            # # Generate array with seconds*sample_rate steps, ranging between 0 and seconds
-            # t = np.linspace(0, seconds, seconds * sample_rate, False)
-            # # Generate a 440 Hz sine wave
-            # note_la = np.sin(frequency_la * t * 2 * np.pi)
-            
-            # st.audio(note_la, sample_rate=sample_rate)
-            
-        # col1, col2 = st.columns([1,1])
-        # with col1:
-        #     gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
-        #     st.image(gif_path, use_column_width=True)
-        # with col2:
-        #     gif_path = "https://visionhelp.wordpress.com/wp-content/uploads/2016/02/walkrot.gif"
-        #     st.image(gif_path, use_column_width=True)
-
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
         <h3 style="color:red;">INP Parser</h3>
@@ -315,7 +292,36 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
-        # st.header("Reach Out to Queries")
+        # Adding the Font Awesome CSS
+        st.markdown("""
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <style>
+            .social-media {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .social-media a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: inherit;
+            }
+            .social-media i {
+                font-size: 24px;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+    
+            # Adding the social media links
+            st.markdown("""
+                <div class="social-media">
+                    <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/your_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+                """, unsafe_allow_html=True)
+
         col1, col2 = st.columns(2)
         with col1:
             st.write(icon_with_tooltip1, unsafe_allow_html=True)
