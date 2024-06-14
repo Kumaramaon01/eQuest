@@ -131,7 +131,7 @@ def main():
     # Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
     
-    col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
+    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -149,7 +149,7 @@ def main():
             st.session_state.script_choice = "SIM Parser"
     
     # Use a fixed width for the columns to ensure buttons have the same size
-    col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.8])
+    # col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.8])
     with col7:
         if st.button("SIM to PDF"):
             st.session_state.script_choice = "SIM to PDF"
