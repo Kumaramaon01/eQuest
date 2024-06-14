@@ -292,36 +292,6 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
-        # Adding the Font Awesome CSS
-        st.markdown("""
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-            <style>
-            .social-media {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .social-media a {
-                margin: 0 10px;
-                text-decoration: none;
-                color: inherit;
-            }
-            .social-media i {
-                font-size: 24px;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-    
-            # Adding the social media links
-        st.markdown("""
-                <div class="social-media">
-                    <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/your_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-                """, unsafe_allow_html=True)
-
         col1, col2 = st.columns(2)
         with col1:
             st.write(icon_with_tooltip1, unsafe_allow_html=True)
@@ -428,3 +398,32 @@ if __name__ == "__main__":
     
 # Navigation bar with buttons below the header
 st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+ # Adding the Font Awesome CSS
+st.markdown("""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .social-media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .social-media a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: inherit;
+    }
+    .social-media i {
+        font-size: 24px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    # Adding the social media links
+
+st.markdown("""
+    <div class="social-media">
+        <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/your_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    """, unsafe_allow_html=True)
