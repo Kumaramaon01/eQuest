@@ -304,7 +304,7 @@ def main():
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
-            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True, width = 60)
+            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True, width = 10)
             st.write("[Download](https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link)")
         with col2:
             # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
