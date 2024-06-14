@@ -378,7 +378,6 @@ st.markdown("""
 # Designed and Developed by section
 st.markdown(
     """
-    <footer style="background-color:#f8f9fa; padding:20px; text-align:center;">
         <p>Designed and Developed by <a href="https://yourwebsite.com" target="_blank">Your Name/Company</a></p>
         <div class="social-media" style="margin-top: 10px;">
             <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -386,7 +385,6 @@ st.markdown(
             <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
-    </footer>
     """,
     unsafe_allow_html=True
 )
