@@ -191,7 +191,7 @@ def main():
         col1, col2 = st.columns([1,1])
         with col1:
             st.audio("crash.mp3", format="audio/mpeg", loop=True)
-            video_file = open('myvideo.mp4', 'rb')
+            video_file = open('star.mp4', 'rb')
             video_bytes = video_file.read()
             st.video(video_bytes)
 
