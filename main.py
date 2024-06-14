@@ -1,4 +1,3 @@
-
 import streamlit as st
 import subprocess
 import os
@@ -37,6 +36,7 @@ def send_email(subject, message, from_email, to_email):
         server.quit()
         return True
     except Exception as e:
+        # print(f"Failed to send email: {e}")
         st.success("Email sent successfully!")
         return False
 
@@ -44,6 +44,7 @@ def send_email(subject, message, from_email, to_email):
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
 
 def main(): 
+    # Add custom CSS to set the background color and hide Streamlit branding elements
     st.markdown(
         """
         <style>
@@ -62,26 +63,49 @@ def main():
             display: none;
         }
         .stApp header, .stApp footer {visibility: hidden;}
-        .scrollable {
-            max-height: 300px;
-            overflow-y: auto;
-        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
+    # Initialize session state for script_choice if it does not exist
     if 'script_choice' not in st.session_state:
         st.session_state.script_choice = "about"  # Set default to "about"
 
+    # Header section with logo and title
     col1, col2, col3 = st.columns([1.1, 2, 1])
     with col1:
-        st.image("images/EDSlogo.jpg", width=120)
+        st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
-    with col3:
-        st.image("images/eQcb_142.gif", width=60)
 
+    icon_with_tooltip1 = """
+    <div style="text-align:center">
+        <span style="font-size:34px">
+            <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4E7;</span>
+            </a>
+        </span>
+    </div>
+    """
+
+    icon_with_tooltip2 = """
+    <div style="text-align:center">
+        <span style="font-size:44px">
+            <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
+                <span>&#x1F4F1;</span>
+            </a>
+        </span>
+    </div>
+    """
+
+    # Add icon and tooltip to col3
+    with col3:
+        # st.write(icon_with_tooltip1, unsafe_allow_html=True)
+        st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
+    # Add icon and tooltip to col3
+
+    # Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
     
     col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
@@ -101,6 +125,7 @@ def main():
         if st.button("SIM Parser", type="primary"):
             st.session_state.script_choice = "SIM Parser"
     
+    # Use a fixed width for the columns to ensure buttons have the same size
     col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.8])
     with col7:
         if st.button("SIM to PDF", type="primary"):
@@ -118,540 +143,254 @@ def main():
         if st.button("Visual", type="primary"):
             st.session_state.script_choice = "visual"
 
-    # Scrollable content section
-    with st.expander("Content", expanded=True):
-        st.markdown(
-            """
-            <div class="scrollable">
-            """,
-            unsafe_allow_html=True
-        )
+    # Based on the user selection, display appropriate input fields and run the script
+    if st.session_state.script_choice == "about":
+        st.markdown("""
+        <h3 style="color:red;">Welcome to eQuest Utilities</h3>
 
-        if st.session_state.script_choice == "about":
-            st.markdown("""
-            <h3 style="color:red;">Welcome to eQuest Utilities</h3>
-            eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
-            Our utilities include:
-            - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
-            - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
-            - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
-            - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
-            - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
-            Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-            specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-            and more productive.
-            """, unsafe_allow_html=True)
+        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
+        Our utilities include:
+
+        - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
+        - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
+        - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
+        - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
+        - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
+
+        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
+        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+        and more productive.
+        """, unsafe_allow_html=True)
         
-        elif st.session_state.script_choice == "eds":
-            st.markdown("""
-            <h3 style="color:red;">Overview</h3>
-            Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
-            EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
-            climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
-            simulation and green building certification.<br>
-            EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
-            level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
-            policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
-            Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
-            implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
-            large scale implementation programs.<br>
-            EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
-            - Sustainable Solutions for the Built Environment
-            - Strategy Consulting for Policy & Codes, and Research
-            - Outreach, Communication, Documentation, and Training
-            """, unsafe_allow_html=True)
-            st.link_button("Know More", "https://edsglobal.com", type="primary")
+    elif st.session_state.script_choice == "eds":
+        st.markdown("""
+        <h3 style="color:red;">Overview</h3>
 
-        elif st.session_state.script_choice == "visual":
-            st.markdown("""
-            <h3 style="color:red;">Design and Visuals</h3>
-            """, unsafe_allow_html=True)
-            col1, col2 = st.columns([1,1])
-            with col1:
-                st.audio("crash.mp3", format="audio/mpeg", loop=True)
-            with col2:
-                gif_path = "images/Translational_motion.gif"
-                st.image(gif_path, use_column_width=True)
+        Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
+        EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
+        climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
+        simulation and green building certification.<br>
 
-        elif st.session_state.script_choice == "INP Parser":
-            st.markdown("""
-            <h3 style="color:red;">INP Parser</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Run INP Parser"):
-                    inp_parserv01.main(uploaded_file)
+        EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
+        level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
+        policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
+        Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
+        implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
+        large scale implementation programs.<br>
 
-        elif st.session_state.script_choice == "Purging INP":
-            st.markdown("""
-            <h3 style="color:red;">Purging INP</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Run INP Purging"):
-                    perge.main(uploaded_file)
+        EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
+        - Sustainable Solutions for the Built Environment
+        - Strategy Consulting for Policy & Codes, and Research
+        - Outreach, Communication, Documentation, and Training
 
-        elif st.session_state.script_choice == "SIM Parser":
-            st.markdown("""
-            <h3 style="color:red;">SIM Parser</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Run SIM Parser"):
-                    sim_parserv01.main(uploaded_file)
-
-        elif st.session_state.script_choice == "SIM to PDF":
-            st.markdown("""
-            <h3 style="color:red;">SIM to PDF Converter</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Convert SIM to PDF"):
-                    sim_print.main(uploaded_file)
-
-        elif st.session_state.script_choice == "baselineAutomation":
-            st.markdown("""
-            <h3 style="color:red;">Baseline Automation</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Run Baseline Automation"):
-                    baselineAuto.main(uploaded_file)
-
-        elif st.session_state.script_choice == "exe":
-            st.markdown("""
-            <h3 style="color:red;">Execute External Files</h3>
-            """, unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("Upload an executable file", type="exe", accept_multiple_files=False)
-            if uploaded_file is not None:
-                if st.button("Run Executable"):
-                    file_path = os.path.join("uploads", uploaded_file.name)
-                    with open(file_path, "wb") as f:
-                        f.write(uploaded_file.getbuffer())
-                    result = subprocess.run([file_path], capture_output=True, text=True)
-                    st.text(result.stdout)
-
-        elif st.session_state.script_choice == "ask":
-            st.markdown("""
-            <h3 style="color:red;">Queries</h3>
-            """, unsafe_allow_html=True)
-            from_email = st.text_input("Your Email")
-            subject = st.text_input("Subject")
-            message = st.text_area("Your Query")
-            if st.button("Submit Query"):
-                if send_email(subject, message, from_email, TO_EMAIL):
-                    st.success("Query submitted successfully")
-                else:
-                    st.error("Error submitting query")
-
-        st.markdown(
-            """
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-# import streamlit as st
-# import subprocess
-# import os
-# from INP_Parser import inp_parserv01
-# from Perging_INP import perge
-# from SIM_Parser import sim_parserv01
-# from SIM2PDF import sim_print
-# from BaselineAutomation import baselineAuto
-# from streamlit_card import card
-# from PIL import Image as PILImage
-# import smtplib
-# from email.mime.text import MIMEText
-# from email.mime.multipart import MIMEMultipart
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from matplotlib.animation import FuncAnimation
-
-# # Email credentials and recipient
-# TO_EMAIL = "rajeev@edsglobal.com"
-# st.set_page_config(page_title="eQuest Utilities", page_icon="💡")
-
-# # Function to send email
-# def send_email(subject, message, from_email, to_email):
-#     msg = MIMEMultipart()
-#     msg['From'] = from_email
-#     msg['To'] = to_email
-#     msg['Subject'] = subject
-
-#     msg.attach(MIMEText(message, 'plain'))
-
-#     try:
-#         server = smtplib.SMTP('smtp.gmail.com', 587)
-#         server.starttls()
-#         text = msg.as_string()
-#         server.sendmail(from_email, to_email, text)
-#         server.quit()
-#         return True
-#     except Exception as e:
-#         # print(f"Failed to send email: {e}")
-#         st.success("Email sent successfully!")
-#         return False
-
-# # Define button carousel items
-# carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
-
-# def main(): 
-#     # Add custom CSS to set the background color and hide Streamlit branding elements
-#     st.markdown(
-#         """
-#         <style>
-#         body {
-#             background-color: #bfe1ff;  /* Set your desired background color here */
-#             animation: changeColor 5s infinite;
-#         }
-#         .css-18e3th9 {
-#             padding-top: 0rem;  /* Adjust the padding at the top */
-#         }
-#         #MainMenu {visibility: hidden;}
-#         footer {visibility: hidden;}
-#         .viewerBadge_container__1QSob {visibility: hidden;}
-#         .stActionButton {margin: 5px;} /* Optional: Adjust button spacing */
-#         header .stApp [title="View source on GitHub"] {
-#             display: none;
-#         }
-#         .stApp header, .stApp footer {visibility: hidden;}
-#         </style>
-#         """,
-#         unsafe_allow_html=True
-#     )
-
-#     # Initialize session state for script_choice if it does not exist
-#     if 'script_choice' not in st.session_state:
-#         st.session_state.script_choice = "about"  # Set default to "about"
-
-#     # Header section with logo and title
-#     col1, col2, col3 = st.columns([1.1, 2, 1])
-#     with col1:
-#         st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
-#     with col2:
-#         st.markdown("<h1 style='text-align: left; color:red;'>eQuest Utilities</h1>", unsafe_allow_html=True)
-
-#     icon_with_tooltip1 = """
-#     <div style="text-align:center">
-#         <span style="font-size:34px">
-#             <a href="https://mail.google.com/mail/u/0/#inbox" title="Click to check your inbox" onmouseover="if (confirm('Do you want to ask a question?'))">
-#                 <span>&#x1F4E7;</span>
-#             </a>
-#         </span>
-#     </div>
-#     """
-
-#     icon_with_tooltip2 = """
-#     <div style="text-align:center">
-#         <span style="font-size:44px">
-#             <a href="https://wa.me/917091895623" title="Chat on WhatsApp" onmouseover="if (confirm('Do you want to ask a question?'))">
-#                 <span>&#x1F4F1;</span>
-#             </a>
-#         </span>
-#     </div>
-#     """
-
-#     # Add icon and tooltip to col3
-#     with col3:
-#         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-#         st.image("images/eQcb_142.gif", width=60)  # Replace with the path to your logo file
-#     # Add icon and tooltip to col3
-
-#     # Navigation bar with buttons below the header
-#     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-    
-#     col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1])
-#     with col2:
-#         if st.button("About EDS", type="primary"):
-#             st.session_state.script_choice = "eds"
-#     with col3:
-#         if st.button("About eQuest", type="primary"):
-#             st.session_state.script_choice = "about"
-#     with col4:
-#         if st.button("INP Parser", type="primary"):
-#             st.session_state.script_choice = "INP Parser"
-#     with col5:
-#         if st.button("Purging INP", type="primary"):
-#             st.session_state.script_choice = "Purging INP"
-#     with col6:
-#         if st.button("SIM Parser", type="primary"):
-#             st.session_state.script_choice = "SIM Parser"
-    
-#     # Use a fixed width for the columns to ensure buttons have the same size
-#     col7, col8, col9, col10, col11 = st.columns([0.9, 1.3, 1, 0.8, 0.8])
-#     with col7:
-#         if st.button("SIM to PDF", type="primary"):
-#             st.session_state.script_choice = "SIM to PDF"
-#     with col8:
-#         if st.button("Baseline Automation", type="primary"):
-#             st.session_state.script_choice = "baselineAutomation"
-#     with col9:
-#         if st.button("EXE Files", type="primary"):
-#             st.session_state.script_choice = "exe"
-#     with col10:
-#         if st.button("Queries", type="primary"):
-#             st.session_state.script_choice = "ask"
-#     with col11:
-#         if st.button("Visual", type="primary"):
-#             st.session_state.script_choice = "visual"
-
-#     # Based on the user selection, display appropriate input fields and run the script
-#     if st.session_state.script_choice == "about":
-#         st.markdown("""
-#         <h3 style="color:red;">Welcome to eQuest Utilities</h3>
-
-#         eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
-#         Our utilities include:
-
-#         - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
-#         - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
-#         - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
-#         - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
-#         - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
-
-#         Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-#         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-#         and more productive.
-#         """, unsafe_allow_html=True)
-        
-#     elif st.session_state.script_choice == "eds":
-#         st.markdown("""
-#         <h3 style="color:red;">Overview</h3>
-
-#         Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
-#         EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
-#         climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
-#         simulation and green building certification.<br>
-
-#         EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
-#         level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
-#         policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
-#         Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
-#         implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
-#         large scale implementation programs.<br>
-
-#         EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
-#         - Sustainable Solutions for the Built Environment
-#         - Strategy Consulting for Policy & Codes, and Research
-#         - Outreach, Communication, Documentation, and Training
-
-#         """, unsafe_allow_html=True)
-#         st.link_button("Know More", "https://edsglobal.com", type="primary")
+        """, unsafe_allow_html=True)
+        st.link_button("Know More", "https://edsglobal.com", type="primary")
             
         
-#     elif st.session_state.script_choice == "visual":
-#         st.markdown("""
-#         <h3 style="color:red;">Design and Visuals</h3>
-#         """, unsafe_allow_html=True)
-#         col1, col2 = st.columns([1,1])
-#         with col1:
-#             st.audio("crash.mp3", format="audio/mpeg", loop=True)
-#             # video_file = open('star.mp4', 'rb')
-#             # video_bytes = video_file.read()
-#             # st.video(video_bytes)
+    elif st.session_state.script_choice == "visual":
+        st.markdown("""
+        <h3 style="color:red;">Design and Visuals</h3>
+        """, unsafe_allow_html=True)
+        col1, col2 = st.columns([1,1])
+        with col1:
+            st.audio("crash.mp3", format="audio/mpeg", loop=True)
+            # video_file = open('star.mp4', 'rb')
+            # video_bytes = video_file.read()
+            # st.video(video_bytes)
 
-#         with col2:
-#             gif_path = "images/Translational_motion.gif"
-#             st.image(gif_path, use_column_width=True)
+        with col2:
+            gif_path = "images/Translational_motion.gif"
+            st.image(gif_path, use_column_width=True)
 
-#     elif st.session_state.script_choice == "INP Parser":
-#         st.markdown("""
-#         <h3 style="color:red;">INP Parser</h3>
-#         """, unsafe_allow_html=True)
-#         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
+    elif st.session_state.script_choice == "INP Parser":
+        st.markdown("""
+        <h3 style="color:red;">INP Parser</h3>
+        """, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
-#         if uploaded_file is not None:
-#             if st.button("Run INP Parser"):
-#                 inp_parserv01.main(uploaded_file)
+        if uploaded_file is not None:
+            if st.button("Run INP Parser"):
+                inp_parserv01.main(uploaded_file)
 
-#     elif st.session_state.script_choice == "Purging INP":
-#         st.markdown("""
-#         <h3 style="color:red;">Purging INP</h3>
-#         """, unsafe_allow_html=True)
-#         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
+    elif st.session_state.script_choice == "Purging INP":
+        st.markdown("""
+        <h3 style="color:red;">Purging INP</h3>
+        """, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
-#         if uploaded_file is not None:
-#             if st.button("Run INP Purging"):
-#                 perge.main(uploaded_file)
+        if uploaded_file is not None:
+            if st.button("Run INP Purging"):
+                perge.main(uploaded_file)
 
-#     elif st.session_state.script_choice == "SIM Parser":
-#         st.markdown("""
-#         <h3 style="color:red;">SIM Parser</h3>
-#         """, unsafe_allow_html=True)
-#         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+    elif st.session_state.script_choice == "SIM Parser":
+        st.markdown("""
+        <h3 style="color:red;">SIM Parser</h3>
+        """, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
-#         if uploaded_file is not None:
-#             if st.button("Run SIM Parser"):
-#                 sim_parserv01.main(uploaded_file)
+        if uploaded_file is not None:
+            if st.button("Run SIM Parser"):
+                sim_parserv01.main(uploaded_file)
 
-#     elif st.session_state.script_choice == "SIM to PDF":
-#         st.markdown("""
-#         <h3 style="color:red;">SIM to PDF Converter</h3>
-#         """, unsafe_allow_html=True)
+    elif st.session_state.script_choice == "SIM to PDF":
+        st.markdown("""
+        <h3 style="color:red;">SIM to PDF Converter</h3>
+        """, unsafe_allow_html=True)
         
-#         st.markdown("""
-#         Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
-#         """, unsafe_allow_html=True)
+        st.markdown("""
+        Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
+        """, unsafe_allow_html=True)
         
-#         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
-#         reports_input = st.multiselect(
-#                     "Enter Reports",
-#                     ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
-#                     ["LV-B"])
+        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        reports_input = st.multiselect(
+                    "Enter Reports",
+                    ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
+                    ["LV-B"])
         
-#         if uploaded_file is not None:
-#             if st.button("Convert to PDF"):
-#                 reports = [r.strip() for r in reports_input.split(',')]
-#                 sim_print.main(reports, uploaded_file)
+        if uploaded_file is not None:
+            if st.button("Convert to PDF"):
+                reports = [r.strip() for r in reports_input.split(',')]
+                sim_print.main(reports, uploaded_file)
                 
-#     elif st.session_state.script_choice == "ask":
-#         col1, col2 = st.columns(2)
-#         with col1:
-#             st.write(icon_with_tooltip1, unsafe_allow_html=True)
-#         with col2:
-#             st.write(icon_with_tooltip2, unsafe_allow_html=True)
+    elif st.session_state.script_choice == "ask":
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(icon_with_tooltip1, unsafe_allow_html=True)
+        with col2:
+            st.write(icon_with_tooltip2, unsafe_allow_html=True)
 
-#         email = st.text_input("Enter your mail:")
-#         user_input = st.text_area("Enter your Queries:")
+        email = st.text_input("Enter your mail:")
+        user_input = st.text_area("Enter your Queries:")
     
-#         # Submit button
-#         if st.button("Submit"):
-#             if user_input:
-#                 subject = "Text Area Submission"
-#                 message = user_input
-#                 EMAIL = email
-#                 if send_email(subject, message, EMAIL, TO_EMAIL):
-#                     st.success("Email sent successfully!")
-#                 # else:
-#                 #     st.error("Failed to send email.")
-#             else:
-#                 st.warning("Please enter some text.")
+        # Submit button
+        if st.button("Submit"):
+            if user_input:
+                subject = "Text Area Submission"
+                message = user_input
+                EMAIL = email
+                if send_email(subject, message, EMAIL, TO_EMAIL):
+                    st.success("Email sent successfully!")
+                # else:
+                #     st.error("Failed to send email.")
+            else:
+                st.warning("Please enter some text.")
 
-#     elif st.session_state.script_choice == "exe":
-#         st.markdown("""
-#         <h3 style="color:red;">EXE Files</h3>
-#         """, unsafe_allow_html=True)
-#         col1, col2, col3, col4, col5 = st.columns(5)
-#         with col1:
-#             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
-#             # st.write("Parsing INP files")
-#             st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
-#             st.write("[Download](https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link)")
-#         with col2:
-#             # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
-#             # st.write("Parsing SIM files")
-#             st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True)
-#             st.write("[Download](https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link)")
-#         with col3:
-#             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
-#             # st.write("Purging INP")
-#             st.image(PILImage.open("images/purging_inp_logo.png"), use_column_width=True)
-#             st.write("[Download](https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link)")
-#         with col4:
-#             # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
-#             # st.write("Purging INP")
-#             st.image(PILImage.open("images/SIM_pdf.png"), use_column_width=True)
-#             st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
-#         with col5:
-#             st.image(PILImage.open("images/baseline.png"), use_column_width=True)
-#             # st.write("[Download](url_to_exe_1)")
-#         st.markdown("""
-#             <h5 style="color:black;">Documents to read</h5>
-#             <ul>
-#                 <li><b style="color:red;">SIM to PDF:</b> <a href="https://docs.google.com/presentation/d/1WTdX3zmSMmyp0h1E5lfOsER8EkvFoOEj/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Data Extraction Tool: SIM to PDF</a></li>
-#                 <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
-#                 <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
-#                 <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual</a></li>
-#             </ul>
-#             """, unsafe_allow_html=True)
+    elif st.session_state.script_choice == "exe":
+        st.markdown("""
+        <h3 style="color:red;">EXE Files</h3>
+        """, unsafe_allow_html=True)
+        col1, col2, col3, col4, col5 = st.columns(5)
+        with col1:
+            # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
+            # st.write("Parsing INP files")
+            st.image(PILImage.open("images/INP_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link)")
+        with col2:
+            # st.markdown("<h2>SIM Parser</h2>", unsafe_allow_html=True)
+            # st.write("Parsing SIM files")
+            st.image(PILImage.open("images/SIM_Parser_logo.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link)")
+        with col3:
+            # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
+            # st.write("Purging INP")
+            st.image(PILImage.open("images/purging_inp_logo.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link)")
+        with col4:
+            # st.markdown("<h2>EXE 3</h2>", unsafe_allow_html=True)
+            # st.write("Purging INP")
+            st.image(PILImage.open("images/SIM_pdf.png"), use_column_width=True)
+            st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
+        with col5:
+            st.image(PILImage.open("images/baseline.png"), use_column_width=True)
+            # st.write("[Download](url_to_exe_1)")
+        st.markdown("""
+            <h5 style="color:black;">Documents to read</h5>
+            <ul>
+                <li><b style="color:red;">SIM to PDF:</b> <a href="https://docs.google.com/presentation/d/1WTdX3zmSMmyp0h1E5lfOsER8EkvFoOEj/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Data Extraction Tool: SIM to PDF</a></li>
+                <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
+                <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
+                <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual</a></li>
+            </ul>
+            """, unsafe_allow_html=True)
         
-#         # Add more cards as needed
-#         st.markdown("""
-#         #### Note:
-#         Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
-#         However, they are available for download.
-#         """)
-#         # Add more cards as needed
+        # Add more cards as needed
+        st.markdown("""
+        #### Note:
+        Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
+        However, they are available for download.
+        """)
+        # Add more cards as needed
 
-#     elif st.session_state.script_choice == "baselineAutomation":
-#         st.markdown("""
-#         <h3 style="color:red;">Baseline Automation</h3>
-#         """, unsafe_allow_html=True)
-#         col1, col2 = st.columns(2)
-#         with col1:
-#             uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-#         with col2:
-#             uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
-#         col1, col2, col3 = st.columns(3)
-#         with col1:
-#             input_climate = st.selectbox("Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
-#         with col2:
-#             input_building_type = st.selectbox("Building Type", options=[0, 1], format_func=lambda x: "Residential" if x == 0 else "Non-Residential")
-#         with col3:
-#             input_area = st.number_input("Enter Area (Sqft)", min_value=0.0, step=0.1)
-#         col1, col2 = st.columns(2)
-#         with col1:
-#             number_floor = st.number_input("Number of Floors", min_value=1, step=1)
-#         with col2:
-#             heat_type = st.selectbox("Heating Type", options=[0, 1], format_func=lambda x: "Hybrid/Fossil" if x == 0 else "Electric")
+    elif st.session_state.script_choice == "baselineAutomation":
+        st.markdown("""
+        <h3 style="color:red;">Baseline Automation</h3>
+        """, unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
+        with col2:
+            uploaded_sim_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            input_climate = st.selectbox("Climate Zone", options=[1, 2, 3, 4, 5, 6, 7, 8])
+        with col2:
+            input_building_type = st.selectbox("Building Type", options=[0, 1], format_func=lambda x: "Residential" if x == 0 else "Non-Residential")
+        with col3:
+            input_area = st.number_input("Enter Area (Sqft)", min_value=0.0, step=0.1)
+        col1, col2 = st.columns(2)
+        with col1:
+            number_floor = st.number_input("Number of Floors", min_value=1, step=1)
+        with col2:
+            heat_type = st.selectbox("Heating Type", options=[0, 1], format_func=lambda x: "Hybrid/Fossil" if x == 0 else "Electric")
 
-#         if uploaded_inp_file and uploaded_sim_file:
-#             if st.button("Run Baseline Automation"):
-#                 baselineAuto.getInp(
-#                     uploaded_inp_file,
-#                     uploaded_sim_file,
-#                     input_climate,
-#                     input_building_type,
-#                     input_area,
-#                     number_floor,
-#                     heat_type)
+        if uploaded_inp_file and uploaded_sim_file:
+            if st.button("Run Baseline Automation"):
+                baselineAuto.getInp(
+                    uploaded_inp_file,
+                    uploaded_sim_file,
+                    input_climate,
+                    input_building_type,
+                    input_area,
+                    number_floor,
+                    heat_type)
                 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
     
-# # Navigation bar with buttons below the header
-# st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-#  # Adding the Font Awesome CSS
-# st.markdown("""
-#     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-#     <style>
-#     .social-media {
-#         display: flex;
-#         justify-content: center;
-#         align-items: center;
-#     }
-#     .social-media a {
-#         margin: 0 10px;
-#         text-decoration: none;
-#         color: blue;
-#     }
-#     .social-media i {
-#         font-size: 24px;
-#     }
-#     </style>
-#     """, unsafe_allow_html=True)
-#     # Adding the social media links
+# Navigation bar with buttons below the header
+st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+ # Adding the Font Awesome CSS
+st.markdown("""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .social-media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .social-media a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: blue;
+    }
+    .social-media i {
+        font-size: 24px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    # Adding the social media links
 
-# # Designed and Developed by section
-# st.markdown(
-#     """
-#         <div class="social-media" style="margin-top: 10px;">
-#             <p>Designed and Developed by <a href="https://edsglobal.com" target="_blank"><b style="text-color: red;"><u>Environmental Design Solutions Pvt. Ltd</u>
-#             </b></a></p>
-#             <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
-#             <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
-#             <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-#             <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
-#         </div>
-#     """,
-#     unsafe_allow_html=True
-# )
+# Designed and Developed by section
+st.markdown(
+    """
+        <div class="social-media" style="margin-top: 10px;">
+            <p>Designed and Developed by <a href="https://edsglobal.com" target="_blank"><b style="text-color: red;"><u>Environmental Design Solutions Pvt. Ltd</u>
+            </b></a></p>
+            <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    """,
+    unsafe_allow_html=True
+)
