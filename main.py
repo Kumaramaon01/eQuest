@@ -422,8 +422,9 @@ def main():
                     input_area,
                     number_floor,
                     heat_type)
-# Navigation bar with buttons below the header
-st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-
+                
 if __name__ == "__main__":
     main()
+    
+# Navigation bar with buttons below the header
+st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
