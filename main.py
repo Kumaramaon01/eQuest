@@ -375,11 +375,18 @@ st.markdown("""
     """, unsafe_allow_html=True)
     # Adding the social media links
 
-st.markdown("""
-    <div class="social-media">
-        <a href="https://https://x.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
-    </div>
-    """, unsafe_allow_html=True)
+# Designed and Developed by section
+st.markdown(
+    """
+    <footer style="background-color:#f8f9fa; padding:20px; text-align:center;">
+        <p>Designed and Developed by <a href="https://yourwebsite.com" target="_blank">Your Name/Company</a></p>
+        <div class="social-media" style="margin-top: 10px;">
+            <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+    """,
+    unsafe_allow_html=True
+)
