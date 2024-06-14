@@ -313,7 +313,7 @@ def main():
             """, unsafe_allow_html=True)
     
             # Adding the social media links
-            st.markdown("""
+        st.markdown("""
                 <div class="social-media">
                     <a href="https://twitter.com/your_profile" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.facebook.com/your_profile" target="_blank"><i class="fab fa-facebook"></i></a>
