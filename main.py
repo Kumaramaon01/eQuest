@@ -99,7 +99,7 @@ def main():
     # Add icon and tooltip to col3
     with col3:
         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        st.image("images/EDSlogo.png", width=120)  # Replace with the path to your logo file
+        st.image("images/eQcb_142.gif", width=120)  # Replace with the path to your logo file
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
