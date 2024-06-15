@@ -186,7 +186,7 @@ def main():
         """
         <svg height="100" width="100%">
           <!-- Bold gold-colored horizontal line -->
-          <line x1="95%" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:3" />
+          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:3" />
         
           <!-- Earring-like golden ring -->
           <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="1" fill="gold" />
