@@ -40,6 +40,17 @@ def send_email(subject, message, from_email, to_email):
         st.success("Email sent successfully!")
         return False
 
+button_style = """
+    <style>
+        .stButton>button {
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+"""
+
+# Render the button with the defined style
+st.markdown(button_style, unsafe_allow_html=True)
+
 # Define button carousel items
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
 
