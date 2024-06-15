@@ -186,10 +186,10 @@ def main():
         """
         <svg height="100" width="100%">
           <!-- Bold gold-colored horizontal line -->
-          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:1" />
+          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:3" />
         
           <!-- Earring-like golden ring -->
-          <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="15" fill="gold" />
+          <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="1" fill="gold" />
         
           <!-- Pendulum-like motion effect -->
           <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="5s" dur="60s" repeatCount="indefinite"/>
