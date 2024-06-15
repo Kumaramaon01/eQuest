@@ -352,7 +352,7 @@ def main():
     
         # Submit button
         if st.button("Submit"):
-            if user_input && email:
+            if user_input and email:
                 subject = "Text Area Submission"
                 message = user_input
                 EMAIL = email
