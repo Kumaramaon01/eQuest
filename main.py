@@ -347,7 +347,7 @@ def main():
             email = st.text_input("Enter your mail:")
             user_input = st.text_area("Enter your Queries:")
         with col2:
-            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=190)
+            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=290)
     
         # Submit button
         if st.button("Submit"):
