@@ -148,7 +148,7 @@ def main():
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
-    on = st.toggle("Activate feature")
+    on = st.toggle("Change Theme")
     if on:
         # Set your background image URL
         background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
