@@ -30,8 +30,8 @@ def set_background(image_url):
     .stApp {{
         background-image: url('{image_url}');
         background-size: cover;
-        color: white; /* Set text color to white */
-        opacity: 0.8; /* Set opacity for the whole app */
+        /* color: white;  Set text color to white */
+        /* opacity: 0.8; Set opacity for the whole app */
     }}
     .stMarkdown, .stImage {{
         background-color: transparent !important; /* Make text and images transparent */
