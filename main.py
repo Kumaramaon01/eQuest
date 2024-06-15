@@ -151,7 +151,7 @@ def main():
     with col1:
         st.image("images/EDSlogo.jpg", width=120)
     with col2:
-        st.markdown("<h1 style='text-align: left;'>eQuest Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
     on = st.toggle("Change Theme")
     if on:
