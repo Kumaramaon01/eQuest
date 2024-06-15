@@ -254,7 +254,7 @@ def main():
             and more productive.
             """, unsafe_allow_html=True)
         with col2:
-            st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=620)
+            st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=580)
         
     elif st.session_state.script_choice == "eds":
         st.markdown("""
