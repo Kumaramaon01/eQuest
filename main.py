@@ -282,7 +282,7 @@ def main():
             """, unsafe_allow_html=True)
             st.link_button("Know More", "https://edsglobal.com", type="primary")
         with col2:
-            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=790)
+            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=590)
         
     elif st.session_state.script_choice == "visual":
         st.markdown("""
