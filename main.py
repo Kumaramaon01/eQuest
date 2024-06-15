@@ -124,7 +124,7 @@ def main():
     # Header section with logo and title
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
-        st.image("images/EDSlogo.jpg", width=80)
+        st.image("images/EDSlogo.jpg", width=120)
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
