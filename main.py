@@ -341,14 +341,15 @@ def main():
                 sim_print.main(reports, uploaded_file)
                 
     elif st.session_state.script_choice == "ask":
-        col1, col2, col3 = st.columns(3)
+        col1, col2 = st.columns(2)
         with col1:
             st.write(icon_with_tooltip1, unsafe_allow_html=True)
             email = st.text_input("Enter your mail:")
-        with col2:
-            st.write(icon_with_tooltip2, unsafe_allow_html=True)
             user_input = st.text_area("Enter your Queries:")
-        with col3:
+        # with col2:
+        #     st.write(icon_with_tooltip2, unsafe_allow_html=True)
+        #     user_input = st.text_area("Enter your Queries:")
+        with col2:
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg")
     
         # Submit button
