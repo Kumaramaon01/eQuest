@@ -352,7 +352,7 @@ def main():
     
         # Submit button
         if st.button("Submit"):
-            if user_input:
+            if user_input && email:
                 subject = "Text Area Submission"
                 message = user_input
                 EMAIL = email
@@ -361,7 +361,7 @@ def main():
                 # else:
                 #     st.error("Failed to send email.")
             else:
-                st.warning("Please enter some text.")
+                st.warning("Please enter your Queries.")
 
     elif st.session_state.script_choice == "exe":
         st.markdown("""
