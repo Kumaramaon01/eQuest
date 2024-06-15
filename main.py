@@ -235,23 +235,26 @@ def main():
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
-        st.markdown("""
-        <h3 style="color:red;">Welcome to eQuest Utilities</h3>
-
-        eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
-        Our utilities include:
-
-        - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
-        - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
-        - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
-        - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
-        - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
-
-        Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-        specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-        and more productive.
-        """, unsafe_allow_html=True)
-        st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("""
+            <h3 style="color:red;">Welcome to eQuest Utilities</h3>
+    
+            eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
+            Our utilities include:
+    
+            - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
+            - <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.
+            - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
+            - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
+            - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
+    
+            Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
+            specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+            and more productive.
+            """, unsafe_allow_html=True)
+        with col2:
+            st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=220)
         
     elif st.session_state.script_choice == "eds":
         st.markdown("""
