@@ -148,7 +148,7 @@ def main():
 
     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([0.9, 1, 1, 1, 0.7, 0.9, 0.9, 1.6, 1, 0.7, 0.7])
     with col1:
-        if st.button("Home", key="buttons"):
+        if st.button("Home"):
             st.session_state.script_choice = "home"
     with col2:
         if st.button("About EDS", key="buttons"):
