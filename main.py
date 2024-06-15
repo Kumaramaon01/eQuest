@@ -27,6 +27,75 @@ st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='wide
 )
 
 
+# HTML and CSS for static blood dripping effect
+html_code = """
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .heading-with-shadow {
+            font-size: 50px;
+            color: white;
+            text-shadow: 2px 2px 8px #FF0000;
+            position: relative;
+            z-index: 1;
+            margin: 50px;
+        }
+        .blood-drip {
+            position: absolute;
+            width: 15px;
+            height: 50px;
+            background: linear-gradient(to bottom, red, darkred);
+            border-radius: 50% 50% 0 0;
+            top: 80px;  /* Adjust this value to position the drips */
+            animation: drip 5s infinite;
+        }
+        .blood-drip::before, .blood-drip::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            animation: inherit;
+        }
+        .blood-drip::before {
+            left: -15px;
+            animation-delay: 1s;
+        }
+        .blood-drip::after {
+            left: 15px;
+            animation-delay: 2s;
+        }
+        @keyframes drip {
+            0%, 100% {
+                height: 50px;
+            }
+            50% {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="heading-with-shadow">eQuest Utilities</h1>
+<div class="blood-drip" style="left: 20%;"></div>
+<div class="blood-drip" style="left: 40%;"></div>
+<div class="blood-drip" style="left: 60%;"></div>
+<div class="blood-drip" style="left: 80%;"></div>
+
+</body>
+</html>
+"""
+
+
 # Function to set the background image using CSS
 def set_background(image_url):
     """
@@ -152,60 +221,6 @@ def main():
     with col1:
         st.image("images/EDSlogo.jpg", width=120)
     with col2:
-        html_code = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <style>
-                body {
-                    background-color: black;
-                    overflow: hidden;
-                }
-                .heading-with-shadow {
-                    font-size: 50px;
-                    color: white;
-                    text-shadow: 2px 2px 8px #FF0000;
-                    position: relative;
-                    z-index: 1;
-                    margin: 50px;
-                }
-                .blood-drop {
-                    position: absolute;
-                    width: 10px;
-                    height: 20px;
-                    background-color: red;
-                    border-radius: 50%;
-                    animation: fall 2s infinite linear;
-                    z-index: 0;
-                }
-                @keyframes fall {
-                    0% { top: -20px; opacity: 1; }
-                    100% { top: 100vh; opacity: 0; }
-                }
-            </style>
-        </head>
-        <body>
-    
-        <h1 class="heading-with-shadow">eQuest Utilities</h1>
-    
-        <script>
-            function createBloodDrop() {
-                const drop = document.createElement('div');
-                drop.classList.add('blood-drop');
-                drop.style.left = Math.random() * window.innerWidth + 'px';
-                document.body.appendChild(drop);
-                
-                setTimeout(() => {
-                    drop.remove();
-                }, 2000);
-            }
-    
-            setInterval(createBloodDrop, 100);
-        </script>
-    
-        </body>
-        </html>
-        """
         st.markdown(html_code, unsafe_allow_html=True)
         
     on = st.toggle("Change Theme")
