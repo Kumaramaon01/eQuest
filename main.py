@@ -149,7 +149,7 @@ def main():
     # Header section with logo and title
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
-        st.image("images/EDSlogo.jpg", width=120)
+        st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
@@ -183,7 +183,7 @@ def main():
     # Add icon and tooltip to col3
     with col3:
         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
+        st.image("images/EDSlogo.jpg", width=120)
 
     # Navigation bar with buttons below the header
     #st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
