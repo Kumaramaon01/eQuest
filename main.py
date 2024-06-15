@@ -51,6 +51,20 @@ button_style = """
 # Render the button with the defined style
 st.markdown(button_style, unsafe_allow_html=True)
 
+# Define CSS style with text-shadow effect for the heading
+heading_style = """
+    <style>
+        .heading-with-shadow {
+            text-align: left;
+            color: red;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+"""
+
+# Render the heading with the defined style
+st.markdown(heading_style, unsafe_allow_html=True)
+
 # Define button carousel items
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
 
