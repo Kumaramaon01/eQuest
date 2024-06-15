@@ -127,6 +127,10 @@ def main():
         
     on = st.toggle("Activate feature")
     if on:
+        # Set your background image URL
+        background_image_url = "https://as2.ftcdn.net/v2/jpg/08/10/30/81/1000_F_810308192_XdmKk6MeWp6ngPfyqV791M81cMC4E0Mn.jpg"
+        # Call the function to set the background
+        set_background(background_image_url)
         def set_background(image_url):
             st.write("hi")
             """
@@ -149,12 +153,6 @@ def main():
 
             # Inject the HTML code in the Streamlit app
             st.markdown(html_code, unsafe_allow_html=True)
-        
-            # Set your background image URL
-            background_image_url = "https://as2.ftcdn.net/v2/jpg/08/10/30/81/1000_F_810308192_XdmKk6MeWp6ngPfyqV791M81cMC4E0Mn.jpg"
-            
-            # Set the background
-            set_background(background_image_url)
         
     icon_with_tooltip1 = """
     <div style="text-align:center">
