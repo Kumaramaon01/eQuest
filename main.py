@@ -56,7 +56,7 @@ heading_style = """
     <style>
         .heading-with-shadow {
             text-align: left;
-            color: red;
+            color: green;
             text-shadow: 8px 8px 4px rgba(0, 0, 0, 15.8);
             background-color: white;
         }
