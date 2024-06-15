@@ -19,15 +19,6 @@ from matplotlib.animation import FuncAnimation
 TO_EMAIL = "rajeev@edsglobal.com"
 st.set_page_config(page_title="eQuest Utilities", layout='wide', page_icon="💡")
 
-col1, col2, col3 = st.columns([1, 1, 0.5])
-with col1:
-    st.image("images/EDSlogo.jpg", width=120)
-with col2:
-    st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
-with col3:
-    # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-    st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
-
 # Function to send email
 def send_email(subject, message, from_email, to_email):
     msg = MIMEMultipart()
@@ -128,11 +119,11 @@ def main():
         st.session_state.script_choice = "about"  # Set default to "about"
 
     # Header section with logo and title
-    # col1, col2, col3 = st.columns([1, 1, 0.5])
-    # with col1:
-    #     st.image("images/EDSlogo.jpg", width=120)
-    # with col2:
-    #     st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 1, 0.5])
+    with col1:
+        st.image("images/EDSlogo.jpg", width=120)
+    with col2:
+        st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
     icon_with_tooltip1 = """
     <div style="text-align:center">
@@ -155,9 +146,9 @@ def main():
     """
 
     # Add icon and tooltip to col3
-    #with col3:
-        # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        # st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
+    with col3:
+        st.write(icon_with_tooltip1, unsafe_allow_html=True)
+        st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
 
     # Navigation bar with buttons below the header
     #st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
