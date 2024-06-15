@@ -91,9 +91,6 @@ def main():
         </style>
     """
     
-    # # Display the CSS style
-    # st.markdown(card_button_style, unsafe_allow_html=True)
-    
     st.markdown(
         """
         <style>
