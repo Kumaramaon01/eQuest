@@ -19,6 +19,29 @@ from matplotlib.animation import FuncAnimation
 TO_EMAIL = "rajeev@edsglobal.com"
 st.set_page_config(page_title="eQuest Utilities", layout='wide', page_icon="💡")
 
+def set_background(image_url):
+    """
+    Function to set the background image using CSS.
+    """
+    # Define CSS style
+    background_style = f"""
+    <style>
+    body {{
+        background-image: url('{image_url}');
+        background-size: cover;
+    }}
+    </style>
+    """
+
+    # Inject the CSS in the Streamlit app
+    st.markdown(background_style, unsafe_allow_html=True)
+
+# Set your background image URL
+background_image_url = "https://as2.ftcdn.net/v2/jpg/08/10/30/81/1000_F_810308192_XdmKk6MeWp6ngPfyqV791M81cMC4E0Mn.jpg"
+
+# Set the background
+set_background(background_image_url)
+
 # Function to send email
 def send_email(subject, message, from_email, to_email):
     msg = MIMEMultipart()
