@@ -199,6 +199,21 @@ def main():
         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
         and more productive.
         """, unsafe_allow_html=True)
+
+        import streamlit as st
+        import time
+
+        # Function to display balloons continuously for a specified duration
+        def display_balloons(duration):
+            start_time = time.time()
+            while time.time() - start_time < duration:
+                st.balloons()
+                time.sleep(1)  # Adjust the sleep time if needed
+        
+        # Main Streamlit app code
+        st.write("Balloons will be displayed continuously for 1 minute.")
+        display_balloons(60)  # Display balloons for 60 seconds (1 minute)
+
         
     elif st.session_state.script_choice == "eds":
         st.markdown("""
