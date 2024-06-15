@@ -128,6 +128,7 @@ def main():
     on = st.toggle("Activate feature")
     if on:
         def set_background(image_url):
+            st.write("hi")
             """
             Function to set the background image using CSS.
             """
