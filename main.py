@@ -130,28 +130,22 @@ def main():
 
     # Navigation bar with buttons below the header
     #st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-    
     st.markdown(
         """
         <svg height="100" width="100%">
           <!-- Bold gold-colored horizontal line -->
-          <line x1="5%" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:10" />
-    
-          <!-- Earring-like golden rings -->
-          <circle cx="20%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
-          <circle cx="40%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
-          <circle cx="60%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
-          <circle cx="80%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
-    
+          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:10" />
+        
+          <!-- Earring-like golden ring -->
+          <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
+        
           <!-- Pendulum-like motion effect -->
-          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="60" begin="0s" dur="30s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="0s" dur="2s" repeatCount="indefinite"/>
         </svg>
         """,
         unsafe_allow_html=True
     )
 
-
-    
     col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1, 1, 1, 1, 1, 1, 1.6, 1, 0.7, 0.7])
     with col2:
         if st.button("About EDS", key="buttons"):
