@@ -138,13 +138,13 @@ def main():
         """
         <svg height="100" width="100%">
           <!-- Bold gold-colored horizontal line -->
-          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:10" />
+          <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:1" />
     
           <!-- Earring-like golden ring -->
           <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
     
           <!-- Pendulum-like motion effect -->
-          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="0s" dur="2s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="0s" dur="5s" repeatCount="indefinite"/>
         </svg>
         """,
         unsafe_allow_html=True
