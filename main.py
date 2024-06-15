@@ -19,34 +19,6 @@ from matplotlib.animation import FuncAnimation
 TO_EMAIL = "rajeev@edsglobal.com"
 st.set_page_config(page_title="eQuest Utilities", layout='wide', page_icon="💡")
 
-def set_background(image_url):
-    """
-    Function to set the background image using CSS.
-    """
-    # Define the HTML code with CSS background image property and transparency
-    html_code = f"""
-    <style>
-    .stApp {{
-        background-image: url('{image_url}');
-        background-size: cover;
-        color: white; /* Set text color to white */
-        opacity: 0.8; /* Set opacity for the whole app */
-    }}
-    .stMarkdown, .stImage {{
-        background-color: transparent !important; /* Make text and images transparent */
-    }}
-    </style>
-    """
-
-    # Inject the HTML code in the Streamlit app
-    st.markdown(html_code, unsafe_allow_html=True)
-
-# Set your background image URL
-background_image_url = "https://as2.ftcdn.net/v2/jpg/08/10/30/81/1000_F_810308192_XdmKk6MeWp6ngPfyqV791M81cMC4E0Mn.jpg"
-
-# Set the background
-set_background(background_image_url)
-
 # Function to send email
 def send_email(subject, message, from_email, to_email):
     msg = MIMEMultipart()
