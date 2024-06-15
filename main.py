@@ -66,7 +66,7 @@ def main():
     """
     
     # # Display the CSS style
-    st.markdown(card_button_style, unsafe_allow_html=True)
+    # st.markdown(card_button_style, unsafe_allow_html=True)
     
     st.markdown(
         """
@@ -129,13 +129,8 @@ def main():
     # Add icon and tooltip to col3
 
     # Navigation bar with buttons below the header
-    # st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-
-    # import streamlit as st
-
-    import streamlit as st
-
-    # Adding a bold, gold-colored horizontal line with earring-like golden rings at various positions using SVG in Streamlit
+    #st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+    
     st.markdown(
         """
         <svg height="100" width="100%">
