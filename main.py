@@ -43,7 +43,7 @@ def send_email(subject, message, from_email, to_email):
 button_style = """
     <style>
         .stButton>button {
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 """
