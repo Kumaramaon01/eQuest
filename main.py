@@ -38,7 +38,6 @@ def set_background(image_url):
     }}
     </style>
     """
-
     # Inject the HTML code in the Streamlit app
     st.markdown(html_code, unsafe_allow_html=True)
 
