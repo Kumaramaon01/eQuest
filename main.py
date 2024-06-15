@@ -17,7 +17,7 @@ from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
-st.set_page_config(page_title="eQuest Utilities", layout='wide', page_icon="💡")
+st.set_page_config(page_title="eQuest Utilities", layout='centered', page_icon="💡")
 
 # Function to set the background image using CSS
 def set_background(image_url):
@@ -49,7 +49,6 @@ def send_email(subject, message, from_email, to_email):
     msg['Subject'] = subject
 
     msg.attach(MIMEText(message, 'plain'))
-
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -365,8 +364,6 @@ def main():
                 EMAIL = email
                 if send_email(subject, message, EMAIL, TO_EMAIL):
                     st.success("Email sent successfully!")
-                # else:
-                #     st.error("Failed to send email.")
             else:
                 st.warning("Please enter your Queries.")
 
@@ -415,7 +412,6 @@ def main():
         Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
         However, they are available for download.
         """)
-        # Add more cards as needed
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.markdown("""
@@ -473,19 +469,18 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-    # Adding the social media links
 
 # Designed and Developed by section
 st.markdown(
     """
-        <div class="social-media" style="margin-top: 10px;">
-            <p>Designed and Developed by <a href="https://google.com" target="_blank"><b style="text-color: red;"><u>Rajeev Kumar</u>
-            </b></a></p>
-            <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
+    <div class="social-media" style="margin-top: 10px;">
+        <p>Designed and Developed by <a href="https://google.com" target="_blank"><b style="text-color: red;"><u>Rajeev Kumar</u>
+        </b></a></p>
+        <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
     """,
     unsafe_allow_html=True
 )
