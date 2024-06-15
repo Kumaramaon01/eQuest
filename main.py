@@ -152,7 +152,61 @@ def main():
     with col1:
         st.image("images/EDSlogo.jpg", width=120)
     with col2:
-        st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
+        html_code = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {
+                    background-color: black;
+                    overflow: hidden;
+                }
+                .heading-with-shadow {
+                    font-size: 50px;
+                    color: white;
+                    text-shadow: 2px 2px 8px #FF0000;
+                    position: relative;
+                    z-index: 1;
+                    margin: 50px;
+                }
+                .blood-drop {
+                    position: absolute;
+                    width: 10px;
+                    height: 20px;
+                    background-color: red;
+                    border-radius: 50%;
+                    animation: fall 2s infinite linear;
+                    z-index: 0;
+                }
+                @keyframes fall {
+                    0% { top: -20px; opacity: 1; }
+                    100% { top: 100vh; opacity: 0; }
+                }
+            </style>
+        </head>
+        <body>
+    
+        <h1 class="heading-with-shadow">eQuest Utilities</h1>
+    
+        <script>
+            function createBloodDrop() {
+                const drop = document.createElement('div');
+                drop.classList.add('blood-drop');
+                drop.style.left = Math.random() * window.innerWidth + 'px';
+                document.body.appendChild(drop);
+                
+                setTimeout(() => {
+                    drop.remove();
+                }, 2000);
+            }
+    
+            setInterval(createBloodDrop, 100);
+        </script>
+    
+        </body>
+        </html>
+        """
+        st.markdown(html_code, unsafe_allow_html=True)
         
     on = st.toggle("Change Theme")
     if on:
