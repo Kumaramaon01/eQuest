@@ -349,7 +349,7 @@ def main():
         with col2:
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=290)
         with col3:
-            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=290)
+            st.image("https://www.google.com/maps/place/Environmental+Design+Solutions/@28.5623353,77.1519628,17z/data=!3m1!4b1!4m6!3m5!1s0x390d1e6db59e9499:0x7317b8245be8ff43!8m2!3d28.5623353!4d77.1545377!16s%2Fg%2F1xgz95c0?entry=ttu", width=290)
     
         # Submit button
         if st.button("Submit"):
