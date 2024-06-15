@@ -257,29 +257,32 @@ def main():
             st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=560)
         
     elif st.session_state.script_choice == "eds":
-        st.markdown("""
-        <h3 style="color:red;">Overview</h3>
-
-        Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
-        EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
-        climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
-        simulation and green building certification.<br>
-
-        EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
-        level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
-        policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
-        Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
-        implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
-        large scale implementation programs.<br>
-
-        EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
-        - Sustainable Solutions for the Built Environment
-        - Strategy Consulting for Policy & Codes, and Research
-        - Outreach, Communication, Documentation, and Training
-
-        """, unsafe_allow_html=True)
-        st.link_button("Know More", "https://edsglobal.com", type="primary")
-            
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("""
+            <h3 style="color:red;">Overview</h3>
+    
+            Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
+            EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
+            climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
+            simulation and green building certification.<br>
+    
+            EDS has extensive experience in providing sustainable solutions at both, the macro level of policy advisory and planning, as well as a micro
+            level of developing standards and labeling for products and appliances. The scope of EDS projects range from international and national level
+            policy and code formulation to building-level integration of energy-efficiency parameters. EDS team has worked on developing the Energy Conservation
+            Building Code [ECBC] in India and supporting several other international building energy code development, training, impact assessment, and 
+            implementation. EDS has the experience of data collection & analysis, benchmarking, energy savings analysis, GHG impact assessment, and developing
+            large scale implementation programs.<br>
+    
+            EDS’ work supports the global endeavour towards a sustainable environment primarily through the following broad categories:
+            - Sustainable Solutions for the Built Environment
+            - Strategy Consulting for Policy & Codes, and Research
+            - Outreach, Communication, Documentation, and Training
+    
+            """, unsafe_allow_html=True)
+            st.link_button("Know More", "https://edsglobal.com", type="primary")
+        with col2:
+            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=290)
         
     elif st.session_state.script_choice == "visual":
         st.markdown("""
