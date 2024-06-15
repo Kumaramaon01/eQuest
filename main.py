@@ -66,7 +66,7 @@ def main():
     """
     
     # # Display the CSS style
-    # st.markdown(card_button_style, unsafe_allow_html=True)
+    st.markdown(card_button_style, unsafe_allow_html=True)
     
     st.markdown(
         """
