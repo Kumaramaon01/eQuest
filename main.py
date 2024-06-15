@@ -189,7 +189,7 @@ def main():
           <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:1" />
         
           <!-- Earring-like golden ring -->
-          <circle cx="95%" cy="50" r="1" stroke="goldenrod" stroke-width="5" fill="gold" />
+          <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="5" fill="gold" />
         
           <!-- Pendulum-like motion effect -->
           <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="5s" dur="3666s" repeatCount="indefinite"/>
