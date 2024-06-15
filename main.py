@@ -17,11 +17,19 @@ from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
-st.set_page_config(page_title="eQuest Utilities", layout='wide', initial_sidebar_state='expanded', menu_items={                          # Custom menu items
+# Set the page configuration with additional options
+st.set_page_config(
+    page_title="eQuest Utilities",        # Title of the web page
+    page_icon="💡",                       # Icon for the web page
+    layout='wide',                        # Use the wide layout
+    initial_sidebar_state='expanded',     # Initial state of the sidebar
+    menu_items={                          # Custom menu items
         'Get Help': 'https://www.example.com/help',
         'Report a bug': 'https://www.example.com/bug',
         'About': '# This is an **eQuest Utilities** application!'
-    } page_icon="💡")
+    }
+)
+
 
 # Function to set the background image using CSS
 def set_background(image_url):
