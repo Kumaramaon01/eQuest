@@ -251,6 +251,7 @@ def main():
         specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
         and more productive.
         """, unsafe_allow_html=True)
+        st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef")
         
     elif st.session_state.script_choice == "eds":
         st.markdown("""
