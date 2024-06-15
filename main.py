@@ -347,7 +347,7 @@ def main():
         with col2:
             st.write(icon_with_tooltip2, unsafe_allow_html=True)
         with col3:
-            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=120)
+            st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg")
             
 
         email = st.text_input("Enter your mail:")
