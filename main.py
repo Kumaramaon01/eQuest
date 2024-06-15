@@ -62,6 +62,18 @@ heading_style = """
         }
     </style>
 """
+# Define CSS style with box-shadow effect for the image
+image_style = """
+    <style>
+        .image-with-shadow {
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            margin: 10px; /* Add margin around the image */
+        }
+    </style>
+"""
+
+# Render the CSS style
+st.markdown(image_style, unsafe_allow_html=True)
 
 # Render the heading with the defined style
 st.markdown(heading_style, unsafe_allow_html=True)
@@ -124,7 +136,8 @@ def main():
     # Header section with logo and title
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
-        st.image("images/EDSlogo.jpg", width=120)  # Replace with the path to your logo file
+        st.image("images/EDSlogo.jpg", width=120, caption="Your Image Caption", use_column_width=True, output_format="auto", 
+             unsafe_allow_html=True, output_tag="<img class='image-with-shadow' src='data:image/png;base64,{encoded_image}'>")
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
