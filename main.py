@@ -349,7 +349,7 @@ def main():
         
         if uploaded_file is not None and reports_input is not None:
             if st.button("Convert to PDF"):
-                reports = [r.strip() for r in reports_input.split(',')]
+                # reports = [r.strip() for r in reports_input.split(',')]
                 # sim_print.main(reports, uploaded_file)
                 st.warning("Please use EXE for Now, will update soon.")
         else:
