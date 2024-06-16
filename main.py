@@ -347,10 +347,13 @@ def main():
                     ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
                     ["LV-B"])
         
-        if uploaded_file is not None:
+        if uploaded_file is not None and reports_input is not None:
             if st.button("Convert to PDF"):
                 reports = [r.strip() for r in reports_input.split(',')]
-                sim_print.main(reports, uploaded_file)
+                # sim_print.main(reports, uploaded_file)
+                st.warning("Please use EXE for Now, will update soon.")
+        else:
+            st.warning("Something Went Wrong!")
                 
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
