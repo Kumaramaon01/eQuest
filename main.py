@@ -197,7 +197,7 @@ def main():
           <circle cx="95%" cy="50" r="15" stroke="goldenrod" stroke-width="1" fill="gold" />
         
           <!-- Pendulum-like motion effect -->
-          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" begin="5s" dur="60s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="0" begin="5s" dur="60s" repeatCount="indefinite"/>
         </svg>
         """,
         unsafe_allow_html=True
