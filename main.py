@@ -152,7 +152,7 @@ def main():
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
-    on = st.toggle("Change Theme")
+    on = st.toggle("Select Theme")
     if on:
         # set_dark_theme()  # Call your function to set the dark theme
         pass  # Do nothing
