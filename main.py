@@ -287,17 +287,17 @@ def main():
         with col2:
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=590)
         
-    elif st.session_state.script_choice == "visual":
-        st.markdown("""
-        <h3 style="color:red;">Design and Visuals</h3>
-        """, unsafe_allow_html=True)
-        col1, col2 = st.columns([1,1])
-        with col1:
-           gif_path = "images/Translational_motion.gif"
-           st.image(gif_path)
-        with col2:
-            gif_path = "images/Translational_motion.gif"
-            st.image(gif_path)
+    # elif st.session_state.script_choice == "visual":
+    #     st.markdown("""
+    #     <h3 style="color:red;">Design and Visuals</h3>
+    #     """, unsafe_allow_html=True)
+    #     col1, col2 = st.columns([1,1])
+    #     with col1:
+    #        gif_path = "images/Translational_motion.gif"
+    #        # st.image(gif_path)
+    #     with col2:
+    #         gif_path = "images/Translational_motion.gif"
+    #         # st.image(gif_path)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
