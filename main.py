@@ -344,7 +344,7 @@ def main():
         uploaded_file = st.text_input("Enter folder path containing SIM files")
         reports_input = st.multiselect(
             "Enter Reports",
-            ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
+            ["LV-B", "LV-D", "LV-M", "LV-A", "LV-C", "LV-E", "LV-F", "LV-G", "LV-H", "LV-I", "LV-J", "LS-A", "LS-B", "LS-D", "LS-L", "LV-N", "LS-C", "LS-E", "LS-F", "LS-K", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E", "SS-A", "SS-B", "SS-C", "SS-D", "SS-E", "SS-M"],
             ["LV-B"])
         
         if uploaded_file is not None and reports_input is not None:
