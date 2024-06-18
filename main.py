@@ -161,7 +161,6 @@ def main():
         # Call the function to set the background
         # set_background(background_image_url)
     
-        
     icon_with_tooltip1 = """
     <div style="text-align:center">
         <span style="font-size:34px">
