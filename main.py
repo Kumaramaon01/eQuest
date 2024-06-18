@@ -152,13 +152,7 @@ def main():
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
-    # Condition to determine if the toggle should be disabled
-    should_disable = True  # Change this to your condition
-    if should_disable:
-        on = False  # Default to False when disabled
-    else:
-        on = st.toggle("Change Theme")
-    
+    on = st.toggle("Change Theme")
     if on:
         # set_dark_theme()  # Call your function to set the dark theme
         pass  # Do nothing
