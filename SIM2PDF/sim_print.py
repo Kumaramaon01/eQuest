@@ -9,7 +9,7 @@ import tempfile
 def main(input_sim_files, reports):
     if input_sim_files is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            temp_file.write(input_sim_files.getbuffer())
+            temp_file.write(input_sim_files.read())
             temp_file_path = temp_file.name
         sim_path = temp_file_path
         
