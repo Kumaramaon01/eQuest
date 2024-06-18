@@ -17,8 +17,8 @@ from matplotlib.animation import FuncAnimation
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
-# Set the page configuration with additional options
-st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='wide',
+# Set the page configuration with additional options layout='wide',
+st.set_page_config(page_title="eQuest Utilities", page_icon="💡",
     menu_items={                          # Custom menu items
         'Get Help': 'https://www.example.com/help',
         'Report a bug': 'https://www.example.com/bug',
