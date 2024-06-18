@@ -343,13 +343,13 @@ def main():
         
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
         reports_input = st.multiselect(
-                    "Enter Reports",
-                    ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
-                    ["LV-B"])
+            "Enter Reports",
+            ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
+            ["LV-B"])
         
         if uploaded_file is not None and reports_input is not None:
             if st.button("Convert to PDF"):
-                reports = [r.strip() for r in reports_input.split(',')]
+                reports = [r.strip() for r in reports_input]  # Clean up each report name
                 sim_print.main(reports, uploaded_file)
                 # st.warning("Please use EXE for Now, will update soon.")
         else:
