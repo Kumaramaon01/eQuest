@@ -4,6 +4,7 @@ import shutil
 from fpdf import FPDF
 from SIM2PDF.src_pdf import readSim
 import PyPDF2
+import tempfile
 
 def main(input_sim_files, reports):
     if input_sim_files is not None:
