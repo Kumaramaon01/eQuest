@@ -341,7 +341,7 @@ def main():
         Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
         """, unsafe_allow_html=True)
         
-        uploaded_file = st.sidebar.text_input("Enter folder path containing SIM files")
+        uploaded_file = st.text_input("Enter folder path containing SIM files")
         reports_input = st.multiselect(
             "Enter Reports",
             ["LV-B", "LV-D", "LS-C", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E"],
