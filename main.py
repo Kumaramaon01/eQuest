@@ -71,7 +71,7 @@ def send_email(subject, message, from_email, to_email):
 button_style = """
     <style>
         .stButton>button {
-            box-shadow: 8px 8px 8px rgba(0, 0, 0, 1.2);
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
         }
     </style>
 """
