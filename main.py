@@ -494,4 +494,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.snow()
+# st.snow()
