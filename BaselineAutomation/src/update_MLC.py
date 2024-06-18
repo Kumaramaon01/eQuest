@@ -57,13 +57,14 @@ def get_system_path(building_type, heat_type, area, floor):
                 return construction_library_systems_paths[2] # 3
             else:
                 return construction_library_systems_paths[3] # 4
-        elif area < 150000: # Building type 1 with area less than 150000
+        elif area > 25000 and area < 150000: # Building type 1 with area less than 150000
             if floor <= 5:
                 if heat_type == 0:
                     return construction_library_systems_paths[4] # 5
                 else:
                     return construction_library_systems_paths[5] # 6
-            elif floor == 4 or floor == 5: # Additional condition for floor 4 or 5
+        elif area<= 25000:
+            if floor == 4 or floor == 5: # Additional condition for floor 4 or 5
                 if heat_type == 0:
                     return construction_library_systems_paths[4] # 5
                 else:
