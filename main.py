@@ -27,22 +27,21 @@ st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='wide
 )
 
 # Function to set the background image using CSS
-def set_background(image_url):
+def set_dark_theme():
     """
-    Function to set the background image using CSS.
+    Function to set a dark theme using CSS.
     """
-    # Define the HTML code with CSS background image property and transparency
-    html_code = f"""
+    # Define the HTML code with CSS for a dark theme
+    html_code = """
     <style>
-    .stApp {{
-        background-image: url('{image_url}');
-        background-size: cover;
-        /* color: white;  Set text color to white */
-        /* opacity: 0.8; Set opacity for the whole app */
-    }}
-    .stMarkdown, .stImage {{
-        background-color: transparent !important; /* Make text and images transparent */
-    }}
+    .stApp {
+        background-color: black;  /* Set background color to black */
+        color: white;  /* Set text color to white */
+    }
+    .stMarkdown, .stImage, .stDataFrame, .stTable {
+        background-color: transparent !important; /* Make elements' background transparent */
+        color: white !important;  /* Ensure text color within these elements is white */
+    }
     </style>
     """
     # Inject the HTML code in the Streamlit app
@@ -155,10 +154,12 @@ def main():
         
     on = st.toggle("Change Theme")
     if on:
+        set_dark_theme()
         # Set your background image URL
         background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
         # Call the function to set the background
-        set_background(background_image_url)
+        # set_background(background_image_url)
+    
         
     icon_with_tooltip1 = """
     <div style="text-align:center">
