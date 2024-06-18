@@ -82,13 +82,13 @@ st.markdown(button_style, unsafe_allow_html=True)
 # Define CSS style with text-shadow effect for the heading
 heading_style = """
     <style>
-        .heading-with-shadow {
-            text-align: left;
-            color: red;
-            text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.4);
-            background-color: white;
-        }
-    </style>
+    .heading-with-shadow {
+        text-align: left;
+        color: red;
+        text-shadow: 0px 8px 4px rgba(255, 255, 255, 0.4);
+        background-color: white;
+    }
+</style>
 """
 
 # Render the heading with the defined style
