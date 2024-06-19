@@ -24,4 +24,5 @@ def main(reports, input_sim_files):
                     st.success("PDFs Generated Successfully!")
                 else:
                     st.error("Invalid directory path.")
+            
 
