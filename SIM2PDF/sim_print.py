@@ -6,10 +6,11 @@ from SIM2PDF.src_pdf import readSim
 import PyPDF2
 import tempfile
 
+# Function to process and convert SIM files to PDF
 def main(reports, input_sim_files):
     st.success("Inside sim_print.py")
-    st.success(input_sim_files)
-    
+    st.success([file.name for file in input_sim_files])
+
     if input_sim_files is not None and isinstance(input_sim_files, list):
         for input_sim_file in input_sim_files:
             try:
@@ -27,6 +28,3 @@ def main(reports, input_sim_files):
                 st.error(f"An error occurred while processing SIM file {input_sim_file.name}: {e}")
     else:
         st.error("No files uploaded or invalid input.")
-
-# Example usage
-# main(reports, input_sim_files)  # You need to pass the actual parameters here
