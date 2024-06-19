@@ -290,7 +290,7 @@ def main():
         
     elif st.session_state.script_choice == "visual":
         st.markdown("""
-        <h3 style="color:red;">Design and Visuals</h3>
+       
         """, unsafe_allow_html=True)
         df = pd.read_csv("database/Cleaned_data_for_model.csv")
         st.write(df)  
