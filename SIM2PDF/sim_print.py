@@ -7,6 +7,7 @@ import PyPDF2
 import tempfile
 
 def main(reports, input_sim_files):
+    st.success("Inside sim_print.py")
     st.success(input_sim_files)
     if input_sim_files is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
