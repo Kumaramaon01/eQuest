@@ -334,24 +334,35 @@ def main():
         <h3 style="color:red;">SIM to PDF Converter</h3>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
-        Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.
-        """, unsafe_allow_html=True)
+        st.markdown("""Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.""", unsafe_allow_html=True)
         
-        uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=True)
+        # Allow multiple .sim files to be uploaded
+        uploaded_files = st.file_uploader("Upload SIM files", type="sim", accept_multiple_files=True)
+        # Provide options for report selection
         reports_input = st.multiselect(
             "Enter Reports",
-            ["LV-B", "LV-D", "LV-M", "LV-A", "LV-C", "LV-E", "LV-F", "LV-G", "LV-H", "LV-I", "LV-J", "LS-A", "LS-B", "LS-D", "LS-L", "LV-N", "LS-C", "LS-E", "LS-F", "LS-K", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E", "SS-A", "SS-B", "SS-C", "SS-D", "SS-E", "SS-M"],
-            ["LV-B"])
-        if uploaded_file is not None and reports_input is not None:
+            ["LV-B", "LV-D", "LV-M", "LV-A", "LV-C", "LV-E", "LV-F", "LV-G", "LV-H", "LV-I", "LV-J", 
+             "LS-A", "LS-B", "LS-D", "LS-L", "LV-N", "LS-C", "LS-E", "LS-F", "LS-K", "PV-A", "BEPS", 
+             "BEPU", "SV-A", "PV-A", "PS-E", "SS-A", "SS-B", "SS-C", "SS-D", "SS-E", "SS-M"],
+            ["LV-B"]
+        )
+        
+        # Check if files and reports are selected
+        if uploaded_files and reports_input:
             if st.button("Convert to PDF"):
-                reports = [r.strip() for r in reports_input]  # Clean up each report name
-                st.success(reports)
-                st.success(uploaded_file)
-                sim_print.main(reports, uploaded_file)
-                # st.warning("Please use EXE for Now, will update soon.")
+                # Clean up each report name
+                reports = [r.strip() for r in reports_input]
+                
+                # Display success messages
+                st.success(f"Selected reports: {reports}")
+                st.success(f"Uploaded files: {[file.name for file in uploaded_files]}")
+                
+                # Process each uploaded file
+                for uploaded_file in uploaded_files:
+                    # Call the main function with reports and each file
+                    sim_print.main(reports, uploaded_file)
         else:
-            st.warning("Something Went Wrong!")
+            st.warning("Please upload SIM files and select reports.")
                 
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
