@@ -10,16 +10,18 @@ def main(reports, input_sim_files):
     st.success("Inside sim_print.py")
     st.success(input_sim_files)
     if input_sim_files is not None:
-        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            temp_file.write(input_sim_files.getbuffer())
-            temp_file_path = temp_file.name
-        sim_path = temp_file_path
+        try:
+            with tempfile.NamedTemporaryFile() as temp_dir:
+                # Save the uploaded file temporarily
+                sim_path = os.path.join(temp_dir, input_sim_files.name)
+                with open(sim_path, "wb") as f:
+                    f.write(input_sim_files.getbuffer())
+                sim_path = sim_path.replace('\n', '\r\n')
         
-        if os.path.isdir(sim_path):
-            st.success(sim_path)
-            readSim.extractReport(sim_path, reports)
-            st.success("PDFs Generated Successfully!")
-        else:
-            st.error("Invalid directory path.")
-    else:
-        st.error("No input file provided.")  
+                if os.path.isdir(sim_path):
+                    st.success(sim_path)
+                    readSim.extractReport(sim_path, reports)
+                    st.success("PDFs Generated Successfully!")
+                else:
+                    st.error("Invalid directory path.")
+
