@@ -17,10 +17,10 @@ def main(reports, input_sim_files):
                 with open(sim_path, "wb") as f:
                     f.write(input_sim_files.getbuffer())
                 sim_path = sim_path.replace('\n', '\r\n')
-        
+                
                 if os.path.isdir(sim_path):
                     st.success(sim_path)
-                    readSim.extractReport(sim_path, reports)
+                    # readSim.extractReport(sim_path, reports)
                     st.success("PDFs Generated Successfully!")
                 else:
                     st.error("Invalid directory path.")
