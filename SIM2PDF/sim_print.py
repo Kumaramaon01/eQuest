@@ -7,6 +7,7 @@ import PyPDF2
 import tempfile
 
 def main(input_sim_files, reports):
+    st.success(input_sim_files)
     if input_sim_files is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
             temp_file.write(input_sim_files.getbuffer())
