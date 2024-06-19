@@ -18,17 +18,13 @@ def main(reports, input_sim_files):
                     sim_path = os.path.join(temp_dir, input_sim_file.name)
                     with open(sim_path, "wb") as f:
                         f.write(input_sim_file.getbuffer())
-                    sim_path = sim_path.replace('\n', '\r\n')
-
-                    if os.path.isdir(sim_path):
-                        st.success(sim_path)
-                        # readSim.extractReport(sim_path, reports)
-                        st.success("PDFs Generated Successfully!")
-                    else:
-                        st.error("Invalid directory path.")
+                    
+                    # Process the SIM file
+                    readSim.extractReport(sim_path, reports)
+                    st.success(f"PDF Generated Successfully for {input_sim_file.name}!")
             
             except Exception as e:
-                st.error(f"An error occurred while updating SIM file: {e}")
+                st.error(f"An error occurred while processing SIM file {input_sim_file.name}: {e}")
     else:
         st.error("No files uploaded or invalid input.")
 
