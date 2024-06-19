@@ -361,8 +361,8 @@ def main():
                 for uploaded_file in uploaded_files:
                     # Call the main function with reports and each file
                     sim_print.main(reports, uploaded_file)
-        else:
-            st.warning("Please upload SIM files and select reports.")
+        # else:
+        #     st.warning("Please upload SIM files and select reports.")
                 
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
