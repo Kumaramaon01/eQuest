@@ -25,4 +25,6 @@ def main(reports, input_sim_files):
                 else:
                     st.error("Invalid directory path.")
             
-
+        except Exception as e:
+            st.error(f"An error occurred while updating SIM file: {e}")
+            return None, None
