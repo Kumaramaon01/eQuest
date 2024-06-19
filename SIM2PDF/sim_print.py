@@ -6,7 +6,7 @@ from SIM2PDF.src_pdf import readSim
 import PyPDF2
 import tempfile
 
-def main(input_sim_files, reports):
+def main(reports, input_sim_files):
     st.success(input_sim_files)
     if input_sim_files is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
