@@ -1,6 +1,7 @@
 import streamlit as st
 import subprocess
 import os
+import pandas as pd
 from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
