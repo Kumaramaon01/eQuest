@@ -350,7 +350,6 @@ def main():
                 st.success(reports)
                 st.success(uploaded_file)
                 sim_print.main(reports, uploaded_file)
-                
                 # st.warning("Please use EXE for Now, will update soon.")
         else:
             st.warning("Something Went Wrong!")
