@@ -343,13 +343,12 @@ def main():
             "Enter Reports",
             ["LV-B", "LV-D", "LV-M", "LV-A", "LV-C", "LV-E", "LV-F", "LV-G", "LV-H", "LV-I", "LV-J", "LS-A", "LS-B", "LS-D", "LS-L", "LV-N", "LS-C", "LS-E", "LS-F", "LS-K", "PV-A", "BEPS", "BEPU", "SV-A", "PV-A", "PS-E", "SS-A", "SS-B", "SS-C", "SS-D", "SS-E", "SS-M"],
             ["LV-B"])
-        st.success(uploaded_file)
         if uploaded_file is not None and reports_input is not None:
             if st.button("Convert to PDF"):
                 reports = [r.strip() for r in reports_input]  # Clean up each report name
                 st.success(reports)
                 st.success(uploaded_file)
-                # sim_print.main(reports, uploaded_file)
+                sim_print.main(reports, uploaded_file)
                 # st.warning("Please use EXE for Now, will update soon.")
         else:
             st.warning("Something Went Wrong!")
