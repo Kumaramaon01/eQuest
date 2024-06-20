@@ -234,8 +234,8 @@ def main():
         if st.button("Queries"):
             st.session_state.script_choice = "ask"
     with col11:
-        if st.button("Energy Prediction Model"):
-            st.session_state.script_choice = "visual"
+        if st.button("ML Model"):
+            st.session_state.script_choice = "ml"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
@@ -288,7 +288,7 @@ def main():
         with col2:
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=590)
         
-    elif st.session_state.script_choice == "visual":
+    elif st.session_state.script_choice == "ml":
         st.markdown("""
        
         """, unsafe_allow_html=True)
