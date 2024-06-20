@@ -234,7 +234,7 @@ def main():
         if st.button("Queries"):
             st.session_state.script_choice = "ask"
     with col11:
-        if st.button("Visual"):
+        if st.button("Energy Prediction Model"):
             st.session_state.script_choice = "visual"
 
     # Based on the user selection, display appropriate input fields and run the script
