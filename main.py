@@ -439,6 +439,9 @@ def main():
         st.markdown("""
         <h3 style="color:red;">Baseline Automation</h3>
         """, unsafe_allow_html=True)
+        st.markdown("""
+        <b>Purpose:</b> The Baseline Automation tool assists in modifying INP files based on user-defined criteria to create baseline models for comparison.
+        """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             uploaded_inp_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
