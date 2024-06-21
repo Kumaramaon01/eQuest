@@ -157,8 +157,8 @@ def main():
         st.image(logo_image_path, width=80)
         # Add clickable link below the image
         st.markdown(
-            f'<a href="{logo_url}" target="_blank">Click here to visit eQuest Utilities</a>',
-            unsafe_allow_html=True
+        f'<a href="{logo_url}" target="_blank"><img src="{logo_image_path}" width="80" style="display: block; margin: auto;" /></a>',
+        unsafe_allow_html=True
         )
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
