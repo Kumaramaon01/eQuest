@@ -154,7 +154,7 @@ def main():
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
         # Display the image
-        st.markdown(f'[![Logo Image]({logo_image_path})]({logo_url})', unsafe_allow_html=True)
+        st.image(logo_image_path, width=80)
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
