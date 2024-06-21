@@ -154,10 +154,11 @@ def main():
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
         # Display the image
-        st.image(logo_image_path, width=80)
+        # st.image(logo_image_path, width=80)
         # Add clickable link below the image
         st.markdown(
-        f'<a href="{logo_url}" target="_blank"><img src="{logo_image_path}" width="80" style="display: block; margin: auto;" /></a>',
+        f'<a href="{logo_url}" target="_blank">'
+        f'<img src="{logo_image_path}" width="80" style="display: block; margin: auto;" /></a>',
         unsafe_allow_html=True
         )
     with col2:
