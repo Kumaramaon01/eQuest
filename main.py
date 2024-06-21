@@ -298,7 +298,7 @@ def main():
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
         <h3 style="color:red;">INP Parser</h3>
-        <b>Purpose:</b> The INP Parser is designed to read and interpret INP files, which are the primary project files used by eQuest. These files contain all the necessary data about a building's energy model, including geometry, materials, systems, and schedules.
+        <b>Purpose:</b> The INP Parser is designed to read and interpret INP files, which are the primary project files used by eQuest. These files contain all the necessary data about a building's energy model, including geometry, materials, systems, and schedules.<br>
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
@@ -312,7 +312,7 @@ def main():
         Purpose: The Purging INP tool helps clean and update your INP files to ensure they are optimized and free of unnecessary data.
         - Removes redundant or obsolete data entries.
         - Updates outdated references to newer standards or templates.
-        - Improves the overall performance and manageability of the INP file.
+        - Improves the overall performance and manageability of the INP file.<br>
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
