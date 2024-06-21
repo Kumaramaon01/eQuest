@@ -154,13 +154,7 @@ def main():
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
         # Display the image
-        # st.image(logo_image_path, width=80)
-        # Add clickable link below the image
-        st.markdown(
-        f'<a href="{logo_url}" target="_blank">'
-        f'<img src="{logo_image_path}" width="80" style="display: block; margin: auto;" /></a>',
-        unsafe_allow_html=True
-        )
+        st.markdown(f'[![Logo Image]({logo_image_path})]({logo_url})', unsafe_allow_html=True)
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
