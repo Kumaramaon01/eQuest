@@ -309,6 +309,10 @@ def main():
     elif st.session_state.script_choice == "Purging INP":
         st.markdown("""
         <h3 style="color:red;">Purging INP</h3>
+        Purpose: The Purging INP tool helps clean and update your INP files to ensure they are optimized and free of unnecessary data.
+        - Removes redundant or obsolete data entries.
+        - Updates outdated references to newer standards or templates.
+        - Improves the overall performance and manageability of the INP file.
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
