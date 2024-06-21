@@ -298,6 +298,7 @@ def main():
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
         <h3 style="color:red;">INP Parser</h3>
+        A tool to parse INP files and extract meaningful data.
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
