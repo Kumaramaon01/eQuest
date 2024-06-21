@@ -145,11 +145,18 @@ def main():
     # Initialize session state for script_choice if it does not exist
     if 'script_choice' not in st.session_state:
         st.session_state.script_choice = "about"  # Set default to "about"
+        
+    # URL and image path
+    logo_url = "https://equest-utilities-edsglobal.streamlit.app/"
+    logo_image_path = "images/eQcb_142.gif"
 
     # Header section with logo and title
     col1, col2, col3 = st.columns([1, 1, 0.5])
     with col1:
-        st.image("images/eQcb_142.gif", width=80)  # Replace with the path to your logo file
+        st.markdown(
+        f'<a href="{logo_url}" target="_blank"><img src="{logo_image_path}" width="80" /></a>',
+        unsafe_allow_html=True
+        )
     with col2:
         st.markdown("<h1 class='heading-with-shadow'>eQuest Utilities</h1>", unsafe_allow_html=True)
         
