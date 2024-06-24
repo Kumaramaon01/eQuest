@@ -14,7 +14,7 @@ def get_report_and_save(report_function, sim_path, file_suffix):
         st.success(f"{file_suffix} Report Generated!")
         return temp_file_path
     except Exception as e:
-        st.error(f"Failed to generate {file_suffix} report: {e}")
+        st.success(f"Failed to generate {file_suffix}")
         return None
 
 def main(uploaded_file):
