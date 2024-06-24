@@ -103,9 +103,9 @@ def get_BEPS_report(name):
             beps_df.insert(0, 'RUNNAME', name)
     
             return beps_df
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            columns = ['BEPS-SOURCE', 'BEPS-UNIT', 'LIGHTS', 'TASK-LIGHTS', 'MISQ-EQUIP', 'SPACE-HEATING',
-                                'SPACE-COOLING', 'HEAT-REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRING-DISPLAY',
-                                'HT-PUMP-SUPPLEMENT', 'DOMEST-HOT-WTR', 'EXT-USAGE', 'TOTAL']
-            return pd.DataFrame(columns=columns)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        columns = ['BEPS-SOURCE', 'BEPS-UNIT', 'LIGHTS', 'TASK-LIGHTS', 'MISQ-EQUIP', 'SPACE-HEATING',
+                            'SPACE-COOLING', 'HEAT-REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRING-DISPLAY',
+                            'HT-PUMP-SUPPLEMENT', 'DOMEST-HOT-WTR', 'EXT-USAGE', 'TOTAL']
+        return pd.DataFrame(columns=columns)
