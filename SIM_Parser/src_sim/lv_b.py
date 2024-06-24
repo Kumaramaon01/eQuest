@@ -46,74 +46,81 @@ def _total_above_area_Info(lvb_df):
 
 # function get LVB report and compare with lvd report in case of: AG(Above Grade Area) and BG(Below Grade Area) area. 
 def get_LVB_report(name):
-    # Open the file named 'name' and read its contents
-    with open(name) as f:
-        # Read all lines from the file and store them in a list named flist
-        flist = f.readlines()
-
-        # Initialize an empty list to store line numbers where 'LV-B' occurs
-        lvb_count = [] 
-        # Iterate through each line in flist along with its line number
-        for num, line in enumerate(flist, 0):
-            # If 'LV-B' is in the line, append its line number to lvb_count list
-            if 'LV-B' in line:
-                lvb_count.append(num)
-            # If 'LV-C' is in the line, store its line number as numend
-            if 'LV-C' in line:
-                numend = num
-        # Store the line number of the first occurrence of 'LV-B'
-        numstart = lvb_count[0] 
-        # Slice flist from the start of 'LV-B' to the line before 'LV-C' and store it in lvb_rpt
-        lvb_rpt = flist[numstart:numend]
-        
-        lvb_str = []
-        # Iterate through each line in lvb_rpt
-        for line in lvb_rpt:
-            # Check conditions and append lines containing relevant data to lvb_str list
-            if (('NO-INFILT.' in line and 'INT' in line) or ('NO-INFILT.' in line and 'EXT' in line) or
-                ('AIR-CHANGE' in line and 'INT' in line) or ('AIR-CHANGE' in line and 'EXT' in line)):
-                lvb_str.append(line)       
-        
-        # result list to store filtered columns. after 10th column from last remaining values in 1 column.
-        result = []  
-        for line in lvb_str:
-            lvb_list = []
-            # Split the line by whitespace and store the result in splitter
-            splitter = line.split()
-            # Join the first part of the splitter except the last 10 elements and store it as space_name
-            space_name = " ".join(splitter[:-10])
-            # Add space_name as the first element of lvb_list
-            lvb_list=splitter[-10:]
-            lvb_list.insert(0,space_name)
-            # Append lvb_list to result
-            result.append(lvb_list)
+    try:
+        # Open the file named 'name' and read its contents
+        with open(name) as f:
+            # Read all lines from the file and store them in a list named flist
+            flist = f.readlines()
+    
+            # Initialize an empty list to store line numbers where 'LV-B' occurs
+            lvb_count = [] 
+            # Iterate through each line in flist along with its line number
+            for num, line in enumerate(flist, 0):
+                # If 'LV-B' is in the line, append its line number to lvb_count list
+                if 'LV-B' in line:
+                    lvb_count.append(num)
+                # If 'LV-C' is in the line, store its line number as numend
+                if 'LV-C' in line:
+                    numend = num
+            # Store the line number of the first occurrence of 'LV-B'
+            numstart = lvb_count[0] 
+            # Slice flist from the start of 'LV-B' to the line before 'LV-C' and store it in lvb_rpt
+            lvb_rpt = flist[numstart:numend]
             
-        # strore list to dataframe
-        lvb_df = pd.DataFrame(result) 
-        # Allot lvb_df columns from sim file
-        lvb_df.columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
-                             'LIGHTS(WATT / SOFT)', 'PEOPLE', 'EQUIP(WATT / SOFT)', 'INFILTRATION_METHOD', 'ACH',
-                             'AREA(SQFT)', 'VOLUME(CUFT)']
-        
-        # convert below columns of lvb_df to numeric datatypes
-        lvb_df['AREA(SQFT)'] = pd.to_numeric(lvb_df['AREA(SQFT)'])
-        lvb_df['VOLUME(CUFT)'] = pd.to_numeric(lvb_df['VOLUME(CUFT)'])
-        lvb_df['SPACE*FLOOR'] = pd.to_numeric(lvb_df['SPACE*FLOOR'])
-        lvb_df['LIGHTS(WATT / SOFT)'] = pd.to_numeric(lvb_df['LIGHTS(WATT / SOFT)'])
-        lvb_df['EQUIP(WATT / SOFT)'] = pd.to_numeric(lvb_df['EQUIP(WATT / SOFT)'])
-        lvb_df['PEOPLE'] = pd.to_numeric(lvb_df['PEOPLE'])
-
-        lvb_df['HEIGHT'] = lvb_df['VOLUME(CUFT)'] / lvb_df['AREA(SQFT)']
-        # Set the index name of lvb_df to name
-        lvb_df.index.name = name
-        # Extract the filename from the path and store it in name
-        value_before_backslash = ''.join(reversed(name)).split("\\")[0]
-        name1 = ''.join(reversed(value_before_backslash))
-        name = name1.rsplit(".", 1)[0]
-        # Insert a new column named 'RUNNAME' containing the filename
-        lvb_df.insert(0, 'RUNNAME', name)
-        
-        return lvb_df
+            lvb_str = []
+            # Iterate through each line in lvb_rpt
+            for line in lvb_rpt:
+                # Check conditions and append lines containing relevant data to lvb_str list
+                if (('NO-INFILT.' in line and 'INT' in line) or ('NO-INFILT.' in line and 'EXT' in line) or
+                    ('AIR-CHANGE' in line and 'INT' in line) or ('AIR-CHANGE' in line and 'EXT' in line)):
+                    lvb_str.append(line)       
+            
+            # result list to store filtered columns. after 10th column from last remaining values in 1 column.
+            result = []  
+            for line in lvb_str:
+                lvb_list = []
+                # Split the line by whitespace and store the result in splitter
+                splitter = line.split()
+                # Join the first part of the splitter except the last 10 elements and store it as space_name
+                space_name = " ".join(splitter[:-10])
+                # Add space_name as the first element of lvb_list
+                lvb_list=splitter[-10:]
+                lvb_list.insert(0,space_name)
+                # Append lvb_list to result
+                result.append(lvb_list)
+                
+            # strore list to dataframe
+            lvb_df = pd.DataFrame(result) 
+            # Allot lvb_df columns from sim file
+            lvb_df.columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
+                                 'LIGHTS(WATT / SOFT)', 'PEOPLE', 'EQUIP(WATT / SOFT)', 'INFILTRATION_METHOD', 'ACH',
+                                 'AREA(SQFT)', 'VOLUME(CUFT)']
+            
+            # convert below columns of lvb_df to numeric datatypes
+            lvb_df['AREA(SQFT)'] = pd.to_numeric(lvb_df['AREA(SQFT)'])
+            lvb_df['VOLUME(CUFT)'] = pd.to_numeric(lvb_df['VOLUME(CUFT)'])
+            lvb_df['SPACE*FLOOR'] = pd.to_numeric(lvb_df['SPACE*FLOOR'])
+            lvb_df['LIGHTS(WATT / SOFT)'] = pd.to_numeric(lvb_df['LIGHTS(WATT / SOFT)'])
+            lvb_df['EQUIP(WATT / SOFT)'] = pd.to_numeric(lvb_df['EQUIP(WATT / SOFT)'])
+            lvb_df['PEOPLE'] = pd.to_numeric(lvb_df['PEOPLE'])
+    
+            lvb_df['HEIGHT'] = lvb_df['VOLUME(CUFT)'] / lvb_df['AREA(SQFT)']
+            # Set the index name of lvb_df to name
+            lvb_df.index.name = name
+            # Extract the filename from the path and store it in name
+            value_before_backslash = ''.join(reversed(name)).split("\\")[0]
+            name1 = ''.join(reversed(value_before_backslash))
+            name = name1.rsplit(".", 1)[0]
+            # Insert a new column named 'RUNNAME' containing the filename
+            lvb_df.insert(0, 'RUNNAME', name)
+            
+            return lvb_df
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
+                     'LIGHTS(WATT / SOFT)', 'PEOPLE', 'EQUIP(WATT / SOFT)', 'INFILTRATION_METHOD', 'ACH',
+                     'AREA(SQFT)', 'VOLUME(CUFT)']
+        return pd.DataFrame(columns=columns)
     
 def _comapre_LVB_INP_report(name1, path):
     # Open the .inp file for reading
