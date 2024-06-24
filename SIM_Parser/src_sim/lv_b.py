@@ -115,12 +115,12 @@ def get_LVB_report(name):
             lvb_df.insert(0, 'RUNNAME', name)
             
             return lvb_df
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
-                     'LIGHTS(WATT / SOFT)', 'PEOPLE', 'EQUIP(WATT / SOFT)', 'INFILTRATION_METHOD', 'ACH',
-                     'AREA(SQFT)', 'VOLUME(CUFT)']
-        return pd.DataFrame(columns=columns)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            columns = ['SPACE', 'SPACE*FLOOR', 'SPACE_TYPE', 'AZIMUTH', 
+                         'LIGHTS(WATT / SOFT)', 'PEOPLE', 'EQUIP(WATT / SOFT)', 'INFILTRATION_METHOD', 'ACH',
+                         'AREA(SQFT)', 'VOLUME(CUFT)']
+            return pd.DataFrame(columns=columns)
     
 def _comapre_LVB_INP_report(name1, path):
     # Open the .inp file for reading
