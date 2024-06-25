@@ -55,9 +55,9 @@ def get_LVD_Summary_report(name):
             lvd_summ.insert(0, 'RUNNAME', name) 
             
         return lvd_summ
+    
     except Exception as e:
         print(f"An error occurred: {e}")
         columns = ['AZIMUTH', 'AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)', 'AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)', 'AVERAGE U-VALUE(WALLS+WINDOWS)(BTU/HR-SQFT-F)', 
                     'WINDOW(AREA)(SQFT)', 'WALL(AREA)(SQFT)', 'WINDOW+WALL(AREA)(SQFT)']
         return pd.DataFrame(columns=columns)
-    
