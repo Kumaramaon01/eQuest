@@ -3,7 +3,6 @@ import streamlit as st
 import tempfile
 from zipfile import ZipFile
 from SIM_Parser.src_sim import lv_b, ls_c, lv_d, pv_a, sv_a, beps, bepu, lvd_summary, sva_zone, ps_e, ps_f
- # lvd_summary,
 
 def get_report_and_save(report_function, sim_path, file_suffix):
     try:
