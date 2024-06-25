@@ -106,7 +106,7 @@ def get_LVD_report(name):
             lvd_df['SPACE'] = lvd_df['SPACE'].str.replace('in space: ','')
             
         return lvd_df
-     except Exception as e:
+    except Exception as e:
         print(f"An error occurred: {e}")
         columns = ['SURFACE', 'U-VALUE_Window(BTU/HR-SQFT-F)', 'AREA_Window(SQFT)', 'U-VALUE_Wall(BTU/HR-SQFT-F)',
                     'AREA_Wall(SQFT)', 'U-VALUE_Wall_Wind(BTU/HR-SQFT-F)', 'AREA_Wall_Wind(SQFT)', 'AZIMUTH']
