@@ -51,6 +51,6 @@ def get_LVD_Summary_report(name):
         # get the value before '.' in 1st column
         name = name1.rsplit(".", 1)[0]
         # insert into 1st column as RUNNAME
-        lvd_summ.insert(0, 'RUNNAME', name) 
+        lvd_summ.insert(0, 'RUNNAME', name)
         
-    return lvd_summ
+        return lvd_summ
