@@ -296,7 +296,7 @@ def main():
     elif st.session_state.script_choice == "sh":
         st.markdown("""
         <h3 style="color:red;">Schedule Generator</h3>
-        <b>Purpose:</b>Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
+        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=True)
         
