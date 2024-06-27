@@ -299,6 +299,9 @@ def main():
         <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
         """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=True)
+        if uploaded_file is not None:
+            if st.button("Get Schedule INP"):
+                inp_parserv01.main(uploaded_file)
         
         # df = pd.read_csv("database/Cleaned_data_for_model.csv")
         # st.write(df)  
