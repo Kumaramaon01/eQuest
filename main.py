@@ -210,7 +210,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1, 1, 1, 1, 1, 1, 1.4, 1, 0.7, 0.8])
+    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1, 1, 1, 1, 1, 1, 1.4, 0.9, 1, 0.7])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -236,11 +236,11 @@ def main():
         if st.button("EXE Files"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Queries"):
-            st.session_state.script_choice = "ask"
-    with col11:
         if st.button("Schedule Generator"):
             st.session_state.script_choice = "sh"
+    with col11:
+        if st.button("Queries"):
+            st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
