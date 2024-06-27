@@ -7,7 +7,7 @@ from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
-# from ScheduleGenerator import schedule_v01
+from ScheduleGenerator import schedule_v01
 from streamlit_card import card
 from PIL import Image as PILImage
 import smtplib
@@ -314,7 +314,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Run INP Parser"):
-                inp_parserv01.main(uploaded_file)
+                schedule_v01.main(uploaded_file)
 
     elif st.session_state.script_choice == "Purging INP":
         st.markdown("""
