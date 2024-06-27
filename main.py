@@ -303,7 +303,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Get Schedule INP"):
-                inp_parserv01.main(uploaded_file)
+                schedule_v01.main(uploaded_file)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
@@ -314,7 +314,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Run INP Parser"):
-                schedule_v01.main(uploaded_file)
+                inp_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "Purging INP":
         st.markdown("""
