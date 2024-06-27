@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from src import schedule
+# from src import schedule
 
 input_csv_path = input("Enter the path of the CSV file to update: ")
 
