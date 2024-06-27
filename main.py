@@ -298,10 +298,10 @@ def main():
         st.markdown("""
         <h3 style="color:red;">Schedule Generator</h3>
         <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
+        <br>
         """, unsafe_allow_html=True)
-        st.markdown("""""", unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         
+        uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             if st.button("Get Schedule INP"):
                 schedule_v01.main(uploaded_file)
