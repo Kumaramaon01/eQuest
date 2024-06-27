@@ -301,10 +301,7 @@ def main():
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=True)
         if uploaded_file is not None:
             if st.button("Get Schedule INP"):
-                inp_parserv01.main(uploaded_file)
-        
-        # df = pd.read_csv("database/Cleaned_data_for_model.csv")
-        # st.write(df)  
+                schedule_v01.main(uploaded_file)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
