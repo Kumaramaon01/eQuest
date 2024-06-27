@@ -210,7 +210,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 1, 1.4, 0.7, 1.2, 0.7])
+    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
