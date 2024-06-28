@@ -237,7 +237,7 @@ def main():
         if st.button("EXE Files"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Schedule Generator"):
+        if st.button("Schedule Generate"):
             st.session_state.script_choice = "sh"
     with col11:
         if st.button("Queries"):
