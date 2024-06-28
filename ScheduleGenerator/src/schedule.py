@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import streamlit as st
 
 def getScheduleINP(data):
     try:
@@ -102,6 +103,6 @@ def getScheduleINP(data):
             file.write("COMPUTE ..\n")
             file.write("STOP ..\n")
                 
-        print(f"New file created at: {new_file_path}")
+        
     except Exception as e:
         print(f"An error occurred while creating the new file: {e}")
