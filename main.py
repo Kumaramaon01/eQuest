@@ -303,7 +303,7 @@ def main():
         
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
-            if st.button("Get Schedule INP"):
+            if st.button("Generate INP"):
                 schedule_v01.getCSV(uploaded_file)
 
     elif st.session_state.script_choice == "INP Parser":
