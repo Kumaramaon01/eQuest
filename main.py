@@ -304,7 +304,11 @@ def main():
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             if st.button("Generate INP"):
-                schedule_v01.getCSV(uploaded_file)
+                st.write("Button clicked and file uploaded")
+                try:
+                    schedule_v01.getCSV(uploaded_file)
+                except NameError as e:
+                    st.error(f"NameError: {e}")
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
