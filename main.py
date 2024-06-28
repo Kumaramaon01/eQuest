@@ -301,8 +301,9 @@ def main():
         <br>
         """, unsafe_allow_html=True)
         
-        uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv"], accept_multiple_files=False)
+        uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type="csv", accept_multiple_files=False)
         st.write("Button clicked and file uploaded")
+        
         if uploaded_file is not None:
             if st.button("Generate INP"):
                 st.write("Button clicked and file uploaded")
