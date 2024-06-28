@@ -1,19 +1,18 @@
-import os
 import pandas as pd
-from ScheduleGenerator.src import schedule
 import streamlit as st
+from ScheduleGenerator.src import schedule
 
 def getCSV(uploaded_file):
-    if not os.path.exists(uploaded_file):
-        st.success("The file does not exist. Please check the path and try again.")
-    else:
-        try:
+    try:
+        # Check if the uploaded file is not None
+        if uploaded_file is not None:
             schedules = pd.read_csv(uploaded_file)
             schedule.getScheduleINP(schedules)
-        except Exception as e:
-            st.success(f"An error occurred while reading the CSV file: {e}")
+        else:
+            st.success("No file uploaded. Please upload a file and try again.")
+    except Exception as e:
+        st.success(f"An error occurred while reading the CSV file: {e}")
         
 if __name__ == "__main__":
-    # uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
-    # main(uploaded_file)
-    pass
+    uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
+    getCSV(uploaded_file)
