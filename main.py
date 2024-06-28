@@ -306,11 +306,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Generate INP"):
-                st.write("Button clicked and file uploaded")
-                try:
-                    schedule_v01.getCSV(uploaded_file)
-                except NameError as e:
-                    st.error(f"NameError: {e}")
+                schedule_v01.getCSV(uploaded_file)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
