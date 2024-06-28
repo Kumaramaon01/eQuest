@@ -234,13 +234,13 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("E"):#EXE Files
+        if st.button("EXE Files"):#EXE Files
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("S"): #Schedule Generator
+        if st.button("Schedule Generator"): #Schedule Generator
             st.session_state.script_choice = "sh"
     with col11:
-        if st.button("Q"): #Queries
+        if st.button("Queries"): #Queries
             st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
