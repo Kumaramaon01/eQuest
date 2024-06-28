@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import streamlit as st
 
 def getScheduleINP(data):
     try:
@@ -26,6 +25,7 @@ def getScheduleINP(data):
                 
                 if idx1 is not None and idx2 is not None and idx3 is not None:
                     break
+            print(idx1, idx2, idx3)
 
             file.write("INPUT ..\n\n")
             file.write("$ ---------------------------------------------------------\n")
@@ -102,17 +102,7 @@ def getScheduleINP(data):
             file.write("END ..\n")
             file.write("COMPUTE ..\n")
             file.write("STOP ..\n")
-    
-        # Write modified inp file 
-        with open(new_file_path, 'w', newline = '\r\n') as file:
-            file.writelines(new_file_path)
-
-        with open(new_file_path, 'rb') as f:
-            st.download_button(
-                label="Download Updated INP",
-                data=f,
-                file_name=f"{new_file_path}"
-            )
-        
+                
+        print(f"New file created at: {new_file_path}")
     except Exception as e:
         print(f"An error occurred while creating the new file: {e}")
