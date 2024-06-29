@@ -302,7 +302,6 @@ def main():
         """, unsafe_allow_html=True)
         
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
-        st.success("Hi")
         if uploaded_file is not None:
             if st.button("Generate INP"):
                 schedule_v01.getCSV(uploaded_file)
