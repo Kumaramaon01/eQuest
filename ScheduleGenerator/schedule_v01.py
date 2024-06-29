@@ -6,7 +6,7 @@ def getCSV(uploaded_file):
     try:
         # Check if the uploaded file is not None
         if uploaded_file is not None:
-            schedules = pd.read_csv(uploaded_file)
+            schedules = pd.read_csv(uploaded_file, encoding='ISO-8859-1')
             schedule.getScheduleINP(schedules)
         else:
             st.success("No file uploaded. Please upload a file and try again.")
