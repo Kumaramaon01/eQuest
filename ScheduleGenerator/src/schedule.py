@@ -15,7 +15,7 @@ def getScheduleINP(data):
     def write_line(line):
         output.write(line + '\r\n')
     
-    idx1, idx2, idx3 = None, None, None
+    idx1, idx2, idx3, idx4 = None, None, None, None
     for index, row in data.iterrows():
         if row[0] == 'Hour':
             idx1 = index
@@ -23,6 +23,8 @@ def getScheduleINP(data):
             idx2 = index
         elif row[0] == 'Month' and idx2 is not None and idx3 is None:
             idx3 = index + 1  # Adjust index as needed
+        elif row[0] == 'Annual Schedule' and idx1 is not None and idx2 is not None and idx3 is None:
+            idx4 = index - 1  # Adjust index as needed
         
         if idx1 is not None and idx2 is not None and idx3 is not None:
             break
@@ -74,9 +76,9 @@ def getScheduleINP(data):
     formatted_day_values = ', '.join(map(str, day_values))
     
     for index, row in data.iterrows():
-        if row[0] == 'Annual Schedule' or row[0] == 'Rows can be added to add more weekly schedule': # need to ask this
+        if row[0] == 'Annual Schedule': # need to ask this
             break
-        if index > idx2:
+        if index > idx2 and index < idx4:
             schedule_name = row[0]
             # Extract values from 2nd to 11th column for the current row
             row_values = row[1:11].tolist()
@@ -102,9 +104,7 @@ def getScheduleINP(data):
     formatted_values2 = ', '.join(map(str, day_values))
     
     for index, row in data.iterrows():
-        if row[0] == 'nan' or row[0] == 'NaN' or row[0] == 'NAN' or row[0] == 'Rows can be added to add more weekly schedule': # need to ask this
-            break
-        if index > idx3:
+        if index > idx3 and index < len(data):
             schedule_name = row[0]
             # Extract values from 2nd to 13th column for the current row
             row_values = row[1:13].tolist()
