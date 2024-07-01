@@ -19,6 +19,7 @@ MarkupSafe==2.1.5
 matplotlib
 mdurl==0.1.2
 numpy==1.26.4
+openpyxl
 packaging==24.0
 pandas==2.2.2
 pillow==10.3.0
