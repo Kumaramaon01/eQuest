@@ -510,8 +510,9 @@ st.markdown("""
 st.markdown(
     """
     <div class="social-media" style="margin-top: 10px;">
-        <p>Designed and Developed by <a href="https://edsglobal.com" target="_blank"><b style="text-color: red;"><u>Environmental Design Solutions, Pvt. Ltd</u>
-        </b></a></p>
+        # <p>Designed and Developed by <a href="https://edsglobal.com" target="_blank"><b style="text-color: red;"><u>Environmental Design Solutions, Pvt. Ltd</u>
+        # </b></a></p>
+        <p>@2024. All Rights Reserved</p>
         <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
         <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
