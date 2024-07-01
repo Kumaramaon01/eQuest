@@ -100,8 +100,9 @@ def getScheduleINP(data):
     # Extracting the 'Hour' row values from 2nd to 25th column
     month_values = data.loc[data.iloc[:, 0] == 'Month'].iloc[0, 1:13].tolist()
     day_values = data.loc[data.iloc[:, 0] == 'Month'].iloc[0, 1:13].tolist()
+    next_row_values = data.iloc[data.index[data.iloc[:, 0] == 'Month'][0] + 1, 1:13].tolist()
     formatted_values1 = ', '.join(map(str, month_values))
-    formatted_values2 = ', '.join(map(str, day_values))
+    formatted_values2 = ', '.join(map(str, next_row_values))
     
     for index, row in data.iterrows():
         if index > idx3 and index < len(data):
