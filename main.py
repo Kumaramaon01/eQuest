@@ -364,7 +364,7 @@ def main():
         # Check if files and reports are selected
         if uploaded_files and reports_input:
             if st.button("Convert to PDF"):
-                st.success("Kindly use exe for now, exe is running fine!!")
+                st.success("Kindly use exe for now, Will update this soon!!")
                 # # Clean up each report name
                 # reports = [r.strip() for r in reports_input]
                 
