@@ -364,20 +364,19 @@ def main():
         # Check if files and reports are selected
         if uploaded_files and reports_input:
             if st.button("Convert to PDF"):
-                # Clean up each report name
-                reports = [r.strip() for r in reports_input]
+                st.success("Kindly use exe for now, exe is running fine!!")
+                # # Clean up each report name
+                # reports = [r.strip() for r in reports_input]
                 
                 # Display success messages
-                st.success(f"Selected reports: {reports}")
-                st.success(f"Uploaded files: {[file.name for file in uploaded_files]}")
+                # st.success(f"Selected reports: {reports}")
+                # st.success(f"Uploaded files: {[file.name for file in uploaded_files]}")
                 
-                # Process each uploaded file
-                for uploaded_file in uploaded_files:
-                    # Call the main function with reports and each file
-                    sim_print.main(reports, uploaded_file)
-        # else:
-        #     st.warning("Please upload SIM files and select reports.")
-                
+                # # Process each uploaded file
+                # for uploaded_file in uploaded_files:
+                #     # Call the main function with reports and each file
+                #     sim_print.main(reports, uploaded_file)
+       
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
         with col1:
