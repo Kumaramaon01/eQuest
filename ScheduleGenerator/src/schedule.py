@@ -3,6 +3,18 @@ import pandas as pd
 import streamlit as st
 import io
 
+# Function to replace consecutive duplicates with &D
+def replace_consecutive_duplicates(values):
+    result = []
+    previous_value = None
+    for value in values:
+        if value == previous_value:
+            result.append('&D')
+        else:
+            result.append(value)
+        previous_value = value
+    return result
+
 def getScheduleINP(data):
     data.columns = data.columns.str.replace(' ', '_')
     desired_column_name = data.columns[1]
@@ -29,14 +41,14 @@ def getScheduleINP(data):
         if idx1 is not None and idx2 is not None and idx3 is not None:
             break
 
-    write_line("INPUT ..")
-    write_line("")
-    write_line("$ ---------------------------------------------------------")
-    write_line("$              Abort, Diagnostics")
-    write_line("$ ---------------------------------------------------------")
+    # write_line("INPUT ..")
+    # write_line("")
+    # write_line("$ ---------------------------------------------------------")
+    # write_line("$              Abort, Diagnostics")
+    # write_line("$ ---------------------------------------------------------")
 
     # Creating a new section called Day schedules
-    write_line("")
+    # write_line("")
     write_line("$ ---------------------------------------------------------")
     write_line("$              Day Schedules")
     write_line("$ ---------------------------------------------------------")
@@ -55,6 +67,8 @@ def getScheduleINP(data):
             schedule_name = row[0]
             # Extract values from 2nd to 25th column for the current row
             row_values = row[1:25].tolist()
+            # Replace consecutive duplicates with &D
+            row_values = replace_consecutive_duplicates(row_values)
             formatted_values = ', '.join(map(str, row_values))
             
             # Write to the file
@@ -120,14 +134,14 @@ def getScheduleINP(data):
             # write_line("")
     
     write_line("")
-    write_line("")
-    write_line("$ ---------------------------------------------------------")
-    write_line("$              THE END")
-    write_line("$ ---------------------------------------------------------")
-    write_line("")
-    write_line("END ..")
-    write_line("COMPUTE ..")
-    write_line("STOP ..")
+    # write_line("")
+    # write_line("$ ---------------------------------------------------------")
+    # write_line("$              THE END")
+    # write_line("$ ---------------------------------------------------------")
+    # write_line("")
+    # write_line("END ..")
+    # write_line("COMPUTE ..")
+    # write_line("STOP ..")
 
     # Get the content of the in-memory text stream
     inp_content = output.getvalue()
