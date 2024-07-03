@@ -426,9 +426,10 @@ def main():
             st.write("[Download](https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link)")
         with col5:
             st.image("images/baseline.png", width = 110)
-            # st.write("[Download](url_to_exe_1)")
+            # st.write("[Download](url_to_exe_1)")https://drive.google.com/file/d/1G2AJ4qhLmqdPm3G7-JzhXQasRF9ve14W/view?usp=drive_link
         with col6:
             st.image("images/schedule.png", width = 110)
+             st.write("[Download](https://drive.google.com/file/d/1G2AJ4qhLmqdPm3G7-JzhXQasRF9ve14W/view?usp=drive_link)")
             
         st.markdown("""
             <h5 style="color:black;">Documents to read</h5>
