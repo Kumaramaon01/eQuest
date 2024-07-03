@@ -15,6 +15,20 @@ def replace_consecutive_duplicates(values):
         previous_value = value
     return result
 
+#  Helper function to format lines with a maximum width and indentation
+def format_line(text, max_width=80, indent=9):
+    lines = []
+    while len(text) > max_width:
+        split_point = text.rfind(',', 0, max_width)
+        if split_point == -1:
+            split_point = text.rfind(' ', 0, max_width)
+            if split_point == -1:
+                split_point = max_width
+        lines.append(text[:split_point + 1])
+        text = ' ' * indent + text[split_point + 1:].lstrip()
+    lines.append(text)
+    return '\n'.join(lines)
+
 def getScheduleINP(data):
     data.columns = data.columns.str.replace(' ', '_')
     desired_column_name = data.columns[1]
@@ -72,10 +86,10 @@ def getScheduleINP(data):
             formatted_values = ', '.join(map(str, row_values))
             
             # Write to the file
-            write_line(f'"{schedule_name}" = DAY-SCHEDULE-PD')
-            write_line(f"   TYPE             = {type_value}")
-            write_line(f"   VALUES           = ( {formatted_values} )")
-            write_line("   ..")
+            write_line(format_line(f'"{schedule_name}" = DAY-SCHEDULE-PD'))
+            write_line(format_line(f"   TYPE             = {type_value}"))
+            write_line(format_line(f"   VALUES           = ( {formatted_values} )"))
+            write_line(format_line("   .."))
             # write_line("")
 
     # Creating a new section called week schedules after completion of Day Schedule
@@ -98,10 +112,10 @@ def getScheduleINP(data):
             row_values = row[1:11].tolist()
             formatted_day = ', '.join(f'"{value}"' for value in row_values)
 
-            write_line(f'"{schedule_name}" = WEEK-SCHEDULE-PD')
-            write_line(f"   TYPE             = {type_value}")
-            write_line(f"   DAY-SCHEDULES    = ( {formatted_day} )")
-            write_line("   ..")
+            write_line(format_line(f'"{schedule_name}" = WEEK-SCHEDULE-PD'))
+            write_line(format_line(f"   TYPE             = {type_value}"))
+            write_line(format_line(f"   DAY-SCHEDULES    = ( {formatted_day} )"))
+            write_line(format_line("   .."))
             # write_line("")
 
     # Creating a new section called Annual schedules after completion of Week Schedule
@@ -125,12 +139,12 @@ def getScheduleINP(data):
             row_values = row[1:13].tolist()
             formatted_days = ', '.join(f'"{value}"' for value in row_values)
 
-            write_line(f'"{schedule_name}" = SCHEDULE-PD')
-            write_line(f"   TYPE             = {type_value}")
-            write_line(f"   MONTH            = ( {formatted_values1} )")
-            write_line(f"   DAY              = ( {formatted_values2} )")
-            write_line(f"   WEEK-SCHEDULES   = ( {formatted_days} )")
-            write_line("   ..")
+            write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD'))
+            write_line(format_line(f"   TYPE             = {type_value}"))
+            write_line(format_line(f"   MONTH            = ( {formatted_values1} )"))
+            write_line(format_line(f"   DAY              = ( {formatted_values2} )"))
+            write_line(format_line(f"   WEEK-SCHEDULES   = ( {formatted_days} )"))
+            write_line(format_line("   .."))
             # write_line("")
     
     write_line("")
