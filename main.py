@@ -403,7 +403,7 @@ def main():
         st.markdown("""
         <h3 style="color:red;">EXE Files</h3>
         """, unsafe_allow_html=True)
-        col1, col2, col3, col4, col5 = st.columns(5)
+        col1, col2, col3, col4, col5, col6 = st.columns(6)
         with col1:
             # st.markdown("<h2>INP Parser</h2>", unsafe_allow_html=True)
             # st.write("Parsing INP files")
@@ -427,6 +427,8 @@ def main():
         with col5:
             st.image("images/baseline.png", width = 110)
             # st.write("[Download](url_to_exe_1)")
+         with col6:
+            st.image("images/schedule.png", width = 110)
             
         st.markdown("""
             <h5 style="color:black;">Documents to read</h5>
