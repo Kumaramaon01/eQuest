@@ -427,7 +427,7 @@ def main():
         with col5:
             st.image("images/baseline.png", width = 110)
             # st.write("[Download](url_to_exe_1)")
-         with col6:
+        with col6:
             st.image("images/schedule.png", width = 110)
             
         st.markdown("""
