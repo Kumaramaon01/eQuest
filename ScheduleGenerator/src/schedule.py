@@ -136,8 +136,7 @@ def getScheduleINP(data):
             schedule_name = row[0]
             # Extract values from 2nd to 13th column for the current row
             row_values = row[1:13].tolist()
-            row_values = replace_consecutive_duplicates(row_values)
-            formatted_days = ', '.join(f'"{value}"' if value != '&D' else value for value in row_values)
+            formatted_days = ', '.join(f'"{value}"' for value in row_values)
 
             write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
