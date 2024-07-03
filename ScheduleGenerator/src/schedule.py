@@ -147,7 +147,7 @@ def getScheduleINP(data):
             write_line(format_line("   .."))
             # write_line("")
     
-    write_line("")
+    # write_line("")
     # write_line("")
     # write_line("$ ---------------------------------------------------------")
     # write_line("$              THE END")
