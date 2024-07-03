@@ -30,7 +30,7 @@ def format_line(text, max_width=80, indent=9):
     return '\n'.join(lines)
 
 def getScheduleINP(data):
-    file_name = f"Scheduled.inp"
+    file_name = f"Schedules.inp"
     
     # Use StringIO to create an in-memory text stream
     output = io.StringIO()
