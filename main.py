@@ -401,7 +401,7 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.markdown("""
-        <h3 style="color:red;">EXE File</h3>
+        <h3 style="color:red;">EXE Files</h3>
         """, unsafe_allow_html=True)
         col1, col2, col3, col4, col5 = st.columns(5)
         with col1:
