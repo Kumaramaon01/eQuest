@@ -16,7 +16,7 @@ def replace_consecutive_duplicates(values):
     return result
 
 #  Helper function to format lines with a maximum width and indentation
-def format_line(text, max_width=80, indent=9):
+def format_line(text, max_width=80, indent=0):
     lines = []
     while len(text) > max_width:
         split_point = text.rfind(',', 0, max_width)
