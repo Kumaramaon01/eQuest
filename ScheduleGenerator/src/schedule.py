@@ -110,7 +110,8 @@ def getScheduleINP(data):
             schedule_name = row[0]
             # Extract values from 2nd to 11th column for the current row
             row_values = row[1:11].tolist()
-            formatted_day = ', '.join(f'"{value}"' for value in row_values)
+            row_values = replace_consecutive_duplicates(row_values)
+            formatted_day = ', '.join(f'"{value}"' if value != '&D' else value for value in row_values)
 
             write_line(format_line(f'"{schedule_name}" = WEEK-SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
@@ -137,7 +138,8 @@ def getScheduleINP(data):
             schedule_name = row[0]
             # Extract values from 2nd to 13th column for the current row
             row_values = row[1:13].tolist()
-            formatted_days = ', '.join(f'"{value}"' for value in row_values)
+            row_values = replace_consecutive_duplicates(row_values)
+            formatted_days = ', '.join(f'"{value}"' if value != '&D' else value for value in row_values)
 
             write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
