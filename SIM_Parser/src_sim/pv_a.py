@@ -48,7 +48,7 @@ def get_PVA_report(name, path):
         value_before_backslash = ''.join(reversed(name)).split("\\")[0]
         name1 = ''.join(reversed(value_before_backslash))
         name = name1.rsplit(".", 1)[0]
-        pva_df.insert(0, 'RUNNAME', name)
+        # pva_df.insert(0, 'RUNNAME', name)
 
         return pva_df
     except Exception as e:
