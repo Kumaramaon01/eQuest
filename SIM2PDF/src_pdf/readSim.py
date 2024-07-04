@@ -108,6 +108,7 @@ def generate_pdf(output_directory):
 def extractReport(input_sim_files, reports):
     try:
         # Ensure the directory exists
+        st.success(input_sim_files)
         if not os.path.exists(input_sim_files):
             st.error(f"The directory {input_sim_files} does not exist.")
         else:
