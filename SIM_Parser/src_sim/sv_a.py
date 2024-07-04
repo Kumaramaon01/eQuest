@@ -68,7 +68,7 @@ def get_SVA_report(name):
             value_before_backslash = ''.join(reversed(name)).split("\\")[0]
             name1 = ''.join(reversed(value_before_backslash))
             name = name1.rsplit(".", 1)[0]
-            sva_df.insert(0, 'RUNNAME', name)
+            # sva_df.insert(0, 'RUNNAME', name)
          
         return sva_df
     except Exception as e:
