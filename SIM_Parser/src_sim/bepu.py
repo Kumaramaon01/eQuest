@@ -110,7 +110,7 @@ def get_BEPU_report(name):
             # take the value before '.' as 1st column values.
             name = name1.rsplit(".", 1)[0]
             # insert name as column name 'RUNNAME'
-            bepu_df.insert(0, 'RUNNAME', name)
+            # bepu_df.insert(0, 'RUNNAME', name)
             
             return bepu_df
     except Exception as e:
