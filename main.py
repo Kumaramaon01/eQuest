@@ -240,11 +240,11 @@ def main():
         if st.button("Schedule Generator"): #Schedule Generator
             st.session_state.script_choice = "sh"
     with col11:
-        if st.button("Queries"): #Queries
-            st.session_state.script_choice = "ask"
-    with col12:
         if st.button("QA/QC"):
             st.session_state.script_choice = "q"
+    with col12:
+        if st.button("Queries"): #Queries
+            st.session_state.script_choice = "ask"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
