@@ -59,7 +59,7 @@ def get_PSF_report(name):
             value_before_backslash = ''.join(reversed(name)).split("\\")[0]
             name1 = ''.join(reversed(value_before_backslash))
             name = name1.rsplit(".", 1)[0]
-            psf_df.insert(0, 'RUNNAME', name)
+            # psf_df.insert(0, 'RUNNAME', name)
     
             # Find the index of the first occurrence of "JAN" followed by "FEB"
             start_index = None
