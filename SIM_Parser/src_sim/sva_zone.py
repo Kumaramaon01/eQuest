@@ -65,7 +65,7 @@ def get_SVA_Zone_report(name):
             value_before_backslash = ''.join(reversed(name)).split("\\")[0]
             name1 = ''.join(reversed(value_before_backslash))
             name = name1.rsplit(".", 1)[0]
-            sva_zone.insert(0, 'RUNNAME', name)
+            # sva_zone.insert(0, 'RUNNAME', name)
             # Dropping rows where 'ZONE_NAME' column does not contain specified substrings
             sva_zone = sva_zone[sva_zone['ZONE_NAME'].str.contains(r'\bzn\b|\bZn\b|\bZone\b|\bzone\b|\b\b')]
             # Dropping rows where 'SUPPLY-FLOW(CFM)' column does not contain specified substrings
