@@ -99,6 +99,6 @@ def get_BEPS_report(name):
         # take the value before '.' as 1st column values.
         name = name1.rsplit(".", 1)[0]
         # insert name as column name 'RUNNAME'
-        beps_df.insert(0, 'RUNNAME', name)
+        # beps_df.insert(0, 'RUNNAME', name)
 
         return beps_df
