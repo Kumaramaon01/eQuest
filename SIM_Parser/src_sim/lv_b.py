@@ -111,7 +111,7 @@ def get_LVB_report(name):
         name1 = ''.join(reversed(value_before_backslash))
         name = name1.rsplit(".", 1)[0]
         # Insert a new column named 'RUNNAME' containing the filename
-        lvb_df.insert(0, 'RUNNAME', name)
+        # lvb_df.insert(0, 'RUNNAME', name)
         
         return lvb_df
     
