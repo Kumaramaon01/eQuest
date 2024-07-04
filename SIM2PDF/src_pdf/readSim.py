@@ -72,7 +72,7 @@ def get_report_as_pdf(report_content, folder_name, path):
     temp_file = os.path.join(path, f'{folder_name}_temp.pdf')
     file_path = os.path.join(path, f'{folder_name}.pdf')
     pdf.output(temp_file)
-    print(f"PDF report Generated!")
+    st.success(f"PDF report Generated!")
 
     # Remove the first page using PyPDF2
     with open(temp_file, 'rb') as file:
