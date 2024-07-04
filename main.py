@@ -382,7 +382,7 @@ def main():
                 # Clean up each report name
                 reports = [r.strip() for r in reports_input]
                 sim_print.main(reports, uploaded_files)
-                # st.success()
+                st.success("OUTPUT: Check your working directory for the generated PDF files.")
        
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
