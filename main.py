@@ -211,7 +211,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7])
+    col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7, 0.6])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -242,6 +242,9 @@ def main():
     with col11:
         if st.button("Queries"): #Queries
             st.session_state.script_choice = "ask"
+    with col12:
+        if st.button("QA/QC"):
+            st.session_state.script_choice = "q"
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
@@ -341,6 +344,18 @@ def main():
         if uploaded_file is not None:
             if st.button("Run SIM Parser"):
                 sim_parserv01.main(uploaded_file)
+
+    elif st.session_state.script_choice == "q":
+        st.markdown("""
+        <h3 style="color:red;">Quality Check / Quality Assurance</h3>
+        <b>Purpose:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards. This process involves various activities and techniques aimed at identifying and correcting defects or inconsistencies in the product or service before it reaches the customer.<br>
+        <br>
+        """, unsafe_allow_html=True)
+        
+        # uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
+        # if uploaded_file is not None:
+        #     if st.button("Generate INP"):
+        #         schedule_v01.get_schedule(uploaded_file)
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.markdown("""
