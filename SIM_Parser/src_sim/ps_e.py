@@ -58,7 +58,7 @@ def get_PSE_report(name):
             value_before_backslash = ''.join(reversed(name)).split("\\")[0]
             name1 = ''.join(reversed(value_before_backslash))
             name = name1.rsplit(".", 1)[0]
-            pse_df.insert(0, 'RUNNAME', name)
+            # pse_df.insert(0, 'RUNNAME', name)
             # print(pse_df) 
     
             # Find the index of the first occurrence of "JAN" followed by "FEB"
