@@ -105,7 +105,7 @@ def generate_pdf(output_directory):
         print("No SIM files found in the specified directory.")
         
 # Function to extract relevent data from SIM file to based in input reports
-def extractReport(reports, input_sim_files):
+def extractReport(input_sim_files, reports):
     try:
         # Ensure the directory exists
         st.success(input_sim_files)
