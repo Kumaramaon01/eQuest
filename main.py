@@ -248,7 +248,7 @@ def main():
             - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
             - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
             - <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.
-    
+            - <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.
             Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
             specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
             and more productive.
