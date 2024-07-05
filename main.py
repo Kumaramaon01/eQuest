@@ -432,7 +432,7 @@ def main():
                 <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual Guide</a></li>
-                <li><b style="color:red;">Schedule Template:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Template of Schedules</a></li>
+                <li><b style="color:red;">Schedule Template:</b> <a href="https://drive.google.com/file/d/112sPbkonINRBrd9FfBvSDnE-IYEPb1PO/view?usp=drive_link" target="_blank">Template of Schedules</a></li>
             </ul>
             """, unsafe_allow_html=True)
         
