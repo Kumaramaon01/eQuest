@@ -21,7 +21,7 @@ def get_schedule(uploaded_file):
 
             schedule.getScheduleINP(schedules)
         else:
-            st.info("No file uploaded. Please upload a file and try again.")
+            st.info("Please upload a file to see some analytics.")
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
         
