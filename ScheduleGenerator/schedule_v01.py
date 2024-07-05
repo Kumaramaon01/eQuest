@@ -104,7 +104,7 @@ def analytics(uploaded_file):
                     )
 
         else:
-            st.info("No file uploaded. Please upload a file and try again.")
+            st.info("Please upload a file to see Analytics.")
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
 
