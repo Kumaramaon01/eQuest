@@ -30,7 +30,7 @@ def analytics(uploaded_file):
             if file_extension == 'csv':
                 data = pd.read_csv(uploaded_file, encoding='ISO-8859-1')
                 st.title("Visualization between Schedules of 24 hours")
-                data = data.drop([0, 3])
+                data = data.drop([0, 6])
                 first_col_name = data.columns[0]
                 index_to_drop_from = data[data[first_col_name] == "Rows can be added to add more weekly schedule"].index[0]
                 data = data[:index_to_drop_from]
@@ -38,7 +38,7 @@ def analytics(uploaded_file):
             elif file_extension == 'xlsx':
                 st.title("Visualization between Schedules of 24 hours")
                 data = pd.read_excel(uploaded_file)
-                data = data.drop([0, 3])
+                data = data.drop([0, 6])
                 first_col_name = data.columns[0]
                 index_to_drop_from = data[data[first_col_name] == "Rows can be added to add more weekly schedule"].index[0]
                 data = data[:index_to_drop_from]
