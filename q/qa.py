@@ -24,7 +24,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
      # Data for Output PS-F table
     data_ps_f = {
-        'Item': ['Data 1', 'Data 2', 'Equipment'],
+        'Item': ['Light', 'Equipment'],
         'Unit': ['kWh', 'kW', 'Data 6'],
         'Baseline': ['Data 7', 'Data 8', 'Data 9'],
         'Proposed': ['Data 10', 'Data 11', 'Data 12'],
