@@ -339,9 +339,11 @@ def main():
         <b>Purpose:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards. This process involves various activities and techniques aimed at identifying and correcting defects or inconsistencies in the product or service before it reaches the customer.<br>
         <br>
         """, unsafe_allow_html=True)
-        
-        uploaded_p_file = st.file_uploader("Upload a Proposed SIM file", type="sim", accept_multiple_files=False)
-        uploaded_b_file = st.file_uploader("Upload a Baseline SIM file", type="sim", accept_multiple_files=False)
+        col1, col2 = st.columns(2)
+        with col1:
+            uploaded_p_file = st.file_uploader("Upload a Proposed SIM file", type="sim", accept_multiple_files=False)
+        with col2:
+            uploaded_b_file = st.file_uploader("Upload a Baseline SIM file", type="sim", accept_multiple_files=False)
         if uploaded_p_file is not None and uploaded_b_file is not None:
             if st.button("Generate Table"):
                 schedule_v01.get_schedule(uploaded_p_file)
