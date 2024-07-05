@@ -246,7 +246,7 @@ def main():
             - <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.
             - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
             - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
-            - <b style="color:red;">Schedule Generator:</b> Modifies INP files based on the user input.
+            - <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.
     
             Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
             specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
