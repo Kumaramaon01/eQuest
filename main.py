@@ -194,22 +194,7 @@ def main():
         st.image("images/EDSlogo.jpg", width=120)
 
     #Navigation bar with buttons below the header
-    st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-    # st.markdown(
-    #     """
-    #     <svg height="100" width="100%">
-    #       <!-- Bold gold-colored horizontal line -->
-    #       <line x1="0" y1="50" x2="95%" y2="50" style="stroke:goldenrod;stroke-width:3" />
-        
-    #       <!-- Earring-like golden ring -->
-    #       <circle cx="95%" cy="50" r="1" stroke="goldenrod" stroke-width="1" fill="gold" />
-        
-    #       <!-- Pendulum-like motion effect -->
-    #       <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="0" begin="5s" dur="60s" repeatCount="indefinite"/>
-    #     </svg>
-    #     """,
-    #     unsafe_allow_html=True
-    # )
+    st.markdown('<hr style="border:2px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7, 0.8])
     with col2:
