@@ -24,18 +24,18 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
      # Data for Output PS-F table
     data_ps_f = {
-        'Column 1': ['Data 1', 'Data 2', 'Data 3'],
-        'Column 2': ['Data 4', 'Data 5', 'Data 6'],
-        'Column 3': ['Data 7', 'Data 8', 'Data 9'],
-        'Column 4': ['Data 10', 'Data 11', 'Data 12'],
-        'Column 5': ['Data 13', 'Data 14', 'Data 15']
+        'Item': ['Data 1', 'Data 2', 'Equipment'],
+        'Unit': ['kWh', 'kW', 'Data 6'],
+        'Baseline': ['Data 7', 'Data 8', 'Data 9'],
+        'Proposed': ['Data 10', 'Data 11', 'Data 12'],
+        '% savings': ['Data 13', 'Data 14', 'Data 15']
     }
 
     # Data for ELFH table
     data_elfh = {
-        'Column A': ['Value A1', 'Value A2'],
-        'Column B': ['Value B1', 'Value B2'],
-        'Column C': ['Value C1', 'Value C2']
+        'Item': ['Value A1', 'Value A2'],
+        'Baseline': ['Value B1', 'Value B2'],
+        'Proposed': ['Value C1', 'Value C2']
     }
 
     # Display Output PS-F table
