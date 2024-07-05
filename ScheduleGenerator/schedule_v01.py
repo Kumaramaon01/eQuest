@@ -83,7 +83,7 @@ def analytics(uploaded_file):
                     plt.savefig(buffer, format='png')
                     buffer.seek(0)
                     st.download_button(
-                        label="Download chart as PNG",
+                        label="Download chart",
                         data=buffer,
                         file_name="bar_chart.png",
                         mime="image/png"
@@ -143,7 +143,7 @@ def analytics(uploaded_file):
                     plt.savefig(buffer, format='png')
                     buffer.seek(0)
                     st.download_button(
-                        label="Download chart as PNG",
+                        label="Download chart",
                         data=buffer,
                         file_name="bar_chart.png",
                         mime="image/png"
