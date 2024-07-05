@@ -427,7 +427,7 @@ def main():
             st.write("[Download](https://drive.google.com/file/d/1G2AJ4qhLmqdPm3G7-JzhXQasRF9ve14W/view?usp=drive_link)")
             
         st.markdown("""
-            <h5 style="color:black;">Documents to read</h5>
+            <h5 style="color:black;">📄 Documents to read</h5>
             <ul>
                 <li><b style="color:red;">SIM to PDF:</b> <a href="https://docs.google.com/presentation/d/1WTdX3zmSMmyp0h1E5lfOsER8EkvFoOEj/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Data Extraction Tool: SIM to PDF</a></li>
                 <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
