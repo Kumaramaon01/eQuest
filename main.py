@@ -308,6 +308,7 @@ def main():
         if uploaded_file is not None:
             if st.button("Generate INP"):
                 schedule_v01.get_schedule(uploaded_file)
+        schedule_v01.analytics(uploaded_file)
 
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
