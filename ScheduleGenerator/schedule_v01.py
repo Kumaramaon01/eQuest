@@ -140,7 +140,7 @@ def analytics(uploaded_file):
 
         else:
             st.markdown("""
-            <h4 style="color:red;">⭐ Please Upload File to see Analytics ⭐ </h4>
+            <h4 style="color:red;">📊 Please Upload File to see Analytics 📊 </h4>
             """, unsafe_allow_html=True)
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
