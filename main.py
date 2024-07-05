@@ -194,7 +194,7 @@ def main():
         st.image("images/EDSlogo.jpg", width=120)
 
     #Navigation bar with buttons below the header
-    st.markdown('<hr style="border:2px solid black">', unsafe_allow_html=True)
+    st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7, 0.8])
     with col2:
