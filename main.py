@@ -335,7 +335,7 @@ def main():
 
     elif st.session_state.script_choice == "q":
         st.markdown("""
-        <h3 style="color:red;">Quality Check / Quality Assurance</h3>
+        <h3 style="color:red;">🔍 Quality Check / Quality Assurance</h3>
         <b>Purpose:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards. This process involves various activities and techniques aimed at identifying and correcting defects or inconsistencies in the product or service before it reaches the customer.<br>
         <br>
         """, unsafe_allow_html=True)
