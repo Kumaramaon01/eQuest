@@ -97,7 +97,8 @@ def analytics(uploaded_file):
                     fig_chart.savefig(buffer, format='png')
                     buffer.seek(0)
                     st.download_button(
-                        label=f"Download {value_column} chart",
+                        # label=f"Download {value_column} chart",
+                        label=f"Download",
                         data=buffer,
                         file_name=f"bar_chart_{value_column}.png",
                         mime="image/png"
