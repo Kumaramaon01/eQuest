@@ -46,6 +46,39 @@ def plot_chart(df, hour_column, value_column):
 
     return fig
 
+def save_chart_as_image(fig, filename):
+    buffer = BytesIO()
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    return buffer
+
+def download_image_as_file(buffer, filename):
+    st.markdown(get_image_download_link(buffer, filename), unsafe_allow_html=True)
+
+def get_image_download_link(buffer, filename):
+    buffer_str = base64.b64encode(buffer.read()).decode()
+    href = f'<a href="data:file/png;base64,{buffer_str}" download="{filename}">Download {filename}</a>'
+    return href
+
+def combine_images_as_document(image_buffers):
+    combined_fig = plt.figure(figsize=(10, 6))
+    num_images = len(image_buffers)
+    cols = 2
+    rows = (num_images + 1) // cols  # Ensure enough rows for all images
+
+    for i, buffer in enumerate(image_buffers):
+        image = plt.imread(BytesIO(buffer.getvalue()), format='png')
+        combined_fig.add_subplot(rows, cols, i + 1)
+        plt.imshow(image)
+        plt.axis('off')
+
+    plt.tight_layout()
+    combined_buffer = BytesIO()
+    combined_fig.savefig(combined_buffer, format='png')
+    combined_buffer.seek(0)
+    plt.close(combined_fig)
+    return combined_buffer
+
 def analytics(uploaded_file):
     try:
         if uploaded_file is not None:
@@ -109,7 +142,62 @@ def analytics(uploaded_file):
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
 
+def analytics1(uploaded_file):
+    try:
+        if uploaded_file is not None:
+            file_extension = get_file_extension(uploaded_file)
+            if file_extension == 'csv':
+                data = pd.read_csv(uploaded_file, encoding='ISO-8859-1')
+            elif file_extension == 'xlsx':
+                data = pd.read_excel(uploaded_file)
+            else:
+                st.error("Unsupported file format. Please upload a CSV or XLSX file.")
+                return
+
+            data = data.drop([0, 3])
+            first_col_name = data.columns[0]
+            index_to_drop_from = data[data[first_col_name] == "Rows can be added to add more weekly schedule"].index[0]
+            data = data[:index_to_drop_from]
+
+            df_rotated = data.T
+            df_rotated.columns = df_rotated.iloc[0]
+            df_rotated = df_rotated[1:]
+            df_rotated.reset_index(drop=True, inplace=True)
+            df_rotated = df_rotated.iloc[:, 2:-2]
+
+            hour_column = 'Hour'
+            if hour_column not in df_rotated.columns:
+                raise ValueError(f"'{hour_column}' column not found in the DataFrame")
+
+            value_columns = df_rotated.columns[df_rotated.columns.get_loc(hour_column) + 1:]
+
+            # Prepare to combine all images into one document
+            image_buffers = []
+
+            # Display charts and collect images
+            for value_column in value_columns:
+                fig_chart = plot_chart(df_rotated, hour_column, value_column)
+                buffer = save_chart_as_image(fig_chart, f"bar_chart_{value_column}.png")
+                image_buffers.append(buffer)
+                # st.pyplot(fig_chart)
+                # plt.close(fig_chart)
+
+            # Combine all images into one document
+            combined_buffer = combine_images_as_document(image_buffers)
+
+            # Display download button
+            if combined_buffer is not None:
+                st.markdown(get_image_download_link(combined_buffer, "combined_document.png"), unsafe_allow_html=True)
+            else:
+                st.error("Failed to combine images.")
+
+        else:
+            st.info("Please upload a file to see Analytics.")
+    except Exception as e:
+        st.error(f"An error occurred while reading the file: {e}")
 
 if __name__ == "__main__":
     uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
     get_schedule(uploaded_file)
+    analytics(uploaded_file)
+    analytics1(uploaded_file)
