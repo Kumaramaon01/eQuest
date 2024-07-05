@@ -33,9 +33,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
     # Data for ELFH table
     data_elfh = {
-        'Item': ['Value A1', 'Value A2'],
-        'Baseline': ['Value B1', 'Value B2'],
-        'Proposed': ['Value C1', 'Value C2']
+        'Item': ['Light'],
+        'Baseline': ['Value B1'],
+        'Proposed': ['Value C1']
     }
 
     # Display Output PS-F table
