@@ -446,7 +446,7 @@ def main():
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.markdown("""
-        <h3 style="color:red;">Baseline Automation</h3>
+        <h3 style="color:red;">🤖 Baseline Automation</h3>
         """, unsafe_allow_html=True)
         st.markdown("""
         <b>Purpose:</b> The Baseline Automation tool assists in modifying INP files based on user-defined criteria to create baseline models for comparison.
