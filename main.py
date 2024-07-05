@@ -8,6 +8,7 @@ from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
+from q import qa
 from streamlit_card import card
 from PIL import Image as PILImage
 import smtplib
