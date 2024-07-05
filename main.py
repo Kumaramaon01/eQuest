@@ -340,10 +340,11 @@ def main():
         <br>
         """, unsafe_allow_html=True)
         
-        # uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
-        # if uploaded_file is not None:
-        #     if st.button("Generate INP"):
-        #         schedule_v01.get_schedule(uploaded_file)
+        uploaded_p_file = st.file_uploader("Upload a Proposed SIM file", type="sim", accept_multiple_files=False)
+        uploaded_b_file = st.file_uploader("Upload a Baseline SIM file", type="sim", accept_multiple_files=False)
+        if uploaded_p_file is not None and uploaded_b_file is not None:
+            if st.button("Generate Table"):
+                schedule_v01.get_schedule(uploaded_p_file)
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.markdown("""
