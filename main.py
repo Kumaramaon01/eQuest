@@ -347,7 +347,7 @@ def main():
             uploaded_b_file = st.file_uploader("Upload a Baseline SIM file", type="sim", accept_multiple_files=False)
         if uploaded_p_file is not None and uploaded_b_file is not None:
             if st.button("Generate Table"):
-                schedule_v01.get_schedule(uploaded_p_file)
+                qa.getTwoSimFiles(uploaded_p_file, uploaded_b_file)
 
     elif st.session_state.script_choice == "SIM to PDF":
         st.markdown("""
