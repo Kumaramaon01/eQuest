@@ -39,12 +39,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     }
 
     # Display Output PS-F table
-    st.header('Output PS-F')
+    st.markdown("""
+    <h4 style="color:red;">Output PS-F</h4>""", unsafe_allow_html=True)
     df_ps_f = pd.DataFrame(data_ps_f)
     st.table(df_ps_f)
 
     # Display ELFH table
-    st.header('ELFH table')
+    st.markdown("""
+    <h4 style="color:red;">ELFH table</h4>""", unsafe_allow_html=True)
     df_elfh = pd.DataFrame(data_elfh)
     st.table(df_elfh)
     
