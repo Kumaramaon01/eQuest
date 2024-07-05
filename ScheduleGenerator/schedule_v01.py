@@ -24,7 +24,7 @@ def get_schedule(uploaded_file):
             st.info("No file uploaded. Please upload a file and try again.")
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
-        
+
 def analytics(uploaded_file):
     try:
         if uploaded_file is not None:
@@ -41,71 +41,52 @@ def analytics(uploaded_file):
             <h3 style="color:red;">Schedules of 24 hours</h3>
             """, unsafe_allow_html=True)
 
+            # Your data processing code
             data = data.drop([0, 3])
             first_col_name = data.columns[0]
             index_to_drop_from = data[data[first_col_name] == "Rows can be added to add more weekly schedule"].index[0]
             data = data[:index_to_drop_from]
 
             df_rotated = data.T
-
-            # Set the first row as the new header
             df_rotated.columns = df_rotated.iloc[0]
             df_rotated = df_rotated[1:]
-
-            # Reset the index to use default integer indexing
             df_rotated.reset_index(drop=True, inplace=True)
             df_rotated = df_rotated.iloc[:, 2:-2]
 
-            # Assume the "Hour" column exists
             hour_column = 'Hour'
             if hour_column not in df_rotated.columns:
                 raise ValueError(f"'{hour_column}' column not found in the DataFrame")
-            else:
-                # Identify the column immediately after the "Hour" column
-                hour_index = df_rotated.columns.get_loc(hour_column)
-                value_column = df_rotated.columns[hour_index + 1]
 
-                # Convert Hour column to numeric
-                df_rotated[hour_column] = pd.to_numeric(df_rotated[hour_column], errors='coerce')
-                df_rotated = df_rotated.dropna(subset=[hour_column])
+            value_columns = df_rotated.columns[df_rotated.columns.get_loc(hour_column) + 1:]
 
-                # Filter the DataFrame to include only hours from 1 to 24
-                df_rotated = df_rotated[(df_rotated[hour_column] >= 1) & (df_rotated[hour_column] <= 24)]
+            # Display charts in rows of two
+            num_charts = len(value_columns)
+            num_cols = 2
+            num_rows = (num_charts + 1) // num_cols  # Calculate number of rows needed
 
-                # Create a bar chart
-                fig, ax = plt.subplots(figsize=(11, 4))
-                ax.bar(df_rotated[hour_column], df_rotated[value_column], color='blue')
+            for i, value_column in enumerate(value_columns):
+                if i % num_cols == 0:
+                    columns = st.columns(num_cols)  # Create columns layout
+                fig_chart = plot_chart(df_rotated, hour_column, value_column)
+                with columns[i % num_cols]:  # Place chart in the current column
+                    st.pyplot(fig_chart)
 
-                # Set the labels and title
-                ax.set_xlabel('Hour')
-                ax.set_ylabel('Values')
-                ax.set_title('Bar Chart of Hour vs. Values')
-
-                # Ensure all x-axis values from 1 to 24 are visible
-                ax.set_xticks(range(1, 25))
-
-                # Show the bar chart
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-
-                # Streamlit plot display
-                st.pyplot(fig)
-
-                # Add a download button for the plot
-                buffer = BytesIO()
-                plt.savefig(buffer, format='png')
-                buffer.seek(0)
-                st.download_button(
-                    label="Download chart",
-                    data=buffer,
-                    file_name="bar_chart.png",
-                    mime="image/png"
-                )
+                    # Add a download button for the plot
+                    buffer = BytesIO()
+                    fig_chart.savefig(buffer, format='png')
+                    buffer.seek(0)
+                    st.download_button(
+                        label=f"Download {value_column} chart as PNG",
+                        data=buffer,
+                        file_name=f"bar_chart_{value_column}.png",
+                        mime="image/png"
+                    )
 
         else:
             st.info("No file uploaded. Please upload a file and try again.")
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
+
 
 if __name__ == "__main__":
     uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
