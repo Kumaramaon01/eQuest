@@ -139,7 +139,8 @@ def analytics(uploaded_file):
                     )
 
         else:
-            st.info("Please upload a file to see Analytics.")
+            <h3 style="color:red;">⭐ Please Upload File to see Analytics ⭐ </h3>
+            """, unsafe_allow_html=True)
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
 
