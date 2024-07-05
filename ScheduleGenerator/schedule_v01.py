@@ -191,9 +191,7 @@ def analytics1(uploaded_file):
                 st.markdown(get_image_download_link(combined_buffer, "combined_document.png"), unsafe_allow_html=True)
             else:
                 st.error("Failed to combine images.")
-
-        else:
-            st.info("Please upload a file to see Analytics.")
+                
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
 
