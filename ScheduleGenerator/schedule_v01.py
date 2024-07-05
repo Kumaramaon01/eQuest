@@ -139,6 +139,7 @@ def analytics(uploaded_file):
                     )
 
         else:
+            st.markdown("""
             <h3 style="color:red;">⭐ Please Upload File to see Analytics ⭐ </h3>
             """, unsafe_allow_html=True)
     except Exception as e:
