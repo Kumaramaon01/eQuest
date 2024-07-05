@@ -33,7 +33,7 @@ def plot_chart(df, hour_column, value_column):
     # Set the labels and title
     ax.set_xlabel('Hour')
     ax.set_ylabel('Values')
-    ax.set_title(f'Bar Chart of {value_column} vs. Hour')
+    ax.set_title(f'{value_column} vs. Hour')
 
     # Ensure all x-axis values from 1 to 24 are visible
     ax.set_xticks(range(1, 25))
