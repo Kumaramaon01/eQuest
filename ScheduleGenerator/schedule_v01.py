@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 from ScheduleGenerator.src import schedule
+import matplotlib.pyplot as plt
+from io import BytesIO
 
 def get_file_extension(uploaded_file):
     return uploaded_file.name.split('.')[-1]
