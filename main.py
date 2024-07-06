@@ -198,7 +198,7 @@ def main():
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8 = st.columns([1,1,1,1,1,1,1]) 
-    col9, col10, col11, col12 = st.columns([1,1,1,1])
+    col9, col10, col11, col12, col13 = st.columns([1,1,1,1,1])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -232,6 +232,9 @@ def main():
     with col12:
         if st.button("Queries"): #Queries
             st.session_state.script_choice = "ask"
+    with col13:
+        if st.button("Analytics"): #Queries
+            st.session_state.script_choice = "sh"
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
