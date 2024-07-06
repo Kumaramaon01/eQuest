@@ -202,7 +202,7 @@ def main():
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
     with col3:
-        if st.button("About eQuest"):
+        if st.button("eQuest Utilities"):
             st.session_state.script_choice = "about"
     with col4:
         if st.button("INP Parser"):
@@ -220,10 +220,10 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("EXE Files"):#EXE Files
+        if st.button("EXE Files"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Schedule Generator"): #Schedule Generator
+        if st.button("Schedule Generator"): 
             st.session_state.script_choice = "sh"
     with col11:
         if st.button("QA/QC"):
@@ -248,7 +248,8 @@ def main():
             - <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.
             - <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.
             - <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.
-            - <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.<br>
+            - <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.<br><br>
+            
             Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
             specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
             and more productive.
