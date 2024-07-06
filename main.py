@@ -232,6 +232,7 @@ def main():
     #     if st.button("Queries"): #Queries
     #         st.session_state.script_choice = "ask"
     # Create a dictionary mapping script names to their respective keys
+    # Create a dictionary mapping script names to their respective keys
     scripts = {
         "About EDS": "eds",
         "eQuest Utilities": "about",
@@ -246,13 +247,25 @@ def main():
         "Queries": "ask"
     }
 
-    # Add a radio button for script selection
-    selected_script = st.radio("Select a script:", list(scripts.keys()))
-    
-    # Store the selected script choice in session state
-    if st.button("Select", key="select_button"):
-        st.session_state.script_choice = scripts[selected_script]
+    # Display radio buttons horizontally using CSS
+    st.markdown(
+        """
+        <style>
+        .horizontal-radio > * {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
+    # Add a radio button for script selection
+    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio", format_func=lambda x: x, help='')
+    
+    # Store the script choice in session state
+    if st.button("Select", key="select_button"):
+        they_button
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         col1, col2 = st.columns(2)
