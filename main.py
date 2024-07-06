@@ -249,20 +249,16 @@ def main():
     
     with col1:
         if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col1"):
-            st.session_state.script_choice = scripts[selected_script]
-    
+            st.session_state.script_choice = scripts["About EDS"]
     with col2:
         if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col2"):
-            st.session_state.script_choice = scripts[selected_script]
-    
+            st.session_state.script_choice = scripts["eQuest Utilities"]
     with col3:
         if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col3"):
-            st.session_state.script_choice = scripts[selected_script]
-    
+            st.session_state.script_choice = scripts["INP Parser"]
     with col4:
         if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col4"):
-            st.session_state.script_choice = scripts[selected_script]
-   
+            st.session_state.script_choice = scripts["Purging INP"]
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
