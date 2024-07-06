@@ -231,43 +231,26 @@ def main():
     # with col12:
     #     if st.button("Queries"): #Queries
     #         st.session_state.script_choice = "ask"
-    # Create a dictionary mapping script names to their respective keys
-    # Create a dictionary mapping script names to their respective keys
-    # Create a dictionary mapping script names to their respective keys
-    scripts = {
-        "About EDS": "eds",
-        "eQuest Utilities": "about",
-        "INP Parser": "INP Parser",
-        "Purging INP": "Purging INP",
-        "SIM Parser": "SIM Parser",
-        "SIM to PDF": "SIM to PDF",
-        "Baseline Automation": "baselineAutomation",
-        "EXE Files": "exe",
-        "Schedule Generator": "sh",
-        "QA/QC": "q",
-        "Queries": "ask"
-    }
-
-    # Display radio buttons horizontally using custom CSS
-    st.markdown(
-        """
-        <style>
-        .horizontal-radio > * {
-            display: inline-block;
-            margin-right: 15px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    # Display radio buttons horizontally
+    col1, col2, col3, col4 = st.columns(4)
     
-    # Add a radio button for script selection
-    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio")
+    with col1:
+        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col1"):
+            st.session_state.script_choice = scripts[selected_script]
     
-    # Store the selected script choice in session state upon button click
-    if st.button("Select", key="select_button"):
-        st.session_state.script_choice = scripts[selected_script]
+    with col2:
+        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col2"):
+            st.session_state.script_choice = scripts[selected_script]
+    
+    with col3:
+        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col3"):
+            st.session_state.script_choice = scripts[selected_script]
+    
+    with col4:
+        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col4"):
+            st.session_state.script_choice = scripts[selected_script]
    
+    
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         col1, col2 = st.columns(2)
