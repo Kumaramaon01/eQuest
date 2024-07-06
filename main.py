@@ -245,25 +245,19 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-    # Display radio buttons horizontally using custom CSS
-    # st.markdown(
-    #     """
-    #     <style>
-    #     .horizontal-radio > * {
-    #         display: inline-block;
-    #         margin-right: 15px;
-    #     }
-    #     </style>
-    #     """,
-    #     unsafe_allow_html=True
-    # )
+    # Display radio buttons horizontally in a single row
+    num_columns = len(scripts)  # Calculate number of columns based on number of scripts
+    col_width = int(12 / num_columns)  # Calculate column width for Bootstrap grid system
     
-    # Display radio buttons horizontally
-    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio", help='')
+    # Create a single row layout
+    cols = st.beta_columns(num_columns)
     
-    # Store the selected script choice in session state upon selection
-    if selected_script:
-        st.session_state.script_choice = scripts[selected_script]
+    # Iterate over scripts and create radio buttons in each column
+    for idx, (script_name, script_key) in enumerate(scripts.items()):
+        with cols[idx % num_columns]:  # Ensure we wrap around columns
+            if st.radio("Select a script:", [script_name], key=f"script_radio_{script_key}"):
+                st.session_state.script_choice = script_key
+    
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
