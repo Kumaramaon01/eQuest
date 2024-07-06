@@ -232,6 +232,19 @@ def main():
     #     if st.button("Queries"): #Queries
     #         st.session_state.script_choice = "ask"
     # Display radio buttons horizontally
+    scripts = {
+    "About EDS": "eds",
+    "eQuest Utilities": "about",
+    "INP Parser": "INP Parser",
+    "Purging INP": "Purging INP",
+    "SIM Parser": "SIM Parser",
+    "SIM to PDF": "SIM to PDF",
+    "Baseline Automation": "baselineAutomation",
+    "EXE Files": "exe",
+    "Schedule Generator": "sh",
+    "QA/QC": "q",
+    "Queries": "ask"
+    }
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
