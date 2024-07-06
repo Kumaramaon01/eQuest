@@ -245,23 +245,45 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-  
-    # Display scripts in rows of 4 columns each
+
+    # Display scripts in rows of 4 columns each using HTML and CSS
     num_columns = 4  # Number of columns (scripts) per row
     script_names = list(scripts.keys())
     
     # Calculate number of rows needed
     num_rows = (len(script_names) + num_columns - 1) // num_columns  # Ceiling division to ensure enough rows
     
-    # Create layout for the scripts
+    # HTML and CSS for custom layout
+    st.markdown(
+        f"""
+        <style>
+        .script-container {{
+            display: grid;
+            grid-template-columns: repeat({num_columns}, 1fr);
+            gap: 20px;  /* Adjust the gap between columns */
+        }}
+        </style>
+        """
+    )
+
+    # Create a container for scripts
+    script_choice = None
+    script_idx = 0
     for row in range(num_rows):
-        cols = st.beta_columns(num_columns)
-        for col_idx in range(num_columns):
-            script_idx = row * num_columns + col_idx
-            if script_idx < len(script_names):
-                script_name = script_names[script_idx]
-                if cols[col_idx].radio("Select a script:", [script_name], key=f"script_radio_{script_name}"):
-                    st.session_state.script_choice = scripts[script_name]
+        col_idx = 0
+        st.write('<div class="script-container">')
+        while col_idx < num_columns and script_idx < len(script_names):
+            script_name = script_names[script_idx]
+            if st.radio(f"Select a script:", [script_name], key=f"script_radio_{script_name}"):
+                script_choice = scripts[script_name]
+            script_idx += 1
+            col_idx += 1
+        st.write('</div>')
+    
+    # Store the selected script choice in session state
+    if script_choice is not None:
+        st.session_state.script_choice = script_choice
+  
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
