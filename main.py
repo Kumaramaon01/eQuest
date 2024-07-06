@@ -198,92 +198,39 @@ def main():
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7, 0.8])
-    # with col2:
-    #     if st.button("About EDS", key="buttons"):
-    #         st.session_state.script_choice = "eds"
-    # with col3:
-    #     if st.button("eQuest Utilities"):
-    #         st.session_state.script_choice = "about"
-    # with col4:
-    #     if st.button("INP Parser"):
-    #         st.session_state.script_choice = "INP Parser"
-    # with col5:
-    #     if st.button("Purging INP"):
-    #         st.session_state.script_choice = "Purging INP"
-    # with col6:
-    #     if st.button("SIM Parser"):
-    #         st.session_state.script_choice = "SIM Parser"
-    # with col7:
-    #     if st.button("SIM to PDF"):
-    #         st.session_state.script_choice = "SIM to PDF"
-    # with col8:
-    #     if st.button("Baseline Automation"):
-    #         st.session_state.script_choice = "baselineAutomation"
-    # with col9:
-    #     if st.button("EXE Files"):
-    #         st.session_state.script_choice = "exe"
-    # with col10:
-    #     if st.button("Schedule Generator"): 
-    #         st.session_state.script_choice = "sh"
-    # with col11:
-    #     if st.button("QA/QC"):
-    #         st.session_state.script_choice = "q"
-    # with col12:
-    #     if st.button("Queries"): #Queries
-    #         st.session_state.script_choice = "ask"
-    # Display radio buttons horizontally
-    scripts = {
-    "About EDS": "eds",
-    "eQuest Utilities": "about",
-    "INP Parser": "INP Parser",
-    "Purging INP": "Purging INP",
-    "SIM Parser": "SIM Parser",
-    "SIM to PDF": "SIM to PDF",
-    "Baseline Automation": "baselineAutomation",
-    "EXE Files": "exe",
-    "Schedule Generator": "sh",
-    "QA/QC": "q",
-    "Queries": "ask"
-    }
-
-    # Display scripts in rows of 4 columns each using HTML and CSS
-    num_columns = 4  # Number of columns (scripts) per row
-    script_names = list(scripts.keys())
-    
-    # Calculate number of rows needed
-    num_rows = (len(script_names) + num_columns - 1) // num_columns  # Ceiling division to ensure enough rows
-    
-    # HTML and CSS for custom layout
-    st.markdown(
-        f"""
-        <style>
-        .script-container {{
-            display: grid;
-            grid-template-columns: repeat({num_columns}, 1fr);
-            gap: 20px;  /* Adjust the gap between columns */
-        }}
-        </style>
-        """
-    )
-
-    # Create a container for scripts
-    script_choice = None
-    script_idx = 0
-    for row in range(num_rows):
-        col_idx = 0
-        st.write('<div class="script-container">')
-        while col_idx < num_columns and script_idx < len(script_names):
-            script_name = script_names[script_idx]
-            if st.radio(f"Select a script:", [script_name], key=f"script_radio_{script_name}"):
-                script_choice = scripts[script_name]
-            script_idx += 1
-            col_idx += 1
-        st.write('</div>')
-    
-    # Store the selected script choice in session state
-    if script_choice is not None:
-        st.session_state.script_choice = script_choice
-  
+    with col2:
+        if st.button("About EDS", key="buttons"):
+            st.session_state.script_choice = "eds"
+    with col3:
+        if st.button("eQuest Utilities"):
+            st.session_state.script_choice = "about"
+    with col4:
+        if st.button("INP Parser"):
+            st.session_state.script_choice = "INP Parser"
+    with col5:
+        if st.button("Purging INP"):
+            st.session_state.script_choice = "Purging INP"
+    with col6:
+        if st.button("SIM Parser"):
+            st.session_state.script_choice = "SIM Parser"
+    with col7:
+        if st.button("SIM to PDF"):
+            st.session_state.script_choice = "SIM to PDF"
+    with col8:
+        if st.button("Baseline Automation"):
+            st.session_state.script_choice = "baselineAutomation"
+    with col9:
+        if st.button("EXE Files"):
+            st.session_state.script_choice = "exe"
+    with col10:
+        if st.button("Schedule Generator"): 
+            st.session_state.script_choice = "sh"
+    with col11:
+        if st.button("QA/QC"):
+            st.session_state.script_choice = "q"
+    with col12:
+        if st.button("Queries"): #Queries
+            st.session_state.script_choice = "ask"
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
