@@ -245,10 +245,11 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-    # Display radio buttons horizontally in a single row
+    # Display all radio buttons horizontally
     selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio", help='')
-    # Store the selected script choice in session state upon button click
-    if st.button("Select", key="select_button"):
+    
+    # Store the selected script choice in session state immediately upon selection
+    if selected_script:
         st.session_state.script_choice = scripts[selected_script]
     
     # Based on the user selection, display appropriate input fields and run the script
