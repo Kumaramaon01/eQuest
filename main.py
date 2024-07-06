@@ -245,20 +245,11 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col1"):
-            st.session_state.script_choice = scripts["About EDS"]
-    with col2:
-        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col2"):
-            st.session_state.script_choice = scripts["eQuest Utilities"]
-    with col3:
-        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col3"):
-            st.session_state.script_choice = scripts["INP Parser"]
-    with col4:
-        if st.radio("Select a script:", list(scripts.keys()), key="script_radio_col4"):
-            st.session_state.script_choice = scripts["Purging INP"]
+    # Display radio buttons horizontally in a single row
+    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio", help='')
+    # Store the selected script choice in session state upon button click
+    if st.button("Select", key="select_button"):
+        st.session_state.script_choice = scripts[selected_script]
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
