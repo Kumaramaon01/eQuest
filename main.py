@@ -246,23 +246,22 @@ def main():
     "Queries": "ask"
     }
   
-    # Display 4 scripts in a row horizontally
+    # Display scripts in rows of 4 columns each
     num_columns = 4  # Number of columns (scripts) per row
     script_names = list(scripts.keys())
     
-    # Ensure the number of columns is a multiple of the number of scripts
-    if len(script_names) % num_columns != 0:
-        st.warning(f"Number of scripts ({len(script_names)}) is not a multiple of {num_columns}. Display may not be optimal.")
+    # Calculate number of rows needed
+    num_rows = (len(script_names) + num_columns - 1) // num_columns  # Ceiling division to ensure enough rows
     
-    # Create a single row layout for the scripts
-    cols = st.beta_columns(num_columns)
-    
-    # Iterate over scripts and create radio buttons in each column
-    for idx, script_name in enumerate(script_names):
-        col_idx = idx % num_columns  # Calculate the column index
-        with cols[col_idx]:
-            if st.radio("Select a script:", [script_name], key=f"script_radio_{script_name}"):
-                st.session_state.script_choice = scripts[script_name]
+    # Create layout for the scripts
+    for row in range(num_rows):
+        cols = st.beta_columns(num_columns)
+        for col_idx in range(num_columns):
+            script_idx = row * num_columns + col_idx
+            if script_idx < len(script_names):
+                script_name = script_names[script_idx]
+                if cols[col_idx].radio("Select a script:", [script_name], key=f"script_radio_{script_name}"):
+                    st.session_state.script_choice = scripts[script_name]
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
