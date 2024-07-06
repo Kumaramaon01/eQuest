@@ -245,18 +245,17 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-    # Display radio buttons horizontally in a single row
+  
     num_columns = len(scripts)  # Calculate number of columns based on number of scripts
-    col_width = int(12 / num_columns)  # Calculate column width for Bootstrap grid system
     
-    # Create a single row layout
+    # Create a single row layout using columns
     cols = st.beta_columns(num_columns)
     
     # Iterate over scripts and create radio buttons in each column
     for idx, (script_name, script_key) in enumerate(scripts.items()):
-        with cols[idx % num_columns]:  # Ensure we wrap around columns
-            if st.radio("Select a script:", [script_name], key=f"script_radio_{script_key}"):
-                st.session_state.script_choice = script_key
+        cols[idx].radio("Select a script:", [script_name], key=f"script_radio_{script_key}")
+        if cols[idx].button("Select", key=f"select_button_{script_key}"):
+            st.session_state.script_choice = script_key
     
     
     # Based on the user selection, display appropriate input fields and run the script
