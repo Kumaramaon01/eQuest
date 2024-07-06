@@ -198,39 +198,60 @@ def main():
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns([0.9, 1, 0.9, 0.9, 0.9, 0.9, 1.3, 0.7, 1.2, 0.7, 0.8])
-    with col2:
-        if st.button("About EDS", key="buttons"):
-            st.session_state.script_choice = "eds"
-    with col3:
-        if st.button("eQuest Utilities"):
-            st.session_state.script_choice = "about"
-    with col4:
-        if st.button("INP Parser"):
-            st.session_state.script_choice = "INP Parser"
-    with col5:
-        if st.button("Purging INP"):
-            st.session_state.script_choice = "Purging INP"
-    with col6:
-        if st.button("SIM Parser"):
-            st.session_state.script_choice = "SIM Parser"
-    with col7:
-        if st.button("SIM to PDF"):
-            st.session_state.script_choice = "SIM to PDF"
-    with col8:
-        if st.button("Baseline Automation"):
-            st.session_state.script_choice = "baselineAutomation"
-    with col9:
-        if st.button("EXE Files"):
-            st.session_state.script_choice = "exe"
-    with col10:
-        if st.button("Schedule Generator"): 
-            st.session_state.script_choice = "sh"
-    with col11:
-        if st.button("QA/QC"):
-            st.session_state.script_choice = "q"
-    with col12:
-        if st.button("Queries"): #Queries
-            st.session_state.script_choice = "ask"
+    # with col2:
+    #     if st.button("About EDS", key="buttons"):
+    #         st.session_state.script_choice = "eds"
+    # with col3:
+    #     if st.button("eQuest Utilities"):
+    #         st.session_state.script_choice = "about"
+    # with col4:
+    #     if st.button("INP Parser"):
+    #         st.session_state.script_choice = "INP Parser"
+    # with col5:
+    #     if st.button("Purging INP"):
+    #         st.session_state.script_choice = "Purging INP"
+    # with col6:
+    #     if st.button("SIM Parser"):
+    #         st.session_state.script_choice = "SIM Parser"
+    # with col7:
+    #     if st.button("SIM to PDF"):
+    #         st.session_state.script_choice = "SIM to PDF"
+    # with col8:
+    #     if st.button("Baseline Automation"):
+    #         st.session_state.script_choice = "baselineAutomation"
+    # with col9:
+    #     if st.button("EXE Files"):
+    #         st.session_state.script_choice = "exe"
+    # with col10:
+    #     if st.button("Schedule Generator"): 
+    #         st.session_state.script_choice = "sh"
+    # with col11:
+    #     if st.button("QA/QC"):
+    #         st.session_state.script_choice = "q"
+    # with col12:
+    #     if st.button("Queries"): #Queries
+    #         st.session_state.script_choice = "ask"
+    # Create a dictionary mapping script names to their respective keys
+    scripts = {
+        "About EDS": "eds",
+        "eQuest Utilities": "about",
+        "INP Parser": "INP Parser",
+        "Purging INP": "Purging INP",
+        "SIM Parser": "SIM Parser",
+        "SIM to PDF": "SIM to PDF",
+        "Baseline Automation": "baselineAutomation",
+        "EXE Files": "exe",
+        "Schedule Generator": "sh",
+        "QA/QC": "q",
+        "Queries": "ask"
+    }
+
+    # Add a radio button for script selection
+    selected_script = st.radio("Select a script:", list(scripts.keys()))
+    
+    # Store the selected script choice in session state
+    if st.button("Select", key="select_button"):
+        st.session_state.script_choice = scripts[selected_script]
 
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
