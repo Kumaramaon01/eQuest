@@ -245,10 +245,24 @@ def main():
     "QA/QC": "q",
     "Queries": "ask"
     }
-    # Display all radio buttons horizontally
-    selected_script = st.radio("", list(scripts.keys()), key="script_radio", help='')
+    # Display radio buttons horizontally using custom CSS
+    st.markdown(
+        """
+        <style>
+        .horizontal-radio > * {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     
-    # Store the selected script choice in session state immediately upon selection
+    # Create a horizontal container for radio buttons
+    script_names = list(scripts.keys())
+    selected_script = st.radio("Select a script:", script_names, key="script_radio", format_func=lambda x: x)
+    
+    # Store the selected script choice in session state upon selection
     if selected_script:
         st.session_state.script_choice = scripts[selected_script]
     
