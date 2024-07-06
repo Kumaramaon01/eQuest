@@ -248,13 +248,13 @@ def main():
         "Queries": "ask"
     }
 
-    # Display radio buttons horizontally using CSS
+    # Display radio buttons horizontally using custom CSS
     st.markdown(
         """
         <style>
         .horizontal-radio > * {
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 15px;
         }
         </style>
         """,
@@ -262,12 +262,11 @@ def main():
     )
     
     # Add a radio button for script selection
-    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio", format_func=lambda x: x)
+    selected_script = st.radio("Select a script:", list(scripts.keys()), key="script_radio")
     
-    # Store the script choice in session state upon button click
+    # Store the selected script choice in session state upon button click
     if st.button("Select", key="select_button"):
         st.session_state.script_choice = scripts[selected_script]
-    
    
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
