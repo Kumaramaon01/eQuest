@@ -221,7 +221,7 @@ def main():
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
     with col9:
-        if st.button("EXE Files"):
+        if st.button("EXE and Resources"):
             st.session_state.script_choice = "exe"
     with col10:
         if st.button("Schedule Generator"): 
