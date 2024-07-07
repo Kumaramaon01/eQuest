@@ -347,24 +347,9 @@ def main():
                 sim_parserv01.main(uploaded_file)
                 
     elif st.session_state.script_choice == "login":
-        # Custom CSS for the login box
-        st.markdown(
-            """
-            <style>
-            .login-box {
-                background-color: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-        # Main login box
-        st.markdown('<div class="login-box">', unsafe_allow_html=True)
-        st.title("🔒 Login Page")
-    
+        st.markdown("""
+        <h3 style="color:red;">🔒 Login</h3>
+        """, unsafe_allow_html=True)
         # Create input fields for username and password
         username = st.text_input("Username")
         password = st.text_input("Password", type="password")
@@ -377,8 +362,6 @@ def main():
                 st.write("Welcome to the app!")
             else:
                 st.error("❌ Incorrect username or password")
-    
-        st.markdown('</div>', unsafe_allow_html=True)
                 
     elif st.session_state.script_choice == "reference":
         st.markdown("""
