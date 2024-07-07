@@ -355,10 +355,12 @@ def main():
         st.markdown("""
             <ul>
                 <li><b style="color:red;">DOE2.com:</b> <a href="https://www.doe2.com/" target="_blank">This is the primary website for eQuest and DOE-2, offering downloads, documentation.</a></li>
-                <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
-                <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
-                <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual Guide</a></li>
-                <li><b style="color:red;">Schedule Template:</b> <a href="https://drive.google.com/file/d/112sPbkonINRBrd9FfBvSDnE-IYEPb1PO/view?usp=drive_link" target="_blank">Template of Schedules</a></li>
+                <li><b style="color:red;">ENergistry:</b> <a href="https://energistry.weebly.com/equest.html" target="_blank">This site provides a beginner's guide to building energy models using eQuest, including introductory tutorials, training workbooks, and hands-on examples.</a></li>
+                <li><b style="color:red;">ASHRAE Official Site:</b> <a href="https://www.ashrae.org/" target="_blank">This is the main source for all information related to ASHRAE standards.</a></li>
+                <li><b style="color:red;">Energy Modeling with ASHRAE 209:</b> <a href="https://www.buildinggreen.com/newsbrief/energy-modeling-ashrae-209-way-throughout-design-and-beyond" target="_blank">This article explains the ASHRAE 209 standard.</a></li>
+                <li><b style="color:red;">Building Energy Modeling Fundamentals:</b> <a href="https://drive.google.com/file/d/112sPbkonINRBrd9FfBvSDnE-IYEPb1PO/view?usp=drive_link" target="_blank">This resource provides a deep dive into the fundamentals and applications of building energy modeling, aimed at improving building performance through informed design decisions.</a></li>
+                <li><b style="color:red;">Stack Overflow:</b> <a href="https://stackoverflow.com/" target="_blank">useful for finding or requesting specific scripts.</a></li>
+                <li><b style="color:red;">Unmet Hours:</b> <a href="https://unmethours.com/question/21471/equest-batch-simulation-runs/" target="_blank"> Useful for finding or requesting specific scripts.</a></li>
             </ul>
             """, unsafe_allow_html=True)
 
