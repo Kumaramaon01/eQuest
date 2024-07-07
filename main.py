@@ -260,12 +260,13 @@ def main():
             - <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.
             - <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.<br><br>
             
-            Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-            specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
-            and more productive.
             """, unsafe_allow_html=True)
         with col2:
             st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=560)
+            st.markdown(""" Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
+            specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+            and more productive.
+            """, unsafe_allow_html=True)
         
     elif st.session_state.script_choice == "eds":
         col1, col2 = st.columns(2)
