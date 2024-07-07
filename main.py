@@ -354,7 +354,7 @@ def main():
         password = st.sidebar.text_input("Password", type="password")
 
         # Login button
-        if st.sidebar.button("Login"):
+        if st.button("Login"):
             if username == "admin" and password == "password":
                 st.sidebar.success("🎉 Logged in as {}".format(username))
                 # Add your main app logic here after successful login
