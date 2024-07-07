@@ -198,7 +198,7 @@ def main():
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
     col2, col3, col4, col5, col6, col7, col8 = st.columns([1,1,1,1,1,1,1]) 
-    col9, col10, col11, col12, col13, col14 = st.columns([1,1,1,1,1,1])
+    col9, col10, col11, col12, col13, col14, col15 = st.columns([1,1,1,1,1,1,1])
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -236,6 +236,9 @@ def main():
         if st.button("Analytics"): #Queries
             st.session_state.script_choice = "sh"
     with col14:
+        if st.button("References"): #Queries
+            st.session_state.script_choice = "reference"
+    with col15:
         if st.button("Log in"): #Queries
             st.session_state.script_choice = "login"
     
