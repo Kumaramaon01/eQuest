@@ -360,6 +360,7 @@ def main():
                 st.success("🎉 Logged in as {}".format(username))
                 # Add your main app logic here after successful login
                 st.write("Welcome to the app!")
+                st.balloons()
             else:
                 st.error("❌ Incorrect username or password")
                 
