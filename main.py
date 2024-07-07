@@ -354,7 +354,7 @@ def main():
 
         st.markdown("""
             <ul>
-                <li><b style="color:red;">DOE2.com:</b> <a href="https://www.doe2.com/" target="_blank"></a></li>
+                <li><b style="color:red;">DOE2.com:</b> <a href="https://www.doe2.com/" target="_blank">This is the primary website for eQuest and DOE-2, offering downloads, documentation.</a></li>
                 <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual Guide</a></li>
