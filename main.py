@@ -263,10 +263,10 @@ def main():
             """, unsafe_allow_html=True)
         with col2:
             st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=560)
-            st.markdown(""" Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
+        st.markdown(""" Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
             specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
             and more productive.
-            """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         
     elif st.session_state.script_choice == "eds":
         col1, col2 = st.columns(2)
