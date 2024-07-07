@@ -230,14 +230,14 @@ def main():
         if st.button("QA/QC"):
             st.session_state.script_choice = "q"
     with col12:
-        if st.button("Queries"): #Queries
+        if st.button("Contact"): #Queries
             st.session_state.script_choice = "ask"
     with col13:
         if st.button("Analytics"): #Queries
             st.session_state.script_choice = "sh"
     with col14:
         if st.button("Log in"): #Queries
-            st.session_state.script_choice = "sh"
+            st.session_state.script_choice = "login"
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
