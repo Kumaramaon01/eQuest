@@ -346,6 +346,22 @@ def main():
             if st.button("Run SIM Parser"):
                 sim_parserv01.main(uploaded_file)
                 
+    elif st.session_state.script_choice == "login":
+        st.markdown("""
+        <h3 style="color:red;">🔒 Login</h3>""", unsafe_allow_html=True)
+        # Create a sidebar for login inputs
+        username = st.sidebar.text_input("Username")
+        password = st.sidebar.text_input("Password", type="password")
+
+        # Login button
+        if st.sidebar.button("Login"):
+            if username == "admin" and password == "password":
+                st.sidebar.success("🎉 Logged in as {}".format(username))
+                # Add your main app logic here after successful login
+                st.write("Welcome to the app!")
+            else:
+                st.sidebar.error("❌ Incorrect username or password")
+                
     elif st.session_state.script_choice == "reference":
         st.markdown("""
         <h3 style="color:red;">🔗 References</h3>
