@@ -345,6 +345,16 @@ def main():
         if uploaded_file is not None:
             if st.button("Run SIM Parser"):
                 sim_parserv01.main(uploaded_file)
+                
+    elif st.session_state.script_choice == "reference":
+        st.markdown("""
+        <h3 style="color:red;">📄 References</h3>
+        <b>Purpose:</b> The INP Parser is designed to read and interpret INP files, which are the primary project files used by eQuest. These files contain all the necessary data about a building's energy model, including geometry, materials, systems, and schedules.<br>
+        """, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
+        if uploaded_file is not None:
+            if st.button("Run INP Parser"):
+                inp_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "q":
         st.markdown("""
