@@ -49,6 +49,28 @@ def set_dark_theme():
     """
     # Inject the HTML code in the Streamlit app
     st.markdown(html_code, unsafe_allow_html=True)
+def confetti_animation():
+    st.markdown(
+        """
+        <style>
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            background-image: linear-gradient(135deg, transparent 10%, #f00 10%, #f00 20%, transparent 20%, transparent 30%, #0f0 30%, #0f0 40%, transparent 40%, transparent 50%, #00f 50%, #00f 60%, transparent 60%, transparent 70%);
+            background-size: 10px 10px;
+            animation: confetti 5s linear infinite;
+            opacity: 0.7;
+        }
+        </style>
+        """
+    )
+    st.markdown('<div class="confetti"></div>', unsafe_allow_html=True)
 
 # Function to send email
 def send_email(subject, message, from_email, to_email):
@@ -360,7 +382,8 @@ def main():
                 st.success("🎉 Logged in as {}".format(username))
                 # Add your main app logic here after successful login
                 st.write("Welcome to the app!")
-                st.balloons()
+                # st.balloons()
+                confetti_animation()
             else:
                 st.error("❌ Incorrect username or password")
                 
