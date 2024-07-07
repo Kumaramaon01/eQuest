@@ -349,12 +349,12 @@ def main():
     elif st.session_state.script_choice == "reference":
         st.markdown("""
         <h3 style="color:red;">🔗 References</h3>
-        <b>Purpose:</b> Giving credit to the original authors and prevent plagiarism.<br>
+        <b>Purpose:</b> Giving credit to the original authors and prevent plagiarism.<br><br>
         """, unsafe_allow_html=True)
 
         st.markdown("""
             <ul>
-                <li><b style="color:red;">SIM to PDF:</b> <a href="https://docs.google.com/presentation/d/1WTdX3zmSMmyp0h1E5lfOsER8EkvFoOEj/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">Data Extraction Tool: SIM to PDF</a></li>
+                <li><b style="color:red;">DOE2.com:</b> <a href="https://www.doe2.com/" target="_blank"></a></li>
                 <li><b style="color:red;">INP Parser:</b> <a href="https://docs.google.com/presentation/d/1zJ24RgUWW772xFIiWD5GruVEVQrrcdtT/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">INP Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">SIM Parser:</b> <a href="https://docs.google.com/presentation/d/11fyPNx9e3g-xC11kEMJhGvmCQXvyBlsQ/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">SIM Data to CSVs based on Reports</a></li>
                 <li><b style="color:red;">User Manual:</b> <a href="https://docs.google.com/presentation/d/1W8zTyj1kD-dRlk7XHinJ3_piOnaADx0w/edit?usp=drive_link&ouid=104083687366839123092&rtpof=true&sd=true" target="_blank">User Manual Guide</a></li>
