@@ -195,7 +195,7 @@ def analytics1(uploaded_file):
                 st.error("Failed to combine images.")
                 
     except Exception as e:
-        st.error(f"An error occurred while reading the file: {e}")
+        st.write()
 
 if __name__ == "__main__":
     uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
