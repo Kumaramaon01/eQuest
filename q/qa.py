@@ -20,10 +20,24 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         
     sim_p_path = sim_p_path.replace('\n', '\r\n')
     sim_b_path = sim_b_path.replace('\n', '\r\n')
-    st.info("Hey, This page is under development!!")
 
     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     base_data = psf.get_PSF_report_Base(sim_b_path)
+
+    # elfh baseline
+    elfh_propKW = prop_data['LIGHTS'].iloc[-1]
+    elfh_propKWH = prop_data['LIGHTS'].iloc[-2]
+    elfh_baseKW = base_data['LIGHTS'].iloc[-1]
+    elfh_baseKWH = base_data['LIGHTS'].iloc[-2]
+
+    # converting to numeric so that we can do math later
+    elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
+    elfh_propKWH = pd.to_numeric(elfh_propKWH, errors='coerce')
+    elfh_baseKW = pd.to_numeric(elfh_baseKW, errors='coerce')
+    elfh_baseKWH = pd.to_numeric(elfh_baseKWH, errors='coerce')
+
+    elfh_prop = round((elfh_propKWH / elfh_propKW),2)
+    elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
     # Data for Output PS-F table
     data_ps_f = {
@@ -31,14 +45,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         'Unit': ['kWh', 'kW', 'Data 6'],
         'Baseline': ['Data 7', 'Data 8', 'Data 9'],
         'Proposed': ['Data 10', 'Data 11', 'Data 12'],
-        '% savings': ['Data 13', 'Data 14', 'Data 15']
+        '% savings(1-(P/B))': ['Data 13', 'Data 14', 'Data 15']
     }
 
     # Data for ELFH table
     data_elfh = {
         'Item': ['Light'],
-        'Baseline': ['Value B1'],
-        'Proposed': ['Value C1']
+        'Baseline(kWh/kW)': [elfh_prop],
+        'Proposed(kWh/kW)': [elfh_base]
     }
 
     # Display Output PS-F table
