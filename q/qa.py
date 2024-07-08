@@ -3,7 +3,7 @@ import re
 import streamlit as st
 import tempfile
 import pandas as pd
-# from BaselineAutomation.src import update_MLC, insertConst, insertGlass, wwr, updateHVAC, HVAC_sys, perging, CLM_delete, update_lpd, updateFreshAir, aa, freshAir
+from q.src import psf
 
 def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
@@ -22,7 +22,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     sim_b_path = sim_b_path.replace('\n', '\r\n')
     st.info("Hey, This page is under development!!")
 
-     # Data for Output PS-F table
+    prop_data = psf.get_PSF_report_Prop(sim_p_path)
+    base_data = psf.get_PSF_report_Base(sim_b_path)
+
+    # Data for Output PS-F table
     data_ps_f = {
         'Item': ['Light', 'Light', 'Equipment'],
         'Unit': ['kWh', 'kW', 'Data 6'],
