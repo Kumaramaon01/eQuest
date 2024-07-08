@@ -33,6 +33,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     # equipment baseline and proposed
     equip_propKW = prop_data['MISC_EQUIP'].iloc[-1]
     equip_propKWH = prop_data['MISC_EQUIP'].iloc[-2]
+    equip_baseKW = base_data['MISC_EQUIP'].iloc[-1]
+    equip_baseKWH = base_data['MISC_EQUIP'].iloc[-2]
 
     # converting to numeric so that we can do math later
     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
