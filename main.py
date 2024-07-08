@@ -256,7 +256,7 @@ def main():
             st.session_state.script_choice = "ask"
     with col13:
         if st.button("Analytics"): #Queries
-            st.session_state.script_choice = "sh"
+            st.session_state.script_choice = ""
     with col14:
         if st.button("References"): #Queries
             st.session_state.script_choice = "reference"
