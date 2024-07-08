@@ -23,12 +23,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     base_data = psf.get_PSF_report_Base(sim_b_path)
-
-    # elfh baseline
+    st.write(prop_data)
+    # elfh baseline and proposed
     elfh_propKW = prop_data['LIGHTS'].iloc[-1]
     elfh_propKWH = prop_data['LIGHTS'].iloc[-2]
     elfh_baseKW = base_data['LIGHTS'].iloc[-1]
     elfh_baseKWH = base_data['LIGHTS'].iloc[-2]
+    
+    # equipment baseline and proposed
+    elfh_propKW = prop_data['MISC_EQUIP'].iloc[-1]
+    elfh_propKWH = prop_data['MISC_EQUIP'].iloc[-2]
 
     # converting to numeric so that we can do math later
     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
