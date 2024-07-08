@@ -107,7 +107,7 @@ def analytics(uploaded_file):
             df_rotated = df_rotated[1:]
             df_rotated.reset_index(drop=True, inplace=True)
             df_rotated = df_rotated.iloc[:, 2:-2]
-
+            df_rotated = df_rotated.apply(pd.to_numeric)
             hour_column = 'Hour'
             if hour_column not in df_rotated.columns:
                 raise ValueError(f"'{hour_column}' column not found in the DataFrame")
@@ -167,7 +167,7 @@ def analytics1(uploaded_file):
             df_rotated = df_rotated[1:]
             df_rotated.reset_index(drop=True, inplace=True)
             df_rotated = df_rotated.iloc[:, 2:-2]
-
+            df_rotated = df_rotated.apply(pd.to_numeric)
             hour_column = 'Hour'
             if hour_column not in df_rotated.columns:
                 raise ValueError(f"'{hour_column}' column not found in the DataFrame")
