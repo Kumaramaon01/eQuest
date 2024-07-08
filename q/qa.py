@@ -23,7 +23,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     base_data = psf.get_PSF_report_Base(sim_b_path)
-    st.write(prop_data)
+    
     # elfh baseline and proposed
     elfh_propKW = prop_data['LIGHTS'].iloc[-1]
     elfh_propKWH = prop_data['LIGHTS'].iloc[-2]
