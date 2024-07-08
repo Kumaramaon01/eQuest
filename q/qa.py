@@ -31,15 +31,17 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     elfh_baseKWH = base_data['LIGHTS'].iloc[-2]
     
     # equipment baseline and proposed
-    elfh_propKW = prop_data['MISC_EQUIP'].iloc[-1]
-    elfh_propKWH = prop_data['MISC_EQUIP'].iloc[-2]
+    equip_propKW = prop_data['MISC_EQUIP'].iloc[-1]
+    equip_propKWH = prop_data['MISC_EQUIP'].iloc[-2]
 
     # converting to numeric so that we can do math later
     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
     elfh_propKWH = pd.to_numeric(elfh_propKWH, errors='coerce')
     elfh_baseKW = pd.to_numeric(elfh_baseKW, errors='coerce')
     elfh_baseKWH = pd.to_numeric(elfh_baseKWH, errors='coerce')
-
+    equip_propKW = pd.to_numeric(equip_propKW, errors='coerce')
+    equip_propKWH = pd.to_numeric(equip_propKWH, errors='coerce')
+    
     elfh_prop = round((elfh_propKWH / elfh_propKW),2)
     elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
@@ -49,7 +51,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         'Unit': ['kWh', 'kW', '-'],
         'Baseline': [elfh_baseKWH, elfh_baseKW, 'Data 9'],
         'Proposed': [elfh_propKWH, elfh_propKW, 'Data 12'],
-        '% savings(1-(P/B))': [(1 - (elfh_propKWH / elfh_baseKWH)), (1 - (elfh_propKW / elfh_baseKW)), 'Data 15']
+        '% savings(1-(P/B))': [(1 - (elfh_propKWH / elfh_baseKWH)), (1 - (elfh_propKW / elfh_baseKW)), (1 - (equip_propKWH / equip_baseKWH))]
     }
 
     # Data for ELFH table
