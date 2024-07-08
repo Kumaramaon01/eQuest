@@ -53,8 +53,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     data_ps_f = {
         'Item': ['Light', 'Light', 'Equipment'],
         'Unit': ['kWh', 'kW', '-'],
-        'Baseline': [elfh_baseKWH, elfh_baseKW, 'Data 9'],
-        'Proposed': [elfh_propKWH, elfh_propKW, 'Data 12'],
+        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH],
+        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH],
         '% savings(1-(P/B))': [(1 - (elfh_propKWH / elfh_baseKWH)), (1 - (elfh_propKW / elfh_baseKW)), (1 - (equip_propKWH / equip_baseKWH))]
     }
 
