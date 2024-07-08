@@ -42,7 +42,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     # Data for Output PS-F table
     data_ps_f = {
         'Item': ['Light', 'Light', 'Equipment'],
-        'Unit': ['kWh', 'kW', 'Data 6'],
+        'Unit': ['kWh', 'kW', '-'],
         'Baseline': ['Data 7', 'Data 8', 'Data 9'],
         'Proposed': ['Data 10', 'Data 11', 'Data 12'],
         '% savings(1-(P/B))': ['Data 13', 'Data 14', 'Data 15']
