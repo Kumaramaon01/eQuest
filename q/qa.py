@@ -43,6 +43,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     elfh_baseKWH = pd.to_numeric(elfh_baseKWH, errors='coerce')
     equip_propKW = pd.to_numeric(equip_propKW, errors='coerce')
     equip_propKWH = pd.to_numeric(equip_propKWH, errors='coerce')
+    equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce')
+    equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce')
     
     elfh_prop = round((elfh_propKWH / elfh_propKW),2)
     elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
