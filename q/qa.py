@@ -24,7 +24,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     base_data = psf.get_PSF_report_Base(sim_b_path)
 
-    #Useful Condition if 3rd last colmn in LIGHTS is not TOTAL then insert a row
+# ISSUES IN DATASETS #
+###### Useful Condition if 3rd last colmn in LIGHTS is not TOTAL then insert a row #############################
     # Check if the 3rd last value in the LIGHTS column is 'TOTAL'
     if prop_data['LIGHTS'].iloc[-3] != 'TOTAL':
         # Create a new DataFrame with the new row
@@ -38,7 +39,21 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # Insert the new row at the 3rd last position
         base_data = pd.concat([base_data.iloc[:-2], new_row, base_data.iloc[-2:]]).reset_index(drop=True)
     
-    # st.write(prop_data)
+    st.write(prop_data)
+    prop_data['MISC_EQUIP'] = prop_data['MISC_EQUIP'].astype(str)
+    base_data['MISC_EQUIP'] = base_data['MISC_EQUIP'].astype(str)
+    # Function to correct entries with multiple dots
+    def correct_multiple_dots(entry):
+        parts = entry.split('.')
+        if len(parts) > 2:
+            return '.'.join(parts[1:])  # Keep only the first two parts
+        return entry
+
+    prop_data['MISC_EQUIP'] = prop_data['MISC_EQUIP'].apply(correct_multiple_dots)
+    base_data['MISC_EQUIP'] = base_data['MISC_EQUIP'].apply(correct_multiple_dots)
+
+#############################################################################################################
+
     # Iterate through the first column to find valid metering names
     for index, metering_name in prop_data.iloc[:, 0].items():
         if str(metering_name).strip() not in ['KWH', 'KW', 'NaN', 'nan', '', 'MAX KW', 'MAX KWH']:
@@ -57,6 +72,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     equip_propKWH = prop_data['MISC_EQUIP'].iloc[sub_index + 1]
                     equip_baseKW = base_data['MISC_EQUIP'].iloc[sub_index + 2]
                     equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1]
+
+                    # isssue with the data, so we need to check if the value is NaN or not
+                    if elfh_propKWH == 'NaN' or elfh_propKWH == 'nan' or elfh_propKWH == '' or elfh_propKWH == 'KWH':
+                        elfh_propKWH = prop_data['TASK_LIGHTS'].iloc[sub_index + 1]
+                        equip_propKWH = prop_data['MISC_EQUIP'].iloc[sub_index + 1]
+                    if elfh_baseKWH == 'NaN' or elfh_baseKWH == 'nan' or elfh_baseKWH == '' or elfh_baseKWH == 'KWH':
+                        elfh_baseKWH = base_data['TASK_LIGHTS'].iloc[sub_index + 1]
+                        equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1]
 
                     # converting to numeric so that we can do math later
                     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
@@ -77,7 +100,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
                     # st.info(f"Next two values after TOTAL in LIGHTS: {elfh_propKWH}, {elfh_propKW}")
-                    if elfh_baseKWH == elfh_propKWH and equip_baseKWH != 0:
+                    if elfh_baseKWH == elfh_propKWH:
                         ratio1 = 1
                     if elfh_baseKW == elfh_propKW:
                         ratio2 = 1
