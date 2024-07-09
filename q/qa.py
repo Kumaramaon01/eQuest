@@ -39,7 +39,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # Insert the new row at the 3rd last position
         base_data = pd.concat([base_data.iloc[:-2], new_row, base_data.iloc[-2:]]).reset_index(drop=True)
     
-    st.write(prop_data)
     prop_data['MISC_EQUIP'] = prop_data['MISC_EQUIP'].astype(str)
     base_data['MISC_EQUIP'] = base_data['MISC_EQUIP'].astype(str)
     # Function to correct entries with multiple dots
