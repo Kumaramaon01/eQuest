@@ -53,10 +53,27 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce')
                     equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce')
                     
-                    elfh_prop = round((elfh_propKWH / elfh_propKW),2)
-                    elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
+                    if elfh_propKWH == elfh_propKW:
+                        elfh_prop = 1
+                    if elfh_baseKWH == elfh_baseKW:
+                        elfh_base = 1
+                    else:
+                        elfh_prop = round((elfh_propKWH / elfh_propKW),2)
+                        elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
                     # st.info(f"Next two values after TOTAL in LIGHTS: {elfh_propKWH}, {elfh_propKW}")
+                    if elfh_baseKWH == elfh_propKWH and equip_baseKWH != 0:
+                        ratio1 = 1
+                    if elfh_baseKW == elfh_propKW:
+                        ratio2 = 1
+                    if equip_baseKWH == equip_propKWH:
+                        ratio3 = 1
+                    if elfh_baseKWH != elfh_propKWH:
+                        ratio1 = (elfh_propKWH / elfh_baseKWH)
+                    if elfh_baseKW != elfh_propKW:
+                        ratio2 = (elfh_propKW / elfh_baseKW)
+                    if equip_baseKWH != equip_propKWH:
+                        ratio3 = (equip_propKWH / equip_baseKWH)
 
                     # Data for Output PS-F table
                     data_ps_f = {
@@ -64,7 +81,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         'Unit': ['kWh', 'kW', '-'],
                         'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH],
                         'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH],
-                        '% savings(1-(P/B))': [(1 - (elfh_propKWH / elfh_baseKWH)), (1 - (elfh_propKW / elfh_baseKW)), (1 - (equip_propKWH / equip_baseKWH))]
+                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3)]
                     }
 
                     # Data for ELFH table
