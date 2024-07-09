@@ -49,6 +49,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     elfh_prop = round((elfh_propKWH / elfh_propKW),2)
     elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
+    # Display Output PS-F table
+    st.markdown("""
+    <h4 style="color:red;">Output PS-F</h4>""", unsafe_allow_html=True)
+
+    # Metering name: display like EM1 etc   
+    # Iterate through the first column to find valid metering names
+    for index, metering_name in prop_data.iloc[:, 0].items():
+        if str(metering_name).strip() not in ['KWH', 'KW', 'NaN', 'nan', '', 'MAX KW', 'MAX KWH']:
+            st.info(metering_name)
+            
+            # Check for "TOTAL" in "LIGHTS" column and display the next two rows
+            for sub_index in range(index, len(prop_data)):
+                if prop_data['LIGHTS'].iloc[sub_index] == "TOTAL":
+                    next_two_values = prop_data['LIGHTS'].iloc[sub_index + 1: sub_index + 3]
+                    # st.info(f"Next two values after TOTAL in LIGHTS: {next_two_values.tolist()}")
+                    break
+
     # Data for Output PS-F table
     data_ps_f = {
         'Item': ['Light', 'Light', 'Equipment'],
@@ -65,9 +82,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         'Proposed(kWh/kW)': [elfh_base]
     }
 
-    # Display Output PS-F table
-    st.markdown("""
-    <h4 style="color:red;">Output PS-F</h4>""", unsafe_allow_html=True)
+    
     df_ps_f = pd.DataFrame(data_ps_f)
     st.table(df_ps_f)
 
