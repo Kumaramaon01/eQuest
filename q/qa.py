@@ -49,15 +49,13 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     elfh_prop = round((elfh_propKWH / elfh_propKW),2)
     elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
-    # Display Output PS-F table
-    st.markdown("""
-    <h4 style="color:red;">Output PS-F</h4>""", unsafe_allow_html=True)
-
     # Metering name: display like EM1 etc   
     # Iterate through the first column to find valid metering names
     for index, metering_name in prop_data.iloc[:, 0].items():
         if str(metering_name).strip() not in ['KWH', 'KW', 'NaN', 'nan', '', 'MAX KW', 'MAX KWH']:
             st.info(metering_name)
+            # Display Output PS-F table
+            st.markdown("""<h6 style="color:red;">Output PS-F</h6>""", unsafe_allow_html=True)
             
             # Check for "TOTAL" in "LIGHTS" column and display the next two rows
             for sub_index in range(index, len(prop_data)):
@@ -88,7 +86,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
     # Display ELFH table
     st.markdown("""
-    <h4 style="color:red;">ELFH table</h4>""", unsafe_allow_html=True)
+    <h6 style="color:red;">ELFH table</h6>""", unsafe_allow_html=True)
     df_elfh = pd.DataFrame(data_elfh)
     st.table(df_elfh)
     
