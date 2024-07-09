@@ -23,7 +23,22 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     base_data = psf.get_PSF_report_Base(sim_b_path)
+
+    #Useful Condition if 3rd last colmn in LIGHTS is not TOTAL then insert a row
+    # Check if the 3rd last value in the LIGHTS column is 'TOTAL'
+    if prop_data['LIGHTS'].iloc[-3] != 'TOTAL':
+        # Create a new DataFrame with the new row
+        new_row = pd.DataFrame({'LIGHTS': ['TOTAL'], 'OTHER_COLUMN': [None]})
+        # Insert the new row at the 3rd last position
+        prop_data = pd.concat([prop_data.iloc[:-2], new_row, prop_data.iloc[-2:]]).reset_index(drop=True)
     
+    if base_data['LIGHTS'].iloc[-3] != 'TOTAL':
+        # Create a new DataFrame with the new row
+        new_row = pd.DataFrame({'LIGHTS': ['TOTAL'], 'OTHER_COLUMN': [None]})
+        # Insert the new row at the 3rd last position
+        base_data = pd.concat([base_data.iloc[:-2], new_row, base_data.iloc[-2:]]).reset_index(drop=True)
+    
+    # st.write(prop_data)
     # Iterate through the first column to find valid metering names
     for index, metering_name in prop_data.iloc[:, 0].items():
         if str(metering_name).strip() not in ['KWH', 'KW', 'NaN', 'nan', '', 'MAX KW', 'MAX KWH']:
