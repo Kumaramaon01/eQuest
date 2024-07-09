@@ -56,7 +56,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     elfh_prop = round((elfh_propKWH / elfh_propKW),2)
                     elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
 
-                    st.info(f"Next two values after TOTAL in LIGHTS: {elfh_propKWH}, {elfh_propKW}")
+                    # st.info(f"Next two values after TOTAL in LIGHTS: {elfh_propKWH}, {elfh_propKW}")
 
                     # Data for Output PS-F table
                     data_ps_f = {
