@@ -518,7 +518,7 @@ def main():
             </ul>
             """, unsafe_allow_html=True)
         st.markdown("""
-        <h7 style="color:black;"> Note</h7>
+        <h6 style="color:black;"><b> Note</b></h6>
         """, unsafe_allow_html=True)
         # Add more cards as needed
         st.markdown("""
