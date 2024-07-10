@@ -518,7 +518,7 @@ def main():
             </ul>
             """, unsafe_allow_html=True)
         st.markdown("""
-        <h6 style="color:black;"><b> Note</b></h6>Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
+        <h5 style="color:black;"><b> Note:</b></h5>Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
         """, unsafe_allow_html=True)
 
     elif st.session_state.script_choice == "baselineAutomation":
