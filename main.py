@@ -387,27 +387,41 @@ def main():
                 st.error("❌ Incorrect username or password")
                 
     elif st.session_state.script_choice == "reference":
+        
         st.markdown("""
-        <h3 style="color:red;">🔗 References</h3>
-        <p><b>Purpose:</b> To give credit to the original authors and prevent plagiarism.</p>
-        <ul>
-            <li><b style="color:red;">DOE2.com:</b> <a href="https://www.doe2.com/" target="_blank">Primary website for eQuest and DOE-2, offering downloads and documentation.</a></li>
-            <li><b style="color:red;">ENergistry:</b> <a href="https://energistry.weebly.com/equest.html" target="_blank">Beginner's guide to building energy models using eQuest, including tutorials and examples.</a></li>
-            <li><b style="color:red;">ASHRAE Official Site:</b> <a href="https://www.ashrae.org/" target="_blank">Main source for ASHRAE standards and related information.</a></li>
-            <li><b style="color:red;">Energy Modeling with ASHRAE 209:</b> <a href="https://www.buildinggreen.com/newsbrief/energy-modeling-ashrae-209-way-throughout-design-and-beyond" target="_blank">Explanation of ASHRAE 209 standard.</a></li>
-            <li><b style="color:red;">Building Energy Modeling Fundamentals:</b> <a href="https://www.ashrae.org/professional-development/elearning/ashrae-elearning-catalog/building-energy-modeling-fundamentals" target="_blank">Deep dive into building energy modeling fundamentals.</a></li>
-            <li><b style="color:red;">Stack Overflow:</b> <a href="https://stackoverflow.com/" target="_blank">Resource for finding or requesting scripts.</a></li>
-            <li><b style="color:red;">Unmet Hours:</b> <a href="https://unmethours.com/questions/" target="_blank">Resource for finding or requesting scripts.</a></li>
-            <li><b style="color:red;">INP File Parser:</b> <a href="https://github.com/OpenWaterAnalytics/Stormwater-Management-Model/blob/develop/README.md" target="_blank">Tool to parse INP files and extract data.</a></li>
-            <li><b style="color:red;">SWMM Utilities:</b> <a href="https://www.openswmm.org/SWMMUtilities" target="_blank">Utilities for updating and cleaning INP files.</a></li>
-            <li><b style="color:red;">eQuest SIM File Parser:</b> <a href="https://github.com/ucdavis/py-equest-sim-parser" target="_blank">Parser for SIM files to process simulation data.</a></li>
-            <li><b style="color:red;">CloudConvert:</b> <a href="https://cloudconvert.com" target="_blank">Tool to convert SIM files to PDF for better sharing.</a></li>
-            <li><b style="color:red;">SWMM Baseline Automation:</b> <a href="https://www.openswmm.org/SWMMUtilities#automation" target="_blank">Automation tool for modifying INP files based on user input.</a></li>
-            <li><b style="color:red;">Schedule Generator Tool:</b> <a href="https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html" target="_blank">CSV-Based Schedule Generator Tool to simplify creating schedules.</a></li>
-            <li><b style="color:red;">Quality Assurance vs Quality Control:</b> <a href="https://asq.org/quality-resources/quality-assurance-vs-control" target="_blank">Explanation of quality assurance and quality control processes.</a></li>
-        </ul>
+        <h3 style="color:red;"> References</h3>
         """, unsafe_allow_html=True)
-
+        references_bibliography = """
+        1. DOE2.com. (n.d.). Primary website for eQuest and DOE-2. Retrieved from [https://www.doe2.com/](https://www.doe2.com/)
+        
+        2. ENergistry. (n.d.). Beginner's guide to building energy models using eQuest. Retrieved from [https://energistry.weebly.com/equest.html](https://energistry.weebly.com/equest.html)
+        
+        3. ASHRAE Official Site. (n.d.). Main source for ASHRAE standards and related information. Retrieved from [https://www.ashrae.org/](https://www.ashrae.org/)
+        
+        4. BuildingGreen. (n.d.). Energy modeling with ASHRAE 209: A way throughout design and beyond. Retrieved from [https://www.buildinggreen.com/newsbrief/energy-modeling-ashrae-209-way-throughout-design-and-beyond](https://www.buildinggreen.com/newsbrief/energy-modeling-ashrae-209-way-throughout-design-and-beyond)
+        
+        5. ASHRAE. (n.d.). Building energy modeling fundamentals. Retrieved from [https://www.ashrae.org/professional-development/elearning/ashrae-elearning-catalog/building-energy-modeling-fundamentals](https://www.ashrae.org/professional-development/elearning/ashrae-elearning-catalog/building-energy-modeling-fundamentals)
+        
+        6. Stack Overflow. (n.d.). Resource for finding or requesting scripts. Retrieved from [https://stackoverflow.com/](https://stackoverflow.com/)
+        
+        7. Unmet Hours. (n.d.). Resource for finding or requesting scripts. Retrieved from [https://unmethours.com/questions/](https://unmethours.com/questions/)
+        
+        8. OpenWaterAnalytics. (n.d.). Stormwater Management Model. Retrieved from [https://github.com/OpenWaterAnalytics/Stormwater-Management-Model/blob/develop/README.md](https://github.com/OpenWaterAnalytics/Stormwater-Management-Model/blob/develop/README.md)
+        
+        9. OpenSWMM. (n.d.). SWMM Utilities. Retrieved from [https://www.openswmm.org/SWMMUtilities](https://www.openswmm.org/SWMMUtilities)
+        
+        10. UCDavis. (n.d.). py-equest-sim-parser. Retrieved from [https://github.com/ucdavis/py-equest-sim-parser](https://github.com/ucdavis/py-equest-sim-parser)
+        
+        11. CloudConvert. (n.d.). Tool to convert SIM files to PDF for better sharing. Retrieved from [https://cloudconvert.com](https://cloudconvert.com)
+        
+        12. OpenSWMM. (n.d.). SWMM Baseline Automation. Retrieved from [https://www.openswmm.org/SWMMUtilities#automation](https://www.openswmm.org/SWMMUtilities#automation)
+        
+        13. Vertex42. (n.d.). Excel schedule template. Retrieved from [https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html](https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html)
+        
+        14. ASQ. (n.d.). Quality assurance vs quality control. Retrieved from [https://asq.org/quality-resources/quality-assurance-vs-control](https://asq.org/quality-resources/quality-assurance-vs-control)
+        """
+        
+        st.markdown(references_bibliography, unsafe_allow_html=True)
     elif st.session_state.script_choice == "q":
         st.markdown("""
         <h3 style="color:red;">🔍 Quality Check / Quality Assurance</h3>
