@@ -517,10 +517,12 @@ def main():
                 <li><b style="color:red;">Schedule Template:</b> <a href="https://drive.google.com/file/d/112sPbkonINRBrd9FfBvSDnE-IYEPb1PO/view?usp=drive_link" target="_blank">Template of Schedules</a></li>
             </ul>
             """, unsafe_allow_html=True)
-        
+        st.markdown("""
+        <h7 style="color:black;"> Note</h7>
+        """, unsafe_allow_html=True)
         # Add more cards as needed
         st.markdown("""
-        ###### Note: Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
+        Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
         """)
 
     elif st.session_state.script_choice == "baselineAutomation":
