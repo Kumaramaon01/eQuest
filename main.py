@@ -520,9 +520,7 @@ def main():
         
         # Add more cards as needed
         st.markdown("""
-        ###### Note:
-        Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
-        However, they are available for download.
+        ###### Note: Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
         """)
 
     elif st.session_state.script_choice == "baselineAutomation":
