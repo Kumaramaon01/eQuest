@@ -60,6 +60,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             elfh_baseKWH, elfh_baseKW = None, None
             equip_propKW, equip_propKWH = None, None
             equip_baseKW, equip_baseKWH = None, None
+            fans_propKW, fans_propKWH = None, None
+            fans_baseKW, fans_baseKWH = None, None
 
             for sub_index in range(index, len(prop_data)):
                 if prop_data['LIGHTS'].iloc[sub_index] == "TOTAL":
@@ -73,13 +75,20 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     equip_baseKW = base_data['MISC_EQUIP'].iloc[sub_index + 2]
                     equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1] if base_data is not None else None
 
+                    fans_propKW = prop_data['VENT FANS'].iloc[sub_index + 2]
+                    fans_propKWH = prop_data['VENT FANS'].iloc[sub_index + 1]
+                    fans_baseKW = base_data['VENT FANS'].iloc[sub_index + 2]
+                    fans_baseKWH = base_data['VENT FANS'].iloc[sub_index + 1] if base_data is not None else None
+
                     if elfh_propKWH in ['NaN', 'nan', '', 'KWH']:
                         elfh_propKWH = prop_data['TASK_LIGHTS'].iloc[sub_index + 1]
                         equip_propKWH = prop_data['MISC_EQUIP'].iloc[sub_index + 1]
+                        fans_propKWH = prop_data['VENT FANS'].iloc[sub_index + 1]
 
                     if elfh_baseKWH in ['NaN', 'nan', '', 'KWH']:
                         elfh_baseKWH = base_data['TASK_LIGHTS'].iloc[sub_index + 1] if base_data is not None else None
                         equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1] if base_data is not None else None
+                        fans_baseKWH = base_data['VENT FANS'].iloc[sub_index + 1] if base_data is not None else None
 
                     # Convert to numeric and round to 1 decimal place
                     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce').round(1)
@@ -90,7 +99,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     equip_propKWH = pd.to_numeric(equip_propKWH, errors='coerce').round(1)
                     equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce').round(1)
                     equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce').round(1)
+                    fans_propKW = pd.to_numeric(fans_propKW, errors='coerce').round(1)
+                    fans_propKWH = pd.to_numeric(fans_propKWH, errors='coerce').round(1)
+                    fans_baseKW = pd.to_numeric(fans_baseKW, errors='coerce').round(1)
+                    fans_baseKWH = pd.to_numeric(fans_baseKWH, errors='coerce').round(1)
 
+                    # LIGHTS
                     if elfh_propKWH == elfh_propKW and elfh_propKW != 0:
                         elfh_prop = 1
                     elif elfh_propKWH == elfh_propKW and elfh_propKW == 0:
@@ -104,23 +118,56 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         elfh_base = 0
                     else:
                         elfh_base = round((elfh_baseKWH / elfh_baseKW), 1)
+                    
+                    # EQUIPMENT
+                    if equip_propKWH == equip_propKW and equip_propKW != 0:
+                        equip_prop = 1
+                    elif equip_propKWH == equip_propKW and equip_propKW == 0:
+                        equip_prop = 0
+                    else:
+                        equip_prop = round((equip_propKWH / equip_propKW), 1)
+
+                    if equip_baseKWH == equip_baseKW and equip_baseKW != 0:
+                        equip_base = 1
+                    elif equip_baseKWH == equip_baseKW and equip_baseKW == 0:
+                        equip_base = 0
+                    else:
+                        equip_base = round((equip_baseKWH / equip_baseKW), 1)
+
+                    # FANS
+                    if fans_propKWH == fans_propKW and fans_propKW != 0:
+                        fans_prop = 1
+                    elif fans_propKWH == fans_propKW and fans_propKW == 0:
+                        fans_prop = 0
+                    else:
+                        fans_prop = round((fans_propKWH / fans_propKW), 1)
+                    
+                    if fans_baseKWH == fans_baseKW and fans_baseKW != 0:
+                        fans_base = 1
+                    elif fans_baseKWH == fans_baseKW and fans_baseKW == 0:
+                        fans_base = 0
+                    else:
+                        fans_base = round((fans_baseKWH / fans_baseKW), 1)
 
                     ratio1 = 0 if elfh_baseKWH == elfh_propKWH and elfh_baseKWH == 0 else round((elfh_propKWH / elfh_baseKWH), 1)
                     ratio2 = 0 if elfh_baseKW == elfh_propKW  and elfh_baseKW == 0 else round((elfh_propKW / elfh_baseKW), 1)
                     ratio3 = 0 if equip_baseKWH == equip_propKWH and equip_baseKWH == 0  else round((equip_propKWH / equip_baseKWH), 1)
+                    ratio4 = 0 if equip_baseKW == equip_propKW and equip_baseKW == 0  else round((equip_propKW / equip_baseKW), 1)
+                    ratio5 = 0 if fans_baseKWH == fans_propKWH and fans_baseKWH == 0  else round((fans_propKWH / fans_baseKWH), 1)
+                    ratio6 = 0 if fans_baseKW == fans_propKW and fans_baseKW == 0  else round((fans_propKW / fans_baseKW), 1)
 
                     data_ps_f = {
-                        'Item': ['Light', 'Light', 'Equipment'],
-                        'Unit': ['kWh', 'kW', '-'],
-                        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH],
-                        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH],
-                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3)]
+                        'Item': ['Light', 'Light', 'Equipment', 'Equipment', 'Vent Fans', 'Vent Fans'],
+                        'Unit': ['kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW'],
+                        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH, equip_baseKW, fans_baseKWH, fans_baseKW],
+                        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH, equip_propKW, fans_propKWH, fans_propKW],
+                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3), (1 - ratio4), (1 - ratio5), (1 - ratio6)]
                     }
 
                     data_elfh = {
-                        'Item': ['Light'],
-                        'Baseline(kWh/kW)': [elfh_base],
-                        'Proposed(kWh/kW)': [elfh_prop]
+                        'Item': ['Light', 'Equipment', 'Vent Fans'],
+                        'Baseline(kWh/kW)': [elfh_base, equip_base, fans_base],
+                        'Proposed(kWh/kW)': [elfh_prop, equip_prop, fans_prop],
                     }
 
                     # Create DataFrames
@@ -128,7 +175,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     df_elfh = pd.DataFrame(data_elfh)
 
                     # Display tables with 1 decimal place using st.write
-                    st.write("**Output PS-F**")
+                    # st.write("**Output PS-F**")
                     st.table(df_ps_f.style.format({
                         'Baseline': '{:.1f}',
                         'Proposed': '{:.1f}',
