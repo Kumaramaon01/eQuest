@@ -90,27 +90,37 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce')
                     equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce')
                     
-                    if elfh_propKWH == elfh_propKW:
+                    if elfh_propKWH == elfh_propKW and elfh_propKW != 0:
                         elfh_prop = 1
-                    if elfh_baseKWH == elfh_baseKW:
+                    if elfh_baseKWH == elfh_baseKW and elfh_baseKW != 0:
                         elfh_base = 1
+                    if elfh_propKWH == elfh_propKW and elfh_propKW == 0:
+                        elfh_prop = 0
+                    if elfh_baseKWH == elfh_baseKW and elfh_baseKW == 0:
+                        elfh_base = 0
                     else:
-                        elfh_prop = round((elfh_propKWH / elfh_propKW),2)
-                        elfh_base = round((elfh_baseKWH / elfh_baseKW),2)
+                        elfh_prop = round((elfh_propKWH / elfh_propKW),1)
+                        elfh_base = round((elfh_baseKWH / elfh_baseKW),1)
 
                     # st.info(f"Next two values after TOTAL in LIGHTS: {elfh_propKWH}, {elfh_propKW}")
-                    if elfh_baseKWH == elfh_propKWH:
+                    if elfh_baseKWH == elfh_propKWH and elfh_baseKWH != 0:
                         ratio1 = 1
-                    if elfh_baseKW == elfh_propKW:
+                    if elfh_baseKW == elfh_propKW and elfh_baseKW != 0:
                         ratio2 = 1
-                    if equip_baseKWH == equip_propKWH:
+                    if equip_baseKWH == equip_propKWH and equip_baseKWH != 0:
                         ratio3 = 1
+                    if elfh_baseKWH == elfh_propKWH and elfh_baseKWH == 0:
+                        ratio1 = 0
+                    if elfh_baseKW == elfh_propKW and elfh_baseKW == 0:
+                        ratio2 = 0
+                    if equip_baseKWH == equip_propKWH and equip_baseKWH == 0:
+                        ratio3 = 0
                     if elfh_baseKWH != elfh_propKWH:
-                        ratio1 = (elfh_propKWH / elfh_baseKWH)
+                        ratio1 = round((elfh_propKWH / elfh_baseKWH),1)
                     if elfh_baseKW != elfh_propKW:
-                        ratio2 = (elfh_propKW / elfh_baseKW)
+                        ratio2 = round((elfh_propKW / elfh_baseKW),1)
                     if equip_baseKWH != equip_propKWH:
-                        ratio3 = (equip_propKWH / equip_baseKWH)
+                        ratio3 = round((equip_propKWH / equip_baseKWH),1)
 
                     # Data for Output PS-F table
                     data_ps_f = {
