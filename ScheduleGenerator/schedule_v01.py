@@ -93,7 +93,7 @@ def analytics(uploaded_file):
                 return
 
             st.markdown("""
-            <h4 style="color:red;">Daily Schedules of 24 hours</h4>
+            <h5 style="color:red;">Daily Schedules of 24 hours</h5>
             """, unsafe_allow_html=True)
 
             # Your data processing code
