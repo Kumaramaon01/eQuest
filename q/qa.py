@@ -62,6 +62,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             equip_baseKW, equip_baseKWH = None, None
             fans_propKW, fans_propKWH = None, None
             fans_baseKW, fans_baseKWH = None, None
+            cool_propKW, cool_propKWH = None, None
+            cool_baseKW, cool_baseKWH = None, None
+            heat_propKW, heat_propKWH = None, None
+            heat_baseKW, heat_baseKWH = None, None
+            ext_propKW, ext_propKWH = None, None
+            ext_baseKW, ext_baseKWH = None, None
+            domest_propKW, domest_propKWH = None, None
+            domest_baseKW, domest_baseKWH = None, None
 
             for sub_index in range(index, len(prop_data)):
                 if prop_data['LIGHTS'].iloc[sub_index] == "TOTAL":
@@ -80,15 +88,43 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     fans_baseKW = base_data['VENT FANS'].iloc[sub_index + 2]
                     fans_baseKWH = base_data['VENT FANS'].iloc[sub_index + 1] if base_data is not None else None
 
+                    cool_propKW = prop_data['SPACE_COOLING'].iloc[sub_index + 2]
+                    cool_propKWH = prop_data['SPACE_COOLING'].iloc[sub_index + 1]
+                    cool_baseKW = base_data['SPACE_COOLING'].iloc[sub_index + 2]
+                    cool_baseKWH = base_data['SPACE_COOLING'].iloc[sub_index + 1] if base_data is not None else None
+
+                    heat_propKW = prop_data['HEAT_REJECT'].iloc[sub_index + 2]
+                    heat_propKWH = prop_data['HEAT_REJECT'].iloc[sub_index + 1]
+                    heat_baseKW = base_data['HEAT_REJECT'].iloc[sub_index + 2]
+                    heat_baseKWH = base_data['HEAT_REJECT'].iloc[sub_index + 1] if base_data is not None else None
+
+                    ext_propKW = prop_data['EXT USAGE'].iloc[sub_index + 2]
+                    ext_propKWH = prop_data['EXT USAGE'].iloc[sub_index + 1]
+                    ext_baseKW = base_data['EXT USAGE'].iloc[sub_index + 2]
+                    ext_baseKWH = base_data['EXT USAGE'].iloc[sub_index + 1] if base_data is not None else None
+
+                    domest_propKW = prop_data['DOMEST HOT WTR'].iloc[sub_index + 2]
+                    domest_propKWH = prop_data['DOMEST HOT WTR'].iloc[sub_index + 1]
+                    domest_baseKW = base_data['DOMEST HOT WTR'].iloc[sub_index + 2]
+                    domest_baseKWH = base_data['DOMEST HOT WTR'].iloc[sub_index + 1] if base_data is not None else None
+
                     if elfh_propKWH in ['NaN', 'nan', '', 'KWH']:
                         elfh_propKWH = prop_data['TASK_LIGHTS'].iloc[sub_index + 1]
                         equip_propKWH = prop_data['MISC_EQUIP'].iloc[sub_index + 1]
                         fans_propKWH = prop_data['VENT FANS'].iloc[sub_index + 1]
+                        cool_propKWH = prop_data['SPACE_COOLING'].iloc[sub_index + 1]
+                        heat_propKWH = prop_data['HEAT_REJECT'].iloc[sub_index + 1]
+                        ext_propKWH = prop_data['EXT USAGE'].iloc[sub_index + 1]
+                        domest_propKWH = prop_data['DOMEST HOT WTR'].iloc[sub_index + 1]
 
                     if elfh_baseKWH in ['NaN', 'nan', '', 'KWH']:
                         elfh_baseKWH = base_data['TASK_LIGHTS'].iloc[sub_index + 1] if base_data is not None else None
                         equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1] if base_data is not None else None
                         fans_baseKWH = base_data['VENT FANS'].iloc[sub_index + 1] if base_data is not None else None
+                        cool_baseKWH = base_data['SPACE_COOLING'].iloc[sub_index + 1] if base_data is not None else None
+                        heat_baseKWH = base_data['HEAT_REJECT'].iloc[sub_index + 1] if base_data is not None else None
+                        ext_baseKWH = base_data['EXT USAGE'].iloc[sub_index + 1] if base_data is not None else None
+                        domest_baseKWH = base_data['DOMEST HOT WTR'].iloc[sub_index + 1] if base_data is not None else None
 
                     # Convert to numeric and round to 1 decimal place
                     elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce').round(1)
@@ -103,6 +139,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     fans_propKWH = pd.to_numeric(fans_propKWH, errors='coerce').round(1)
                     fans_baseKW = pd.to_numeric(fans_baseKW, errors='coerce').round(1)
                     fans_baseKWH = pd.to_numeric(fans_baseKWH, errors='coerce').round(1)
+                    cool_propKW = pd.to_numeric(cool_propKW, errors='coerce').round(1)
+                    cool_propKWH = pd.to_numeric(cool_propKWH, errors='coerce').round(1)
+                    cool_baseKW = pd.to_numeric(cool_baseKW, errors='coerce').round(1)
+                    cool_baseKWH = pd.to_numeric(cool_baseKWH, errors='coerce').round(1)
+                    heat_propKW = pd.to_numeric(heat_propKW, errors='coerce').round(1)
+                    heat_propKWH = pd.to_numeric(heat_propKWH, errors='coerce').round(1)
+                    heat_baseKW = pd.to_numeric(heat_baseKW, errors='coerce').round(1)
+                    heat_baseKWH = pd.to_numeric(heat_baseKWH, errors='coerce').round(1)
+                    ext_propKW = pd.to_numeric(ext_propKW, errors='coerce').round(1)
+                    ext_propKWH = pd.to_numeric(ext_propKWH, errors='coerce').round(1)
+                    ext_baseKW = pd.to_numeric(ext_baseKW, errors='coerce').round(1)
+                    ext_baseKWH = pd.to_numeric(ext_baseKWH, errors='coerce').round(1)
+                    domest_propKW = pd.to_numeric(domest_propKW, errors='coerce').round(1)
+                    domest_propKWH = pd.to_numeric(domest_propKWH, errors='coerce').round(1)
+                    domest_baseKW = pd.to_numeric(domest_baseKW, errors='coerce').round(1)
+                    domest_baseKWH = pd.to_numeric(domest_baseKWH, errors='coerce').round(1)
+
 
                     # LIGHTS
                     if elfh_propKWH == elfh_propKW and elfh_propKW != 0:
@@ -149,25 +202,93 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     else:
                         fans_base = round((fans_baseKWH / fans_baseKW), 1)
 
+                    # COOLING
+                    if cool_propKWH == cool_propKW and cool_propKW != 0:
+                        cool_prop = 1
+                    elif cool_propKWH == cool_propKW and cool_propKW == 0:
+                        cool_prop = 0
+                    else:
+                        cool_prop = round((cool_propKWH / cool_propKW), 1)
+                    
+                    if cool_baseKWH == cool_baseKW and cool_baseKW != 0:
+                        cool_base = 1
+                    elif cool_baseKWH == cool_baseKW and cool_baseKW == 0:
+                        cool_base = 0
+                    else:
+                        cool_base = round((cool_baseKWH / cool_baseKW), 1)
+
+                    # HEATING
+                    if heat_propKWH == heat_propKW and heat_propKW != 0:
+                        heat_prop = 1
+                    elif heat_propKWH == heat_propKW and heat_propKW == 0:
+                        heat_prop = 0
+                    else:
+                        heat_prop = round((heat_propKWH / heat_propKW), 1)
+
+                    if heat_baseKWH == heat_baseKW and heat_baseKW != 0:
+                        heat_base = 1
+                    elif heat_baseKWH == heat_baseKW and heat_baseKW == 0:
+                        heat_base = 0
+                    else:
+                        heat_base = round((heat_baseKWH / heat_baseKW), 1)
+                    
+                    # EXTERNAL
+                    if ext_propKWH == ext_propKW and ext_propKW != 0:
+                        ext_prop = 1
+                    elif ext_propKWH == ext_propKW and ext_propKW == 0:
+                        ext_prop = 0
+                    else:
+                        ext_prop = round((ext_propKWH / ext_propKW), 1)
+                    
+                    if ext_baseKWH == ext_baseKW and ext_baseKW != 0:
+                        ext_base = 1
+                    elif ext_baseKWH == ext_baseKW and ext_baseKW == 0:
+                        ext_base = 0
+                    else:
+                        ext_base = round((ext_baseKWH / ext_baseKW), 1)
+                    
+                    # DOMESTIC
+                    if domest_propKWH == domest_propKW and domest_propKW != 0:
+                        domest_prop = 1
+                    elif domest_propKWH == domest_propKW and domest_propKW == 0:
+                        domest_prop = 0
+                    else:
+                        domest_prop = round((domest_propKWH / domest_propKW), 1)
+                    
+                    if domest_baseKWH == domest_baseKW and domest_baseKW != 0:
+                        domest_base = 1
+                    elif domest_baseKWH == domest_baseKW and domest_baseKW == 0:
+                        domest_base = 0
+                    else:
+                        domest_base = round((domest_baseKWH / domest_baseKW), 1)
+
                     ratio1 = 0 if elfh_baseKWH == elfh_propKWH and elfh_baseKWH == 0 else round((elfh_propKWH / elfh_baseKWH), 1)
                     ratio2 = 0 if elfh_baseKW == elfh_propKW  and elfh_baseKW == 0 else round((elfh_propKW / elfh_baseKW), 1)
                     ratio3 = 0 if equip_baseKWH == equip_propKWH and equip_baseKWH == 0  else round((equip_propKWH / equip_baseKWH), 1)
                     ratio4 = 0 if equip_baseKW == equip_propKW and equip_baseKW == 0  else round((equip_propKW / equip_baseKW), 1)
                     ratio5 = 0 if fans_baseKWH == fans_propKWH and fans_baseKWH == 0  else round((fans_propKWH / fans_baseKWH), 1)
                     ratio6 = 0 if fans_baseKW == fans_propKW and fans_baseKW == 0  else round((fans_propKW / fans_baseKW), 1)
+                    ratio7 = 0 if cool_baseKWH == cool_propKWH and cool_baseKWH == 0  else round((cool_propKWH / cool_baseKWH), 1)
+                    ratio8 = 0 if cool_baseKW == cool_propKW and cool_baseKW == 0  else round((cool_propKW / cool_baseKW), 1)
+                    ratio9 = 0 if heat_baseKWH == heat_propKWH and heat_baseKWH == 0  else round((heat_propKWH / heat_baseKWH), 1)
+                    ratio10 = 0 if heat_baseKW == heat_propKW and heat_baseKW == 0  else round((heat_propKW / heat_baseKW), 1)
+                    ratio11 = 0 if ext_baseKWH == ext_propKWH and ext_baseKWH == 0  else round((ext_propKWH / ext_baseKWH), 1)
+                    ratio12 = 0 if ext_baseKW == ext_propKW and ext_baseKW == 0  else round((ext_propKW / ext_baseKW), 1)
+                    ratio13 = 0 if domest_baseKWH == domest_propKWH and domest_baseKWH == 0  else round((domest_propKWH / domest_baseKWH), 1)
+                    ratio14 = 0 if domest_baseKW == domest_propKW and domest_baseKW == 0  else round((domest_propKW / domest_baseKW), 1)
 
                     data_ps_f = {
-                        'Item': ['Light', 'Light', 'Equipment', 'Equipment', 'Vent Fans', 'Vent Fans'],
-                        'Unit': ['kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW'],
-                        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH, equip_baseKW, fans_baseKWH, fans_baseKW],
-                        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH, equip_propKW, fans_propKWH, fans_propKW],
-                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3), (1 - ratio4), (1 - ratio5), (1 - ratio6)]
+                        'Item': ['Light', 'Light', 'Equipment', 'Equipment', 'Vent Fans', 'Vent Fans', 'Cooling', 'Cooling', 'Heating', 'Heating', 'External', 'External', 'Domestic', 'Domestic'],
+                        'Unit': ['kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW'],
+                        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH, equip_baseKW, fans_baseKWH, fans_baseKW, cool_baseKWH, cool_baseKW, heat_baseKWH, heat_baseKW, ext_baseKWH, ext_baseKW, domest_baseKWH, domest_baseKW],
+                        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH, equip_propKW, fans_propKWH, fans_propKW, cool_propKWH, cool_propKW, heat_propKWH, heat_propKW, ext_propKWH, ext_propKW, domest_propKWH, domest_propKW],
+                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3), (1 - ratio4), (1 - ratio5), (1 - ratio6), (1 - ratio7), (1 - ratio8), (1 - ratio9), (1 - ratio10), (1 - ratio11), (1 - ratio12), (1 - ratio13), (1 - ratio14)],
                     }
 
                     data_elfh = {
-                        'Item': ['Light', 'Equipment', 'Vent Fans'],
-                        'Baseline(kWh/kW)': [elfh_base, equip_base, fans_base],
-                        'Proposed(kWh/kW)': [elfh_prop, equip_prop, fans_prop],
+                        'Item': ['Light', 'Equipment', 'Vent Fans', 'Cooling', 'Heating', 'External', 'Domestic'],
+                        'Baseline(kWh/kW)': [elfh_base, equip_base, fans_base, cool_base, heat_base, ext_base, domest_base],
+                        'Proposed(kWh/kW)': [elfh_prop, equip_prop, fans_prop, cool_prop, heat_prop, ext_prop, domest_prop],
                     }
 
                     # Create DataFrames
