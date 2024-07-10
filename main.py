@@ -518,12 +518,8 @@ def main():
             </ul>
             """, unsafe_allow_html=True)
         st.markdown("""
-        <h6 style="color:black;"><b> Note</b></h6>
+        <h6 style="color:black;"><b> Note</b></h6>Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
         """, unsafe_allow_html=True)
-        # Add more cards as needed
-        st.markdown("""
-        Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. However, they are available for download.
-        """)
 
     elif st.session_state.script_choice == "baselineAutomation":
         st.markdown("""
