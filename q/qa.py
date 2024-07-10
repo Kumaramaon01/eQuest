@@ -398,7 +398,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     ratio22 = 0 if total_baseKW == total_propKW and total_baseKW == 0  else round((total_propKW / total_baseKW), 1)
 
                     data_ps_f = {
-                        'Item': ['Light', 'Light', 'Equipment', 'Equipment', 'Vent Fans', 'Vent Fans', 'Cooling', 'Cooling', 'Heating', 'Heating', 'External', 'External', 'Domestic', 'Domestic', 'Pumps', 'Pumps', 'Refrigeration', 'Refrigeration', 'Heat Pump', 'Heat Pump', 'Total', 'Total'],
+                        'Item': ['Light', 'Light', 'Equipment', 'Equipment', 'Vent Fans', 'Vent Fans', 'Space Cooling', 'Space Cooling', 'Heat Reject', 'Heat Reject', 'External Usage', 'External Usage', 'Domest Hot Air', 'Domest Hot Air', 'Pumps & AUX', 'Pumps & AUX', 'Refrig Display', 'Refrig Display', 'Ht Pump Suppl', 'Ht Pump Suppl', 'Total', 'Total'],
                         'Unit': ['kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW'],
                         'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH, equip_baseKW, fans_baseKWH, fans_baseKW, cool_baseKWH, cool_baseKW, heat_baseKWH, heat_baseKW, ext_baseKWH, ext_baseKW, domest_baseKWH, domest_baseKW, pumps_baseKWH, pumps_baseKW, refringe_baseKWH, refringe_baseKW, ht_pump_baseKWH, ht_pump_baseKW, total_baseKWH, total_baseKW],
                         'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH, equip_propKW, fans_propKWH, fans_propKW, cool_propKWH, cool_propKW, heat_propKWH, heat_propKW, ext_propKWH, ext_propKW, domest_propKWH, domest_propKW, pumps_propKWH, pumps_propKW, refringe_propKWH, refringe_propKW, ht_pump_propKWH, ht_pump_propKW, total_propKWH, total_propKW],
@@ -406,7 +406,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     }
 
                     data_elfh = {
-                        'Item': ['Light', 'Equipment', 'Vent Fans', 'Cooling', 'Heating', 'External', 'Domestic', 'Pumps', 'Refrigeration', 'Heat Pump', 'Total'],
+                        'Item': ['Light', 'Equipment', 'Vent Fans', 'Space Cooling', 'Heat Reject', 'External Usage', 'Domest Hot Air', 'Pumps & AUX', 'Refrig Display', 'Ht Pump Suppl', 'Total'],
                         'Baseline(kWh/kW)': [elfh_base, equip_base, fans_base, cool_base, heat_base, ext_base, domest_base, pumps_base, refringe_base, ht_pump_base, total_base],
                         'Proposed(kWh/kW)': [elfh_prop, equip_prop, fans_prop, cool_prop, heat_prop, ext_prop, domest_prop, pumps_prop, refringe_prop, ht_pump_prop, total_prop],
                     }
