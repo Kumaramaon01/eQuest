@@ -520,7 +520,7 @@ def main():
         
         # Add more cards as needed
         st.markdown("""
-        #### Note:
+        ##### Note:
         Due to the large size of eQuest Utilities exe files, they may not be suitable for direct hosting on our website. 
         However, they are available for download.
         """)
