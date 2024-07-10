@@ -1,5 +1,3 @@
-import os
-import re
 import streamlit as st
 import tempfile
 import pandas as pd
@@ -9,8 +7,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
             temp_file.write(input_simp_path.getbuffer())
-            temp_file_path = temp_file.name
-        sim_p_path = temp_file_path
+            sim_p_path = temp_file.name
     else:
         st.error("Error: No input for simulation P file.")
         return
@@ -18,8 +15,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simb_path is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
             temp_file.write(input_simb_path.getbuffer())
-            temp_file_path = temp_file.name
-        sim_b_path = temp_file_path
+            sim_b_path = temp_file.name
     else:
         st.error("Error: No input for simulation B file.")
         return
@@ -34,8 +30,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         st.error("Error: Failed to retrieve simulation data.")
         return
 
-    # ISSUES IN DATASETS #
-    # Useful Condition if 3rd last column in LIGHTS is not TOTAL then insert a row
+    # Handle trailing columns in LIGHTS and MISC_EQUIP
     if prop_data['LIGHTS'].iloc[-3] != 'TOTAL':
         new_row = pd.DataFrame({'LIGHTS': ['TOTAL'], 'OTHER_COLUMN': [None]})
         prop_data = pd.concat([prop_data.iloc[:-2], new_row, prop_data.iloc[-2:]]).reset_index(drop=True)
@@ -86,14 +81,15 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         elfh_baseKWH = base_data['TASK_LIGHTS'].iloc[sub_index + 1] if base_data is not None else None
                         equip_baseKWH = base_data['MISC_EQUIP'].iloc[sub_index + 1] if base_data is not None else None
 
-                    elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce')
-                    elfh_propKWH = pd.to_numeric(elfh_propKWH, errors='coerce')
-                    elfh_baseKW = pd.to_numeric(elfh_baseKW, errors='coerce')
-                    elfh_baseKWH = pd.to_numeric(elfh_baseKWH, errors='coerce')
-                    equip_propKW = pd.to_numeric(equip_propKW, errors='coerce')
-                    equip_propKWH = pd.to_numeric(equip_propKWH, errors='coerce')
-                    equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce')
-                    equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce')
+                    # Convert to numeric and round to 1 decimal place
+                    elfh_propKW = pd.to_numeric(elfh_propKW, errors='coerce').round(1)
+                    elfh_propKWH = pd.to_numeric(elfh_propKWH, errors='coerce').round(1)
+                    elfh_baseKW = pd.to_numeric(elfh_baseKW, errors='coerce').round(1)
+                    elfh_baseKWH = pd.to_numeric(elfh_baseKWH, errors='coerce').round(1)
+                    equip_propKW = pd.to_numeric(equip_propKW, errors='coerce').round(1)
+                    equip_propKWH = pd.to_numeric(equip_propKWH, errors='coerce').round(1)
+                    equip_baseKW = pd.to_numeric(equip_baseKW, errors='coerce').round(1)
+                    equip_baseKWH = pd.to_numeric(equip_baseKWH, errors='coerce').round(1)
 
                     if elfh_propKWH == elfh_propKW and elfh_propKW != 0:
                         elfh_prop = 1
@@ -116,8 +112,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     data_ps_f = {
                         'Item': ['Light', 'Light', 'Equipment'],
                         'Unit': ['kWh', 'kW', '-'],
-                        'Baseline': [round(elfh_baseKWH, 1), round(elfh_baseKW, 1), round(equip_baseKWH, 1)],
-                        'Proposed': [round(elfh_propKWH, 1), round(elfh_propKW, 1), round(equip_propKWH, 1)],
+                        'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH],
+                        'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH],
                         '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3)]
                     }
 
@@ -127,12 +123,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         'Proposed(kWh/kW)': [elfh_prop]
                     }
 
+                    # Create DataFrames
                     df_ps_f = pd.DataFrame(data_ps_f)
-                    st.table(df_ps_f)
+                    df_elfh = pd.DataFrame(data_elfh)
+
+                    # Display tables with 1 decimal place using st.write
+                    st.write("**Output PS-F**")
+                    st.table(df_ps_f.style.format({
+                        'Baseline': '{:.1f}',
+                        'Proposed': '{:.1f}',
+                        '% savings(1-(P/B))': '{:.1%}'
+                    }))
 
                     st.markdown("""<h7 style="color:green;"><b>ELFH table</b></h7>""", unsafe_allow_html=True)
-                    df_elfh = pd.DataFrame(data_elfh)
-                    st.table(df_elfh)
+                    st.table(df_elfh.style.format({
+                        'Baseline(kWh/kW)': '{:.1f}',
+                        'Proposed(kWh/kW)': '{:.1f}'
+                    }))
                     break
     
     return 0
