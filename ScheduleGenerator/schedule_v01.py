@@ -93,7 +93,7 @@ def analytics(uploaded_file):
                 return
 
             st.markdown("""
-            <h3 style="color:red;">Schedules of 24 hours</h3>
+            <h4 style="color:red;">Daily Schedules of 24 hours</h4>
             """, unsafe_allow_html=True)
 
             # Your data processing code
@@ -140,7 +140,7 @@ def analytics(uploaded_file):
 
         else:
             st.markdown("""
-            <h4 style="color:red;">📈 Please upload excel file to see Analytics </h4>
+            <h5 style="color:red;">📈 Please upload excel file to see Analytics </h5>
             """, unsafe_allow_html=True)
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
