@@ -433,7 +433,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                             html += f'<td>{row["Unit"]}</td>'
                             html += f'<td>{row["Baseline"]}</td>'
                             html += f'<td>{row["Proposed"]}</td>'
-                            html += f'<td>{row["% savings(1-(P/B))"]:.1%}</td>'
+                            html += f'<td>{row["Savings(in %)"]:.1%}</td>'
                             html += '</tr>'
 
                         html += '</table>'
