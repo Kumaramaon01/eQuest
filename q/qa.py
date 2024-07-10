@@ -402,7 +402,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         'Unit': ['kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW', 'kWh', 'kW'],
                         'Baseline': [elfh_baseKWH, elfh_baseKW, equip_baseKWH, equip_baseKW, fans_baseKWH, fans_baseKW, cool_baseKWH, cool_baseKW, heat_baseKWH, heat_baseKW, ext_baseKWH, ext_baseKW, domest_baseKWH, domest_baseKW, pumps_baseKWH, pumps_baseKW, refringe_baseKWH, refringe_baseKW, ht_pump_baseKWH, ht_pump_baseKW, total_baseKWH, total_baseKW],
                         'Proposed': [elfh_propKWH, elfh_propKW, equip_propKWH, equip_propKW, fans_propKWH, fans_propKW, cool_propKWH, cool_propKW, heat_propKWH, heat_propKW, ext_propKWH, ext_propKW, domest_propKWH, domest_propKW, pumps_propKWH, pumps_propKW, refringe_propKWH, refringe_propKW, ht_pump_propKWH, ht_pump_propKW, total_propKWH, total_propKW],
-                        '% savings(1-(P/B))': [(1 - ratio1), (1 - ratio2), (1 - ratio3), (1 - ratio4), (1 - ratio5), (1 - ratio6), (1 - ratio7), (1 - ratio8), (1 - ratio9), (1 - ratio10), (1 - ratio11), (1 - ratio12), (1 - ratio13), (1 - ratio14), (1 - ratio15), (1 - ratio16), (1 - ratio17), (1 - ratio18), (1 - ratio19), (1 - ratio20), (1 - ratio21), (1 - ratio22)],
+                        'Savings(in %)': [(1 - ratio1), (1 - ratio2), (1 - ratio3), (1 - ratio4), (1 - ratio5), (1 - ratio6), (1 - ratio7), (1 - ratio8), (1 - ratio9), (1 - ratio10), (1 - ratio11), (1 - ratio12), (1 - ratio13), (1 - ratio14), (1 - ratio15), (1 - ratio16), (1 - ratio17), (1 - ratio18), (1 - ratio19), (1 - ratio20), (1 - ratio21), (1 - ratio22)],
                     }
 
                     data_elfh = {
