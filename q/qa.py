@@ -2,6 +2,7 @@ import streamlit as st
 import tempfile
 import pandas as pd
 from q.src import psf
+import numpy as np
 
 def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
@@ -475,6 +476,81 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # Concatenate prop_data and base_data vertically
         data = pd.concat([prop_data, base_data], axis=0, ignore_index=True)
         data = data.reset_index(drop=True)
+        # if KWH or MAX KW or THERM or MAX THERM/HR or MBTU or MAX MBTU/HR is in LIGHTS column then put that in corresponding UNIT column in data dataframe
+        for i in range(len(data)):
+            if data['LIGHTS'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['LIGHTS'][i] == 'MAX KW':
+                data['UNIT'][i] = 'MAX KW'
+            elif data['LIGHTS'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['LIGHTS'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['LIGHTS'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['LIGHTS'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            elif data['TASK_LIGHTS'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['TASK_LIGHTS'][i] == 'MAX KWH':
+                data['UNIT'][i] = 'MAX KWH'
+            elif data['TASK_LIGHTS'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['TASK_LIGHTS'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['TASK_LIGHTS'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['TASK_LIGHTS'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            elif data['MISC_EQUIP'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['MISC_EQUIP'][i] == 'MAX KW':
+                data['UNIT'][i] = 'MAX KW'
+            elif data['MISC_EQUIP'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['MISC_EQUIP'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['MISC_EQUIP'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['MISC_EQUIP'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            elif data['SPACE_EQUIP'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['SPACE_EQUIP'][i] == 'MAX KW':
+                data['UNIT'][i] = 'MAX KW'
+            elif data['SPACE_EQUIP'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['SPACE_EQUIP'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['SPACE_EQUIP'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['SPACE_EQUIP'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            elif data['SPACE_COOLING'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['SPACE_COOLING'][i] == 'MAX KW':
+                data['UNIT'][i] = 'MAX KW'
+            elif data['SPACE_COOLING'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['SPACE_COOLING'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['SPACE_COOLING'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['SPACE_COOLING'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            elif data['HEAT_REJECT'][i] == 'KWH':
+                data['UNIT'][i] = 'KWH'
+            elif data['HEAT_REJECT'][i] == 'MAX KW':
+                data['UNIT'][i] = 'MAX KW'
+            elif data['HEAT_REJECT'][i] == 'THERM':
+                data['UNIT'][i] = 'THERM'
+            elif data['HEAT_REJECT'][i] == 'MAX THERM/HR':
+                data['UNIT'][i] = 'MAX THERM/HR'
+            elif data['HEAT_REJECT'][i] == 'MBTU':
+                data['UNIT'][i] = 'MBTU'
+            elif data['HEAT_REJECT'][i] == 'MAX MBTU/HR':
+                data['UNIT'][i] = 'MAX MBTU/HR'
+            
         # st.write(data)
 
         # Unit wise data for PS-F table (PS-F table is generated for all units) 
@@ -484,7 +560,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         with col1:
             st.markdown(f"""<h6 style="color:red;">🟢 KWH & KW</h6>""", unsafe_allow_html=True)
             # from data dataframe select only rows with 'kWh' or 'kW' in UNIT column
-            # data_kwh = data.loc[data['UNIT'].str.contains('KWH|MAX KW', regex=True)]
             data_kwh = data[
                 data['UNIT'].str.contains('KWH|MAX KW', regex=True) | 
                 data['LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
@@ -495,7 +570,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 data['HEAT_REJECT'].str.contains('KWH|MAX KW', regex=True)
             ]
             data_kwh = data_kwh.reset_index(drop=True)
-            st.write(data_kwh)
+            # if empty dataframe then write message in markdown - No KWH & KW data found in the selected data
+            if data_kwh.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for KWH & KW")
+            else:
+                st.write(data_kwh)
         
         with col2:
             st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
@@ -510,7 +590,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 data['HEAT_REJECT'].str.contains('THERM|MAX THERM/HR', regex=True)
             ]
             data_therm = data_therm.reset_index(drop=True)
-            st.write(data_therm)
+            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+            if data_therm.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for THERM & MAX THERM/HR")
+            else:
+                st.write(data_therm)
 
         col3, col4 = st.columns(2)
         with col3:
@@ -526,7 +611,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 data['HEAT_REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
             ]
             data_mbtu = data_mbtu.reset_index(drop=True)
-            st.write(data_mbtu)
+            # if empty dataframe then write message in markdown - No MBTU & MAX MBTU/HR data found in the selected data
+            if data_mbtu.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for MBTU & MAX MBTU/HR")
+            else:
+                st.write(data_mbtu)
 
         # Unit wise data for PS-F table (PS-F table is generated for all units) 
         # red ball before PSF in below line in markdown is to highlight the PS-F table
@@ -536,27 +626,54 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
             # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
             data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
-            # add new rows to calculate energy savings and demand savings using formula (1-(P/B)), inserting at 3rd column named Energy Savings(in %) and last column named Demand Savings(in %)
-            # in this dataframe of multiple column.. and 2 rows, Then add new rows by ratio of 2nd row by 1st row
-            st.write(data_kwh_sum)
+            # Find the row where UNIT is "Energy Saving"
+            energy_saving_row_idx = data_kwh_sum[data_kwh_sum['UNIT'] == 'Energy Saving'].index
+
+            # Calculate percentage reduction for other rows
+            for idx, row in data_kwh_sum.iterrows():
+                if idx != energy_saving_row_idx:
+                    try:
+                        # Perform the calculation if values are numeric
+                        reduction = round((1 - (float(row['Filename'].split()[0]) / float(row['Meterings'].split()[0]))), 2)
+                        # Update the row with the calculated reduction and set UNIT to "Energy Savings"
+                        data_kwh_sum.at[idx, 'UNIT'] = 'Energy Savings'
+                        data_kwh_sum.at[idx, 'Filename'] = reduction
+                        data_kwh_sum.at[idx, 'Meterings'] = ''
+                    except ValueError:
+                        # Handle non-numeric values or errors
+                        pass
+            # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+            if data_kwh_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for KWH & MAX KW")
+            else:
+                st.write(data_kwh_sum)
             
         with col2:
             st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
             # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
             data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
-            st.write(data_therm_sum)
+            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+            if data_therm_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for THERM & MAX THERM/HR")
+            else:
+                st.write(data_therm_sum)
         
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU</h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
             # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
             data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
-            st.write(data_mbtu_sum)
+            # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+            if data_mbtu_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for MBTU & MAX MBTU")
+            else:
+                st.write(data_mbtu_sum)
 
         # Insert two new row in all enrergy savings dataframe to calculate energy savings and demand savings, one at 3rd row and other at last row
         # Energy savings and demand savings is calculated by  1 - (Proposed/Baseline) in %
-        
-
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
             return
