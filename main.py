@@ -273,7 +273,7 @@ def main():
             st.session_state.script_choice = "ask"
     with col13:
         if st.button("Analytics", key="button_analytics"): #Queries
-            st.session_state.script_choice = "sh"
+            st.session_state.script_choice = "sh1"
     with col14:
         if st.button("View References", key="button_references"): #Queries
             st.session_state.script_choice = "reference"
@@ -345,6 +345,20 @@ def main():
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             if st.button("Generate INP"):
+                schedule_v01.get_schedule(uploaded_file)
+        schedule_v01.analytics(uploaded_file)
+        schedule_v01.analytics1(uploaded_file)
+
+    elif st.session_state.script_choice == "sh1":
+        st.markdown("""
+        <h4 style="color:red;">📈 Scheduling Analytics Dashboard</h4>
+        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized Daily Schedules.<br>
+        <br>
+        """, unsafe_allow_html=True)
+        
+        uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
+        if uploaded_file is not None:
+            if st.button("View Analytics"):
                 schedule_v01.get_schedule(uploaded_file)
         schedule_v01.analytics(uploaded_file)
         schedule_v01.analytics1(uploaded_file)
