@@ -39,8 +39,11 @@ st.markdown(
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
 # Set the page configuration with additional options layout='wide',
-st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='centered',
-    menu_items={                          # Custom menu items
+st.set_page_config(
+    page_title="eQuest Utilities",
+    page_icon="💡",
+    layout='wide',  # Only 'centered' or 'wide' are valid options
+    menu_items={                          
         'Get Help': 'https://www.example.com/help',
         'Report a bug': 'https://www.example.com/bug',
         'About': '# This is an **eQuest Utilities** application!'
