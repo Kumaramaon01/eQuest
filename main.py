@@ -8,6 +8,7 @@ from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
 from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
+from ScheduleGenerator import sheduls_analytics
 from q import qa
 from streamlit_card import card
 from PIL import Image as PILImage
@@ -359,7 +360,7 @@ def main():
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             # if st.button("View Analytics"):
-            schedule_v01.get_schedule(uploaded_file)
+            sheduls_analytics.get_schedule(uploaded_file)
         schedule_v01.analytics(uploaded_file)
         schedule_v01.analytics1(uploaded_file)
 
