@@ -222,8 +222,8 @@ def main():
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
-    col2, col3, col4, col5, col6, col7, col8 = st.columns([1,1,1,1,1,1,1]) 
-    col9, col10, col11, col12, col13, col14, col15 = st.columns([1,1,1,1,1,1,1])
+    col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
+    col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
     with col2:
         if st.button("About EDS", key="buttons"):
             st.session_state.script_choice = "eds"
@@ -245,6 +245,8 @@ def main():
     with col8:
         if st.button("Baseline Automation"):
             st.session_state.script_choice = "baselineAutomation"
+
+    # Second row buttons
     with col9:
         if st.button("EXE and Resources"):
             st.session_state.script_choice = "exe"
