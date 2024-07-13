@@ -467,7 +467,7 @@ def main():
     elif st.session_state.script_choice == "ask":
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.write(icon_with_tooltip1, unsafe_allow_html=True)
+            # st.write(icon_with_tooltip1, unsafe_allow_html=True)
             email = st.text_input("Enter your mail:")
             user_input = st.text_area("Enter your Queries:")
         with col2:
