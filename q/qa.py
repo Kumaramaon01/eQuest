@@ -23,7 +23,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         
     sim_p_path = sim_p_path.replace('\n', '\r\n')
     sim_b_path = sim_b_path.replace('\n', '\r\n')
-    if st.button("Table based on Metering"):
+    if st.button("Based on Metering"):
         prop_data = psf.get_PSF_report_Prop(sim_p_path)
         base_data = psf.get_PSF_report_Base(sim_b_path)
         if prop_data is None or base_data is None:
@@ -460,7 +460,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         
         return 0
     
-    if st.button("Table based on UNITS"):
+    if st.button("Based on Units"):
         prop_data = psf.get_PSF_report_Prop_all(sim_p_path)
         base_data = psf.get_PSF_report_Base_all(sim_b_path)
 
