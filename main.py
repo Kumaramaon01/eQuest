@@ -227,7 +227,7 @@ def main():
         <style>
         .stButton button {
             height: 30px;
-            width: 162px;
+            width: 163px;
         }
         </style>
     """, unsafe_allow_html=True)
