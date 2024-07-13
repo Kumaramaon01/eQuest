@@ -18,10 +18,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
+
+# Custom CSS to modify the layout
+st.markdown(
+    """
+    <style>
+    .reportview-container .main .block-container{
+        max-width: 80%;
+        padding-top: 3rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 3rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
 # Set the page configuration with additional options layout='wide',
-st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='wide',
+st.set_page_config(page_title="eQuest Utilities", page_icon="💡", layout='centered',
     menu_items={                          # Custom menu items
         'Get Help': 'https://www.example.com/help',
         'Report a bug': 'https://www.example.com/bug',
