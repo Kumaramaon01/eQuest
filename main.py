@@ -352,7 +352,7 @@ def main():
     elif st.session_state.script_choice == "sh1":
         st.markdown("""
         <h4 style="color:red;">📈 Scheduling Analytics Dashboard</h4>
-        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized Daily Schedules.<br>
+        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized bar chart and pie chart of Daily Schedules Visualizations. <br>
         <br>
         """, unsafe_allow_html=True)
         
