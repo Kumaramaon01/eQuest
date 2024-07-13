@@ -221,6 +221,15 @@ def main():
 
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+    # Inject CSS to make all buttons the same size
+    st.markdown("""
+        <style>
+        .stButton button {
+            height: 50px;
+            width: 150px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
     # Create two rows of columns with equal widths
     col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
