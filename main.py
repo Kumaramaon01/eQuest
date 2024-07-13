@@ -222,51 +222,54 @@ def main():
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 
+    # Create two rows of columns with equal widths
     col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
     col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
+    
+    # First row of buttons
     with col2:
-        if st.button("About EDS", key="buttons"):
+        if st.button("About EDS", key="button_eds"):
             st.session_state.script_choice = "eds"
     with col3:
-        if st.button("eQuest Utilities"):
+        if st.button("eQuest Utilities", key="button_utilities"):
             st.session_state.script_choice = "about"
     with col4:
-        if st.button("INP Parser"):
+        if st.button("INP Parser", key="button_inp_parser"):
             st.session_state.script_choice = "INP Parser"
     with col5:
-        if st.button("Purging INP"):
+        if st.button("Purging INP", key="button_purging_inp"):
             st.session_state.script_choice = "Purging INP"
     with col6:
-        if st.button("SIM Parser"):
+        if st.button("SIM Parser", key="button_sim_parser"):
             st.session_state.script_choice = "SIM Parser"
     with col7:
-        if st.button("SIM to PDF"):
+        if st.button("SIM to PDF", key="button_sim_to_pdf"):
             st.session_state.script_choice = "SIM to PDF"
     with col8:
-        if st.button("Baseline Automation"):
+        if st.button("Baseline Automation", key="button_baseline_automation"):
             st.session_state.script_choice = "baselineAutomation"
-
-    # Second row buttons
+    
+    # Second row of buttons
     with col9:
-        if st.button("EXE and Resources"):
+        if st.button("EXE and Resources", key="button_exe_resources"):
             st.session_state.script_choice = "exe"
     with col10:
-        if st.button("Schedule Generator"): 
+        if st.button("Schedule Generator", key="button_schedule_generator"): 
             st.session_state.script_choice = "sh"
     with col11:
-        if st.button("QA/QC"):
+        if st.button("QA/QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
     with col12:
-        if st.button("Contact"): #Queries
+        if st.button("Contact", key="button_contact"): #Queries
             st.session_state.script_choice = "ask"
     with col13:
-        if st.button("Analytics"): #Queries
+        if st.button("Analytics", key="button_analytics"): #Queries
             st.session_state.script_choice = ""
     with col14:
-        if st.button("References"): #Queries
+        if st.button("References", key="button_references"): #Queries
             st.session_state.script_choice = "reference"
     with col15:
-        if st.button("Log in"): #Queries
+        if st.button("Log in", key="button_login"): #Queries
             st.session_state.script_choice = "login"
     
     # Based on the user selection, display appropriate input fields and run the script
