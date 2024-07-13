@@ -358,8 +358,8 @@ def main():
         
         uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
-            if st.button("View Analytics"):
-                schedule_v01.get_schedule(uploaded_file)
+            # if st.button("View Analytics"):
+            schedule_v01.get_schedule(uploaded_file)
         schedule_v01.analytics(uploaded_file)
         schedule_v01.analytics1(uploaded_file)
 
