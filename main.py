@@ -269,16 +269,16 @@ def main():
         if st.button("QA/QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
     with col12:
-        if st.button("Contact", key="button_contact"): #Queries
+        if st.button("Contact Us", key="button_contact"): #Queries
             st.session_state.script_choice = "ask"
     with col13:
         if st.button("Analytics", key="button_analytics"): #Queries
             st.session_state.script_choice = ""
     with col14:
-        if st.button("References", key="button_references"): #Queries
+        if st.button("View References", key="button_references"): #Queries
             st.session_state.script_choice = "reference"
     with col15:
-        if st.button("Log in", key="button_login"): #Queries
+        if st.button("Log In", key="button_login"): #Queries
             st.session_state.script_choice = "login"
     
     # Based on the user selection, display appropriate input fields and run the script
