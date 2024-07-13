@@ -465,6 +465,9 @@ def main():
                 st.success("OUTPUT: Check your working directory for the generated PDF files.")
        
     elif st.session_state.script_choice == "ask":
+        st.markdown("""
+        <h4 style="color:red;">🖥 Contact Us</h4>
+        """, unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
             # st.write(icon_with_tooltip1, unsafe_allow_html=True)
