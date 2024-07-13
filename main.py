@@ -266,7 +266,7 @@ def main():
         if st.button("Schedule Generator", key="button_schedule_generator"): 
             st.session_state.script_choice = "sh"
     with col11:
-        if st.button("QA/QC", key="button_qa_qc"):
+        if st.button("Quality Check & Assurance", key="button_qa_qc"):
             st.session_state.script_choice = "q"
     with col12:
         if st.button("Contact Us", key="button_contact"): #Queries
