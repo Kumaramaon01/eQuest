@@ -225,8 +225,8 @@ def main():
     st.markdown("""
         <style>
         .stButton button {
-            height: 50px;
-            width: 150px;
+            height: 30px;
+            width: 160px;
         }
         </style>
     """, unsafe_allow_html=True)
