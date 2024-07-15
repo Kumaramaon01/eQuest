@@ -1927,82 +1927,83 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
             data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            new_row_3rd = {
-                'UNIT': ['Energy Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
+            if not data_kwh_sum.empty:
+                new_row_3rd = {
+                    'UNIT': ['Energy Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+    
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
 
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
+                for col in columns:
+                    value1 = data_kwh_sum.loc[1, col]
+                    value0 = data_kwh_sum.loc[0, col]
+                    
+                    if value0 == 0 and value1 == 0:
+                        ratio = 0
+                    if value0 == 0 and value1 != 0:
+                        ratio = 0
+                    if value0 == value1 and value0 != 0:
+                        ratio = 1
+                    if value0 != value1:
+                        ratio = value1 / value0
+    
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+    
+                    new_row_3rd[col] = [f'{new_value:.2f}%']
 
-            for col in columns:
-                value1 = data_kwh_sum.loc[1, col]
-                value0 = data_kwh_sum.loc[0, col]
-                
-                if value0 == 0 and value1 == 0:
-                    ratio = 0
-                if value0 == 0 and value1 != 0:
-                    ratio = 0
-                if value0 == value1 and value0 != 0:
-                    ratio = 1
-                if value0 != value1:
-                    ratio = value1 / value0
+                # Convert new_row_3rd to a DataFrame
+                new_row_3rd_df = pd.DataFrame(new_row_3rd)
+    
+                # Insert the new row after the 2nd row (index 1)
+                data_kwh_sum = pd.concat([data_kwh_sum.iloc[:2], new_row_3rd_df, data_kwh_sum.iloc[2:]]).reset_index(drop=True)
+    
+                # Calculate the new row as the ratio of the second last row to the third last row
+                new_row_last = {
+                    'UNIT': ['Demand Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
 
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
-
-                new_row_3rd[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_3rd to a DataFrame
-            new_row_3rd_df = pd.DataFrame(new_row_3rd)
-
-            # Insert the new row after the 2nd row (index 1)
-            data_kwh_sum = pd.concat([data_kwh_sum.iloc[:2], new_row_3rd_df, data_kwh_sum.iloc[2:]]).reset_index(drop=True)
-
-            # Calculate the new row as the ratio of the second last row to the third last row
-            new_row_last = {
-                'UNIT': ['Demand Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
-
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
-
-            for col in columns:
-                value4 = data_kwh_sum.loc[4, col]
-                value3 = data_kwh_sum.loc[3, col]
-                
-                if value3 == 0 and value4 == 0:
-                    ratio = 0
-                if value3 == 0 and value4 != 0:
-                    ratio = 0
-                if value3 == value4 and value3 != 0:
-                    ratio = 1
-                if value3 != value4:
-                    ratio = value4 / value3
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-            new_row_last_df = pd.DataFrame(new_row_last)
-            data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
+    
+                for col in columns:
+                    value4 = data_kwh_sum.loc[4, col]
+                    value3 = data_kwh_sum.loc[3, col]
+                    
+                    if value3 == 0 and value4 == 0:
+                        ratio = 0
+                    if value3 == 0 and value4 != 0:
+                        ratio = 0
+                    if value3 == value4 and value3 != 0:
+                        ratio = 1
+                    if value3 != value4:
+                        ratio = value4 / value3
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+                    new_row_last[col] = [f'{new_value:.2f}%']
+    
+                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+                new_row_last_df = pd.DataFrame(new_row_last)
+                data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
 
             # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
             if data_kwh_sum.empty:
@@ -2030,87 +2031,87 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
             data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            new_row_3rd = {
-                'UNIT': ['Energy Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
+            if not data_therm_sum.empty:
+                new_row_3rd = {
+                    'UNIT': ['Energy Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+    
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
 
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
+                for col in columns:
+                    value1 = data_therm_sum.loc[1, col]
+                    value0 = data_therm_sum.loc[0, col]
+                    
+                    if value0 == 0 and value1 == 0:
+                        ratio = 0
+                    if value0 == 0 and value1 != 0:
+                        ratio = 0
+                    if value0 == value1 and value0 != 0:
+                        ratio = 1
+                    if value0 != value1:
+                        ratio = value1 / value0
+    
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+    
+                    new_row_3rd[col] = [f'{new_value:.2f}%']
+    
+                # Convert new_row_3rd to a DataFrame
+                new_row_3rd_df = pd.DataFrame(new_row_3rd)
 
-            for col in columns:
-                value1 = data_therm_sum.loc[1, col]
-                value0 = data_therm_sum.loc[0, col]
-                
-                if value0 == 0 and value1 == 0:
-                    ratio = 0
-                if value0 == 0 and value1 != 0:
-                    ratio = 0
-                if value0 == value1 and value0 != 0:
-                    ratio = 1
-                if value0 != value1:
-                    ratio = value1 / value0
+                # Insert the new row after the 2nd row (index 1)
+                data_therm_sum = pd.concat([data_therm_sum.iloc[:2], new_row_3rd_df, data_therm_sum.iloc[2:]]).reset_index(drop=True)
+    
+                # Calculate the new row as the ratio of the second last row to the third last row
+                new_row_last = {
+                    'UNIT': ['Demand Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+    
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
 
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
+                for col in columns:
+                    value4 = data_therm_sum.loc[4, col]
+                    value3 = data_therm_sum.loc[3, col]
+                    
+                    if value3 == 0 and value4 == 0:
+                        ratio = 0
+                    if value3 == 0 and value4 != 0:
+                        ratio = 0
+                    if value3 == value4 and value3 != 0:
+                        ratio = 1
+                    if value3 != value4:
+                        ratio = value4 / value3
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+                    new_row_last[col] = [f'{new_value:.2f}%']
 
-                new_row_3rd[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_3rd to a DataFrame
-            new_row_3rd_df = pd.DataFrame(new_row_3rd)
-
-            # Insert the new row after the 2nd row (index 1)
-            data_therm_sum = pd.concat([data_therm_sum.iloc[:2], new_row_3rd_df, data_therm_sum.iloc[2:]]).reset_index(drop=True)
-
-            # Calculate the new row as the ratio of the second last row to the third last row
-            new_row_last = {
-                'UNIT': ['Demand Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
-
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
-
-            for col in columns:
-                value4 = data_therm_sum.loc[4, col]
-                value3 = data_therm_sum.loc[3, col]
-                
-                if value3 == 0 and value4 == 0:
-                    ratio = 0
-                if value3 == 0 and value4 != 0:
-                    ratio = 0
-                if value3 == value4 and value3 != 0:
-                    ratio = 1
-                if value3 != value4:
-                    ratio = value4 / value3
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-            new_row_last_df = pd.DataFrame(new_row_last)
-            data_therm_sum = pd.concat([data_therm_sum, new_row_last_df]).reset_index(drop=True)
+                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+                new_row_last_df = pd.DataFrame(new_row_last)
+                data_therm_sum = pd.concat([data_therm_sum, new_row_last_df]).reset_index(drop=True)
             
             # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
             if data_therm_sum.empty:
                 st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-                # st.info("No data found for THERM & MAX THERM/HR")
             else:
                 st.write(data_therm_sum)
         
@@ -2135,83 +2136,84 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
             data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            # Calculate the new row as the ratio of the second last row to the third last row
-            new_row_3rd = {
-                'UNIT': ['Energy Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
+            if data_mbtu_sum.empty:
+                # Calculate the new row as the ratio of the second last row to the third last row
+                new_row_3rd = {
+                    'UNIT': ['Energy Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+    
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
 
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
+                for col in columns:
+                    value1 = data_mbtu_sum.loc[1, col]
+                    value0 = data_mbtu_sum.loc[0, col]
+                    
+                    if value0 == 0 and value1 == 0:
+                        ratio = 0
+                    if value0 == 0 and value1 != 0:
+                        ratio = 0
+                    if value0 == value1 and value0 != 0:
+                        ratio = 1
+                    if value0 != value1:
+                        ratio = value1 / value0
+    
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+    
+                    new_row_3rd[col] = [f'{new_value:.2f}%']
+    
+                # Convert new_row_3rd to a DataFrame
+                new_row_3rd_df = pd.DataFrame(new_row_3rd)
 
-            for col in columns:
-                value1 = data_mbtu_sum.loc[1, col]
-                value0 = data_mbtu_sum.loc[0, col]
-                
-                if value0 == 0 and value1 == 0:
-                    ratio = 0
-                if value0 == 0 and value1 != 0:
-                    ratio = 0
-                if value0 == value1 and value0 != 0:
-                    ratio = 1
-                if value0 != value1:
-                    ratio = value1 / value0
+                # Insert the new row after the 2nd row (index 1)
+                data_mbtu_sum = pd.concat([data_mbtu_sum.iloc[:2], new_row_3rd_df, data_mbtu_sum.iloc[2:]]).reset_index(drop=True)
+    
+                # Calculate the new row as the ratio of the second last row to the third last row
+                new_row_last = {
+                    'UNIT': ['Demand Savings'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+    
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
 
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
-
-                new_row_3rd[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_3rd to a DataFrame
-            new_row_3rd_df = pd.DataFrame(new_row_3rd)
-
-            # Insert the new row after the 2nd row (index 1)
-            data_mbtu_sum = pd.concat([data_mbtu_sum.iloc[:2], new_row_3rd_df, data_mbtu_sum.iloc[2:]]).reset_index(drop=True)
-
-            # Calculate the new row as the ratio of the second last row to the third last row
-            new_row_last = {
-                'UNIT': ['Demand Savings'],
-                'Filename': [''],
-                'Meterings': [''],
-            }
-
-            columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-            ]
-
-            for col in columns:
-                value4 = data_mbtu_sum.loc[4, col]
-                value3 = data_mbtu_sum.loc[3, col]
-                
-                if value3 == 0 and value4 == 0:
-                    ratio = 0
-                if value3 == 0 and value4 != 0:
-                    ratio = 0
-                if value3 == value4 and value3 != 0:
-                    ratio = 1
-                if value3 != value4:
-                    ratio = value4 / value3
-                if ratio == 1:
-                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                elif ratio == 0:
-                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                else:
-                    new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
-
-            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-            new_row_last_df = pd.DataFrame(new_row_last)
-            data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
+                for col in columns:
+                    value4 = data_mbtu_sum.loc[4, col]
+                    value3 = data_mbtu_sum.loc[3, col]
+                    
+                    if value3 == 0 and value4 == 0:
+                        ratio = 0
+                    if value3 == 0 and value4 != 0:
+                        ratio = 0
+                    if value3 == value4 and value3 != 0:
+                        ratio = 1
+                    if value3 != value4:
+                        ratio = value4 / value3
+                    if ratio == 1:
+                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                    elif ratio == 0:
+                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                    else:
+                        new_value = (1 - ratio) * 100
+                    new_row_last[col] = [f'{new_value:.2f}%']
+    
+                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+                new_row_last_df = pd.DataFrame(new_row_last)
+                data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
 
             # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
             if data_mbtu_sum.empty:
