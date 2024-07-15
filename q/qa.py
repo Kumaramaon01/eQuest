@@ -641,22 +641,53 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
             data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
-            # Find the row where UNIT is "Energy Saving"
-            energy_saving_row_idx = data_kwh_sum[data_kwh_sum['UNIT'] == 'Energy Saving'].index
 
-            # Calculate percentage reduction for other rows
-            for idx, row in data_kwh_sum.iterrows():
-                if idx != energy_saving_row_idx:
-                    try:
-                        # Perform the calculation if values are numeric
-                        reduction = round((1 - (float(row['Filename'].split()[0]) / float(row['Meterings'].split()[0]))), 2)
-                        # Update the row with the calculated reduction and set UNIT to "Energy Savings"
-                        data_kwh_sum.at[idx, 'UNIT'] = 'Energy Savings'
-                        data_kwh_sum.at[idx, 'Filename'] = reduction
-                        data_kwh_sum.at[idx, 'Meterings'] = ''
-                    except ValueError:
-                        # Handle non-numeric values or errors
-                        pass
+            # Calculate the new row as the ratio of the second row to the first row
+            new_row_3rd = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_kwh_sum.loc[1, 'LIGHTS'] / data_kwh_sum.loc[0, 'LIGHTS']],
+                'TASK_LIGHTS': [data_kwh_sum.loc[1, 'TASK_LIGHTS'] / data_kwh_sum.loc[0, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_kwh_sum.loc[1, 'MISC_EQUIP'] / data_kwh_sum.loc[0, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_kwh_sum.loc[1, 'SPACE_EQUIP'] / data_kwh_sum.loc[0, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_kwh_sum.loc[1, 'SPACE_COOLING'] / data_kwh_sum.loc[0, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_kwh_sum.loc[1, 'HEAT_REJECT'] / data_kwh_sum.loc[0, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_kwh_sum.loc[1, 'PUMPS & AUX'] / data_kwh_sum.loc[0, 'PUMPS & AUX']],
+                'VENT FANS': [data_kwh_sum.loc[1, 'VENT FANS'] / data_kwh_sum.loc[0, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_kwh_sum.loc[1, 'REFRIG DISPLAY'] / data_kwh_sum.loc[0, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_kwh_sum.loc[1, 'HT PUMP SUPPLEM'] / data_kwh_sum.loc[0, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_kwh_sum.loc[1, 'DOMEST HOT WTR'] / data_kwh_sum.loc[0, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_kwh_sum.loc[1, 'EXT USAGE'] / data_kwh_sum.loc[0, 'EXT USAGE']],
+                'TOTAL': [data_kwh_sum.loc[1, 'TOTAL'] / data_kwh_sum.loc[0, 'TOTAL']]
+            }
+
+            # Insert the new row after the 2nd row (index 1)
+            data_kwh_sum = pd.concat([data_kwh_sum.iloc[:2], pd.DataFrame(new_row_3rd), data_kwh_sum.iloc[2:]]).reset_index(drop=True)
+            
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_kwh_sum.loc[4, 'LIGHTS'] / data_kwh_sum.loc[3, 'LIGHTS']],
+                'TASK_LIGHTS': [data_kwh_sum.loc[4, 'TASK_LIGHTS'] / data_kwh_sum.loc[3, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_kwh_sum.loc[4, 'MISC_EQUIP'] / data_kwh_sum.loc[3, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_kwh_sum.loc[4, 'SPACE_EQUIP'] / data_kwh_sum.loc[3, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_kwh_sum.loc[4, 'SPACE_COOLING'] / data_kwh_sum.loc[3, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_kwh_sum.loc[4, 'HEAT_REJECT'] / data_kwh_sum.loc[3, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_kwh_sum.loc[4, 'PUMPS & AUX'] / data_kwh_sum.loc[3, 'PUMPS & AUX']],
+                'VENT FANS': [data_kwh_sum.loc[4, 'VENT FANS'] / data_kwh_sum.loc[3, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_kwh_sum.loc[4, 'REFRIG DISPLAY'] / data_kwh_sum.loc[3, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_kwh_sum.loc[4, 'HT PUMP SUPPLEM'] / data_kwh_sum.loc[3, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_kwh_sum.loc[4, 'DOMEST HOT WTR'] / data_kwh_sum.loc[3, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_kwh_sum.loc[4, 'EXT USAGE'] / data_kwh_sum.loc[3, 'EXT USAGE']],
+                'TOTAL': [data_kwh_sum.loc[4, 'TOTAL'] / data_kwh_sum.loc[3, 'TOTAL']]
+            }
+
+            # Insert the new row at the last position
+            data_kwh_sum = pd.concat([data_kwh_sum, pd.DataFrame(new_row_last)]).reset_index(drop=True)
+            
             # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
             if data_kwh_sum.empty:
                 st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
@@ -683,6 +714,53 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
             data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
+
+            # Calculate the new row as the ratio of the second row to the first row
+            new_row_3rd1 = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_therm_sum.loc[1, 'LIGHTS'] / data_therm_sum.loc[0, 'LIGHTS']],
+                'TASK_LIGHTS': [data_therm_sum.loc[1, 'TASK_LIGHTS'] / data_therm_sum.loc[0, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_therm_sum.loc[1, 'MISC_EQUIP'] / data_therm_sum.loc[0, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_therm_sum.loc[1, 'SPACE_EQUIP'] / data_therm_sum.loc[0, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_therm_sum.loc[1, 'SPACE_COOLING'] / data_therm_sum.loc[0, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_therm_sum.loc[1, 'HEAT_REJECT'] / data_therm_sum.loc[0, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_therm_sum.loc[1, 'PUMPS & AUX'] / data_therm_sum.loc[0, 'PUMPS & AUX']],
+                'VENT FANS': [data_therm_sum.loc[1, 'VENT FANS'] / data_therm_sum.loc[0, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_therm_sum.loc[1, 'REFRIG DISPLAY'] / data_therm_sum.loc[0, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_therm_sum.loc[1, 'HT PUMP SUPPLEM'] / data_therm_sum.loc[0, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_therm_sum.loc[1, 'DOMEST HOT WTR'] / data_therm_sum.loc[0, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_therm_sum.loc[1, 'EXT USAGE'] / data_therm_sum.loc[0, 'EXT USAGE']],
+                'TOTAL': [data_therm_sum.loc[1, 'TOTAL'] / data_therm_sum.loc[0, 'TOTAL']]
+            }
+
+            # Insert the new row after the 2nd row (index 1)
+            data_therm_sum = pd.concat([data_therm_sum.iloc[:2], pd.DataFrame(new_row_3rd1), data_therm_sum.iloc[2:]]).reset_index(drop=True)
+            
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last1 = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_therm_sum.loc[4, 'LIGHTS'] / data_therm_sum.loc[3, 'LIGHTS']],
+                'TASK_LIGHTS': [data_therm_sum.loc[4, 'TASK_LIGHTS'] / data_therm_sum.loc[3, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_therm_sum.loc[4, 'MISC_EQUIP'] / data_therm_sum.loc[3, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_therm_sum.loc[4, 'SPACE_EQUIP'] / data_therm_sum.loc[3, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_therm_sum.loc[4, 'SPACE_COOLING'] / data_therm_sum.loc[3, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_therm_sum.loc[4, 'HEAT_REJECT'] / data_therm_sum.loc[3, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_therm_sum.loc[4, 'PUMPS & AUX'] / data_therm_sum.loc[3, 'PUMPS & AUX']],
+                'VENT FANS': [data_therm_sum.loc[4, 'VENT FANS'] / data_therm_sum.loc[3, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_therm_sum.loc[4, 'REFRIG DISPLAY'] / data_therm_sum.loc[3, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_therm_sum.loc[4, 'HT PUMP SUPPLEM'] / data_therm_sum.loc[3, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_therm_sum.loc[4, 'DOMEST HOT WTR'] / data_therm_sum.loc[3, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_therm_sum.loc[4, 'EXT USAGE'] / data_therm_sum.loc[3, 'EXT USAGE']],
+                'TOTAL': [data_therm_sum.loc[4, 'TOTAL'] / data_therm_sum.loc[3, 'TOTAL']]
+            }
+
+            # # Insert the new row at the last position
+            data_therm_sum = pd.concat([data_therm_sum, pd.DataFrame(new_row_last1)]).reset_index(drop=True)
+            
             # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
             if data_therm_sum.empty:
                 st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
@@ -710,6 +788,52 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
             data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
+
+            # Calculate the new row as the ratio of the second row to the first row
+            new_row_3rd2 = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_mbtu_sum.loc[1, 'LIGHTS'] / data_mbtu_sum.loc[0, 'LIGHTS']],
+                'TASK_LIGHTS': [data_mbtu_sum.loc[1, 'TASK_LIGHTS'] / data_mbtu_sum.loc[0, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_mbtu_sum.loc[1, 'MISC_EQUIP'] / data_mbtu_sum.loc[0, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_mbtu_sum.loc[1, 'SPACE_EQUIP'] / data_mbtu_sum.loc[0, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_mbtu_sum.loc[1, 'SPACE_COOLING'] / data_mbtu_sum.loc[0, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_mbtu_sum.loc[1, 'HEAT_REJECT'] / data_mbtu_sum.loc[0, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_mbtu_sum.loc[1, 'PUMPS & AUX'] / data_mbtu_sum.loc[0, 'PUMPS & AUX']],
+                'VENT FANS': [data_mbtu_sum.loc[1, 'VENT FANS'] / data_mbtu_sum.loc[0, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_mbtu_sum.loc[1, 'REFRIG DISPLAY'] / data_mbtu_sum.loc[0, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_mbtu_sum.loc[1, 'HT PUMP SUPPLEM'] / data_mbtu_sum.loc[0, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_mbtu_sum.loc[1, 'DOMEST HOT WTR'] / data_mbtu_sum.loc[0, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_mbtu_sum.loc[1, 'EXT USAGE'] / data_mbtu_sum.loc[0, 'EXT USAGE']],
+                'TOTAL': [data_mbtu_sum.loc[1, 'TOTAL'] / data_mbtu_sum.loc[0, 'TOTAL']]
+            }
+
+            # Insert the new row after the 2nd row (index 1)
+            data_mbtu_sum = pd.concat([data_mbtu_sum.iloc[:2], pd.DataFrame(new_row_3rd2), data_mbtu_sum.iloc[2:]]).reset_index(drop=True)
+
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last2 = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+                'LIGHTS': [data_mbtu_sum.loc[4, 'LIGHTS'] / data_mbtu_sum.loc[3, 'LIGHTS']],
+                'TASK_LIGHTS': [data_mbtu_sum.loc[4, 'TASK_LIGHTS'] / data_mbtu_sum.loc[3, 'TASK_LIGHTS']],
+                'MISC_EQUIP': [data_mbtu_sum.loc[4, 'MISC_EQUIP'] / data_mbtu_sum.loc[3, 'MISC_EQUIP']],
+                'SPACE_EQUIP': [data_mbtu_sum.loc[4, 'SPACE_EQUIP'] / data_mbtu_sum.loc[3, 'SPACE_EQUIP']],
+                'SPACE_COOLING': [data_mbtu_sum.loc[4, 'SPACE_COOLING'] / data_mbtu_sum.loc[3, 'SPACE_COOLING']],
+                'HEAT_REJECT': [data_mbtu_sum.loc[4, 'HEAT_REJECT'] / data_mbtu_sum.loc[3, 'HEAT_REJECT']],
+                'PUMPS & AUX': [data_mbtu_sum.loc[4, 'PUMPS & AUX'] / data_mbtu_sum.loc[3, 'PUMPS & AUX']],
+                'VENT FANS': [data_mbtu_sum.loc[4, 'VENT FANS'] / data_mbtu_sum.loc[3, 'VENT FANS']],
+                'REFRIG DISPLAY': [data_mbtu_sum.loc[4, 'REFRIG DISPLAY'] / data_mbtu_sum.loc[3, 'REFRIG DISPLAY']],
+                'HT PUMP SUPPLEM': [data_mbtu_sum.loc[4, 'HT PUMP SUPPLEM'] / data_mbtu_sum.loc[3, 'HT PUMP SUPPLEM']],
+                'DOMEST HOT WTR': [data_mbtu_sum.loc[4, 'DOMEST HOT WTR'] / data_mbtu_sum.loc[3, 'DOMEST HOT WTR']],
+                'EXT USAGE': [data_mbtu_sum.loc[4, 'EXT USAGE'] / data_mbtu_sum.loc[3, 'EXT USAGE']],
+                'TOTAL': [data_mbtu_sum.loc[4, 'TOTAL'] / data_mbtu_sum.loc[3, 'TOTAL']]
+            }
+            # # Insert the new row at the last position
+            data_mbtu_sum = pd.concat([data_mbtu_sum, pd.DataFrame(new_row_last2)]).reset_index(drop=True)
+            
             # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
             if data_mbtu_sum.empty:
                 st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
