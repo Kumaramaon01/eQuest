@@ -624,6 +624,21 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
+            # converting to numeric type and removing comma from data
+            data_kwh['LIGHTS'] = pd.to_numeric(data_kwh['LIGHTS'].str.replace(',',''), errors='coerce')
+            data_kwh['TASK_LIGHTS'] = pd.to_numeric(data_kwh['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+            data_kwh['MISC_EQUIP'] = pd.to_numeric(data_kwh['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+            data_kwh['SPACE_EQUIP'] = pd.to_numeric(data_kwh['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+            data_kwh['SPACE_COOLING'] = pd.to_numeric(data_kwh['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+            data_kwh['HEAT_REJECT'] = pd.to_numeric(data_kwh['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+            data_kwh['PUMPS & AUX'] = pd.to_numeric(data_kwh['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+            data_kwh['VENT FANS'] = pd.to_numeric(data_kwh['VENT FANS'].str.replace(',',''), errors='coerce')
+            data_kwh['REFRIG DISPLAY'] = pd.to_numeric(data_kwh['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+            data_kwh['HT PUMP SUPPLEM'] = pd.to_numeric(data_kwh['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+            data_kwh['DOMEST HOT WTR'] = pd.to_numeric(data_kwh['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+            data_kwh['EXT USAGE'] = pd.to_numeric(data_kwh['EXT USAGE'].str.replace(',',''), errors='coerce')
+            data_kwh['TOTAL'] = pd.to_numeric(data_kwh['TOTAL'].str.replace(',',''), errors='coerce')
+            
             # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
             data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
             # Find the row where UNIT is "Energy Saving"
@@ -651,6 +666,21 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
         with col2:
             st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+            # converting to numeric type and removing comma from data
+            data_therm['LIGHTS'] = pd.to_numeric(data_therm['LIGHTS'].str.replace(',',''), errors='coerce')
+            data_therm['TASK_LIGHTS'] = pd.to_numeric(data_therm['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+            data_therm['MISC_EQUIP'] = pd.to_numeric(data_therm['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+            data_therm['SPACE_EQUIP'] = pd.to_numeric(data_therm['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+            data_therm['SPACE_COOLING'] = pd.to_numeric(data_therm['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+            data_therm['HEAT_REJECT'] = pd.to_numeric(data_therm['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+            data_therm['PUMPS & AUX'] = pd.to_numeric(data_therm['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+            data_therm['VENT FANS'] = pd.to_numeric(data_therm['VENT FANS'].str.replace(',',''), errors='coerce')
+            data_therm['REFRIG DISPLAY'] = pd.to_numeric(data_therm['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+            data_therm['HT PUMP SUPPLEM'] = pd.to_numeric(data_therm['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+            data_therm['DOMEST HOT WTR'] = pd.to_numeric(data_therm['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+            data_therm['EXT USAGE'] = pd.to_numeric(data_therm['EXT USAGE'].str.replace(',',''), errors='coerce')
+            data_therm['TOTAL'] = pd.to_numeric(data_therm['TOTAL'].str.replace(',',''), errors='coerce')
+            
             # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
             data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
             # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
@@ -663,6 +693,21 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+            # converting to numeric type and removing comma from data
+            data_mbtu['LIGHTS'] = pd.to_numeric(data_mbtu['LIGHTS'].str.replace(',',''), errors='coerce')
+            data_mbtu['TASK_LIGHTS'] = pd.to_numeric(data_mbtu['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+            data_mbtu['MISC_EQUIP'] = pd.to_numeric(data_mbtu['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+            data_mbtu['SPACE_EQUIP'] = pd.to_numeric(data_mbtu['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+            data_mbtu['SPACE_COOLING'] = pd.to_numeric(data_mbtu['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+            data_mbtu['HEAT_REJECT'] = pd.to_numeric(data_mbtu['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+            data_mbtu['PUMPS & AUX'] = pd.to_numeric(data_mbtu['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+            data_mbtu['VENT FANS'] = pd.to_numeric(data_mbtu['VENT FANS'].str.replace(',',''), errors='coerce')
+            data_mbtu['REFRIG DISPLAY'] = pd.to_numeric(data_mbtu['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+            data_mbtu['HT PUMP SUPPLEM'] = pd.to_numeric(data_mbtu['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+            data_mbtu['DOMEST HOT WTR'] = pd.to_numeric(data_mbtu['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+            data_mbtu['EXT USAGE'] = pd.to_numeric(data_mbtu['EXT USAGE'].str.replace(',',''), errors='coerce')
+            data_mbtu['TOTAL'] = pd.to_numeric(data_mbtu['TOTAL'].str.replace(',',''), errors='coerce')
+            
             # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
             data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
             # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
