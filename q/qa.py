@@ -2136,7 +2136,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
             data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            if data_mbtu_sum.empty:
+            if not data_mbtu_sum.empty:
                 # Calculate the new row as the ratio of the second last row to the third last row
                 new_row_3rd = {
                     'UNIT': ['Energy Savings'],
