@@ -923,7 +923,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ################################################## BAR CHART ##################################################
         ###############################################################################################################
         
-        st.markdown(f"""<h6 style="color:red;">🔴 Energy Distribution Bar Chart based on Units (in %)</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 Energy Distribution Pie Chart based on Units (in %)</h6>""", unsafe_allow_html=True)
         if not data_kwh_sum.empty:
             st.markdown(f"""<h6 style="color:red;">🟢 KWH </h6>""", unsafe_allow_html=True)
             # Select the rows to be used for the pie charts
