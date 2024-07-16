@@ -965,17 +965,18 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
         st.markdown(f"""<h6 style="color:red;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
-            # Select the rows to be used for the pie charts
-            row3 = data_therm_sum.iloc[0, :-1]  # 3rd row (index 2) 
-            row_last = data_therm_sum.iloc[1, :-1]  # Last row 
-            # Create pie charts
+            row3 = data_therm_sum.iloc[0, :-1]
+            row_last = data_therm_sum.iloc[1, :-1]
+            
             if row3.sum() == 0 and row_last.sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
             else:
                 fig1 = px.pie(values=row3.values, names=row3.index, title='Baseline')
                 fig2 = px.pie(values=row_last.values, names=row_last.index, title='Proposed')
+        
                 fig1.update_traces(textinfo='percent+label')
                 fig2.update_traces(textinfo='percent+label')
+        
                 col1, col2 = st.columns(2)
                 with col1:
                     st.plotly_chart(fig1)
