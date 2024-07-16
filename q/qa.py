@@ -3,6 +3,7 @@ import tempfile
 import pandas as pd
 from q.src import psf
 import numpy as np
+import plotly.express as px
 
 def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
@@ -939,7 +940,25 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             else:
                 st.write(data_mbtu_sum)
 
-        # Insert two new row in all enrergy savings dataframe to calculate energy savings and demand savings, one at 3rd row and other at last row
+        # Select the rows to be used for the pie charts
+        row3 = data_kwh_sum.iloc[2, 1:]  # 3rd row (index 2) 
+        row_last = data_kwh_sum.iloc[-1, 1:]  # Last row 
+
+        # Create pie charts
+        fig1 = px.pie(values=row3.values, names=row3.index, title='Energy Savings')
+        fig2 = px.pie(values=row_last.values, names=row_last.index, title='Demand Savings')
+        
+        # Update the traces to show percentages
+        fig1.update_traces(textinfo='percent+label')
+        fig2.update_traces(textinfo='percent+label')
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.plotly_chart(fig1)
+        with col2:
+            st.plotly_chart(fig2)
+
+        # Insert two new row in all enrergy savings dataframe to calculate energy savings and demand savings, one at 3rd row and other at
         # Energy savings and demand savings is calculated by  1 - (Proposed/Baseline) in %
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
