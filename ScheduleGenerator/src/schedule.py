@@ -81,8 +81,7 @@ def getScheduleINP(data):
             row_values = row[1:25].tolist()
             # Replace consecutive duplicates with &D
             row_values = replace_consecutive_duplicates(row_values)
-            formatted_values = ', '.join(map(str, row_values))
-            
+            formatted_values = ', '.join(str(value) for value in row_values if pd.notnull(value))
             # Write to the file
             write_line(format_line(f'"{schedule_name}" = DAY-SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
@@ -109,7 +108,7 @@ def getScheduleINP(data):
             # Extract values from 2nd to 11th column for the current row
             row_values = row[1:11].tolist()
             row_values = replace_consecutive_duplicates(row_values)
-            formatted_day = ', '.join(f'"{value}"' if value != '&D' else value for value in row_values)
+            formatted_day = ', '.join(f'"{value}"' if value != '&D' else value for value in row_values if pd.notnull(value))
 
             write_line(format_line(f'"{schedule_name}" = WEEK-SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
@@ -136,7 +135,7 @@ def getScheduleINP(data):
             schedule_name = row[0]
             # Extract values from 2nd to 13th column for the current row
             row_values = row[1:13].tolist()
-            formatted_days = ', '.join(f'"{value}"' for value in row_values)
+            formatted_days = ', '.join(f'"{value}"' for value in row_values if pd.notnull(value))
 
             write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD'))
             write_line(format_line(f"   TYPE             = {type_value}"))
