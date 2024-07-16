@@ -108,7 +108,7 @@ def get_PSF_report_Prop(name):
             for i, index in enumerate(insert_indices):
                 # Calculate the index in values2 to insert
                 values2_index = i % len(values2)
-                new_row = {'UNIT': "Metering_" + values2[values2_index]}
+                new_row = {'UNIT': values2[values2_index]}
                 # Insert the new row before the 'JAN'
                 psf_df = pd.concat([psf_df.iloc[:index+i], pd.DataFrame([new_row]), psf_df.iloc[index+i:]]).reset_index(drop=True)
     
@@ -223,7 +223,7 @@ def get_PSF_report_Base(name):
             for i, index in enumerate(insert_indices):
                 # Calculate the index in values2 to insert
                 values2_index = i % len(values2)
-                new_row = {'UNIT': "Metering_" + values2[values2_index]}
+                new_row = {'UNIT': values2[values2_index]}
                 # Insert the new row before the 'JAN'
                 psf_df = pd.concat([psf_df.iloc[:index+i], pd.DataFrame([new_row]), psf_df.iloc[index+i:]]).reset_index(drop=True)
     
@@ -338,7 +338,7 @@ def get_PSF_report_Prop_all(name):
             for i, index in enumerate(insert_indices):
                 # Calculate the index in values2 to insert
                 values2_index = i % len(values2)
-                new_row = {'UNIT': "Metering_" + values2[values2_index]}
+                new_row = {'UNIT': values2[values2_index]}
                 # Insert the new row before the 'JAN'
                 psf_df = pd.concat([psf_df.iloc[:index+i], pd.DataFrame([new_row]), psf_df.iloc[index+i:]]).reset_index(drop=True)
             
@@ -493,11 +493,10 @@ def get_PSF_report_Base_all(name):
             for i, index in enumerate(insert_indices):
                 # Calculate the index in values2 to insert
                 values2_index = i % len(values2)
-                new_row = {'UNIT': "Metering_" + values2[values2_index]}
+                new_row = {'UNIT': values2[values2_index]}
                 # Insert the new row before the 'JAN'
                 psf_df = pd.concat([psf_df.iloc[:index+i], pd.DataFrame([new_row]), psf_df.iloc[index+i:]]).reset_index(drop=True)
             
-    
             months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
             # Remove rows where 'LIGHTS' column contains month names
             psf_df = psf_df[~psf_df['LIGHTS'].isin(months)]
