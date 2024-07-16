@@ -287,7 +287,7 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            <h4 style="color:red;">🌐 Welcome to eQuest Utilities</h4>
+            <h4 style="color:red;">🌐 Welcome to eQUEST Utilities</h4>
     
             eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
             Our utilities include:
