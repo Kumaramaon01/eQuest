@@ -289,7 +289,7 @@ def main():
             st.markdown("""
             <h4 style="color:red;">🌐 Welcome to eQUEST Utilities</h4>
     
-            eQuest Utilities is a comprehensive suite of tools designed to help you work with eQuest more efficiently. 
+            eQUEST Utilities is a comprehensive suite of tools designed to help you work with eQUEST more efficiently. 
             Our utilities include:
     
             - <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.
@@ -304,7 +304,7 @@ def main():
         with col2:
             st.image("https://www.filepicker.io/api/file/ISb3e710QSmh95AYIdef", width=560)
         st.markdown(""" Navigate through the tools using the buttons above to get started. Each tool is designed to simplify 
-            specific tasks related to eQuest project management. We hope these utilities make your workflow smoother 
+            specific tasks related to eQUEST project management. We hope these utilities make your workflow smoother 
             and more productive.
         """, unsafe_allow_html=True)
         
