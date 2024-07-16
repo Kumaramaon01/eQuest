@@ -977,21 +977,24 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.plotly_chart(fig2)
 
         st.markdown(f"""<h6 style="color:red;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
-        # Select the rows to be used for the pie charts
-        row3 = data_mbtu_sum.iloc[0, :-1]  # 3rd row (index 2) 
-        row_last = data_mbtu_sum.iloc[1, :-1]  # Last row 
-        # Create pie charts
-        fig1 = px.pie(values=row3.values, names=row3.index, title='Baseline')
-        fig2 = px.pie(values=row_last.values, names=row_last.index, title='Proposed')
-        # Update the traces to show percentages
-        fig1.update_traces(textinfo='percent+label')
-        fig2.update_traces(textinfo='percent+label')
-        col1, col2 = st.columns(2)
-        with col1:
-            st.plotly_chart(fig1)
-        with col2:
-            st.plotly_chart(fig2)
-
+        if not data_mbtu_sum.empty:
+            # Select the rows to be used for the pie charts
+            row3 = data_mbtu_sum.iloc[0, :-1]  # 3rd row (index 2) 
+            row_last = data_mbtu_sum.iloc[1, :-1]  # Last row 
+            # Create pie charts
+            fig1 = px.pie(values=row3.values, names=row3.index, title='Baseline')
+            fig2 = px.pie(values=row_last.values, names=row_last.index, title='Proposed')
+            # Update the traces to show percentages
+            fig1.update_traces(textinfo='percent+label')
+            fig2.update_traces(textinfo='percent+label')
+            col1, col2 = st.columns(2)
+            with col1:
+                st.plotly_chart(fig1)
+            with col2:
+                st.plotly_chart(fig2)
+        else:
+            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+            
         # Insert two new row in all enrergy savings dataframe to calculate energy savings and demand savings, one at 3rd row and other at
         # Energy savings and demand savings is calculated by  1 - (Proposed/Baseline) in %
         if prop_data is None or base_data is None:
