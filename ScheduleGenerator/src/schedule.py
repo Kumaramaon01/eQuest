@@ -127,8 +127,9 @@ def getScheduleINP(data):
     month_values = data.loc[data.iloc[:, 0] == 'Month'].iloc[0, 1:13].tolist()
     day_values = data.loc[data.iloc[:, 0] == 'Month'].iloc[0, 1:13].tolist()
     next_row_values = data.iloc[data.index[data.iloc[:, 0] == 'Month'][0] + 1, 1:13].tolist()
-    formatted_values1 = ', '.join(map(str, month_values))
-    formatted_values2 = ', '.join(map(str, next_row_values))
+    filtered_values = [str(x) for x in month_values if pd.notnull(x) and x != 'Columns can be added here till 8760']
+    formatted_values1 = ', '.join(filtered_values)
+    formatted_values2 = ', '.join(map(str, filter(lambda x: pd.notnull(x), next_row_values)))
     
     for index, row in data.iterrows():
         if index > idx3 and index < len(data):
