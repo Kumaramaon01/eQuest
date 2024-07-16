@@ -470,17 +470,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         data = pd.concat([prop_data, base_data], axis=0, ignore_index=True)
         data = data.reset_index(drop=True)
 
-        ###############################################################################################################
-        ################################################## BAR CHART ##################################################
-        ###############################################################################################################
-
-        ###############################################################################################################
-        ################################################## EFLH TABLE #################################################
-        ###############################################################################################################
-
-        ###############################################################################################################
-        ################################################## Other Tables ###############################################
-        ###############################################################################################################
         # if KWH or MAX KW or THERM or MAX THERM/HR or MBTU or MAX MBTU/HR is in LIGHTS column then put that in corresponding UNIT column in data dataframe
         for i in range(len(data)):
             if data['LIGHTS'][i] == 'KWH':
@@ -560,395 +549,386 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
         # Unit wise data for PS-F table (PS-F table is generated for all units) 
         # red ball before PSF in below line in markdown is to highlight the PS-F table
-        st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown(f"""<h6 style="color:red;">🟢 KWH & KW</h6>""", unsafe_allow_html=True)
-            # from data dataframe select only rows with 'kWh' or 'kW' in UNIT column
-            data_kwh = data[
-                data['UNIT'].str.contains('KWH|MAX KW', regex=True) | 
-                data['LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
-                data['TASK_LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
-                data['MISC_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
-                data['SPACE_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
-                data['SPACE_COOLING'].str.contains('KWH|MAX KW', regex=True) |
-                data['HEAT_REJECT'].str.contains('KWH|MAX KW', regex=True)
-            ]
-            data_kwh = data_kwh.reset_index(drop=True)
-            # if empty dataframe then write message in markdown - No KWH & KW data found in the selected data
-            if data_kwh.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
-                # st.info("No data found for KWH & KW")
-            else:
-                st.write(data_kwh)
+        # st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
+        # st.markdown(f"""<h6 style="color:red;">🟢 KWH & KW</h6>""", unsafe_allow_html=True)
+        # from data dataframe select only rows with 'kWh' or 'kW' in UNIT column
+        data_kwh = data[
+            data['UNIT'].str.contains('KWH|MAX KW', regex=True) | 
+            data['LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
+            data['TASK_LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
+            data['MISC_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
+            data['SPACE_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
+            data['SPACE_COOLING'].str.contains('KWH|MAX KW', regex=True) |
+            data['HEAT_REJECT'].str.contains('KWH|MAX KW', regex=True)
+        ]
+        data_kwh = data_kwh.reset_index(drop=True)
+        # if empty dataframe then write message in markdown - No KWH & KW data found in the selected data
+        # if data_kwh.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
+        #     # st.info("No data found for KWH & KW")
+        # else:
+        #     st.write(data_kwh)
         
-        with col2:
-            st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
-            # from data dataframe select only rows with 'THERM' or 'MAX THERM/HR' in UNIT column
-            data_therm = data[
-                data['UNIT'].str.contains('THERM|MAX THERM/HR', regex=True) | 
-                data['LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
-                data['TASK_LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
-                data['MISC_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
-                data['SPACE_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
-                data['SPACE_COOLING'].str.contains('THERM|MAX THERM/HR', regex=True) |
-                data['HEAT_REJECT'].str.contains('THERM|MAX THERM/HR', regex=True)
-            ]
-            data_therm = data_therm.reset_index(drop=True)
-            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-            if data_therm.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-                # st.info("No data found for THERM & MAX THERM/HR")
-            else:
-                st.write(data_therm)
+        # with col2:
+        # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        # from data dataframe select only rows with 'THERM' or 'MAX THERM/HR' in UNIT column
+        data_therm = data[
+            data['UNIT'].str.contains('THERM|MAX THERM/HR', regex=True) | 
+            data['LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['TASK_LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['MISC_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['SPACE_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['SPACE_COOLING'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['HEAT_REJECT'].str.contains('THERM|MAX THERM/HR', regex=True)
+        ]
+        data_therm = data_therm.reset_index(drop=True)
+        # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+        # if data_therm.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+        #     # st.info("No data found for THERM & MAX THERM/HR")
+        # else:
+        #     st.write(data_therm)
 
-        col3, col4 = st.columns(2)
-        with col3:
-            st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
-            # from data dataframe select only rows with 'MBTU' or 'MAX MBTU/HR' in UNIT column
-            data_mbtu = data[
-                data['UNIT'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['TASK_LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['MISC_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['SPACE_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['SPACE_COOLING'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-                data['HEAT_REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
-            ]
-            data_mbtu = data_mbtu.reset_index(drop=True)
-            # if empty dataframe then write message in markdown - No MBTU & MAX MBTU/HR data found in the selected data
-            if data_mbtu.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-                # st.info("No data found for MBTU & MAX MBTU/HR")
-            else:
-                st.write(data_mbtu)
+        # st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        # from data dataframe select only rows with 'MBTU' or 'MAX MBTU/HR' in UNIT column
+        data_mbtu = data[
+            data['UNIT'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['TASK_LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['MISC_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['SPACE_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['SPACE_COOLING'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['HEAT_REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
+        ]
+        data_mbtu = data_mbtu.reset_index(drop=True)
+        # if empty dataframe then write message in markdown - No MBTU & MAX MBTU/HR data found in the selected data
+        # if data_mbtu.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+        #     # st.info("No data found for MBTU & MAX MBTU/HR")
+        # else:
+        #     st.write(data_mbtu)
 
         # Unit wise data for PS-F table (PS-F table is generated for all units) 
         # red ball before PSF in below line in markdown is to highlight the PS-F table
-        st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
-            # converting to numeric type and removing comma from data
-            data_kwh['LIGHTS'] = pd.to_numeric(data_kwh['LIGHTS'].str.replace(',',''), errors='coerce')
-            data_kwh['TASK_LIGHTS'] = pd.to_numeric(data_kwh['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-            data_kwh['MISC_EQUIP'] = pd.to_numeric(data_kwh['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-            data_kwh['SPACE_EQUIP'] = pd.to_numeric(data_kwh['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-            data_kwh['SPACE_COOLING'] = pd.to_numeric(data_kwh['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-            data_kwh['HEAT_REJECT'] = pd.to_numeric(data_kwh['HEAT_REJECT'].str.replace(',',''), errors='coerce')
-            data_kwh['PUMPS & AUX'] = pd.to_numeric(data_kwh['PUMPS & AUX'].str.replace(',',''), errors='coerce')
-            data_kwh['VENT FANS'] = pd.to_numeric(data_kwh['VENT FANS'].str.replace(',',''), errors='coerce')
-            data_kwh['REFRIG DISPLAY'] = pd.to_numeric(data_kwh['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
-            data_kwh['HT PUMP SUPPLEM'] = pd.to_numeric(data_kwh['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
-            data_kwh['DOMEST HOT WTR'] = pd.to_numeric(data_kwh['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
-            data_kwh['EXT USAGE'] = pd.to_numeric(data_kwh['EXT USAGE'].str.replace(',',''), errors='coerce')
-            data_kwh['TOTAL'] = pd.to_numeric(data_kwh['TOTAL'].str.replace(',',''), errors='coerce')
-            # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
-            data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
+        # st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
+        # st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
+        # converting to numeric type and removing comma from data
+        data_kwh['LIGHTS'] = pd.to_numeric(data_kwh['LIGHTS'].str.replace(',',''), errors='coerce')
+        data_kwh['TASK_LIGHTS'] = pd.to_numeric(data_kwh['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+        data_kwh['MISC_EQUIP'] = pd.to_numeric(data_kwh['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+        data_kwh['SPACE_EQUIP'] = pd.to_numeric(data_kwh['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+        data_kwh['SPACE_COOLING'] = pd.to_numeric(data_kwh['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+        data_kwh['HEAT_REJECT'] = pd.to_numeric(data_kwh['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_kwh['PUMPS & AUX'] = pd.to_numeric(data_kwh['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+        data_kwh['VENT FANS'] = pd.to_numeric(data_kwh['VENT FANS'].str.replace(',',''), errors='coerce')
+        data_kwh['REFRIG DISPLAY'] = pd.to_numeric(data_kwh['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+        data_kwh['HT PUMP SUPPLEM'] = pd.to_numeric(data_kwh['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+        data_kwh['DOMEST HOT WTR'] = pd.to_numeric(data_kwh['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+        data_kwh['EXT USAGE'] = pd.to_numeric(data_kwh['EXT USAGE'].str.replace(',',''), errors='coerce')
+        data_kwh['TOTAL'] = pd.to_numeric(data_kwh['TOTAL'].str.replace(',',''), errors='coerce')
+        # form new dataframe with sum KWH in 1 row and sum MAX KW in 1 row means based on same UNIT column values add into 1 row
+        data_kwh_sum = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            if not data_kwh_sum.empty:
-                new_row_3rd = {
-                    'UNIT': ['Energy Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
-    
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
+        if not data_kwh_sum.empty:
+            new_row_3rd = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
 
-                for col in columns:
-                    value1 = data_kwh_sum.loc[1, col]
-                    value0 = data_kwh_sum.loc[0, col]
-                    
-                    if value0 == 0 and value1 == 0:
-                        ratio = 0
-                    if value0 == 0 and value1 != 0:
-                        ratio = 0
-                    if value0 == value1 and value0 != 0:
-                        ratio = 1
-                    if value0 != value1:
-                        ratio = value1 / value0
-    
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-    
-                    new_row_3rd[col] = [f'{new_value:.2f}%']
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
 
-                # Convert new_row_3rd to a DataFrame
-                new_row_3rd_df = pd.DataFrame(new_row_3rd)
-    
-                # Insert the new row after the 2nd row (index 1)
-                data_kwh_sum = pd.concat([data_kwh_sum.iloc[:2], new_row_3rd_df, data_kwh_sum.iloc[2:]]).reset_index(drop=True)
-    
-                # Calculate the new row as the ratio of the second last row to the third last row
-                new_row_last = {
-                    'UNIT': ['Demand Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
+            for col in columns:
+                value1 = data_kwh_sum.loc[1, col]
+                value0 = data_kwh_sum.loc[0, col]
+                
+                if value0 == 0 and value1 == 0:
+                    ratio = 0
+                if value0 == 0 and value1 != 0:
+                    ratio = 0
+                if value0 == value1 and value0 != 0:
+                    ratio = 1
+                if value0 != value1:
+                    ratio = value1 / value0
 
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
-    
-                for col in columns:
-                    value4 = data_kwh_sum.loc[4, col]
-                    value3 = data_kwh_sum.loc[3, col]
-                    
-                    if value3 == 0 and value4 == 0:
-                        ratio = 0
-                    if value3 == 0 and value4 != 0:
-                        ratio = 0
-                    if value3 == value4 and value3 != 0:
-                        ratio = 1
-                    if value3 != value4:
-                        ratio = value4 / value3
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-                    new_row_last[col] = [f'{new_value:.2f}%']
-    
-                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-                new_row_last_df = pd.DataFrame(new_row_last)
-                data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
 
-            # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
-            if data_kwh_sum.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
-            else:
-                st.write(data_kwh_sum)
+                new_row_3rd[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_3rd to a DataFrame
+            new_row_3rd_df = pd.DataFrame(new_row_3rd)
+
+            # Insert the new row after the 2nd row (index 1)
+            data_kwh_sum = pd.concat([data_kwh_sum.iloc[:2], new_row_3rd_df, data_kwh_sum.iloc[2:]]).reset_index(drop=True)
+
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
+
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
+
+            for col in columns:
+                value4 = data_kwh_sum.loc[4, col]
+                value3 = data_kwh_sum.loc[3, col]
+                
+                if value3 == 0 and value4 == 0:
+                    ratio = 0
+                if value3 == 0 and value4 != 0:
+                    ratio = 0
+                if value3 == value4 and value3 != 0:
+                    ratio = 1
+                if value3 != value4:
+                    ratio = value4 / value3
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
+                new_row_last[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+            new_row_last_df = pd.DataFrame(new_row_last)
+            data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
+
+        # # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+        # if data_kwh_sum.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
+        # else:
+        #     st.write(data_kwh_sum)
             
-        with col2:
-            st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
-            # converting to numeric type and removing comma from data
-            data_therm['LIGHTS'] = pd.to_numeric(data_therm['LIGHTS'].str.replace(',',''), errors='coerce')
-            data_therm['TASK_LIGHTS'] = pd.to_numeric(data_therm['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-            data_therm['MISC_EQUIP'] = pd.to_numeric(data_therm['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-            data_therm['SPACE_EQUIP'] = pd.to_numeric(data_therm['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-            data_therm['SPACE_COOLING'] = pd.to_numeric(data_therm['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-            data_therm['HEAT_REJECT'] = pd.to_numeric(data_therm['HEAT_REJECT'].str.replace(',',''), errors='coerce')
-            data_therm['PUMPS & AUX'] = pd.to_numeric(data_therm['PUMPS & AUX'].str.replace(',',''), errors='coerce')
-            data_therm['VENT FANS'] = pd.to_numeric(data_therm['VENT FANS'].str.replace(',',''), errors='coerce')
-            data_therm['REFRIG DISPLAY'] = pd.to_numeric(data_therm['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
-            data_therm['HT PUMP SUPPLEM'] = pd.to_numeric(data_therm['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
-            data_therm['DOMEST HOT WTR'] = pd.to_numeric(data_therm['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
-            data_therm['EXT USAGE'] = pd.to_numeric(data_therm['EXT USAGE'].str.replace(',',''), errors='coerce')
-            data_therm['TOTAL'] = pd.to_numeric(data_therm['TOTAL'].str.replace(',',''), errors='coerce')
+        # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        # converting to numeric type and removing comma from data
+        data_therm['LIGHTS'] = pd.to_numeric(data_therm['LIGHTS'].str.replace(',',''), errors='coerce')
+        data_therm['TASK_LIGHTS'] = pd.to_numeric(data_therm['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+        data_therm['MISC_EQUIP'] = pd.to_numeric(data_therm['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+        data_therm['SPACE_EQUIP'] = pd.to_numeric(data_therm['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+        data_therm['SPACE_COOLING'] = pd.to_numeric(data_therm['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+        data_therm['HEAT_REJECT'] = pd.to_numeric(data_therm['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_therm['PUMPS & AUX'] = pd.to_numeric(data_therm['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+        data_therm['VENT FANS'] = pd.to_numeric(data_therm['VENT FANS'].str.replace(',',''), errors='coerce')
+        data_therm['REFRIG DISPLAY'] = pd.to_numeric(data_therm['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+        data_therm['HT PUMP SUPPLEM'] = pd.to_numeric(data_therm['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+        data_therm['DOMEST HOT WTR'] = pd.to_numeric(data_therm['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+        data_therm['EXT USAGE'] = pd.to_numeric(data_therm['EXT USAGE'].str.replace(',',''), errors='coerce')
+        data_therm['TOTAL'] = pd.to_numeric(data_therm['TOTAL'].str.replace(',',''), errors='coerce')
 
-            # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
-            data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
+        # form new dataframe with sum THERM in 1 row and sum MAX THERM/HR in 1 row means based on same UNIT column values add into 1 row
+        data_therm_sum = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            if not data_therm_sum.empty:
-                new_row_3rd = {
-                    'UNIT': ['Energy Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
-    
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
+        if not data_therm_sum.empty:
+            new_row_3rd = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
 
-                for col in columns:
-                    value1 = data_therm_sum.loc[1, col]
-                    value0 = data_therm_sum.loc[0, col]
-                    
-                    if value0 == 0 and value1 == 0:
-                        ratio = 0
-                    if value0 == 0 and value1 != 0:
-                        ratio = 0
-                    if value0 == value1 and value0 != 0:
-                        ratio = 1
-                    if value0 != value1:
-                        ratio = value1 / value0
-    
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-    
-                    new_row_3rd[col] = [f'{new_value:.2f}%']
-    
-                # Convert new_row_3rd to a DataFrame
-                new_row_3rd_df = pd.DataFrame(new_row_3rd)
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
 
-                # Insert the new row after the 2nd row (index 1)
-                data_therm_sum = pd.concat([data_therm_sum.iloc[:2], new_row_3rd_df, data_therm_sum.iloc[2:]]).reset_index(drop=True)
-    
-                # Calculate the new row as the ratio of the second last row to the third last row
-                new_row_last = {
-                    'UNIT': ['Demand Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
-    
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
+            for col in columns:
+                value1 = data_therm_sum.loc[1, col]
+                value0 = data_therm_sum.loc[0, col]
+                
+                if value0 == 0 and value1 == 0:
+                    ratio = 0
+                if value0 == 0 and value1 != 0:
+                    ratio = 0
+                if value0 == value1 and value0 != 0:
+                    ratio = 1
+                if value0 != value1:
+                    ratio = value1 / value0
 
-                for col in columns:
-                    value4 = data_therm_sum.loc[4, col]
-                    value3 = data_therm_sum.loc[3, col]
-                    
-                    if value3 == 0 and value4 == 0:
-                        ratio = 0
-                    if value3 == 0 and value4 != 0:
-                        ratio = 0
-                    if value3 == value4 and value3 != 0:
-                        ratio = 1
-                    if value3 != value4:
-                        ratio = value4 / value3
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-                    new_row_last[col] = [f'{new_value:.2f}%']
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
 
-                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-                new_row_last_df = pd.DataFrame(new_row_last)
-                data_therm_sum = pd.concat([data_therm_sum, new_row_last_df]).reset_index(drop=True)
-            
-            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-            if data_therm_sum.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-            else:
-                st.write(data_therm_sum)
+                new_row_3rd[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_3rd to a DataFrame
+            new_row_3rd_df = pd.DataFrame(new_row_3rd)
+
+            # Insert the new row after the 2nd row (index 1)
+            data_therm_sum = pd.concat([data_therm_sum.iloc[:2], new_row_3rd_df, data_therm_sum.iloc[2:]]).reset_index(drop=True)
+
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
+
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
+
+            for col in columns:
+                value4 = data_therm_sum.loc[4, col]
+                value3 = data_therm_sum.loc[3, col]
+                
+                if value3 == 0 and value4 == 0:
+                    ratio = 0
+                if value3 == 0 and value4 != 0:
+                    ratio = 0
+                if value3 == value4 and value3 != 0:
+                    ratio = 1
+                if value3 != value4:
+                    ratio = value4 / value3
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
+                new_row_last[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+            new_row_last_df = pd.DataFrame(new_row_last)
+            data_therm_sum = pd.concat([data_therm_sum, new_row_last_df]).reset_index(drop=True)
         
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
-            # converting to numeric type and removing comma from data
-            data_mbtu['LIGHTS'] = pd.to_numeric(data_mbtu['LIGHTS'].str.replace(',',''), errors='coerce')
-            data_mbtu['TASK_LIGHTS'] = pd.to_numeric(data_mbtu['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-            data_mbtu['MISC_EQUIP'] = pd.to_numeric(data_mbtu['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-            data_mbtu['SPACE_EQUIP'] = pd.to_numeric(data_mbtu['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-            data_mbtu['SPACE_COOLING'] = pd.to_numeric(data_mbtu['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-            data_mbtu['HEAT_REJECT'] = pd.to_numeric(data_mbtu['HEAT_REJECT'].str.replace(',',''), errors='coerce')
-            data_mbtu['PUMPS & AUX'] = pd.to_numeric(data_mbtu['PUMPS & AUX'].str.replace(',',''), errors='coerce')
-            data_mbtu['VENT FANS'] = pd.to_numeric(data_mbtu['VENT FANS'].str.replace(',',''), errors='coerce')
-            data_mbtu['REFRIG DISPLAY'] = pd.to_numeric(data_mbtu['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
-            data_mbtu['HT PUMP SUPPLEM'] = pd.to_numeric(data_mbtu['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
-            data_mbtu['DOMEST HOT WTR'] = pd.to_numeric(data_mbtu['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
-            data_mbtu['EXT USAGE'] = pd.to_numeric(data_mbtu['EXT USAGE'].str.replace(',',''), errors='coerce')
-            data_mbtu['TOTAL'] = pd.to_numeric(data_mbtu['TOTAL'].str.replace(',',''), errors='coerce')
+        # # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+        # if data_therm_sum.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+        # else:
+        #     st.write(data_therm_sum)
+        
+        # st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        # converting to numeric type and removing comma from data
+        data_mbtu['LIGHTS'] = pd.to_numeric(data_mbtu['LIGHTS'].str.replace(',',''), errors='coerce')
+        data_mbtu['TASK_LIGHTS'] = pd.to_numeric(data_mbtu['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
+        data_mbtu['MISC_EQUIP'] = pd.to_numeric(data_mbtu['MISC_EQUIP'].str.replace(',',''), errors='coerce')
+        data_mbtu['SPACE_EQUIP'] = pd.to_numeric(data_mbtu['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
+        data_mbtu['SPACE_COOLING'] = pd.to_numeric(data_mbtu['SPACE_COOLING'].str.replace(',',''), errors='coerce')
+        data_mbtu['HEAT_REJECT'] = pd.to_numeric(data_mbtu['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_mbtu['PUMPS & AUX'] = pd.to_numeric(data_mbtu['PUMPS & AUX'].str.replace(',',''), errors='coerce')
+        data_mbtu['VENT FANS'] = pd.to_numeric(data_mbtu['VENT FANS'].str.replace(',',''), errors='coerce')
+        data_mbtu['REFRIG DISPLAY'] = pd.to_numeric(data_mbtu['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
+        data_mbtu['HT PUMP SUPPLEM'] = pd.to_numeric(data_mbtu['HT PUMP SUPPLEM'].str.replace(',',''), errors='coerce')
+        data_mbtu['DOMEST HOT WTR'] = pd.to_numeric(data_mbtu['DOMEST HOT WTR'].str.replace(',',''), errors='coerce')
+        data_mbtu['EXT USAGE'] = pd.to_numeric(data_mbtu['EXT USAGE'].str.replace(',',''), errors='coerce')
+        data_mbtu['TOTAL'] = pd.to_numeric(data_mbtu['TOTAL'].str.replace(',',''), errors='coerce')
 
-            # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
-            data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
+        # form new dataframe with sum MBTU in 1 row and sum MAX MBTU/HR in 1 row means based on same UNIT column values add into 1 row
+        data_mbtu_sum = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
 
-            if not data_mbtu_sum.empty:
-                # Calculate the new row as the ratio of the second last row to the third last row
-                new_row_3rd = {
-                    'UNIT': ['Energy Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
-    
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
+        if not data_mbtu_sum.empty:
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_3rd = {
+                'UNIT': ['Energy Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
 
-                for col in columns:
-                    value1 = data_mbtu_sum.loc[1, col]
-                    value0 = data_mbtu_sum.loc[0, col]
-                    
-                    if value0 == 0 and value1 == 0:
-                        ratio = 0
-                    if value0 == 0 and value1 != 0:
-                        ratio = 0
-                    if value0 == value1 and value0 != 0:
-                        ratio = 1
-                    if value0 != value1:
-                        ratio = value1 / value0
-    
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-    
-                    new_row_3rd[col] = [f'{new_value:.2f}%']
-    
-                # Convert new_row_3rd to a DataFrame
-                new_row_3rd_df = pd.DataFrame(new_row_3rd)
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
 
-                # Insert the new row after the 2nd row (index 1)
-                data_mbtu_sum = pd.concat([data_mbtu_sum.iloc[:2], new_row_3rd_df, data_mbtu_sum.iloc[2:]]).reset_index(drop=True)
-    
-                # Calculate the new row as the ratio of the second last row to the third last row
-                new_row_last = {
-                    'UNIT': ['Demand Savings'],
-                    'Filename': [''],
-                    'Meterings': [''],
-                }
-    
-                columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
-                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
-                ]
+            for col in columns:
+                value1 = data_mbtu_sum.loc[1, col]
+                value0 = data_mbtu_sum.loc[0, col]
+                
+                if value0 == 0 and value1 == 0:
+                    ratio = 0
+                if value0 == 0 and value1 != 0:
+                    ratio = 0
+                if value0 == value1 and value0 != 0:
+                    ratio = 1
+                if value0 != value1:
+                    ratio = value1 / value0
 
-                for col in columns:
-                    value4 = data_mbtu_sum.loc[4, col]
-                    value3 = data_mbtu_sum.loc[3, col]
-                    
-                    if value3 == 0 and value4 == 0:
-                        ratio = 0
-                    if value3 == 0 and value4 != 0:
-                        ratio = 0
-                    if value3 == value4 and value3 != 0:
-                        ratio = 1
-                    if value3 != value4:
-                        ratio = value4 / value3
-                    if ratio == 1:
-                        new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
-                    elif ratio == 0:
-                        new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
-                    else:
-                        new_value = (1 - ratio) * 100
-                    new_row_last[col] = [f'{new_value:.2f}%']
-    
-                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
-                new_row_last_df = pd.DataFrame(new_row_last)
-                data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
 
-            # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
-            if data_mbtu_sum.empty:
-                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-            else:
-                st.write(data_mbtu_sum)
+                new_row_3rd[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_3rd to a DataFrame
+            new_row_3rd_df = pd.DataFrame(new_row_3rd)
+
+            # Insert the new row after the 2nd row (index 1)
+            data_mbtu_sum = pd.concat([data_mbtu_sum.iloc[:2], new_row_3rd_df, data_mbtu_sum.iloc[2:]]).reset_index(drop=True)
+
+            # Calculate the new row as the ratio of the second last row to the third last row
+            new_row_last = {
+                'UNIT': ['Demand Savings'],
+                'Filename': [''],
+                'Meterings': [''],
+            }
+
+            columns = [
+                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+            ]
+
+            for col in columns:
+                value4 = data_mbtu_sum.loc[4, col]
+                value3 = data_mbtu_sum.loc[3, col]
+                
+                if value3 == 0 and value4 == 0:
+                    ratio = 0
+                if value3 == 0 and value4 != 0:
+                    ratio = 0
+                if value3 == value4 and value3 != 0:
+                    ratio = 1
+                if value3 != value4:
+                    ratio = value4 / value3
+                if ratio == 1:
+                    new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
+                elif ratio == 0:
+                    new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
+                else:
+                    new_value = (1 - ratio) * 100
+                new_row_last[col] = [f'{new_value:.2f}%']
+
+            # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+            new_row_last_df = pd.DataFrame(new_row_last)
+            data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
+
+        # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+        # if data_mbtu_sum.empty:
+        #     st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+        # else:
+        #     st.write(data_mbtu_sum)
         ###############################################################################################################
         ################################################## BAR CHART ##################################################
         ###############################################################################################################
         
-        st.markdown(f"""<h6 style="color:red;">🔴 Bar Chart based on units (in %)</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 Energy Distribution Bar Chart based on Units (in %)</h6>""", unsafe_allow_html=True)
         if not data_kwh_sum.empty:
-            st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h6 style="color:red;">🟢 KWH </h6>""", unsafe_allow_html=True)
             # Select the rows to be used for the pie charts
-            row3 = data_kwh_sum.iloc[0, :-1]  # 3rd row (index 2) 
-            row_last = data_kwh_sum.iloc[1, :-1]  # Last row 
+            row3 = data_kwh_sum.iloc[0, :-1]
+            row_last = data_kwh_sum.iloc[1, :-1]
             # Ensure the rows are numeric
             if pd.to_numeric(row3, errors='coerce').sum() == 0 and pd.to_numeric(row_last, errors='coerce').sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
@@ -967,7 +947,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:red;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🟡 MAX THERM/HR</h6>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
             row3 = data_therm_sum.iloc[0, :-1]
             row_last = data_therm_sum.iloc[1, :-1]
@@ -990,7 +970,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:red;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔵 MAX MBTU/HR</h6>""", unsafe_allow_html=True)
         if not data_mbtu_sum.empty:
             # Select the rows to be used for the pie charts
             row3 = data_mbtu_sum.iloc[0, :-1]  # 3rd row (index 2) 
@@ -1012,9 +992,62 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     st.plotly_chart(fig2)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+
+        ###############################################################################################################
+        ################################################## EFLH TABLE #################################################
+        ###############################################################################################################
+
+        ###############################################################################################################
+        ################################################## Other Tables ###############################################
+        ###############################################################################################################
+
+        st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🟢 KWH & KW</h6>""", unsafe_allow_html=True)
+
+        if data_kwh.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
+            # st.info("No data found for KWH & KW")
+        else:
+            st.write(data_kwh)
+        
+        st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        if data_therm.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+            # st.info("No data found for THERM & MAX THERM/HR")
+        else:
+            st.write(data_therm)
+
+        st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        if data_mbtu.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+            # st.info("No data found for MBTU & MAX MBTU/HR")
+        else:
+            st.write(data_mbtu)
+
+        st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
+        
+        # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+        if data_kwh_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_kwh_sum)
             
-        # Insert two new row in all enrergy savings dataframe to calculate energy savings and demand savings, one at 3rd row and other at
-        # Energy savings and demand savings is calculated by  1 - (Proposed/Baseline) in %
+        st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+        if data_therm_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_therm_sum)
+        
+        st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+         # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+        if data_mbtu_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_mbtu_sum)
+
+            
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
             return
