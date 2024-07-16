@@ -445,7 +445,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         
                         st.markdown("""<h7 style="color:green;"><b>EFLH table</b></h7>""", unsafe_allow_html=True)
                         st.table(df_elfh.style.format({
-                            'Baseline(kWh/kW)': '{:.1f}',s1q
+                            'Baseline(kWh/kW)': '{:.1f}',
                             'Proposed(kWh/kW)': '{:.1f}'
                         }))
                         break
