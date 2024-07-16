@@ -1736,14 +1736,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         #     'Proposed': '{:.1f}',
                         #     '% savings(1-(P/B))': '{:.1%}'
                         # }))
-
                         st.markdown("""<h7 style="color:green;"><b>EFLH table</b></h7>""", unsafe_allow_html=True)
                         st.table(df_elfh.style.format({
-                            'Baseline(kWh/kW)': '{:.1f}',
+                            'Baseline(kWh/kW)': '{:.1f}',s1q
                             'Proposed(kWh/kW)': '{:.1f}'
                         }))
                         break
-        
         return 0
     
     if st.button("Based on Units"):
@@ -1758,10 +1756,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         prop_data = prop_data[[cols1[-1]] + cols1[:-1]]
         base_data = base_data[[cols2[-1]] + cols2[:-1]]
         # st.write(prop_data)
-
         # Concatenate prop_data and base_data vertically
         data = pd.concat([prop_data, base_data], axis=0, ignore_index=True)
         data = data.reset_index(drop=True)
+        
+        ######################################################################################
+        ##################################### BAR CHART ######################################
+        ######################################################################################
+
+
+        ######################################################################################
+        ##################################### EFLH TABLE #####################################
+        ######################################################################################
+
+
+        ######################################################################################
+        ################################## EXPENDED TABLE ####################################
+        ######################################################################################
         # if KWH or MAX KW or THERM or MAX THERM/HR or MBTU or MAX MBTU/HR is in LIGHTS column then put that in corresponding UNIT column in data dataframe
         for i in range(len(data)):
             if data['LIGHTS'][i] == 'KWH':
