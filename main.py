@@ -241,7 +241,7 @@ def main():
         if st.button("About EDS", key="button_eds"):
             st.session_state.script_choice = "eds"
     with col3:
-        if st.button("eQuest Utilities", key="button_utilities"):
+        if st.button("eQUEST Utilities", key="button_utilities"):
             st.session_state.script_choice = "about"
     with col4:
         if st.button("INP Parser", key="button_inp_parser"):
