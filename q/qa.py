@@ -967,8 +967,15 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if not data_therm_sum.empty:
             row3 = data_therm_sum.iloc[0, :-1]
             row_last = data_therm_sum.iloc[1, :-1]
-            
-            if row3.sum() == 0 and row_last.sum() == 0:
+        
+            # Debugging: Check the content and type of row3 and row_last
+            st.write("Row 3 content:", row3)
+            st.write("Row 3 type:", row3.dtypes)
+            st.write("Row Last content:", row_last)
+            st.write("Row Last type:", row_last.dtypes)
+        
+            # Ensure the rows are numeric
+            if pd.to_numeric(row3, errors='coerce').sum() == 0 and pd.to_numeric(row_last, errors='coerce').sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
             else:
                 fig1 = px.pie(values=row3.values, names=row3.index, title='Baseline')
