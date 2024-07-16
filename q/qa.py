@@ -941,12 +941,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 st.write(data_mbtu_sum)
 
         # Select the rows to be used for the pie charts
-        row3 = data_kwh_sum.iloc[0, 1:]  # 3rd row (index 2) 
-        row_last = data_kwh_sum.iloc[1, 1:]  # Last row 
+        row3 = data_kwh_sum.iloc[0, :-1]  # 3rd row (index 2) 
+        row_last = data_kwh_sum.iloc[1, :-1]  # Last row 
 
         # Create pie charts
-        fig1 = px.pie(values=row3.values, names=row3.index, title='Energy Savings')
-        fig2 = px.pie(values=row_last.values, names=row_last.index, title='Demand Savings')
+        fig1 = px.pie(values=row3.values, names=row3.index, title='Baseline')
+        fig2 = px.pie(values=row_last.values, names=row_last.index, title='Proposed')
         
         # Update the traces to show percentages
         fig1.update_traces(textinfo='percent+label')
