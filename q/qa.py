@@ -694,7 +694,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     ratio = 0
                 if value3 == value4 and value3 != 0:
                     ratio = 1
-                if value3 != value4:
+                if value3 != value4 and value3 != 0:
                     ratio = value4 / value3
                 if ratio == 1:
                     new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
@@ -901,7 +901,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     ratio = 0
                 if value3 == value4 and value3 != 0:
                     ratio = 1
-                if value3 != value4:
+                if value3 != value4 and value3 != 0:
                     ratio = value4 / value3
                 if ratio == 1:
                     new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
