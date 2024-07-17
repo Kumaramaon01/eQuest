@@ -1001,39 +1001,61 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if not data_kwh_sum.empty:
             st.markdown(f"""<h6 style="color:red;">🟢 KWH </h6>""", unsafe_allow_html=True)
             # Select the rows to be used for the bar charts
-            row3 = data_kwh_sum.iloc[0, 3:-1]  # 3rd row (index 2)
-            row_last = data_kwh_sum.iloc[1, 3:-1]  # Last row
+            row0 = data_kwh_sum.iloc[0, 3:-1]  # 3rd row (index 2)
+            row1 = data_kwh_sum.iloc[1, 3:-1]  # Last row
+            row2 = data_kwh_sum.iloc[2, 3:-1]  # 2nd row (index 1)
             # Ensure the rows are numeric
-            if pd.to_numeric(row3, errors='coerce').sum() == 0 and pd.to_numeric(row_last, errors='coerce').sum() == 0:
+            if pd.to_numeric(row0, errors='coerce').sum() == 0 and pd.to_numeric(row1, errors='coerce').sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
             else:
                 # Create a combined bar chart
                 fig3 = go.Figure()
-                fig3.add_trace(go.Bar(x=row3.index, y=row3.values, name='Baseline', marker_color='red'))
-                fig3.add_trace(go.Bar(x=row_last.index, y=row_last.values, name='Proposed', marker_color='blue'))
+                fig3.add_trace(go.Bar(x=row0.index, y=row0.values, name='Baseline', marker_color='red'))
+                fig3.add_trace(go.Bar(x=row1.index, y=row1.values, name='Proposed', marker_color='blue'))
+
+                # Add annotations for the percentages from row2
+                for i, (category, value) in enumerate(zip(row0.index, row2.values)):
+                    fig3.add_annotation(
+                        x=category,
+                        y=max(row0.values[i], row1.values[i]),
+                        text=f"{value}",
+                        showarrow=False,
+                        yshift=10  # Adjust this value to position the text above the bars
+                    )
 
                 # Update layout for the bar chart
-                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group')
+                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group', 
+                                   xaxis_title='End Uses', yaxis_title='Values')
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for KWH & KW.</p>""", unsafe_allow_html=True)
 
         st.markdown(f"""<h6 style="color:red;">🟡 MAX THERM/HR</h6>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
-            row3 = data_therm_sum.iloc[0, 3:-1]
-            row_last = data_therm_sum.iloc[1, 3:-1]
-        
+            row0 = data_therm_sum.iloc[0, 3:-1]
+            row1 = data_therm_sum.iloc[1, 3:-1]
+            row2 = data_therm_sum.iloc[2, 3:-1]  # 2nd row (index 1)
             # Ensure the rows are numeric
-            if pd.to_numeric(row3, errors='coerce').sum() == 0 and pd.to_numeric(row_last, errors='coerce').sum() == 0:
+            if pd.to_numeric(row0, errors='coerce').sum() == 0 and pd.to_numeric(row1, errors='coerce').sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
             else:
                 # Create a combined bar chart
                 fig3 = go.Figure()
-                fig3.add_trace(go.Bar(x=row3.index, y=row3.values, name='Baseline', marker_color='red'))
-                fig3.add_trace(go.Bar(x=row_last.index, y=row_last.values, name='Proposed', marker_color='blue'))
+                fig3.add_trace(go.Bar(x=row0.index, y=row0.values, name='Baseline', marker_color='red'))
+                fig3.add_trace(go.Bar(x=row1.index, y=row1.values, name='Proposed', marker_color='blue'))
+                # Add annotations for the percentages from row2
+                for i, (category, value) in enumerate(zip(row0.index, row2.values)):
+                    fig3.add_annotation(
+                        x=category,
+                        y=max(row0.values[i], row1.values[i]),
+                        text=f"{value}",
+                        showarrow=False,
+                        yshift=10  # Adjust this value to position the text above the bars
+                    )
 
                 # Update layout for the bar chart
-                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group')
+                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group',
+                                   xaxis_title='End Uses', yaxis_title='Values')
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
@@ -1041,19 +1063,31 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         st.markdown(f"""<h6 style="color:red;">🔵 MAX MBTU/HR</h6>""", unsafe_allow_html=True)
         if not data_mbtu_sum.empty:
             # Select the rows to be used for the pie charts
-            row3 = data_mbtu_sum.iloc[0, 3:-1]  # 3rd row (index 2) 
-            row_last = data_mbtu_sum.iloc[1, 3:-1]  # Last row 
+            row0 = data_mbtu_sum.iloc[0, 3:-1]  # 3rd row (index 2) 
+            row1 = data_mbtu_sum.iloc[1, 3:-1]  # Last row 
+            row2 = data_kwh_sum.iloc[2, 3:-1]  # 2nd row (index 1)
             # Ensure the rows are numeric
-            if pd.to_numeric(row3, errors='coerce').sum() == 0 and pd.to_numeric(row_last, errors='coerce').sum() == 0:
+            if pd.to_numeric(row0, errors='coerce').sum() == 0 and pd.to_numeric(row1, errors='coerce').sum() == 0:
                 st.markdown("""<p><strong>Note:</strong> All values are zero. No meaningful visualization can be displayed.</p>""", unsafe_allow_html=True)
             else:
                 # Create a combined bar chart
                 fig3 = go.Figure()
-                fig3.add_trace(go.Bar(x=row3.index, y=row3.values, name='Baseline', marker_color='red'))
-                fig3.add_trace(go.Bar(x=row_last.index, y=row_last.values, name='Proposed', marker_color='blue'))
+                fig3.add_trace(go.Bar(x=row0.index, y=row0.values, name='Baseline', marker_color='red'))
+                fig3.add_trace(go.Bar(x=row1.index, y=row1.values, name='Proposed', marker_color='blue'))
+
+                # Add annotations for the percentages from row2
+                for i, (category, value) in enumerate(zip(row0.index, row2.values)):
+                    fig3.add_annotation(
+                        x=category,
+                        y=max(row0.values[i], row1.values[i]),
+                        text=f"{value}",
+                        showarrow=False,
+                        yshift=10  # Adjust this value to position the text above the bars
+                    )
 
                 # Update layout for the bar chart
-                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group')
+                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group',
+                                   xaxis_title='End Uses', yaxis_title='Values')
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
@@ -1107,7 +1141,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
         else:
             st.write(data_mbtu_sum)
-
             
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
