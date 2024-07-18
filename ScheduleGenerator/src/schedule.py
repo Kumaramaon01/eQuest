@@ -147,12 +147,12 @@ def getScheduleINP(data):
                 row_values = data.iloc[schedule_row_index, 1:13].tolist()
                 formatted_days = ', '.join(f'"{value}"' for value in row_values if pd.notnull(value))
                 
-                write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD\n'))
-                write_line(format_line(f"   TYPE             = {type_value}\n"))
-                write_line(format_line(f"   MONTH            = ( {formatted_values1} )\n"))
-                write_line(format_line(f"   DAY              = ( {formatted_values2} )\n"))
-                write_line(format_line(f"   WEEK-SCHEDULES   = ( {formatted_days} )\n"))
-                write_line(format_line("   ..\n"))
+                write_line(format_line(f'"{schedule_name}" = SCHEDULE-PD'))
+                write_line(format_line(f"   TYPE             = {type_value}"))
+                write_line(format_line(f"   MONTH            = ( {formatted_values1} )"))
+                write_line(format_line(f"   DAY              = ( {formatted_values2} )"))
+                write_line(format_line(f"   WEEK-SCHEDULES   = ( {formatted_days} )"))
+                write_line(format_line("   .."))
                 write_line(format_line(""))
     
     # write_line("")
