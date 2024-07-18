@@ -174,7 +174,7 @@ def get_schedule(uploaded_file):
                 schedules_df.reset_index(drop=True, inplace=True)
                 schedule.getScheduleINP(schedules_df)
         else:
-            st.info("Please upload a file to see some analytics.")
+            st.info("Please upload a file to view Analytics.")
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
         
@@ -292,7 +292,7 @@ def analytics(uploaded_file):
 
         else:
             st.markdown("""
-            <h5 style="color:red;">📈 Please upload excel file to see Analytics </h5>
+            <h5 style="color:red;">📈 Please upload excel file to View Analytics </h5>
             """, unsafe_allow_html=True)
     except Exception as e:
         st.error(f"An error occurred while reading the file: {e}")
