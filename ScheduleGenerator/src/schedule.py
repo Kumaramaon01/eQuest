@@ -134,6 +134,8 @@ def getScheduleINP(data):
     for index, row in data.iterrows():
         if index > idx3 and index < len(data):
             schedule_name = row[0]
+            if schedule_name.lower() in ["month", "day", "days", "months"]:
+                continue
             # Extract values from 2nd to 13th column for the current row
             row_values = row[1:13].tolist()
             formatted_days = ', '.join(f'"{value}"' for value in row_values if pd.notnull(value))
