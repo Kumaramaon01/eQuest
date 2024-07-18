@@ -23,7 +23,7 @@ from matplotlib.animation import FuncAnimation
 TO_EMAIL = "rajeev@edsglobal.com"
 # Set the page configuration with additional options layout='wide',
 st.set_page_config(
-    page_title="eQuest Utilities",
+    page_title="eQUEST Utilities",
     page_icon="💡",
     layout='wide',  # Only 'centered' or 'wide' are valid options
     menu_items={                          
