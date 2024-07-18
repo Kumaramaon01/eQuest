@@ -153,7 +153,7 @@ def getScheduleINP(data):
                 write_line(format_line(f"   DAY              = ( {formatted_values2} )"))
                 write_line(format_line(f"   WEEK-SCHEDULES   = ( {formatted_days} )"))
                 write_line(format_line("   .."))
-                write_line(format_line(""))
+                # write_line(format_line(""))
     
     # write_line("")
     # write_line("")
