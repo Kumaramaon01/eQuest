@@ -19,8 +19,159 @@ def get_schedule(uploaded_file):
             else:
                 st.error("Unsupported file format. Please upload a CSV or XLSX file.")
                 return
+            count = 1
+            # Iterate through the first column and count occurrences of "Schedule Name"
+            for index, value in schedules.iloc[:, 0].items():
+                if value == 'Schedule Name':
+                    count += 1
+            if count == 1:
+                schedule.getScheduleINP(schedules)
+            else:
+                # Convert columns to the first row
+                schedules.loc[-1] = schedules.columns
+                schedules.index = schedules.index + 1
+                schedules = schedules.sort_index()
 
-            schedule.getScheduleINP(schedules)
+                # Find the index of the last occurrence of 'Hour' in the first column
+                last_hour_index = schedules[schedules['Schedule Name'] == 'Month'].index[-1]
+                last_most_df = schedules.iloc[last_hour_index:]
+
+                first_df = schedules.iloc[0:6]
+                data = [
+                    ["Rows can be added to add more weekly schedule"] + [None]*24,
+                    ["Week Schedule"] + [None]*24,
+                    ["Names"] + [None]*24,
+                    ["Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Holidays", "Heating Design Day", "Cooling Design Day"] + [None]*14
+                ]
+                mid_df = pd.DataFrame(data)
+                # Extract column names from df1
+                column_names = schedules.columns
+                # Assign column names of df1 to df2
+                mid_df.columns = column_names
+
+                data1 = [
+                    ["Rows can be added to add more weekly schedule"] + [None]*24,
+                    ["Annual Schedule"] + [None]*24,
+                    ["Name"] + [None]*24,
+                ]
+
+                last_df = pd.DataFrame(data1)
+                # Extract column names from df1
+                column_names = schedules.columns
+                # Assign column names of df1 to df2
+                last_df.columns = column_names
+
+                schedules = schedules.drop(schedules.index[:5])
+                # List of values to be removed
+                values_to_remove = [
+                    "Rows can be added to add more weekly schedule",
+                    "Schedule Type:",
+                    "Day Schedule",
+                    "Week Schedule",
+                    "Names",
+                    "Name",
+                    "Schedule Name",
+                    np.nan  # This handles NaN and empty values
+                ]
+                # Filter out rows with specified values in the first or second column
+                schedules = schedules[~schedules.iloc[:, 0].isin(values_to_remove) & ~schedules.iloc[:, 1].isin(values_to_remove)]
+                # Find indices of 'Hour' and 'Day'-'Monday' pairs
+                hour_indices = schedules[schedules["Schedule Name"] == "Hour"].index.tolist()
+                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules["Arena Occup Ann Sch"] == "Monday")].index.tolist()
+
+                # Initialize a list to store the new DataFrame rows
+                new_rows = []
+
+                # Iterate through each pair of 'Day' and 'Monday' indices
+                for day_index in day_monday_indices:
+                    # Find the last 'Hour' index before the current 'Day'-'Monday' pair
+                    hour_index = max([idx for idx in hour_indices if idx < day_index], default=-1)
+                    
+                    if hour_index != -1:
+                        # Extract rows between 'Hour' and ('Day' and 'Monday')
+                        sub_df = schedules.loc[hour_index+1:day_index]
+                        
+                        # Add 'Day' and 'Monday' to each row
+                        for _, sub_row in sub_df.iterrows():
+                            new_row = sub_row.to_dict()
+                            new_row["Day"] = schedules.at[day_index, "Schedule Name"]
+                            new_rows.append(new_row)
+
+                # Create the new DataFrame
+                df_hr = pd.DataFrame(new_rows)
+
+                # Ensure 'Schedule Name', 'Arena Occup Ann Sch', and other columns are in the desired order
+                column_order = ["Schedule Name"] + [col for col in schedules.columns if col not in ["Schedule Name"]]
+                df_hr = df_hr[column_order]
+                df_hr = df_hr[~df_hr['Schedule Name'].str.contains('Day')]
+
+                # Find indices of 'month' and 'Day'-'Monday' pairs
+                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules["Arena Occup Ann Sch"] == "Monday")].index.tolist()
+                month_indices = schedules[schedules["Schedule Name"] == "Month"].index.tolist()
+
+                # Initialize a list to store the new DataFrame rows
+                new_rows = []
+
+                # Iterate through each pair of 'Day' and 'Monday' indices
+                for month_index in month_indices:
+                    # Find the last 'Month' index before the current 'Day'-'Monday' pair
+                    day_index = max([idx for idx in day_monday_indices if idx < month_index], default=-1)
+                    
+                    if day_index != -1:
+                        # Extract rows between 'Hour' and ('Day' and 'Monday')
+                        sub_df = schedules.loc[day_index+1:month_index]
+                        
+                        # Add 'Day' and 'Monday' to each row
+                        for _, sub_row in sub_df.iterrows():
+                            new_row = sub_row.to_dict()
+                            new_row["Month"] = schedules.at[month_index, "Schedule Name"]
+                            new_rows.append(new_row)
+
+                # Create the new DataFrame
+                df_day = pd.DataFrame(new_rows)
+
+                # Ensure 'Schedule Name', 'Arena Occup Ann Sch', and other columns are in the desired order
+                column_order = ["Schedule Name"] + [col for col in schedules.columns if col not in ["Schedule Name"]]
+                df_day = df_day[column_order]
+                df_day = df_day[~df_day['Schedule Name'].str.contains('Month')]
+
+                # Find indices of 'month' and 'hour'
+                month_indices = schedules[schedules["Schedule Name"] == "Month"].index.tolist()
+                hour_indices = schedules[schedules["Schedule Name"] == "Hour"].index.tolist()
+
+                # Initialize a list to store the new DataFrame rows
+                new_rows = []
+
+                # Iterate through each pair of 'Day' and 'Monday' indices
+                for hour_index in hour_indices:
+                    # Find the last 'Month' index before the current 'Day'-'Monday' pair
+                    month_index = max([idx for idx in month_indices if idx < hour_index], default=-1)
+                    
+                    if month_index != -1:
+                        # Extract rows between 'Hour' and ('Day' and 'Monday')
+                        sub_df = schedules.loc[month_index:hour_index]
+                        
+                        # Add 'Day' and 'Monday' to each row
+                        for _, sub_row in sub_df.iterrows():
+                            new_row = sub_row.to_dict()
+                            new_row["Hour"] = schedules.at[hour_index, "Schedule Name"]
+                            new_rows.append(new_row)
+
+                # Create the new DataFrame
+                df_month = pd.DataFrame(new_rows)
+
+                # Ensure 'Schedule Name', 'Arena Occup Ann Sch', and other columns are in the desired order
+                column_order = ["Schedule Name"] + [col for col in schedules.columns if col not in ["Schedule Name"]]
+                df_month = df_month[column_order]
+                df_month = df_month[~df_month['Schedule Name'].str.contains('Hour')]
+
+                new_df = pd.concat([first_df, df_hr, mid_df, df_day, last_df, df_month], ignore_index=True, axis=0)
+
+                schedules_df = pd.concat([new_df, last_most_df], ignore_index=False, axis=0)
+                schedules_df = schedules_df.iloc[1:]
+                # Resetting the index
+                schedules_df.reset_index(drop=True, inplace=True)
+                schedule.getScheduleINP(schedules_df)
         else:
             st.info("Please upload a file to see some analytics.")
     except Exception as e:
