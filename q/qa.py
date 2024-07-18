@@ -1097,7 +1097,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ###############################################################################################################
 
         st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🔵 KWH & KW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & KW</h6>""", unsafe_allow_html=True)
 
         if data_kwh.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
@@ -1120,7 +1120,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.write(data_mbtu)
 
         st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🟢 kWH & MAX KW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & MAX KW</h6>""", unsafe_allow_html=True)
         
         # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         if data_kwh_sum.empty:
