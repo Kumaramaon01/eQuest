@@ -1238,21 +1238,21 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if data_kwh_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
         else:
-            st.write(data_kwh_sum)
+            st.write(data_kwh)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
         # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
         if data_therm_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
         else:
-            st.write(data_therm_sum)
+            st.write(data_therm)
         
         st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
          # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
         if data_mbtu_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
         else:
-            st.write(data_mbtu_sum)
+            st.write(data_mbtu)
             
         ###############################################################################################################
         ################################################## Other Tables ###############################################
