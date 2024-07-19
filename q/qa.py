@@ -924,9 +924,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ################################################## Pie CHART ##################################################
         ###############################################################################################################
         
-        st.markdown(f"""<h6 style="color:red;">🔴 Energy Distribution Pie Chart based on Units</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 ENERGY DISTRIBUTION PIE CHART BASED ON UNITS</h6>""", unsafe_allow_html=True)
         if not data_kwh_sum.empty:
-            st.markdown(f"""<h6 style="color:blue;">🔵 kWH </h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h7 style="color:blue;">🔵 kWH </h7>""", unsafe_allow_html=True)
             # Select the rows to be used for the pie charts
             row3 = data_kwh_sum.iloc[0, :-1]
             row_last = data_kwh_sum.iloc[1, :-1]
@@ -948,7 +948,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:red;">🔴 MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:red;">🔴 MAX THERM/HR</h7>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
             row3 = data_therm_sum.iloc[0, :-1]
             row_last = data_therm_sum.iloc[1, :-1]
@@ -971,7 +971,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:orange;">🟠 MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:orange;">🟠 MAX MBTU/HR</h7>""", unsafe_allow_html=True)
         if not data_mbtu_sum.empty:
             # Select the rows to be used for the pie charts
             row3 = data_mbtu_sum.iloc[0, :-1]  # 3rd row (index 2) 
@@ -997,9 +997,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ###############################################################################################################
         ################################################## EFLH TABLE #################################################
         ###############################################################################################################
-        st.markdown(f"""<h6 style="color:red;">🔴 Energy Distribution Bar Chart based on Units</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 ENERGY DISTRIBUTION BAR CHART BASED ON UNITS</h6>""", unsafe_allow_html=True)
         if not data_kwh_sum.empty:
-            st.markdown(f"""<h6 style="color:blue;">🔵 kWH </h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h7 style="color:blue;">🔵 kWH </h7>""", unsafe_allow_html=True)
             # Select the rows to be used for the bar charts
             row0 = data_kwh_sum.iloc[0, 3:-1]  # 3rd row (index 2)
             row1 = data_kwh_sum.iloc[1, 3:-1]  # Last row
@@ -1030,7 +1030,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & kW.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:red;">🔴 MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:red;">🔴 MAX THERM/HR</h7>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
             row0 = data_therm_sum.iloc[0, 3:-1]
             row1 = data_therm_sum.iloc[1, 3:-1]
@@ -1060,7 +1060,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
 
-        st.markdown(f"""<h6 style="color:orange;">🟠 MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:orange;">🟠 MAX MBTU/HR</h7>""", unsafe_allow_html=True)
         if not data_mbtu_sum.empty:
             # Select the rows to be used for the pie charts
             row0 = data_mbtu_sum.iloc[0, 3:-1]  # 3rd row (index 2) 
@@ -1096,8 +1096,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ################################################## Other Tables ###############################################
         ###############################################################################################################
 
-        st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & kW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 PS-F TABLE IS GENERATED FOR ALL UNITS</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & kW</h7>""", unsafe_allow_html=True)
 
         if data_kwh.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH.</p>""", unsafe_allow_html=True)
@@ -1105,22 +1105,22 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.write(data_kwh)
         
-        st.markdown(f"""<h6 style="color:red;">🔴 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
         if data_therm.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
             # st.info("No data found for THERM & MAX THERM/HR")
         else:
             st.write(data_therm)
 
-        st.markdown(f"""<h6 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
         if data_mbtu.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
             # st.info("No data found for MBTU & MAX MBTU/HR")
         else:
             st.write(data_mbtu)
 
-        st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & MAX kW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 ENERGY SAVINGS AND DEMAND SAVINGS (in %) </h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
         
         # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         if data_kwh_sum.empty:
@@ -1128,14 +1128,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.write(data_kwh_sum)
             
-        st.markdown(f"""<h6 style="color:red;">🔴 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
         # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
         if data_therm_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
         else:
             st.write(data_therm_sum)
         
-        st.markdown(f"""<h6 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
          # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
         if data_mbtu_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
