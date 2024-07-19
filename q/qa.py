@@ -1325,6 +1325,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             empty_row3 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
             df_part1 = data_kwh_sum1.iloc[:13] # upto 13 rows
             data_kwh_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
+
+            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+            new_row = {col: '' for col in data_kwh_sum1.columns}
+            new_row[data_kwh_sum1.columns[0]] = "EFLH"
+            
+            # Convert the new row to a DataFrame
+            new_row_df = pd.DataFrame([new_row])
+            
+            # Step 3: Append the new row to the DataFrame
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
