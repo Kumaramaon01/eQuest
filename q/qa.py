@@ -485,65 +485,65 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 data['UNIT'][i] = 'MBTU'
             elif data['LIGHTS'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
-            elif data['TASK_LIGHTS'][i] == 'KWH':
+            elif data['TASK LIGHTS'][i] == 'KWH':
                 data['UNIT'][i] = 'KWH'
-            elif data['TASK_LIGHTS'][i] == 'MAX KWH':
+            elif data['TASK LIGHTS'][i] == 'MAX KWH':
                 data['UNIT'][i] = 'MAX KWH'
-            elif data['TASK_LIGHTS'][i] == 'THERM':
+            elif data['TASK LIGHTS'][i] == 'THERM':
                 data['UNIT'][i] = 'THERM'
-            elif data['TASK_LIGHTS'][i] == 'MAX THERM/HR':
+            elif data['TASK LIGHTS'][i] == 'MAX THERM/HR':
                 data['UNIT'][i] = 'MAX THERM/HR'
-            elif data['TASK_LIGHTS'][i] == 'MBTU':
+            elif data['TASK LIGHTS'][i] == 'MBTU':
                 data['UNIT'][i] = 'MBTU'
-            elif data['TASK_LIGHTS'][i] == 'MAX MBTU/HR':
+            elif data['TASK LIGHTS'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
-            elif data['MISC_EQUIP'][i] == 'KWH':
+            elif data['MISC EQUIP'][i] == 'KWH':
                 data['UNIT'][i] = 'KWH'
-            elif data['MISC_EQUIP'][i] == 'MAX KW':
+            elif data['MISC EQUIP'][i] == 'MAX KW':
                 data['UNIT'][i] = 'MAX KW'
-            elif data['MISC_EQUIP'][i] == 'THERM':
+            elif data['MISC EQUIP'][i] == 'THERM':
                 data['UNIT'][i] = 'THERM'
-            elif data['MISC_EQUIP'][i] == 'MAX THERM/HR':
+            elif data['MISC EQUIP'][i] == 'MAX THERM/HR':
                 data['UNIT'][i] = 'MAX THERM/HR'
-            elif data['MISC_EQUIP'][i] == 'MBTU':
+            elif data['MISC EQUIP'][i] == 'MBTU':
                 data['UNIT'][i] = 'MBTU'
-            elif data['MISC_EQUIP'][i] == 'MAX MBTU/HR':
+            elif data['MISC EQUIP'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
-            elif data['SPACE_EQUIP'][i] == 'KWH':
+            elif data['SPACE EQUIP'][i] == 'KWH':
                 data['UNIT'][i] = 'KWH'
-            elif data['SPACE_EQUIP'][i] == 'MAX KW':
+            elif data['SPACE EQUIP'][i] == 'MAX KW':
                 data['UNIT'][i] = 'MAX KW'
-            elif data['SPACE_EQUIP'][i] == 'THERM':
+            elif data['SPACE EQUIP'][i] == 'THERM':
                 data['UNIT'][i] = 'THERM'
-            elif data['SPACE_EQUIP'][i] == 'MAX THERM/HR':
+            elif data['SPACE EQUIP'][i] == 'MAX THERM/HR':
                 data['UNIT'][i] = 'MAX THERM/HR'
-            elif data['SPACE_EQUIP'][i] == 'MBTU':
+            elif data['SPACE EQUIP'][i] == 'MBTU':
                 data['UNIT'][i] = 'MBTU'
-            elif data['SPACE_EQUIP'][i] == 'MAX MBTU/HR':
+            elif data['SPACE EQUIP'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
-            elif data['SPACE_COOLING'][i] == 'KWH':
+            elif data['SPACE COOLING'][i] == 'KWH':
                 data['UNIT'][i] = 'KWH'
-            elif data['SPACE_COOLING'][i] == 'MAX KW':
+            elif data['SPACE COOLING'][i] == 'MAX KW':
                 data['UNIT'][i] = 'MAX KW'
-            elif data['SPACE_COOLING'][i] == 'THERM':
+            elif data['SPACE COOLING'][i] == 'THERM':
                 data['UNIT'][i] = 'THERM'
-            elif data['SPACE_COOLING'][i] == 'MAX THERM/HR':
+            elif data['SPACE COOLING'][i] == 'MAX THERM/HR':
                 data['UNIT'][i] = 'MAX THERM/HR'
-            elif data['SPACE_COOLING'][i] == 'MBTU':
+            elif data['SPACE COOLING'][i] == 'MBTU':
                 data['UNIT'][i] = 'MBTU'
-            elif data['SPACE_COOLING'][i] == 'MAX MBTU/HR':
+            elif data['SPACE COOLING'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
-            elif data['HEAT_REJECT'][i] == 'KWH':
+            elif data['HEAT REJECT'][i] == 'KWH':
                 data['UNIT'][i] = 'KWH'
-            elif data['HEAT_REJECT'][i] == 'MAX KW':
+            elif data['HEAT REJECT'][i] == 'MAX KW':
                 data['UNIT'][i] = 'MAX KW'
-            elif data['HEAT_REJECT'][i] == 'THERM':
+            elif data['HEAT REJECT'][i] == 'THERM':
                 data['UNIT'][i] = 'THERM'
-            elif data['HEAT_REJECT'][i] == 'MAX THERM/HR':
+            elif data['HEAT REJECT'][i] == 'MAX THERM/HR':
                 data['UNIT'][i] = 'MAX THERM/HR'
-            elif data['HEAT_REJECT'][i] == 'MBTU':
+            elif data['HEAT REJECT'][i] == 'MBTU':
                 data['UNIT'][i] = 'MBTU'
-            elif data['HEAT_REJECT'][i] == 'MAX MBTU/HR':
+            elif data['HEAT REJECT'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
             
         # st.write(data)
@@ -556,11 +556,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         data_kwh = data[
             data['UNIT'].str.contains('KWH|MAX KW', regex=True) | 
             data['LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
-            data['TASK_LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
-            data['MISC_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
-            data['SPACE_EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
-            data['SPACE_COOLING'].str.contains('KWH|MAX KW', regex=True) |
-            data['HEAT_REJECT'].str.contains('KWH|MAX KW', regex=True)
+            data['TASK LIGHTS'].str.contains('KWH|MAX KW', regex=True) | 
+            data['MISC EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
+            data['SPACE EQUIP'].str.contains('KWH|MAX KW', regex=True) | 
+            data['SPACE COOLING'].str.contains('KWH|MAX KW', regex=True) |
+            data['HEAT REJECT'].str.contains('KWH|MAX KW', regex=True)
         ]
         data_kwh = data_kwh.reset_index(drop=True)
         # if empty dataframe then write message in markdown - No KWH & KW data found in the selected data
@@ -576,11 +576,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         data_therm = data[
             data['UNIT'].str.contains('THERM|MAX THERM/HR', regex=True) | 
             data['LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
-            data['TASK_LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
-            data['MISC_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
-            data['SPACE_EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
-            data['SPACE_COOLING'].str.contains('THERM|MAX THERM/HR', regex=True) |
-            data['HEAT_REJECT'].str.contains('THERM|MAX THERM/HR', regex=True)
+            data['TASK LIGHTS'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['MISC EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['SPACE EQUIP'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['SPACE COOLING'].str.contains('THERM|MAX THERM/HR', regex=True) |
+            data['HEAT REJECT'].str.contains('THERM|MAX THERM/HR', regex=True)
         ]
         data_therm = data_therm.reset_index(drop=True)
         # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
@@ -595,11 +595,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         data_mbtu = data[
             data['UNIT'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
             data['LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-            data['TASK_LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-            data['MISC_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-            data['SPACE_EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-            data['SPACE_COOLING'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
-            data['HEAT_REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
+            data['TASK LIGHTS'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['MISC EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['SPACE EQUIP'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['SPACE COOLING'].str.contains('MBTU|MAX MBTU/HR', regex=True) |
+            data['HEAT REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
         ]
         data_mbtu = data_mbtu.reset_index(drop=True)
         # if empty dataframe then write message in markdown - No MBTU & MAX MBTU/HR data found in the selected data
@@ -615,11 +615,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
         data_kwh['LIGHTS'] = pd.to_numeric(data_kwh['LIGHTS'].str.replace(',',''), errors='coerce')
-        data_kwh['TASK_LIGHTS'] = pd.to_numeric(data_kwh['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-        data_kwh['MISC_EQUIP'] = pd.to_numeric(data_kwh['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-        data_kwh['SPACE_EQUIP'] = pd.to_numeric(data_kwh['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-        data_kwh['SPACE_COOLING'] = pd.to_numeric(data_kwh['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-        data_kwh['HEAT_REJECT'] = pd.to_numeric(data_kwh['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_kwh['TASK LIGHTS'] = pd.to_numeric(data_kwh['TASK LIGHTS'].str.replace(',',''), errors='coerce')
+        data_kwh['MISC EQUIP'] = pd.to_numeric(data_kwh['MISC EQUIP'].str.replace(',',''), errors='coerce')
+        data_kwh['SPACE EQUIP'] = pd.to_numeric(data_kwh['SPACE EQUIP'].str.replace(',',''), errors='coerce')
+        data_kwh['SPACE COOLING'] = pd.to_numeric(data_kwh['SPACE COOLING'].str.replace(',',''), errors='coerce')
+        data_kwh['HEAT REJECT'] = pd.to_numeric(data_kwh['HEAT REJECT'].str.replace(',',''), errors='coerce')
         data_kwh['PUMPS & AUX'] = pd.to_numeric(data_kwh['PUMPS & AUX'].str.replace(',',''), errors='coerce')
         data_kwh['VENT FANS'] = pd.to_numeric(data_kwh['VENT FANS'].str.replace(',',''), errors='coerce')
         data_kwh['REFRIG DISPLAY'] = pd.to_numeric(data_kwh['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
@@ -638,8 +638,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING', 
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
@@ -679,8 +679,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING',
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
@@ -738,11 +738,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
         data_therm['LIGHTS'] = pd.to_numeric(data_therm['LIGHTS'].str.replace(',',''), errors='coerce')
-        data_therm['TASK_LIGHTS'] = pd.to_numeric(data_therm['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-        data_therm['MISC_EQUIP'] = pd.to_numeric(data_therm['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-        data_therm['SPACE_EQUIP'] = pd.to_numeric(data_therm['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-        data_therm['SPACE_COOLING'] = pd.to_numeric(data_therm['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-        data_therm['HEAT_REJECT'] = pd.to_numeric(data_therm['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_therm['TASK LIGHTS'] = pd.to_numeric(data_therm['TASK LIGHTS'].str.replace(',',''), errors='coerce')
+        data_therm['MISC EQUIP'] = pd.to_numeric(data_therm['MISC EQUIP'].str.replace(',',''), errors='coerce')
+        data_therm['SPACE EQUIP'] = pd.to_numeric(data_therm['SPACE EQUIP'].str.replace(',',''), errors='coerce')
+        data_therm['SPACE COOLING'] = pd.to_numeric(data_therm['SPACE COOLING'].str.replace(',',''), errors='coerce')
+        data_therm['HEAT REJECT'] = pd.to_numeric(data_therm['HEAT REJECT'].str.replace(',',''), errors='coerce')
         data_therm['PUMPS & AUX'] = pd.to_numeric(data_therm['PUMPS & AUX'].str.replace(',',''), errors='coerce')
         data_therm['VENT FANS'] = pd.to_numeric(data_therm['VENT FANS'].str.replace(',',''), errors='coerce')
         data_therm['REFRIG DISPLAY'] = pd.to_numeric(data_therm['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
@@ -762,8 +762,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING', 
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
@@ -803,8 +803,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING',
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
@@ -841,11 +841,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         # st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
         data_mbtu['LIGHTS'] = pd.to_numeric(data_mbtu['LIGHTS'].str.replace(',',''), errors='coerce')
-        data_mbtu['TASK_LIGHTS'] = pd.to_numeric(data_mbtu['TASK_LIGHTS'].str.replace(',',''), errors='coerce')
-        data_mbtu['MISC_EQUIP'] = pd.to_numeric(data_mbtu['MISC_EQUIP'].str.replace(',',''), errors='coerce')
-        data_mbtu['SPACE_EQUIP'] = pd.to_numeric(data_mbtu['SPACE_EQUIP'].str.replace(',',''), errors='coerce')
-        data_mbtu['SPACE_COOLING'] = pd.to_numeric(data_mbtu['SPACE_COOLING'].str.replace(',',''), errors='coerce')
-        data_mbtu['HEAT_REJECT'] = pd.to_numeric(data_mbtu['HEAT_REJECT'].str.replace(',',''), errors='coerce')
+        data_mbtu['TASK LIGHTS'] = pd.to_numeric(data_mbtu['TASK LIGHTS'].str.replace(',',''), errors='coerce')
+        data_mbtu['MISC EQUIP'] = pd.to_numeric(data_mbtu['MISC EQUIP'].str.replace(',',''), errors='coerce')
+        data_mbtu['SPACE EQUIP'] = pd.to_numeric(data_mbtu['SPACE EQUIP'].str.replace(',',''), errors='coerce')
+        data_mbtu['SPACE COOLING'] = pd.to_numeric(data_mbtu['SPACE COOLING'].str.replace(',',''), errors='coerce')
+        data_mbtu['HEAT REJECT'] = pd.to_numeric(data_mbtu['HEAT REJECT'].str.replace(',',''), errors='coerce')
         data_mbtu['PUMPS & AUX'] = pd.to_numeric(data_mbtu['PUMPS & AUX'].str.replace(',',''), errors='coerce')
         data_mbtu['VENT FANS'] = pd.to_numeric(data_mbtu['VENT FANS'].str.replace(',',''), errors='coerce')
         data_mbtu['REFRIG DISPLAY'] = pd.to_numeric(data_mbtu['REFRIG DISPLAY'].str.replace(',',''), errors='coerce')
@@ -866,8 +866,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING', 
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING', 
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY', 
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
@@ -907,8 +907,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             columns = [
-                'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING',
+                'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
             ]
 
