@@ -1316,6 +1316,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             third_row = data_kwh_sum.iloc[2]
             third_row_df = third_row.to_frame().T
             data_kwh_sum1 = pd.concat([data_kwh_sum1, third_row_df], ignore_index=True)
+
+            # Extract the 3rd row from data_kwh_sum ()
+            six_row = data_kwh_sum.iloc[5]
+            six_row_df = six_row.to_frame().T
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, six_row_df], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
