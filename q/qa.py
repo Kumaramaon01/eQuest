@@ -1281,6 +1281,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
             df_part1 = data_therm_sum1.iloc[:5]
             data_therm_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
+
+            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+            new_row = {col: '' for col in data_therm_sum1.columns}
+            new_row[data_therm_sum1.columns[0]] = "% Contribution"
+            
+            # Convert the new row to a DataFrame
+            new_row_df = pd.DataFrame([new_row])
+            
+            # Step 3: Append the new row to the DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
             st.write(data_therm_sum1)
         
         st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
@@ -1301,6 +1311,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             empty_row1 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
             df_part1 = data_mbtu_sum1.iloc[:5]
             data_mbtu_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
+
+            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+            new_row = {col: '' for col in data_mbtu_sum1.columns}
+            new_row[data_mbtu_sum1.columns[0]] = "% Contribution"
+            
+            # Convert the new row to a DataFrame
+            new_row_df = pd.DataFrame([new_row])
+            
+            # Step 3: Append the new row to the DataFrame
+            data_mtbu_sum1 = pd.concat([data_mtbu_sum1, new_row_df], ignore_index=True)
             st.write(data_mbtu_sum1)
             
         ###############################################################################################################
