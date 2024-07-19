@@ -707,6 +707,13 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
             data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
+            # Concat other rows called- EFLH Proposed and EFLH Baseline
+            row_7 = data_kwh_sum.iloc[0] / data_kwh_sum.iloc[3]
+            row_8 = data_kwh_sum.iloc[1] / data_kwh_sum.iloc[4]
+            
+            # Append the new rows to the DataFrame
+            data_kwh_sum.loc[6] = row_7
+            data_kwh_sum.loc[7] = row_8
 
         # # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         # if data_kwh_sum.empty:
@@ -1175,29 +1182,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # st.info("No data found for MBTU & MAX MBTU/HR")
         else:
             st.write(data_mbtu)
-
-        # st.markdown(f"""<h6 style="color:red;">🔴 ENERGY SAVINGS AND DEMAND SAVINGS (in %) </h6>""", unsafe_allow_html=True)
-        # st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
-        
-        # # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
-        # if data_kwh_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_kwh_sum)
-            
-        # st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
-        # # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-        # if data_therm_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_therm_sum)
-        
-        # st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
-        #  # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
-        # if data_mbtu_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_mbtu_sum)
             
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
