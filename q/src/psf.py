@@ -52,8 +52,8 @@ def get_PSF_report_Prop(name):
             # strore list to dataframe
             psf_df = pd.DataFrame(result) 
             # # Allot lvb_df columns from sim file
-            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                                 'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                                 'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                                  'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
             
             psf_df.index.name = name
@@ -167,8 +167,8 @@ def get_PSF_report_Base(name):
             # strore list to dataframe
             psf_df = pd.DataFrame(result) 
             # # Allot lvb_df columns from sim file
-            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                                 'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                                 'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                                  'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
             
             psf_df.index.name = name
@@ -285,8 +285,8 @@ def get_PSF_report_Prop_all(name):
             # strore list to dataframe
             psf_df = pd.DataFrame(result) 
             # # Allot lvb_df columns from sim file
-            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                                'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                                'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
 
             # Find the index of the first occurrence of "JAN" followed by "FEB"
@@ -389,8 +389,8 @@ def get_PSF_report_Prop_all(name):
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                    'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+        columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                    'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                     'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
         return pd.DataFrame(columns=columns)
 
@@ -440,8 +440,8 @@ def get_PSF_report_Base_all(name):
             # strore list to dataframe
             psf_df = pd.DataFrame(result) 
             # # Allot lvb_df columns from sim file
-            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                                'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+            psf_df.columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                                'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                                 'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
 
             # Find the index of the first occurrence of "JAN" followed by "FEB"
@@ -543,7 +543,7 @@ def get_PSF_report_Base_all(name):
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        columns = ['UNIT', 'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 
-                    'SPACE_COOLING', 'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+        columns = ['UNIT', 'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 
+                    'SPACE COOLING', 'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                     'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL']
         return pd.DataFrame(columns=columns)
