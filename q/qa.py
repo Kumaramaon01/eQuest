@@ -1077,6 +1077,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         xanchor="center", 
                         x=0.5
                     )
+                )
 
                 st.plotly_chart(fig3)
         else:
@@ -1120,7 +1121,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         xanchor="center", 
                         x=0.5
                     )
-
+                )
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
