@@ -713,8 +713,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
            
             # Perform the division operation with proper index alignment
             try:
-                row_7 = data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3])
-                row_8 = data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4])
+                row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
+                row_8 = round(data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4]),1)
                 
                 # Append the new rows to the DataFrame
                 data_kwh_sum.loc[6] = row_7
