@@ -1266,10 +1266,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-            # st.success(kw_proposed_total)
-            # st.success(kwh_proposed_total)
-            # st.success(kw_baseline_total)
-            # st.success(kwh_baseline_total)
 
             new_row = {
                 'Filename': 'Proposed',  
@@ -1278,7 +1274,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_kwh_sum1.columns[3:]:
-                new_row[col] = data_kwh_sum1[col].iloc[1] / kwh_proposed_total
+                new_row[col] = round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
