@@ -602,17 +602,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             data['HEAT REJECT'].str.contains('MBTU|MAX MBTU/HR', regex=True)
         ]
         data_mbtu = data_mbtu.reset_index(drop=True)
-        # if empty dataframe then write message in markdown - No MBTU & MAX MBTU/HR data found in the selected data
-        # if data_mbtu.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-        #     # st.info("No data found for MBTU & MAX MBTU/HR")
-        # else:
-        #     st.write(data_mbtu)
-
-        # Unit wise data for PS-F table (PS-F table is generated for all units) 
-        # red ball before PSF in below line in markdown is to highlight the PS-F table
-        # st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
-        # st.markdown(f"""<h6 style="color:red;">🟢 KWH & MAX KW</h6>""", unsafe_allow_html=True)
+        
         # converting to numeric type and removing comma from data
         data_kwh['LIGHTS'] = pd.to_numeric(data_kwh['LIGHTS'].str.replace(',',''), errors='coerce')
         data_kwh['TASK LIGHTS'] = pd.to_numeric(data_kwh['TASK LIGHTS'].str.replace(',',''), errors='coerce')
@@ -721,8 +711,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     'Meterings': [''],
                 }
                 columns = [
-                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
-                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING',
+                    'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
                     'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
                 ]
                 
