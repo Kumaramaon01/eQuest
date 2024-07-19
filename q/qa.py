@@ -1367,6 +1367,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             new_row_df = pd.DataFrame([new_row3])
             # Concatenate the new row DataFrame with the existing DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+
+            new_row4 = {
+                'Filename': '% Difference',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+
+            for col in data_kwh_sum1.columns[3:]:
+                if data_kwh_sum1[col].iloc[0] != 0:
+                    new_row4[col] = round((1  - round(data_kwh_sum1[col].iloc[15] / data_kwh_sum1[col].iloc[16],1))*100,1)
+                else:
+                    new_row4[col] = '-'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row4])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
