@@ -1022,6 +1022,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 new_row_last_df = pd.DataFrame(new_row_last)
                 new_row_last_df1 = pd.DataFrame(new_row_last1)
                 data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df, new_row_last_df1]).reset_index(drop=True)
+        
 
         ###############################################################################################################
         ################################################## Pie CHART ##################################################
@@ -1229,6 +1230,30 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
 
+        ################################################## MASTER TABLE ##############################################
+        
+        st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVIMG SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
+        # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+        if data_kwh_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_kwh_sum)
+
+        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
+        # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+        if data_therm_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_therm_sum)
+        
+        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
+         # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+        if data_mbtu_sum.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+        else:
+            st.write(data_mbtu_sum)
+            
         ###############################################################################################################
         ################################################## Other Tables ###############################################
         ###############################################################################################################
@@ -1256,7 +1281,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.write(data_mbtu_sum)
 
-        st.markdown(f"""<h6 style="color:red;">🔴 PS-F TABLE IS GENERATED FOR ALL UNITS</h6>""", unsafe_allow_html=True)
+        ############################################# PSF ###############################################
+        
+        st.markdown(f"""<h6 style="color:red;">🔴 PS-F TABLE FOR ALL UNITS AND ALL METERS</h6>""", unsafe_allow_html=True)
         st.markdown(f"""<h7 style="color:blue;">🔵 kWH & kW</h7>""", unsafe_allow_html=True)
 
         if data_kwh.empty:
