@@ -1240,7 +1240,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
             # Step 2: Define the new empty row (NaN values)
-            empty_row = pd.DataFrame([[pd.NA]*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+            empty_row = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
             # Step 3: Split the DataFrame and insert the new empty row
             df_part1 = data_kwh_sum1.iloc[:2]       # Up to the second row
             df_part2 = data_kwh_sum1.iloc[2:]       # From the third row onward
