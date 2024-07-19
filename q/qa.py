@@ -707,33 +707,56 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
             data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
-            # Concat other rows called- EFLH Proposed and EFLH Baseline
-            # Ensure the data types are numeric
-            # data_kwh_sum.iloc[0] = data_kwh_sum.iloc[0].apply(pd.to_numeric, errors='coerce')
-            # data_kwh_sum.iloc[1] = data_kwh_sum.iloc[1].apply(pd.to_numeric, errors='coerce')
-            # data_kwh_sum.iloc[3] = data_kwh_sum.iloc[3].apply(pd.to_numeric, errors='coerce')
-            # data_kwh_sum.iloc[4] = data_kwh_sum.iloc[4].apply(pd.to_numeric, errors='coerce')
-            # Perform the division operation with proper index alignment
-            # try:
-            #     if data_kwh_sum.iloc[0] == 0.0 and data_kwh_sum.iloc[3] == 0.0:
-            #         row_7 = 0.0
-            #     if data_kwh_sum.iloc[0] != 0.0 and data_kwh_sum.iloc[3] == 0.0:
-            #         row_7 == 0.0
-            #     else:
-            #         row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
 
-            #     if data_kwh_sum.iloc[1] == 0.0 and data_kwh_sum.iloc[4] == 0.0:
-            #         row_8 = 0.0
-            #     if data_kwh_sum.iloc[1] != 0.0 and data_kwh_sum.iloc[4] == 0.0:
-            #         row_8 = 0.0
-            #     else:
-            #         row_8 = round(data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4]),1)
+            # now append to last row of data_kwh_sum
+            if not data_kwh_sum.empty:
+                new_row_last = {
+                    'UNIT': ['EFLH Baseline'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+                new_row_last1 = {
+                    'UNIT': ['EFLH Proposed'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+                columns = [
+                    'LIGHTS', 'TASK_LIGHTS', 'MISC_EQUIP', 'SPACE_EQUIP', 'SPACE_COOLING',
+                    'HEAT_REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
                 
-            #     # Append the new rows to the DataFrame
-            #     data_kwh_sum.loc[6] = row_7
-            #     data_kwh_sum.loc[7] = row_8
-            # except Exception as e:
-            #     st.error(f"An error occurred: {e}")
+                for col in columns:
+                    value0 = data_kwh_sum.loc[0, col]
+                    value3 = data_kwh_sum.loc[3, col]
+
+                    if value0 == 0 and value3 == 0:
+                        ratio1 = 0
+                    if value0 == 0 and value3 != 0:
+                        ratio1 = 0
+                    if value0 == value3 and value0 != 0:
+                        ratio1 = '-'
+                    if value0 != value3 and value0 != 0:
+                        ratio1 = value0 / value3
+                    new_row_last[col] = [f'{ratio1:.1f}']
+
+                for col in columns:
+                    value1 = data_kwh_sum.loc[1, col]
+                    value4 = data_kwh_sum.loc[4, col]
+                    if value1 == 0 and value4 == 0:
+                        ratio2 = 0
+                    if value1 == 0 and value4 != 0:
+                        ratio2 = 0
+                    if value1 == value4 and value4 != 0:
+                        ratio2 = '-'
+                    if value1 != value4 and value4 != 0:
+                        ratio2 = value0 / value3
+                    new_row_last1[col] = [f'{ratio2:.1f}']
+
+                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+                new_row_last_df = pd.DataFrame(new_row_last)
+                new_row_last_df1 = pd.DataFrame(new_row_last1)
+                data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df, new_row_last_df1]).reset_index(drop=True)
 
         # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
@@ -831,12 +854,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
             data_therm_sum = pd.concat([data_therm_sum, new_row_last_df]).reset_index(drop=True)
-        
-        # # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-        # if data_therm_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_therm_sum)
         
         # st.markdown(f"""<h6 style="color:blue;">🔵 MBTU & MAX MBTU/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
@@ -936,11 +953,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             new_row_last_df = pd.DataFrame(new_row_last)
             data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
 
-        # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
-        # if data_mbtu_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_mbtu_sum)
         ###############################################################################################################
         ################################################## Pie CHART ##################################################
         ###############################################################################################################
