@@ -1238,7 +1238,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if data_kwh_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
         else:
-            data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index()
+            data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
@@ -1246,7 +1246,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if data_therm_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
         else:
-            data_therm_sum1 = data_therm.groupby(['UNIT', 'Filename']).sum().reset_index()
+            data_therm_sum1 = data_therm.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
             st.write(data_therm_sum1)
         
         st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
@@ -1254,7 +1254,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if data_mbtu_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
         else:
-            data_mbtu_sum1 = data_mbtu.groupby(['UNIT', 'Filename']).sum().reset_index()
+            data_mbtu_sum1 = data_mbtu.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
             st.write(data_mbtu_sum1)
             
         ###############################################################################################################
