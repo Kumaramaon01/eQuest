@@ -1266,11 +1266,23 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-            st.success(kw_proposed_total)
-            st.success(kwh_proposed_total)
-            st.success(kw_baseline_total)
-            st.success(kwh_baseline_total)
+            # st.success(kw_proposed_total)
+            # st.success(kwh_proposed_total)
+            # st.success(kw_baseline_total)
+            # st.success(kwh_baseline_total)
+
+            new_row = {
+                'Filename': 'Proposed',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+
+            # Fill in remaining columns with the ratio of the first row value / 2
+            for col in data_kwh_sum1.columns[3:]:
+                new_row[col] = data_kwh_sum1[col][1] / kwh_proposed_total
             
+            # Append the new row to the DataFrame
+            data_kwh_sum1 = data_kwh_sum1.append(new_row, ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
