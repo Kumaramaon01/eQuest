@@ -1335,6 +1335,32 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+
+            new_row2 = {
+                'Filename': 'Proposed',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_kwh_sum1.columns[3:]:
+                new_row2[col] = f'{round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0],1)}%'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row2])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+
+            new_row3 = {
+                'Filename': 'Baseline',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_kwh_sum1.columns[3:]:
+                new_row3[col] = f'{round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0],1)}%'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row3])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
