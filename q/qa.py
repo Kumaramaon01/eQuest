@@ -1267,6 +1267,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             st.success(kw_proposed_total)
+            st.success(kwh_proposed_total)
+            st.success(kw_baseline_total)
+            st.success(kwh_baseline_total)
+            
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
