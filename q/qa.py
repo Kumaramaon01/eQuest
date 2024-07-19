@@ -715,16 +715,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             data_kwh_sum.iloc[4] = data_kwh_sum.iloc[4].apply(pd.to_numeric, errors='coerce')
             # Perform the division operation with proper index alignment
             try:
-                if data_kwh_sum.iloc[0] == 0 and data_kwh_sum.iloc[3] == 0:
+                if data_kwh_sum.iloc[0] == 0.0 and data_kwh_sum.iloc[3] == 0.0:
                     row_7 = 0.0
-                if data_kwh_sum.iloc[0] != 0 and data_kwh_sum.iloc[3] == 0:
+                if data_kwh_sum.iloc[0] != 0.0 and data_kwh_sum.iloc[3] == 0.0:
                     row_7 == 0.0
                 else:
                     row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
 
-                if data_kwh_sum.iloc[1] == 0 and data_kwh_sum.iloc[4] == 0:
+                if data_kwh_sum.iloc[1] == 0.0 and data_kwh_sum.iloc[4] == 0.0:
                     row_8 = 0.0
-                if data_kwh_sum.iloc[1] != 0 and data_kwh_sum.iloc[4] == 0:
+                if data_kwh_sum.iloc[1] != 0.0 and data_kwh_sum.iloc[4] == 0.0:
                     row_8 = 0.0
                 else:
                     row_8 = round(data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4]),1)
