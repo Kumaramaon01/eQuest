@@ -1239,6 +1239,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
         else:
             data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+            # Extract the last column values
+            last_column_values = data_kwh_sum1.iloc[:, -1].values
+            # Unpack the values into separate variables
+            kw_proposed_total, kwh_proposed_total, kw_baseline_total, kwh_baseline_total = last_column_values
+            
             # Step 2: Define the new empty row (NaN values)
             empty_row = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
             # Step 3: Split the DataFrame and insert the new empty row
@@ -1261,6 +1266,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+            st.success(kw_proposed_total)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
