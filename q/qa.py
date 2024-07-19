@@ -1232,7 +1232,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
         ################################################## MASTER TABLE ##############################################
         
-        st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVIMG SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVING SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
         st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
         # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         if data_kwh_sum.empty:
