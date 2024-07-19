@@ -1293,6 +1293,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             new_row_df = pd.DataFrame([new_row1])
             # Concatenate the new row DataFrame with the existing DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+
+            # Step 2: Define the new empty row (NaN values)
+            empty_row2 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+            # Step 3: Split the DataFrame and insert the new empty row
+            df_part1 = data_kwh_sum1.iloc[:9]       # Up to the second row
+
+            # Step 4: Concatenate the parts to form the final DataFrame
+            data_kwh_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
