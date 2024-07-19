@@ -713,8 +713,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
            
             # Perform the division operation with proper index alignment
             try:
-                row_7 = data_kwh_sum.iloc[0].div(data_kwh_sum.iloc[3])
-                row_8 = data_kwh_sum.iloc[1].div(data_kwh_sum.iloc[4])
+                row_7 = data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3])
+                row_8 = data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4])
                 
                 # Append the new rows to the DataFrame
                 data_kwh_sum.loc[6] = row_7
@@ -722,12 +722,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             except Exception as e:
                 st.error(f"An error occurred: {e}")
 
-        # # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
-        # if data_kwh_sum.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
-        # else:
-        #     st.write(data_kwh_sum)
-            
         # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
         data_therm['LIGHTS'] = pd.to_numeric(data_therm['LIGHTS'].str.replace(',',''), errors='coerce')
