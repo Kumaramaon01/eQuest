@@ -708,12 +708,19 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             new_row_last_df = pd.DataFrame(new_row_last)
             data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
             # Concat other rows called- EFLH Proposed and EFLH Baseline
-            row_7 = data_kwh_sum.iloc[0] / data_kwh_sum.iloc[3]
-            row_8 = data_kwh_sum.iloc[1] / data_kwh_sum.iloc[4]
-            
-            # Append the new rows to the DataFrame
-            data_kwh_sum.loc[6] = row_7
-            data_kwh_sum.loc[7] = row_8
+            # Ensure the data types are numeric
+            data_kwh_sum = data_kwh_sum.apply(pd.to_numeric, errors='coerce')
+           
+            # Perform the division operation with proper index alignment
+            try:
+                row_7 = data_kwh_sum.iloc[0].div(data_kwh_sum.iloc[3])
+                row_8 = data_kwh_sum.iloc[1].div(data_kwh_sum.iloc[4])
+                
+                # Append the new rows to the DataFrame
+                data_kwh_sum.loc[6] = row_7
+                data_kwh_sum.loc[7] = row_8
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
 
         # # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         # if data_kwh_sum.empty:
