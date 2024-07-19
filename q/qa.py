@@ -1024,8 +1024,19 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     )
 
                 # Update layout for the bar chart
-                fig3.update_layout(title='Baseline and Proposed Bar Chart', barmode='group', 
-                                   xaxis_title='End Uses', yaxis_title='Values')
+                fig3.update_layout(
+                    title='Baseline and Proposed Bar Chart', 
+                    barmode='group', 
+                    xaxis_title='End Uses', 
+                    yaxis_title='Values',
+                    legend=dict(
+                        orientation="h",  # Horizontal legend
+                        yanchor="bottom", 
+                        y=-0.3,  # Position the legend below the chart
+                        xanchor="center", 
+                        x=0.5
+                    )
+                )
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & kW.</p>""", unsafe_allow_html=True)
