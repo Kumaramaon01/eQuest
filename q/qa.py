@@ -663,7 +663,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 else:
                     new_value = (1 - ratio) * 100
 
-                new_row_3rd[col] = [f'{new_value:.2f}%']
+                new_row_3rd[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_3rd to a DataFrame
             new_row_3rd_df = pd.DataFrame(new_row_3rd)
@@ -702,7 +702,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
                 else:
                     new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
+                new_row_last[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
@@ -787,7 +787,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 else:
                     new_value = (1 - ratio) * 100
 
-                new_row_3rd[col] = [f'{new_value:.2f}%']
+                new_row_3rd[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_3rd to a DataFrame
             new_row_3rd_df = pd.DataFrame(new_row_3rd)
@@ -826,7 +826,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
                 else:
                     new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
+                new_row_last[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
@@ -891,7 +891,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 else:
                     new_value = (1 - ratio) * 100
 
-                new_row_3rd[col] = [f'{new_value:.2f}%']
+                new_row_3rd[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_3rd to a DataFrame
             new_row_3rd_df = pd.DataFrame(new_row_3rd)
@@ -930,7 +930,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
                 else:
                     new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.2f}%']
+                new_row_last[col] = [f'{new_value:.1f}%']
 
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
