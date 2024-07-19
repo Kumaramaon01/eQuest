@@ -1255,6 +1255,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
         else:
             data_therm_sum1 = data_therm.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+             # Step 2: Define the new empty row (NaN values)
+            empty_row = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+            # Step 3: Split the DataFrame and insert the new empty row
+            df_part1 = data_therm_sum1.iloc[:2]       # Up to the second row
+            df_part2 = data_therm_sum1.iloc[2:]       # From the third row onward
+
+            # Step 4: Concatenate the parts to form the final DataFrame
+            data_therm_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
             st.write(data_therm_sum1)
         
         st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
@@ -1263,6 +1271,14 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
         else:
             data_mbtu_sum1 = data_mbtu.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+             # Step 2: Define the new empty row (NaN values)
+            empty_row = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+            # Step 3: Split the DataFrame and insert the new empty row
+            df_part1 = data_mbtu_sum1.iloc[:2]       # Up to the second row
+            df_part2 = data_mbtu_sum1.iloc[2:]       # From the third row onward
+
+            # Step 4: Concatenate the parts to form the final DataFrame
+            data_mbtu_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
             st.write(data_mbtu_sum1)
             
         ###############################################################################################################
