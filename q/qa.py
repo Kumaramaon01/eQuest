@@ -709,8 +709,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             data_kwh_sum = pd.concat([data_kwh_sum, new_row_last_df]).reset_index(drop=True)
             # Concat other rows called- EFLH Proposed and EFLH Baseline
             # Ensure the data types are numeric
-            data_kwh_sum = data_kwh_sum.apply(pd.to_numeric, errors='coerce')
-           
+            data_kwh_sum.iloc[0] = data_kwh_sum.iloc[0].apply(pd.to_numeric, errors='coerce')
+            data_kwh_sum.iloc[1] = data_kwh_sum.iloc[1].apply(pd.to_numeric, errors='coerce')
+            data_kwh_sum.iloc[3] = data_kwh_sum.iloc[3].apply(pd.to_numeric, errors='coerce')
+            data_kwh_sum.iloc[4] = data_kwh_sum.iloc[4].apply(pd.to_numeric, errors='coerce')
             # Perform the division operation with proper index alignment
             try:
                 row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
