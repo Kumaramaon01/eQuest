@@ -714,26 +714,26 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             data_kwh_sum.iloc[3] = data_kwh_sum.iloc[3].apply(pd.to_numeric, errors='coerce')
             data_kwh_sum.iloc[4] = data_kwh_sum.iloc[4].apply(pd.to_numeric, errors='coerce')
             # Perform the division operation with proper index alignment
-            try:
-                if data_kwh_sum.iloc[0] == 0.0 and data_kwh_sum.iloc[3] == 0.0:
-                    row_7 = 0.0
-                if data_kwh_sum.iloc[0] != 0.0 and data_kwh_sum.iloc[3] == 0.0:
-                    row_7 == 0.0
-                else:
-                    row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
+            # try:
+            #     if data_kwh_sum.iloc[0] == 0.0 and data_kwh_sum.iloc[3] == 0.0:
+            #         row_7 = 0.0
+            #     if data_kwh_sum.iloc[0] != 0.0 and data_kwh_sum.iloc[3] == 0.0:
+            #         row_7 == 0.0
+            #     else:
+            #         row_7 = round(data_kwh_sum.iloc[0]/(data_kwh_sum.iloc[3]),1)
 
-                if data_kwh_sum.iloc[1] == 0.0 and data_kwh_sum.iloc[4] == 0.0:
-                    row_8 = 0.0
-                if data_kwh_sum.iloc[1] != 0.0 and data_kwh_sum.iloc[4] == 0.0:
-                    row_8 = 0.0
-                else:
-                    row_8 = round(data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4]),1)
+            #     if data_kwh_sum.iloc[1] == 0.0 and data_kwh_sum.iloc[4] == 0.0:
+            #         row_8 = 0.0
+            #     if data_kwh_sum.iloc[1] != 0.0 and data_kwh_sum.iloc[4] == 0.0:
+            #         row_8 = 0.0
+            #     else:
+            #         row_8 = round(data_kwh_sum.iloc[1]/(data_kwh_sum.iloc[4]),1)
                 
-                # Append the new rows to the DataFrame
-                data_kwh_sum.loc[6] = row_7
-                data_kwh_sum.loc[7] = row_8
-            except Exception as e:
-                st.error(f"An error occurred: {e}")
+            #     # Append the new rows to the DataFrame
+            #     data_kwh_sum.loc[6] = row_7
+            #     data_kwh_sum.loc[7] = row_8
+            # except Exception as e:
+            #     st.error(f"An error occurred: {e}")
 
         # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         # converting to numeric type and removing comma from data
