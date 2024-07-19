@@ -1308,19 +1308,44 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Convert the new row to a DataFrame
             new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
 
-            # Extract the 3rd row from data_kwh_sum ()
-            third_row = data_kwh_sum.iloc[2]
-            third_row_df = third_row.to_frame().T
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, third_row_df], ignore_index=True)
+            # # Extract the 3rd row from data_kwh_sum ()
+            # third_row = data_kwh_sum.iloc[2]
+            # third_row_df = third_row.to_frame().T
+            # data_kwh_sum1 = pd.concat([data_kwh_sum1, third_row_df], ignore_index=True)
 
-            # Extract the 3rd row from data_kwh_sum ()
-            six_row = data_kwh_sum.iloc[5]
-            six_row_df = six_row.to_frame().T
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, six_row_df], ignore_index=True)
+            # # Extract the 3rd row from data_kwh_sum ()
+            # six_row = data_kwh_sum.iloc[5]
+            # six_row_df = six_row.to_frame().T
+            # data_kwh_sum1 = pd.concat([data_kwh_sum1, six_row_df], ignore_index=True)
+
+            new_row0 = {
+                'Filename': 'Energy',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_kwh_sum1.columns[3:]:
+                if data_kwh_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
+                    new_row0[col] = f'{round((1 - round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[4], 1))*100,1)}%'
+                else:
+                    new_row0[col] = '-'
+            
+            new_row_df = pd.DataFrame([new_row0])
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+            new_row00 = {
+                'Filename': 'Demand',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_kwh_sum1.columns[3:]:
+                if data_kwh_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
+                    new_row00[col] = f'{round((1 - round(data_kwh_sum1[col].iloc[0] / data_kwh_sum1[col].iloc[3], 1))*100,1)}%'
+                else:
+                    new_row00[col] = '-'
+            
+            new_row_df = pd.DataFrame([new_row00])
+            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
 
             empty_row3 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
             df_part1 = data_kwh_sum1.iloc[:13] # upto 13 rows
