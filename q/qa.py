@@ -1274,7 +1274,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_kwh_sum1.columns[3:]:
-                new_row[col] = round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)
+                new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
