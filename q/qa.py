@@ -946,7 +946,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 with col2:
                     st.plotly_chart(fig2)
         else:
-            st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
+            st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
 
         st.markdown(f"""<h6 style="color:red;">🔴 MAX THERM/HR</h6>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
@@ -1028,7 +1028,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                                    xaxis_title='End Uses', yaxis_title='Values')
                 st.plotly_chart(fig3)
         else:
-            st.markdown("""<p><strong>Note:</strong> No data found for KWH & KW.</p>""", unsafe_allow_html=True)
+            st.markdown("""<p><strong>Note:</strong> No data found for kWH & kW.</p>""", unsafe_allow_html=True)
 
         st.markdown(f"""<h6 style="color:red;">🔴 MAX THERM/HR</h6>""", unsafe_allow_html=True)
         if not data_therm_sum.empty:
@@ -1097,10 +1097,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         ###############################################################################################################
 
         st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & KW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & kW</h6>""", unsafe_allow_html=True)
 
         if data_kwh.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
+            st.markdown("""<p><strong>Note:</strong> No data found for kWH.</p>""", unsafe_allow_html=True)
             # st.info("No data found for KWH & KW")
         else:
             st.write(data_kwh)
@@ -1120,11 +1120,11 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.write(data_mbtu)
 
         st.markdown(f"""<h6 style="color:red;">🔴 Energy Savings and Demand Savings (in %) </h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & MAX KW</h6>""", unsafe_allow_html=True)
+        st.markdown(f"""<h6 style="color:blue;">🔵 kWH & MAX kW</h6>""", unsafe_allow_html=True)
         
         # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
         if data_kwh_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for KWH & MAX KW.</p>""", unsafe_allow_html=True)
+            st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
         else:
             st.write(data_kwh_sum)
             
