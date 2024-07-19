@@ -1238,7 +1238,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if data_kwh_sum.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
         else:
-            data_kwh_sum1 = data_kwh.groupby(['UNIT', 'Filename']).sum().reset_index()
+            data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index()
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
