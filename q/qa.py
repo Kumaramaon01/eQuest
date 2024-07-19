@@ -546,12 +546,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             elif data['HEAT REJECT'][i] == 'MAX MBTU/HR':
                 data['UNIT'][i] = 'MAX MBTU/HR'
             
-        # st.write(data)
-
-        # Unit wise data for PS-F table (PS-F table is generated for all units) 
-        # red ball before PSF in below line in markdown is to highlight the PS-F table
-        # st.markdown(f"""<h6 style="color:red;">🔴 PS-F Table is generated for all UNITS</h6>""", unsafe_allow_html=True)
-        # st.markdown(f"""<h6 style="color:red;">🟢 KWH & KW</h6>""", unsafe_allow_html=True)
         # from data dataframe select only rows with 'kWh' or 'kW' in UNIT column
         data_kwh = data[
             data['UNIT'].str.contains('KWH|MAX KW', regex=True) | 
@@ -563,15 +557,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             data['HEAT REJECT'].str.contains('KWH|MAX KW', regex=True)
         ]
         data_kwh = data_kwh.reset_index(drop=True)
-        # if empty dataframe then write message in markdown - No KWH & KW data found in the selected data
-        # if data_kwh.empty:
-        #     st.markdown("""<p><strong>Note:</strong> No data found for KWH.</p>""", unsafe_allow_html=True)
-        #     # st.info("No data found for KWH & KW")
-        # else:
-        #     st.write(data_kwh)
         
-        # with col2:
-        # st.markdown(f"""<h6 style="color:green;">🟡 THERM & MAX THERM/HR</h6>""", unsafe_allow_html=True)
         # from data dataframe select only rows with 'THERM' or 'MAX THERM/HR' in UNIT column
         data_therm = data[
             data['UNIT'].str.contains('THERM|MAX THERM/HR', regex=True) | 
@@ -986,6 +972,56 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
             data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df]).reset_index(drop=True)
+
+            # now append to last row of data_kwh_sum
+            if not data_mbtu_sum.empty:
+                new_row_last = {
+                    'UNIT': ['EFLH Baseline'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+                new_row_last1 = {
+                    'UNIT': ['EFLH Proposed'],
+                    'Filename': [''],
+                    'Meterings': [''],
+                }
+                columns = [
+                    'LIGHTS', 'TASK LIGHTS', 'MISC EQUIP', 'SPACE EQUIP', 'SPACE COOLING',
+                    'HEAT REJECT', 'PUMPS & AUX', 'VENT FANS', 'REFRIG DISPLAY',
+                    'HT PUMP SUPPLEM', 'DOMEST HOT WTR', 'EXT USAGE', 'TOTAL'
+                ]
+                
+                for col in columns:
+                    value0 = data_mbtu_sum.loc[0, col]
+                    value3 = data_mbtu_sum.loc[3, col]
+
+                    if value0 == 0 and value3 == 0:
+                        ratio1 = 0
+                    if value0 == 0 and value3 != 0:
+                        ratio1 = 0
+                    if value0 == value3 and value0 != 0:
+                        ratio1 = '-'
+                    if value0 != value3 and value0 != 0:
+                        ratio1 = value0 / value3
+                    new_row_last[col] = [f'{ratio1:.1f}']
+
+                for col in columns:
+                    value1 = data_mbtu_sum.loc[1, col]
+                    value4 = data_mbtu_sum.loc[4, col]
+                    if value1 == 0 and value4 == 0:
+                        ratio2 = 0
+                    if value1 == 0 and value4 != 0:
+                        ratio2 = 0
+                    if value1 == value4 and value4 != 0:
+                        ratio2 = '-'
+                    if value1 != value4 and value4 != 0:
+                        ratio2 = value0 / value3
+                    new_row_last1[col] = [f'{ratio2:.1f}']
+
+                # Convert new_row_last to a DataFrame and append it to data_kwh_sum
+                new_row_last_df = pd.DataFrame(new_row_last)
+                new_row_last_df1 = pd.DataFrame(new_row_last1)
+                data_mbtu_sum = pd.concat([data_mbtu_sum, new_row_last_df, new_row_last_df1]).reset_index(drop=True)
 
         ###############################################################################################################
         ################################################## Pie CHART ##################################################
