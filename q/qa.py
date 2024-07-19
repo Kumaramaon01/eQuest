@@ -1248,9 +1248,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Step 4: Concatenate the parts to form the final DataFrame
             data_kwh_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
             
-            # empty_row1 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
-            # df_part1 = data_kwh_sum1.iloc[:5]
-            # data_kwh_sum1 = pd.concat([df_part1, empty_row, ignore_index=True)
+            empty_row1 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+            df_part1 = data_kwh_sum1.iloc[:5]
+            data_kwh_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
             st.write(data_kwh_sum1)
 
         st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
@@ -1268,9 +1268,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Step 4: Concatenate the parts to form the final DataFrame
             data_therm_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
 
-            # empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
-            # df_part1 = data_therm_sum1.iloc[:5]
-            # data_therm_sum1 = pd.concat([df_part1, empty_row, ignore_index=True)
+            empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+            df_part1 = data_therm_sum1.iloc[:5]
+            data_therm_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
             st.write(data_therm_sum1)
         
         st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
@@ -1288,9 +1288,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             # Step 4: Concatenate the parts to form the final DataFrame
             data_mbtu_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
 
-            # empty_row1 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
-            # df_part1 = data_mbtu_sum1.iloc[:5]
-            # data_mbtu_sum1 = pd.concat([df_part1, empty_row, ignore_index=True)
+            empty_row1 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+            df_part1 = data_mbtu_sum1.iloc[:5]
+            data_mbtu_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
             st.write(data_mbtu_sum1)
             
         ###############################################################################################################
