@@ -452,7 +452,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
     #                     }))
     #                     break
                         
-        return 0
+        # return 0
     
     if st.button("Based on Units"):
         prop_data = psf.get_PSF_report_Prop_all(sim_p_path)
