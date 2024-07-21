@@ -45,9 +45,20 @@ def set_dark_theme():
         background-color: black;  /* Set background color to black */
         color: white;  /* Set text color to white */
     }
-    .stMarkdown, .stImage, .stDataFrame, .stTable {
+    .stMarkdown, .stImage, .stDataFrame, .stTable, .stTextInput, .stButton, .stSidebar {
         background-color: transparent !important; /* Make elements' background transparent */
         color: white !important;  /* Ensure text color within these elements is white */
+    }
+    .stButton > button {
+        background-color: #333; /* Dark background for buttons */
+        color: white;  /* White text for buttons */
+    }
+    .stSidebar {
+        background-color: #222; /* Slightly lighter background for sidebar */
+    }
+    .stTextInput > div > input {
+        background-color: #444; /* Dark background for text input */
+        color: white;  /* White text for text input */
     }
     </style>
     """
