@@ -1406,7 +1406,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
         else:
             data_therm_sum1 = data_therm.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
-             # Step 2: Define the new empty row (NaN values)
+            # Extract the last column values
+            last_column_values = data_therm_sum1.iloc[:, -1].values
+            # Unpack the values into separate variables
+            therm_proposed_total, thermhr_proposed_total, therm_baseline_total, thermhr_baseline_total = last_column_values
+            
+            # Step 2: Define the new empty row (NaN values)
             empty_row = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
             # Step 3: Split the DataFrame and insert the new empty row
             df_part1 = data_therm_sum1.iloc[:2]       # Up to the second row
@@ -1414,7 +1419,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
             # Step 4: Concatenate the parts to form the final DataFrame
             data_therm_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
-
+            
             empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
             df_part1 = data_therm_sum1.iloc[:5]
             data_therm_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
@@ -1427,6 +1432,138 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             new_row_df = pd.DataFrame([new_row])
             
             # Step 3: Append the new row to the DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            new_row = {
+                'Filename': 'Proposed',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+
+            for col in data_therm_sum1.columns[3:]:
+                new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row])
+            
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+            new_row1 = {
+                'Filename': 'Baseline',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_therm_sum1.columns[3:]:
+                new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row1])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            # Step 2: Define the new empty row (NaN values)
+            empty_row2 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+            # Step 3: Split the DataFrame and insert the new empty row
+            df_part1 = data_therm_sum1.iloc[:9]       # Up to the second row
+
+            # Step 4: Concatenate the parts to form the final DataFrame
+            data_therm_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
+
+            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+            new_row = {col: '' for col in data_therm_sum1.columns}
+            new_row[data_therm_sum1.columns[0]] = "% Savings"
+            
+            # Convert the new row to a DataFrame
+            new_row_df = pd.DataFrame([new_row])
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            new_row0 = {
+                'Filename': 'Energy',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_therm_sum1.columns[3:]:
+                if data_therm_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
+                    new_row0[col] = f'{round((1 - (data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[4]))*100,1)}%'
+                else:
+                    new_row0[col] = '-'
+            
+            new_row_df = pd.DataFrame([new_row0])
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+            new_row00 = {
+                'Filename': 'Demand',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_therm_sum1.columns[3:]:
+                if data_therm_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
+                    new_row00[col] = f'{round((1 - (data_therm_sum1[col].iloc[0] / data_therm_sum1[col].iloc[3]))*100,1)}%'
+                else:
+                    new_row00[col] = '-'
+            
+            new_row_df = pd.DataFrame([new_row00])
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            empty_row3 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+            df_part1 = data_therm_sum1.iloc[:13] # upto 13 rows
+            data_therm_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
+
+            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+            new_row = {col: '' for col in data_therm_sum1.columns}
+            new_row[data_therm_sum1.columns[0]] = "EFLH"
+            
+            # Convert the new row to a DataFrame
+            new_row_df = pd.DataFrame([new_row])
+            
+            # Step 3: Append the new row to the DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            new_row2 = {
+                'Filename': 'Proposed',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_therm_sum1.columns[3:]:
+                if data_therm_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
+                    new_row2[col] = round(data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[0], 1)
+                else:
+                    new_row2[col] = '-'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row2])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            new_row3 = {
+                'Filename': 'Baseline',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+            for col in data_therm_sum1.columns[3:]:
+                if data_therm_sum1[col].iloc[0] != 0:
+                    new_row3[col] = round(data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[0],1)
+                else:
+                    new_row3[col] = '-'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row3])
+            # Concatenate the new row DataFrame with the existing DataFrame
+            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+
+            new_row4 = {
+                'Filename': '% Difference',  
+                'UNIT': '', 
+                'Meterings': ''
+            }
+
+            for col in data_therm_sum1.columns[3:]:
+                if data_therm_sum1[col].iloc[0] != 0:
+                    new_row4[col] = f'{round((1  - (data_therm_sum1[col].iloc[15] / data_therm_sum1[col].iloc[16]))*100,1)}%'
+                else:
+                    new_row4[col] = '-'
+            
+            # Create a DataFrame from the new row
+            new_row_df = pd.DataFrame([new_row4])
             data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
             st.write(data_therm_sum1)
         
