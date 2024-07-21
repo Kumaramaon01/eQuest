@@ -555,10 +555,9 @@ def main():
 
         with col5:
             st.image("images/baseline.png", width=110)
-        
         with col6:
             st.image("images/schedule.png", width=110)
-            st.markdown('<a href="https://drive.google.com/file/d/1dNyT8-b6OaRsScR-VXvuGZU_NedIAZHb/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+            st.markdown('<a href="https://drive.google.com/file/d/1dNyT8-b6OaRsScR-VXvuGZU_NedIAZHb/view?usp=drive_link"><button style="background-color:#4CAF50;color:white; border-radius: 7px;">Download</button></a>', unsafe_allow_html=True)
         # Adding spacing for better layout
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
