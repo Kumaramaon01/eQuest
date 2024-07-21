@@ -553,41 +553,41 @@ def main():
         # with col6:
     #         st.image("images/schedule.png", width = 110)
     #         st.write("[Download](https://drive.google.com/file/d/1dNyT8-b6OaRsScR-VXvuGZU_NedIAZHb/view?usp=drive_link)")
-        elif st.session_state.script_choice == "exe":
-            st.markdown("""
-            <h4 style="color:red; text-align:center;">🖥️ EXE Files</h4>
-            """, unsafe_allow_html=True)
-            
-            # Adding spacing for better layout
-            st.markdown("<br>", unsafe_allow_html=True)
-            
-            col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1, 1])
-            
-            with col1:
-                st.image("images/INP_Parser_logo.png", width=110)
-                st.markdown('<a href="https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
-            
-            with col2:
-                st.image("images/SIM_Parser_logo.png", width=110)
-                st.markdown('<a href="https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
-            
-            with col3:
-                st.image("images/purging_inp_logo.png", width=110)
-                st.markdown('<a href="https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
-            
-            with col4:
-                st.image("images/SIM_pdf.png", width=110)
-                st.markdown('<a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
-    
-            with col5:
-                st.image("images/baseline.png", width=110)
-            
-            with col6:
-                st.image("images/schedule.png", width=110)
-                st.markdown('<a href="https://drive.google.com/file/d/1dNyT8-b6OaRsScR-VXvuGZU_NedIAZHb/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+    elif st.session_state.script_choice == "exe":
+        st.markdown("""
+        <h4 style="color:red; text-align:center;">🖥️ EXE Files</h4>
+        """, unsafe_allow_html=True)
         
-            # Adding spacing for better layout
-            st.markdown("<br>", unsafe_allow_html=True)
+        # Adding spacing for better layout
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1, 1])
+        
+        with col1:
+            st.image("images/INP_Parser_logo.png", width=110)
+            st.markdown('<a href="https://drive.google.com/file/d/1_jgaEfJCuoqfZOq3hY33D-3x31-v-nTH/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+        
+        with col2:
+            st.image("images/SIM_Parser_logo.png", width=110)
+            st.markdown('<a href="https://drive.google.com/file/d/1jhIyXWMRo7z0J6n32R6omVNpM3Xd8beY/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+        
+        with col3:
+            st.image("images/purging_inp_logo.png", width=110)
+            st.markdown('<a href="https://drive.google.com/file/d/1oIQmgVAMy871cwwQPnlm3FAAlEB_Bl7o/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+        
+        with col4:
+            st.image("images/SIM_pdf.png", width=110)
+            st.markdown('<a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+
+        with col5:
+            st.image("images/baseline.png", width=110)
+        
+        with col6:
+            st.image("images/schedule.png", width=110)
+            st.markdown('<a href="https://drive.google.com/file/d/1dNyT8-b6OaRsScR-VXvuGZU_NedIAZHb/view?usp=drive_link"><button style="background-color:#4CAF50;color:white;">Download</button></a>', unsafe_allow_html=True)
+    
+        # Adding spacing for better layout
+        st.markdown("<br>", unsafe_allow_html=True)
 
         st.markdown("""
             <h5 style="color:black;">📄 Documents to read</h5>
