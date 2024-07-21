@@ -562,7 +562,7 @@ def main():
         # Adding spacing for better layout
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
-        <h5 style="color:black; text-align:center;">📄 Documents to Read</h5>
+        <h5 style="color:black; text-align:center;">📄 Guidelines for Exe Files</h5>
         <ul style="list-style-type:none; padding-left:0;">
             <li style="margin-bottom:10px;">
                 <b style="color:red;">SIM to PDF:</b> 
