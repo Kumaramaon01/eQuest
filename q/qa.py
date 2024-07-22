@@ -1268,7 +1268,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_kwh_sum1.columns[3:]:
-                new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
+                if kwh_proposed_total != 0:
+                    new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
+                elif kwh_proposed_total == 0:
+                    new_row[col] = '-'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
@@ -1281,8 +1284,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 'Meterings': ''
             }
             for col in data_kwh_sum1.columns[3:]:
-                new_row1[col] = f'{round(data_kwh_sum1[col].iloc[4]*100 / kwh_baseline_total,1)}%'
-            
+                if kwh_baseline_total != 0:
+                    new_row1[col] = f'{round(data_kwh_sum1[col].iloc[4]*100 / kwh_baseline_total,1)}%'
+                elif kwh_baseline_total == 0:
+                    new_row1[col] = '-'
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row1])
             # Concatenate the new row DataFrame with the existing DataFrame
