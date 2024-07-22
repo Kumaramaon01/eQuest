@@ -1769,7 +1769,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_mbtu_sum1.columns[3:]:
                 if data_mbtu_sum1[col].iloc[3] != 0:
                     new_row3[col] = round(data_mbtu_sum1[col].iloc[4] / data_mbtu_sum1[col].iloc[3],1)
-                else:
+                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] == 0:
+                    new_row3[col] = '0.0'
+                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] != 0:
                     new_row3[col] = '-'
             
             # Create a DataFrame from the new row
