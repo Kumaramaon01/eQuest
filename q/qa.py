@@ -1501,11 +1501,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_therm_sum1.columns[3:]:
                 if data_therm_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
                     new_row0[col] = f'{round((1 - (data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[4]))*100,1)}%'
-                # elif data_therm_sum1[col].iloc[4] == 0 data_therm_sum1[col].iloc[1] == 0:
-                #     new_row0[col] = '100.0%'
+                elif data_therm_sum1[col].iloc[4] == 0 data_therm_sum1[col].iloc[1] == 0:
+                    new_row0[col] = '100.0%'
                 # elif data_therm_sum1[col].iloc[4] == 0 data_therm_sum1[col].iloc[1] != 0:
-                else:
-                    new_row0[col] = '-'
+                #     new_row0[col] = '-'
                 
             new_row_df = pd.DataFrame([new_row0])
             data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
