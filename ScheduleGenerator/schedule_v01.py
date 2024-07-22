@@ -78,7 +78,7 @@ def get_schedule(uploaded_file):
                 schedules = schedules[~schedules.iloc[:, 0].isin(values_to_remove) & ~schedules.iloc[:, 1].isin(values_to_remove)]
                 # Find indices of 'Hour' and 'Day'-'Monday' pairs
                 hour_indices = schedules[schedules["Schedule Name"] == "Hour"].index.tolist()
-                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules["Arena Occup Ann Sch"] == "Monday")].index.tolist()
+                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules.iloc[:, 1] == "Monday")].index.tolist()
 
                 # Initialize a list to store the new DataFrame rows
                 new_rows = []
