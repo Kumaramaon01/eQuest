@@ -616,24 +616,25 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in columns:
                 value1 = data_kwh_sum.loc[1, col]
                 value0 = data_kwh_sum.loc[0, col]
-                
+
+                # Div by 0 put '-'
                 if value0 == 0 and value1 == 0:
                     ratio = 0
-                if value0 == 0 and value1 != 0:
-                    ratio = 0
-                if value0 == value1 and value0 != 0:
-                    ratio = 1
-                if value0 != value1:
+                elif value0 == 0 and value1 != 0:
+                    ratio = '-'
+                else:
                     ratio = value1 / value0
-
-                if ratio == 1:
+                
+                if ratio == '-':
+                    new_value = '-'
+                elif ratio == 1:
                     new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
                 elif ratio == 0:
                     new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
                 else:
                     new_value = (1 - ratio) * 100
-
-                new_row_3rd[col] = [f'{new_value:.1f}%']
+                
+                new_row_3rd[col] = [f'{new_value:.1f}%'] if new_value != '-' else [new_value]
 
             # Convert new_row_3rd to a DataFrame
             new_row_3rd_df = pd.DataFrame(new_row_3rd)
@@ -660,19 +661,20 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 
                 if value3 == 0 and value4 == 0:
                     ratio = 0
-                if value3 == 0 and value4 != 0:
-                    ratio = 0
-                if value3 == value4 and value3 != 0:
-                    ratio = 1
-                if value3 != value4 and value3 != 0:
+                elif value3 == 0 and value4 != 0:
+                    ratio = '-'
+                else:
                     ratio = value4 / value3
-                if ratio == 1:
+                    
+                if ratio == '-':
+                    new_value = '-'
+                elif ratio == 1:
                     new_value = (1 - ratio) * 100  # Values are equal, ratio is 1
                 elif ratio == 0:
                     new_value = (1 - ratio) * 100  # Value is 0, compute percentage difference
                 else:
                     new_value = (1 - ratio) * 100
-                new_row_last[col] = [f'{new_value:.1f}%']
+                new_row_last[col] = [f'{new_value:.1f}%'] if new_value != '-' else [new_value]
 
             # Convert new_row_last to a DataFrame and append it to data_kwh_sum
             new_row_last_df = pd.DataFrame(new_row_last)
@@ -702,27 +704,25 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
                     if value0 == 0 and value3 == 0:
                         ratio1 = 0
-                    if value0 == 0 and value3 != 0:
+                    elif value0 == 0 and value3 != 0:
                         ratio1 = 0
-                    if value0 == value3 and value0 != 0:
-                        ratio1 = 1
-                    if value0 != value3 and value0 != 0:
+                    elif value3 == 0:
+                        ratio1 = '-'
+                    else:
                         ratio1 = value0/value3
-                    new_row_last[col] = [f'{ratio1:.1f}']
+                    new_row_last[col] = [f'{ratio1:.1f}'] if new_value != '-' else [new_value]
 
                 for col in columns:
                     value1 = data_kwh_sum.loc[1, col]
                     value4 = data_kwh_sum.loc[4, col]
                     if value1 == 0 and value4 == 0:
                         ratio2 = 0
-                    if value1 == 0 and value4 != 0:
-                        ratio2 = 0
-                    if value1 == value4 and value4 != 0:
+                    elif value4 == 0 and value1 != 0:
                         ratio2 = '-'
-                    if value1 != value4 and value4 != 0:
+                    else:
                         ratio2 = value0 / value3
-                    new_row_last1[col] = [f'{ratio2:.1f}']
-
+                    new_row_last1[col] = [f'{ratio2:.1f}'] if ratio2 != '-' else [ratio2]
+                
                 # Convert new_row_last to a DataFrame and append it to data_kwh_sum
                 new_row_last_df = pd.DataFrame(new_row_last)
                 new_row_last_df1 = pd.DataFrame(new_row_last1)
