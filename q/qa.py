@@ -1409,7 +1409,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     if val_16 != 0:
                         new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
                     elif val_16 == 0 and val_15 == 0:
-                        new_row4[col] = '0.0%'
+                        new_row4[col] = '100.0%'
                     elif val_16 == 0 and val_15 != 0:
                         new_row4[col] = '-'
                 except ValueError:
@@ -1600,7 +1600,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     if val_16 != 0:
                         new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
                     elif val_16 == 0 and val_15 == 0:
-                        new_row4[col] = '0.0%'
+                        new_row4[col] = '100.0%'
                     elif val_16 == 0 and val_15 != 0:
                         new_row4[col] = '-'
                 except ValueError:
@@ -1751,7 +1751,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_mbtu_sum1.columns[3:]:
                 if data_mbtu_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
                     new_row2[col] = round(data_mbtu_sum1[col].iloc[1] / data_mbtu_sum1[col].iloc[0], 1)
-                else:
+                elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] == 0:
+                    new_row2[col] = '0.0'
+                elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] != 0:
                     new_row2[col] = '-'
             
             # Create a DataFrame from the new row
