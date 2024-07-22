@@ -24,7 +24,7 @@ TO_EMAIL = "rajeev@edsglobal.com"
 # Set the page configuration with additional options layout='wide',
 st.set_page_config(
     page_title="eQUEST Utilities",
-    page_icon="TT",
+    page_icon="💡",
     layout='wide',  # Only 'centered' or 'wide' are valid options
     menu_items={                          
         'Get Help': 'https://www.example.com/help',
@@ -32,7 +32,7 @@ st.set_page_config(
         'About': '# This is an **eQuest Utilities** application!'
     }
 )
-# 💡
+
 # Function to set the background image using CSS
 def set_dark_theme():
     """
