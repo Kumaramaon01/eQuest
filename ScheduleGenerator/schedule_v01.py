@@ -107,7 +107,7 @@ def get_schedule(uploaded_file):
                 df_hr = df_hr[~df_hr['Schedule Name'].str.contains('Day')]
 
                 # Find indices of 'month' and 'Day'-'Monday' pairs
-                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules["Arena Occup Ann Sch"] == "Monday")].index.tolist()
+                day_monday_indices = schedules[(schedules["Schedule Name"] == "Day") & (schedules.iloc[:, 1] == "Monday")].index.tolist()
                 month_indices = schedules[schedules["Schedule Name"] == "Month"].index.tolist()
 
                 # Initialize a list to store the new DataFrame rows
