@@ -1786,11 +1786,19 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_mbtu_sum1.columns[3:]:
-                if data_mbtu_sum1[col].iloc[16] != 0:
-                    # new_row4[col] = f'{round((1  - (data_mbtu_sum1[col].iloc[15] / data_mbtu_sum1[col].iloc[16]))*100,1)}%'
-                    new_row4[col] = '100.0%'
-                else:
-                    new_row4[col] = '-'
+                try:
+                    # Ensure the values are numeric
+                    val_16 = float(data_mbtu_sum1[col].iloc[16])
+                    val_15 = float(data_mbtu_sum1[col].iloc[15])
+                    
+                    if val_16 != 0:
+                        new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
+                    elif val_16 == 0 and val_15 == 0:
+                        new_row4[col] = '100.0%'
+                    elif val_16 == 0 and val_15 != 0:
+                        new_row4[col] = '-'
+                except ValueError:
+                    new_row4[col] = 'Invalid data'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row4])
