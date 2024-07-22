@@ -1267,22 +1267,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 'Meterings': ''
             }
 
-            if pd.isna(kwh_proposed_total):
-                kwh_proposed_total = 0
-            new_row = {}
             for col in data_kwh_sum1.columns[3:]:
-                # Check if the column value at iloc[1] is not NaN
-                if not pd.isna(data_kwh_sum1[col].iloc[1]):
-                    if kwh_proposed_total != 0:
-                        percentage = round(data_kwh_sum1[col].iloc[1] * 100 / kwh_proposed_total, 1)
-                        new_row[col] = f'{percentage}%'
-                    else:
-                        new_row[col] = '-'
-                else:
+                if kwh_proposed_total != 0:
+                    new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
+                elif kwh_proposed_total == 0:
                     new_row[col] = '-'
-                        
+            
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
+            
+            # Concatenate the new row DataFrame with the existing DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             
             new_row1 = {
@@ -1448,7 +1442,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_therm_sum1.columns[3:]:
-                new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
+                if thermhr_proposed_total != 0:
+                    new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
+                elif thermhr_proposed_total == 0:
+                    new_row[col] = '-'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
@@ -1461,7 +1458,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 'Meterings': ''
             }
             for col in data_therm_sum1.columns[3:]:
-                new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
+                if thermhr_baseline_total != 0:
+                    new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
+                elif thermhr_baseline_total == 0:
+                    new_row1[col] = '-'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row1])
