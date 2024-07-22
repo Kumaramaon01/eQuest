@@ -1366,9 +1366,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_kwh_sum1.columns[3:]:
                 if data_kwh_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
                     new_row2[col] = round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0], 1)
-                elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] == 0:
+                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] == 0:
                     new_row2[col] = '0.0'
-                elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] != 0:
+                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] != 0:
                     new_row2[col] = '-'
             
             # Create a DataFrame from the new row
