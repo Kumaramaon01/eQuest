@@ -1322,7 +1322,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_kwh_sum1.columns[3:]:
                 if data_kwh_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
                     new_row0[col] = f'{round((1 - (data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[4]))*100,1)}%'
-                else:
+                elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] == 0:
+                    new_row0[col] = '100.0%'
+                elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] != 0:
                     new_row0[col] = '-'
             
             new_row_df = pd.DataFrame([new_row0])
@@ -1335,7 +1337,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_kwh_sum1.columns[3:]:
                 if data_kwh_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
                     new_row00[col] = f'{round((1 - (data_kwh_sum1[col].iloc[0] / data_kwh_sum1[col].iloc[3]))*100,1)}%'
-                else:
+                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[3] == 0:
+                    new_row00[col] = '100.0%'
+                elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[0] != 0:
                     new_row00[col] = '-'
             
             new_row_df = pd.DataFrame([new_row00])
