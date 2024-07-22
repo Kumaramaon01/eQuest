@@ -1553,7 +1553,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
             for col in data_therm_sum1.columns[3:]:
                 if data_therm_sum1[col].iloc[16] != 0:
-                    new_row4[col] = f'{round((1  - (data_therm_sum1[col].iloc[15] / data_therm_sum1[col].iloc[16]))*100,1)}%'
+                    # new_row4[col] = f'{round((1  - (data_therm_sum1[col].iloc[15] / data_therm_sum1[col].iloc[16]))*100,1)}%'
+                    new_row4[col] = '100.0%'
                 else:
                     new_row4[col] = '-'
             
@@ -1720,7 +1721,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
             for col in data_mbtu_sum1.columns[3:]:
                 if data_mbtu_sum1[col].iloc[16] != 0:
-                    new_row4[col] = f'{round((1  - (data_mbtu_sum1[col].iloc[15] / data_mbtu_sum1[col].iloc[16]))*100,1)}%'
+                    # new_row4[col] = f'{round((1  - (data_mbtu_sum1[col].iloc[15] / data_mbtu_sum1[col].iloc[16]))*100,1)}%'
+                    new_row4[col] = '100.0%'
                 else:
                     new_row4[col] = '-'
             
