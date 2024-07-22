@@ -1271,7 +1271,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 if kwh_proposed_total != 0:
                     new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
                 elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] == 0:
-                    new_row[col] = '0%'
+                    new_row[col] = '0.0%'
                 elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] != 0:
                     new_row[col] = '-'
             
@@ -1290,7 +1290,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 if kwh_baseline_total != 0:
                     new_row1[col] = f'{round(data_kwh_sum1[col].iloc[4]*100 / kwh_baseline_total,1)}%'
                 elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] == 0:
-                    new_row1[col] = '0%'
+                    new_row1[col] = '0.0%'
                 elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] != 0:
                     new_row1[col] = '-'
             # Create a DataFrame from the new row
@@ -1449,7 +1449,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 if thermhr_proposed_total != 0:
                     new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
                 elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] == 0:
-                    new_row[col] = '0%'
+                    new_row[col] = '0.0%'
                 elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] != 0:
                     new_row[col] = '-'
             # Create a DataFrame from the new row
@@ -1465,7 +1465,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 if thermhr_baseline_total != 0:
                     new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
                 elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] == 0:
-                    new_row1[col] = '0%'
+                    new_row1[col] = '0.0%'
                 elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] != 0:
                     new_row1[col] = '-'
             # Create a DataFrame from the new row
@@ -1621,8 +1621,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_mbtu_sum1.columns[3:]:
-                new_row[col] = f'{round(data_mbtu_sum1[col].iloc[1]*100 / mbtuhr_proposed_total,1)}%'
-            
+                if mbtuhr_proposed_total != 0:
+                    new_row[col] = f'{round(data_mbtu_sum1[col].iloc[1]*100 / mbtuhr_proposed_total,1)}%'
+                elif mbtuhr_proposed_total == 0 and data_mbtu_sum1[col].iloc[1] == 0:
+                    new_row[col] = '0.0%'
+                elif data_mbtu_sum1[col].iloc[1] != 0 and mbtuhr_proposed_total == 0:
+                    new_row[col] = '-'
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
             
@@ -1634,8 +1638,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 'Meterings': ''
             }
             for col in data_mbtu_sum1.columns[3:]:
-                new_row1[col] = f'{round(data_mbtu_sum1[col].iloc[4]*100 / mbtuhr_baseline_total,1)}%'
-            
+                if mbtuhr_baseline_total != 0:
+                    new_row1[col] = f'{round(data_mbtu_sum1[col].iloc[4]*100 / mbtuhr_baseline_total,1)}%'
+                elif mbtuhr_baseline_total == 0 and data_mbtu_sum1[col].iloc[4] == 0:
+                    new_row1[col] = '0.0%'
+                elif data_mbtu_sum1[col].iloc[4] != 0 and mbtuhr_baseline_total == 0:
+                    new_row1[col] = '-'
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row1])
             # Concatenate the new row DataFrame with the existing DataFrame
