@@ -1534,8 +1534,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 'Meterings': ''
             }
             for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[0] != 0:
-                    new_row3[col] = round(data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[0],1)
+                if data_therm_sum1[col].iloc[3] != 0:
+                    new_row3[col] = round(data_therm_sum1[col].iloc[4] / data_therm_sum1[col].iloc[3],1)
                 else:
                     new_row3[col] = '-'
             
@@ -1551,7 +1551,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             }
 
             for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[0] != 0:
+                if data_therm_sum1[col].iloc[16] != 0:
                     new_row4[col] = f'{round((1  - (data_therm_sum1[col].iloc[15] / data_therm_sum1[col].iloc[16]))*100,1)}%'
                 else:
                     new_row4[col] = '-'
