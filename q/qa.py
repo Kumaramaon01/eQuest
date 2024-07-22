@@ -1277,7 +1277,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row])
-            
             # Concatenate the new row DataFrame with the existing DataFrame
             data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
             
@@ -1367,11 +1366,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             for col in data_kwh_sum1.columns[3:]:
                 if data_kwh_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
                     new_row2[col] = round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0], 1)
-                # elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] == 0:
-                #     new_row2[col] = '0.0'
-                # elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] != 0:
-                else:
+                elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] == 0:
                     new_row2[col] = '0.0'
+                elif data_kwh_sum1[col].iloc[0] == 0 data_kwh_sum1[col].iloc[1] != 0:
+                    new_row2[col] = '-'
             
             # Create a DataFrame from the new row
             new_row_df = pd.DataFrame([new_row2])
@@ -1835,4 +1833,3 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
             return
-      
