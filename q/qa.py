@@ -705,9 +705,9 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     if value0 == 0 and value3 != 0:
                         ratio1 = 0
                     if value0 == value3 and value0 != 0:
+                        ratio1 = 1
+                    if value0 != value3 and value0 != 0 and value3 == 0:
                         ratio1 = '-'
-                    if value0 != value3 and value0 != 0:
-                        ratio1 = value0 / value3
                     new_row_last[col] = [f'{ratio1:.1f}']
 
                 for col in columns:
