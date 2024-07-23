@@ -600,7 +600,7 @@ def main():
         st.markdown("""
             <h5 style="color:black; text-align:left;">📄 Instructions for Executing EXE Files</h5>
             <p style="text-align:justify;">
-                Follow these instructions to execute the EXE files effectively:
+                Please Follow these instructions to execute the EXE files effectively:
             </p>
             <ul style="list-style-type:disc; padding-left:20px;">
                 <li style="margin-bottom:10px;">
