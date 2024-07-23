@@ -533,7 +533,7 @@ def main():
 
     elif st.session_state.script_choice == "exe":
         st.markdown("""
-        <h4 style="color:red; text-align:center;">🖥️ EXE Files</h4>
+        <h4 style="color:red; text-align:left;">🖥️ EXE Files</h4>
         """, unsafe_allow_html=True)
         # Adding spacing for better layout
         st.markdown("<br>", unsafe_allow_html=True)
@@ -561,7 +561,7 @@ def main():
         # Adding spacing for better layout
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
-        <h5 style="color:black; text-align:center;">📄 Guidelines for Exe Files</h5>
+        <h5 style="color:black; text-align:left;">📄 Guidelines for Exe Files</h5>
         <ul style="list-style-type:none; padding-left:0;">
             <li style="margin-bottom:10px;">
                 <b style="color:red;">SIM to PDF:</b> 
@@ -597,7 +597,7 @@ def main():
         """, unsafe_allow_html=True)
 
         st.markdown("""
-            <h5 style="color:black; text-align:center;">📄 Instructions for Executing EXE Files</h5>
+            <h5 style="color:black; text-align:left;">📄 Instructions for Executing EXE Files</h5>
             <p style="text-align:justify;">
                 Follow these instructions to execute the EXE files effectively:
             </p>
