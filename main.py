@@ -368,7 +368,7 @@ def main():
         <br>
         """, unsafe_allow_html=True)
         
-        uploaded_file = st.file_uploader("Upload Scheduled in excel", type=["xlsx"], accept_multiple_files=False)
+        uploaded_file = st.file_uploader("Upload Schedule in excel", type=["xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             # if st.button("View Analytics"):
             sheduls_analytics.get_schedule(uploaded_file)
