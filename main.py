@@ -555,7 +555,7 @@ def main():
 
         with col5:
             st.image("images/baseline.png", width=110)
-            st.markdown('<a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link"><button style="background-color:#4CAF50;color:white; border-radius: 7px;">Download</button></a>', unsafe_allow_html=True)
+            st.markdown('<a href="https://drive.google.com/file/d/10jga6aMVQHgEIG1rhMaqs_sXTt3yEJXK/view?usp=drive_link"><button style="background-color:#4CAF50;color:white; border-radius: 7px; pointer-events: none; cursor: not-allowed;">Download</button></a>', unsafe_allow_html=True)
         with col6:
             st.image("images/schedule.png", width=110)
             st.markdown('<a href="https://drive.google.com/file/d/1wbN0f47EpBKY95Q1IZiOUFi2rYQQ7NsM/view?usp=sharing"><button style="background-color:#4CAF50;color:white; border-radius: 7px;">Download</button></a>', unsafe_allow_html=True)
