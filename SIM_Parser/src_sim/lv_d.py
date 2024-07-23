@@ -37,7 +37,7 @@ def get_LVD_report(name):
                 # condition for each line to get the specific rows
                 if ('NORTH' in line  or 'SOUTH' in line or 'NORTH-EAST' in line or 'EAST' in line
                     or 'NORTH-WEST' in line  or 'SOUTH-WEST' in line or 'SOUTH-EAST' in line or 'WEST' in line
-                    or "ROOF" in line or 'UNDERGRND' in line):
+                    or "ROOF" in line or 'UNDERGRND' in line or 'FLOOR' in line):
                     lvd_str.append(line)
                 # condition to store line which contains 'in space'
                 elif ('in space:' in line):
