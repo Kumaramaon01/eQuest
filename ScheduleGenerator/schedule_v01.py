@@ -350,7 +350,7 @@ def analytics1(uploaded_file):
         st.write()
 
 if __name__ == "__main__":
-    uploaded_file = st.file_uploader("Upload CSV or EXCEL file", type=["csv", "xlsx"])
+    uploaded_file = st.file_uploader("Upload EXCEL file", type=["xlsx"])
     get_schedule(uploaded_file)
     analytics(uploaded_file)
     analytics1(uploaded_file)
