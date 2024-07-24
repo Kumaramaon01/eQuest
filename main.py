@@ -499,7 +499,7 @@ def main():
         if uploaded_files and reports_input:
             if st.button("Convert to PDF"):
                 # Clean up each report name
-                st.success("Support for processing multiple SIM files to generate PDFs will be available soon. For now, please use the EXE for processing multiple SIM files.")
+                st.success("Multi-file processing is coming soon. For now, use the EXE for batches.")
                 # reports = [r.strip() for r in reports_input]
                 # sim_print.main(reports, uploaded_files)
                 # st.success("OUTPUT: Check your working directory for the generated PDF files.")
