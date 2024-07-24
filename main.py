@@ -643,7 +643,7 @@ def main():
             heat_type = st.selectbox("Heating Type", options=[0, 1], format_func=lambda x: "Hybrid/Fossil" if x == 0 else "Electric")
 
         if uploaded_inp_file and uploaded_sim_file:
-            if st.button("Run Baseline Automation"):
+            if st.button("Submit"):
                 baselineAuto.getInp(
                     uploaded_inp_file,
                     uploaded_sim_file,
