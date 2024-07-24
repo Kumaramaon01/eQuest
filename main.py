@@ -272,14 +272,14 @@ def main():
     
     # Second row of buttons
     with col9:
-        if st.button("EXE and Resources", key="button_exe_resources"):
-            st.session_state.script_choice = "exe"
-    with col10:
         if st.button("Schedule Generator", key="button_schedule_generator"): 
             st.session_state.script_choice = "sh"
     with col11:
         if st.button("QA / QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
+    with col10:
+        if st.button("EXE and Resources", key="button_exe_resources"):
+            st.session_state.script_choice = "exe"
     with col12:
         if st.button("Contact Us", key="button_contact"): #Queries
             st.session_state.script_choice = "ask"
