@@ -482,7 +482,7 @@ def main():
         <b>Purpose:</b> This tool converts SIM files into PDF format, making it easier to share and document simulation results.
         """, unsafe_allow_html=True)
         
-        st.markdown("""Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.""", unsafe_allow_html=True)
+        st.markdown("""Please Note: Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.""", unsafe_allow_html=True)
         
         # Allow multiple .sim files to be uploaded
         uploaded_files = st.file_uploader("Upload SIM files", type="sim", accept_multiple_files=True)
