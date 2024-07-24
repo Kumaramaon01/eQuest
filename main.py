@@ -278,17 +278,17 @@ def main():
         if st.button("QA / QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
     with col11:
-        if st.button("EXE and Resources", key="button_exe_resources"):
-            st.session_state.script_choice = "exe"
-    with col12:
-        if st.button("Contact Us", key="button_contact"): #Queries
-            st.session_state.script_choice = "ask"
-    with col13:
         if st.button("Analytics", key="button_analytics"): #Queries
             st.session_state.script_choice = "sh1"
-    with col14:
+    with col12:
+        if st.button("EXE and Resources", key="button_exe_resources"):
+            st.session_state.script_choice = "exe"
+    with col13:
         if st.button("View References", key="button_references"): #Queries
             st.session_state.script_choice = "reference"
+    with col14:
+        if st.button("Contact Us", key="button_contact"): #Queries
+            st.session_state.script_choice = "ask"
     with col15:
         if st.button("Log In", key="button_login"): #Queries
             st.session_state.script_choice = "login"
