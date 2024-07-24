@@ -451,17 +451,13 @@ def main():
         
         8. OpenWaterAnalytics. (n.d.). Stormwater Management Model. Retrieved from [https://github.com/OpenWaterAnalytics/Stormwater-Management-Model/blob/develop/README.md](https://github.com/OpenWaterAnalytics/Stormwater-Management-Model/blob/develop/README.md)
         
-        9. OpenSWMM. (n.d.). SWMM Utilities. Retrieved from [https://www.openswmm.org/SWMMUtilities](https://www.openswmm.org/SWMMUtilities)
+        9. CloudConvert. (n.d.). Tool to convert SIM files to PDF for better sharing. Retrieved from [https://cloudconvert.com](https://cloudconvert.com)
         
-        10. UCDavis. (n.d.). py-equest-sim-parser. Retrieved from [https://github.com/ucdavis/py-equest-sim-parser](https://github.com/ucdavis/py-equest-sim-parser)
+        10. OpenSWMM. (n.d.). SWMM Baseline Automation. Retrieved from [https://www.openswmm.org/SWMMUtilities#automation](https://www.openswmm.org/SWMMUtilities#automation)
         
-        11. CloudConvert. (n.d.). Tool to convert SIM files to PDF for better sharing. Retrieved from [https://cloudconvert.com](https://cloudconvert.com)
+        11. Vertex42. (n.d.). Excel schedule template. Retrieved from [https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html](https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html)
         
-        12. OpenSWMM. (n.d.). SWMM Baseline Automation. Retrieved from [https://www.openswmm.org/SWMMUtilities#automation](https://www.openswmm.org/SWMMUtilities#automation)
-        
-        13. Vertex42. (n.d.). Excel schedule template. Retrieved from [https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html](https://www.vertex42.com/ExcelTemplates/excel-schedule-template.html)
-        
-        14. ASQ. (n.d.). Quality assurance vs quality control. Retrieved from [https://asq.org/quality-resources/quality-assurance-vs-control](https://asq.org/quality-resources/quality-assurance-vs-control)
+        12. ASQ. (n.d.). Quality assurance vs quality control. Retrieved from [https://asq.org/quality-resources/quality-assurance-vs-control](https://asq.org/quality-resources/quality-assurance-vs-control)
         """
         
         st.markdown(references_bibliography, unsafe_allow_html=True)
