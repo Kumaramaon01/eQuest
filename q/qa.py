@@ -454,7 +454,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         
         # return 0
     
-    if st.button("Based on Units"):
+    if st.button("Generate Report"):
         prop_data = psf.get_PSF_report_Prop_all(sim_p_path)
         base_data = psf.get_PSF_report_Base_all(sim_b_path)
 
