@@ -383,7 +383,7 @@ def main():
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
-            if st.button("Run INP Parser"):
+            if st.button("Generate CSV"):
                 inp_parserv01.main(uploaded_file)
 
     elif st.session_state.script_choice == "Purging INP":
@@ -397,7 +397,7 @@ def main():
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
         if uploaded_file is not None:
-            if st.button("Run INP Purging"):
+            if st.button("Generate Clean INP"):
                 perge.main(uploaded_file)
 
     elif st.session_state.script_choice == "SIM Parser":
@@ -408,7 +408,7 @@ def main():
         uploaded_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         
         if uploaded_file is not None:
-            if st.button("Run SIM Parser"):
+            if st.button("Generate CSV"):
                 sim_parserv01.main(uploaded_file)
                 
     elif st.session_state.script_choice == "login":
@@ -643,7 +643,7 @@ def main():
             heat_type = st.selectbox("Heating Type", options=[0, 1], format_func=lambda x: "Hybrid/Fossil" if x == 0 else "Electric")
 
         if uploaded_inp_file and uploaded_sim_file:
-            if st.button("Submit"):
+            if st.button("Automate Baseline"):
                 baselineAuto.getInp(
                     uploaded_inp_file,
                     uploaded_sim_file,
