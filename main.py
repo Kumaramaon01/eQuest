@@ -479,10 +479,10 @@ def main():
     elif st.session_state.script_choice == "SIM to PDF":
         st.markdown("""
         <h4 style="color:red;">📝 SIM to PDF Converter</h4>
-        <b>Purpose:</b> This tool converts SIM files into PDF format, making it easier to share and document simulation results.
+        <b>Purpose:</b> This tool converts SIM files into PDF format, facilitating the sharing and documentation of simulation results. It supports handling large files, ensuring efficient processing. By transforming data into a widely accessible format, it simplifies distribution and review.
         """, unsafe_allow_html=True)
         
-        st.markdown("""Please Note: Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.""", unsafe_allow_html=True)
+        st.markdown("""Please Note: It can accept multiple sim files.""", unsafe_allow_html=True)
         
         # Allow multiple .sim files to be uploaded
         uploaded_files = st.file_uploader("Upload SIM files", type="sim", accept_multiple_files=True)
