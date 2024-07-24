@@ -485,7 +485,7 @@ def main():
         st.markdown("""Enter Reports in following format (comma-seperated and case-sensitive). And, It can accept multiple sim files.""", unsafe_allow_html=True)
         
         # Allow multiple .sim files to be uploaded
-        uploaded_files = st.text_input("Enter Folder Path:")
+        uploaded_files = st.file_uploader("Upload SIM files", type="sim", accept_multiple_files=False)
         # Provide options for report selection
         reports_input = st.multiselect(
             "Select Reports",
@@ -499,9 +499,10 @@ def main():
         if uploaded_files and reports_input:
             if st.button("Convert to PDF"):
                 # Clean up each report name
-                reports = [r.strip() for r in reports_input]
-                sim_print.main(reports, uploaded_files)
-                st.success("OUTPUT: Check your working directory for the generated PDF files.")
+                st.success("Support for processing multiple SIM files to generate PDFs will be available soon. For now, please use the EXE for processing multiple SIM files.")
+                # reports = [r.strip() for r in reports_input]
+                # sim_print.main(reports, uploaded_files)
+                # st.success("OUTPUT: Check your working directory for the generated PDF files.")
        
     elif st.session_state.script_choice == "ask":
         st.markdown("""
