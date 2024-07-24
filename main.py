@@ -271,22 +271,22 @@ def main():
             st.session_state.script_choice = "baselineAutomation"
     
     # Second row of buttons
-    with col9:
+    with col12:
         if st.button("EXE and Resources", key="button_exe_resources"):
             st.session_state.script_choice = "exe"
-    with col10:
+    with col9:
         if st.button("Schedule Generator", key="button_schedule_generator"): 
             st.session_state.script_choice = "sh"
-    with col11:
+    with col10:
         if st.button("QA / QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
-    with col12:
+    with col14:
         if st.button("Contact Us", key="button_contact"): #Queries
             st.session_state.script_choice = "ask"
-    with col13:
+    with col11:
         if st.button("Analytics", key="button_analytics"): #Queries
             st.session_state.script_choice = "sh1"
-    with col14:
+    with col13:
         if st.button("View References", key="button_references"): #Queries
             st.session_state.script_choice = "reference"
     with col15:
