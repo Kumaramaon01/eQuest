@@ -280,18 +280,18 @@ def main():
     with col11:
         if st.button("Analytics", key="button_analytics"): #Queries
             st.session_state.script_choice = "sh1"
-    with col12:
-        if st.button("EXE and Resources", key="button_exe_resources"):
-            st.session_state.script_choice = "exe"
-    with col13:
-        if st.button("View References", key="button_references"): #Queries
-            st.session_state.script_choice = "reference"
-    with col14:
-        if st.button("Contact Us", key="button_contact"): #Queries
-            st.session_state.script_choice = "ask"
-    with col15:
-        if st.button("Log In", key="button_login"): #Queries
-            st.session_state.script_choice = "login"
+    # with col12:
+    #     if st.button("EXE and Resources", key="button_exe_resources"):
+    #         st.session_state.script_choice = "exe"
+    # with col13:
+    #     if st.button("View References", key="button_references"): #Queries
+    #         st.session_state.script_choice = "reference"
+    # with col14:
+    #     if st.button("Contact Us", key="button_contact"): #Queries
+    #         st.session_state.script_choice = "ask"
+    # with col15:
+    #     if st.button("Log In", key="button_login"): #Queries
+    #         st.session_state.script_choice = "login"
     
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
