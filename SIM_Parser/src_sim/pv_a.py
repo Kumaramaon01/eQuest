@@ -48,7 +48,7 @@ def get_PVA_report(name, path):
         value_before_backslash = ''.join(reversed(name)).split("\\")[0]
         name1 = ''.join(reversed(value_before_backslash))
         name = name1.rsplit(".", 1)[0]
-        # pva_df.insert(0, 'RUNNAME', name)
+        pva_df.insert(0, 'RUNNAME', name)
 
         return pva_df
     except Exception as e:
@@ -57,6 +57,3 @@ def get_PVA_report(name, path):
                    'TOTAL_HEAD(FT)', 'SUPPLY_UA PRODUCT(BTU/HR-F)', 'SUPPLY_LOSS_DT(F)',
                    'RETURN_UA PRODUCT(BTU/HR-F)', 'RETURN_LOSS_DT(F)', 'LOOP_VOLUME(GAL)', 'FLUID_HEAT(CAPACITY)(BTU/LB-F)']
         return pd.DataFrame(columns=columns)
-
-# Example usage:
-# pva_df = get_PVA_report('example.txt', '/path/to/files')
