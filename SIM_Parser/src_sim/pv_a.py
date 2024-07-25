@@ -6,7 +6,7 @@ import xlwings as xw # Xlwings is a Python library that makes it easy to call Py
 
 warnings.filterwarnings("ignore")
 
-def get_PVA_report(name, path):
+def get_PVA_report(name):
     try:
         with open(name) as f:
             flist = f.readlines()
