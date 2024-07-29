@@ -243,7 +243,16 @@ def main():
         }
         </style>
     """, unsafe_allow_html=True)
-
+    
+    button_id = "green_button"
+    st.markdown(f"""
+        <style>
+        #{button_id} > button {{
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
     # Create two rows of columns with equal widths
     col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
     col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
@@ -285,7 +294,7 @@ def main():
         if st.button("EXE and Resources", key="button_exe_resources"):
             st.session_state.script_choice = "exe"
     with col13:
-        if st.button("IGBC Green Homes", key="button_references"): #Queries
+        if st.button("IGBC Green Homes", key="button_id"): #Queries
             st.session_state.script_choice = "reference"
     with col14:
         if st.button("Contact Us", key="button_contact"): #Queries
