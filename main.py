@@ -286,7 +286,7 @@ def main():
         if st.button("EXE and Resources", key="button_exe_resources"):
             st.session_state.script_choice = "exe"
     with col13:
-        if st.button("IGBC Green Home", key=button_id): #Queries
+        if st.button("🏡 IGBC Green Homes", key="references"): #Queries
             st.session_state.script_choice = "reference"
     with col14:
         if st.button("Contact Us", key="button_contact"): #Queries
@@ -294,24 +294,7 @@ def main():
     with col15:
         if st.button("Log In", key="button_login"): #Queries
             st.session_state.script_choice = "login"
-    # Apply specific styles using JavaScript to target the unique button
-    st.markdown(f"""
-        <script>
-        window.onload = function() {{
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(button => {{
-                if (button.innerText === "IGBC Green Homes") {{
-                    button.style.backgroundColor = 'green';
-                    button.style.color = 'white';
-                    button.style.border = 'none';
-                    button.style.borderRadius = '4px';
-                    button.style.padding = '5px 10px';
-                    button.style.cursor = 'pointer';
-                }}
-            }});
-        }};
-        </script>
-        """, unsafe_allow_html=True)
+            
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         col1, col2 = st.columns(2)
