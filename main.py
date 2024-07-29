@@ -248,8 +248,8 @@ def main():
     st.markdown(f"""
         <style>
         #{button_id} > button {{
-            background-color: #4CAF50 !important;
-            color: white !important;
+            background-color: green;
+           
         }}
         </style>
         """, unsafe_allow_html=True)
