@@ -48,7 +48,17 @@ def getINPSimFiles(input_simp_path, input_simb_path):
     
     if get_report2 is not None:
         st.markdown(f"""<h7 style="color:green;">🏡 Table representing regularly occupied spaces Meet or Exceed the critaria</h7>""", unsafe_allow_html=True)
+        # Apply conditional formatting
+        def color_cells(val):
+            color = 'background-color: green' if val == 'YES' else ('background-color: red' if val == 'NO' else '')
+            return color
+        
+        # Apply the style to the last column
+        last_col_name = get_report2.columns[-1]
+        styled_df = get_report2.style.applymap(color_cells, subset=[last_col_name])
+        
         st.write(get_report2)
+        st.dataframe(styled_df)
         # Convert DataFrame to CSV string
         csv2 = get_report2.to_csv(index=False)
         st.download_button(
