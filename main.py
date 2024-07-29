@@ -239,7 +239,7 @@ def main():
         <style>
         .stButton button {
             height: 30px;
-            width: 170px;
+            width: 166px;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -286,7 +286,7 @@ def main():
         if st.button("EXE and Resources", key="button_exe_resources"):
             st.session_state.script_choice = "exe"
     with col13:
-        if st.button("🏡 IGBC Green", key="references"): #Queries
+        if st.button("IGBC Green 🏡", key="references"): #Queries
             st.session_state.script_choice = "reference"
     with col14:
         if st.button("Contact Us", key="button_contact"): #Queries
