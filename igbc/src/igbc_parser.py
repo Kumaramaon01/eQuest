@@ -208,6 +208,9 @@ def get_HVAC_Zone_report(name, name1):
         df1.insert(loc=len(df1.columns), column='Openable Window Area(Sqft)', value=None)
         df1.insert(loc=len(df1.columns), column='% of Openable Area to Carpet Area - Required', value=None)
         df1.insert(loc=len(df1.columns), column='% of Openable Area to Carpet Area - Achieved', value=None)
+        # 50% value of column name- Window Area (Sqft)
+        df1['Window Area (Sqft)'] = pd.to_numeric(df1['Window Area (Sqft)'], errors='coerce')
+        df1['% of Openable Area to Carpet Area - Achieved'] = df1['Window Area (Sqft)']/2
 
         ################## Create new dataframe say igbc_vlt which  takes 1st, 5th and 9th column of df1 ####################
         igbc_vlt = df1.iloc[:, [0, 3, 8]]
