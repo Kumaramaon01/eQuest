@@ -10,6 +10,7 @@ from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
 from ScheduleGenerator import sheduls_analytics
 from q import qa
+from igbc import igbc_data
 from streamlit_card import card
 from PIL import Image as PILImage
 import smtplib
