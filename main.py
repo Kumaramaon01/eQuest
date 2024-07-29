@@ -239,21 +239,12 @@ def main():
         <style>
         .stButton button {
             height: 30px;
-            width: 165px;
-            background-color: green;
+            width: 166px;
         }
         </style>
     """, unsafe_allow_html=True)
     
     button_id = "green_button"
-    st.markdown(f"""
-        <style>
-        #{button_id} > button {{
-            background-color: green;
-           
-        }}
-        </style>
-        """, unsafe_allow_html=True)
     # Create two rows of columns with equal widths
     col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
     col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
@@ -303,7 +294,18 @@ def main():
     with col15:
         if st.button("Log In", key="button_login"): #Queries
             st.session_state.script_choice = "login"
-    
+    # Apply custom styles specifically to the button with the unique ID
+    st.markdown(f"""
+        <style>
+        #{button_id} > button {{
+            background-color: green !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            padding: 5px 10px !important;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         col1, col2 = st.columns(2)
