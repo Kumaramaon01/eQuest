@@ -240,6 +240,7 @@ def main():
         .stButton button {
             height: 30px;
             width: 165px;
+            background-color: green;
         }
         </style>
     """, unsafe_allow_html=True)
