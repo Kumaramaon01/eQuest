@@ -1,32 +1,35 @@
 import os
 import pandas as pd
 from igbc.src import igbc_parser
+import streamlit as st
+import tempfile
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
 
-def get_report_and_save(report_function, name, name1, file_suffix, folder_name, path, output_text):
-    report = report_function(name, name1, path)
-    file_path = os.path.join(path, f'{folder_name}_{file_suffix}.csv')
-    if os.path.isfile(file_path):
-        os.remove(file_path)
-    with open(file_path, 'w', newline='') as f:
-        report.to_csv(f, header=True, index=False, mode='wt')
-    print(f"{file_suffix} Report Generated!")
-
-def open_input_cmd():
-    print("Welcome to INP Parser")
-    inp_file_path = input("Enter the path of the INP file: ")
-    sim_file_path = input("Enter the path of the SIM file: ")
-    if os.path.isfile(inp_file_path and sim_file_path):
-        folder_name = os.path.basename(inp_file_path).split(".")[0]
-        if '- Baseline Design' in inp_file_path:
-            folder_name = os.path.basename(inp_file_path).split(" - ")[0]
-        else:
-            folder_name = os.path.basename(inp_file_path).split(".")[0]
-        parent_directory = os.path.dirname(inp_file_path)
-
-        get_report_and_save(igbc_parser.get_HVAC_Zone_report, inp_file_path, sim_file_path, 'IGBC', folder_name, parent_directory, None)
+def getINPSimFiles(input_simp_path, input_simb_path):
+    if input_simp_path is not None:
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(input_simp_path.getbuffer())
+            sim_p_path = temp_file.name
     else:
-        print("Invalid INP file path.")
+        st.error("Error: No input for simulation P file.")
+        return
+    
+    if input_simb_path is not None:
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(input_simb_path.getbuffer())
+            sim_b_path = temp_file.name
+    else:
+        st.error("Error: No input for simulation B file.")
+        return
+    
+    sim_p_path = sim_p_path.replace('\n', '\r\n')
+    sim_b_path = sim_b_path.replace('\n', '\r\n')
 
-    input("Press Enter to exit...")
+    get_report1, get_report2 = igbc_parser.get_HVAC_Zone_report(sim_p_path, sim_b_path)
 
-open_input_cmd()
+    if get_report1 is not None:
+        st.write(get_report1)
+    if get_report2 is not None:
+        st.write(get_report2)
