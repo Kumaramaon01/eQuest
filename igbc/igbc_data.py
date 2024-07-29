@@ -64,7 +64,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
         # st.write(get_report2)
         st.dataframe(styled_df)
         # Convert DataFrame to CSV string
-        csv2 = styled_df.to_csv(index=False)
+        csv2 = get_report2.to_csv(index=False)
         st.download_button(
             label="Download Report 2",
             data=csv2,
