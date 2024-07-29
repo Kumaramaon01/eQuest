@@ -445,7 +445,7 @@ def main():
         with col2:
             uploaded_b_file = st.file_uploader("Upload a SIM file", type="sim", accept_multiple_files=False)
         if uploaded_p_file is not None and uploaded_b_file is not None:
-            if st.button("Green Homes Calculations"):
+            if st.button("generate Report"):
                 igbc_data.getINPSimFiles(uploaded_p_file, uploaded_b_file)
 
     elif st.session_state.script_choice == "q":
