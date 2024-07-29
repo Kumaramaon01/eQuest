@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from src import igbc_parser
+from igbc.src import igbc_parser
 
 def get_report_and_save(report_function, name, name1, file_suffix, folder_name, path, output_text):
     report = report_function(name, name1, path)
