@@ -432,8 +432,10 @@ def main():
                 
     elif st.session_state.script_choice == "reference":
         st.markdown("""
-        <h4 style="color:red;">🔍 Welcome to IGBC Green Homes Calculations</h4>
-        <b>Purpose:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards. This process involves various activities and techniques aimed at identifying and correcting defects or inconsistencies in the product or service before it reaches the customer.<br>
+        <h4 style="color:green;">🏡 Welcome to IGBC Green Homes Calculations</h4>
+        <b>Purpose:</b>IGBC Green Homes is a rating system developed by the Indian Green Building Council (IGBC) to promote sustainable building practices 
+        in the residential sector. IGBC Green Homes aims to create sustainable and resource-efficient residential buildings, contributing to a greener
+        and healthier environment.<br>
         <br>
         """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
