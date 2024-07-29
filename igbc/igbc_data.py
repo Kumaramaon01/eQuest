@@ -6,6 +6,7 @@ import tempfile
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+import io
 
 def getINPSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
@@ -33,21 +34,26 @@ def getINPSimFiles(input_simp_path, input_simb_path):
 
     if get_report1 is not None:
         st.write(get_report1)
+        # Convert DataFrame to CSV string
+        csv1 = get_report1.to_csv(index=False)
         st.download_button(
-            label="Download Output",
+            label="Download Report 1",
             data=csv1,
             file_name='report1.csv',
             mime='text/csv'
         )
+    else:
+        st.info("Data Not found for Report 1!")
+    
     if get_report2 is not None:
         st.write(get_report2)
+        # Convert DataFrame to CSV string
+        csv2 = get_report2.to_csv(index=False)
         st.download_button(
-            label="Download Output",
+            label="Download Report 2",
             data=csv2,
             file_name='report2.csv',
             mime='text/csv'
         )
-    elif get_report1 is None:
-        st.info("Data Not found!")
-    elif get_report2 is None:
-        st.info("Data Not found!")
+    else:
+        st.info("Data Not found for Report 2!")
