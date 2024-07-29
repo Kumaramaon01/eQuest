@@ -294,17 +294,23 @@ def main():
     with col15:
         if st.button("Log In", key="button_login"): #Queries
             st.session_state.script_choice = "login"
-    # Apply custom styles specifically to the button with the unique ID
+    # Apply specific styles using JavaScript to target the unique button
     st.markdown(f"""
-        <style>
-        #{button_id} > button {{
-            background-color: green !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 4px !important;
-            padding: 5px 10px !important;
-        }}
-        </style>
+        <script>
+        window.onload = function() {{
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {{
+                if (button.innerText === "IGBC Green Homes") {{
+                    button.style.backgroundColor = 'green';
+                    button.style.color = 'white';
+                    button.style.border = 'none';
+                    button.style.borderRadius = '4px';
+                    button.style.padding = '5px 10px';
+                    button.style.cursor = 'pointer';
+                }}
+            }});
+        }};
+        </script>
         """, unsafe_allow_html=True)
     # Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
