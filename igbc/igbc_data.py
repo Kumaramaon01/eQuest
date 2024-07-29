@@ -31,5 +31,25 @@ def getINPSimFiles(input_simp_path, input_simb_path):
 
     if get_report1 is not None:
         st.write(get_report1)
+        # Download CSV
+        csv = df.to_csv(index=False)
+        st.download_button(
+            label="Download Output",
+            data=csv,
+            file_name='report.csv',
+            mime='text/csv'
+        )
     if get_report2 is not None:
         st.write(get_report2)
+        # Download CSV
+        csv = df.to_csv(index=False)
+        st.download_button(
+            label="Download Output",
+            data=csv,
+            file_name='report.csv',
+            mime='text/csv'
+        )
+    elif get_report1 is None:
+        st.info("Data Not found!")
+    elif get_report2 is None:
+        st.info("Data Not found!")
