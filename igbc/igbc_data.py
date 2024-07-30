@@ -29,6 +29,8 @@ def getINPSimFiles(input_simp_path, input_simb_path):
     sim_b_path = sim_b_path.replace('\n', '\r\n')
 
     get_report1, get_report2 = igbc_parser.get_HVAC_Zone_report(sim_p_path, sim_b_path)
+    get_report1 = get_report1.fillna('')
+    get_report2 = get_report2.fillna('')
     csv1 = get_report1.to_csv("report1.csv")
     csv2 = get_report2.to_csv("report1.csv")
 
