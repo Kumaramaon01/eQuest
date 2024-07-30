@@ -60,7 +60,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
                 return ''
         
         # Apply the style to the last column
-        last_col_name = get_report2.columns[-1]
+        last_col_name = get_report2.columns[-3]
         styled_df = get_report2.style.applymap(color_cells, subset=[last_col_name])
         
         # st.write(get_report2)
