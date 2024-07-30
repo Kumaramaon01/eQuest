@@ -205,7 +205,7 @@ def get_HVAC_Zone_report(name, name1):
         df1.insert(loc=df1.columns.get_loc('Window Area (Sqft)'), column=blank_col_name3, value=None)
         
         # Add new columns at the end
-        df1.insert(loc=len(df1.columns), column='Openable Window Area(Sqft)', value=None)
+        df1.insert(loc=len(df1.columns), column='Openable Area(Sqft)', value=None)
         df1.insert(loc=len(df1.columns), column='Openable Area to Carpet Area - Required', value=None)
         df1.insert(loc=len(df1.columns), column='Openable Area to Carpet Area - Achieved', value=None)
         # 50% value of column name- Window Area (Sqft)
