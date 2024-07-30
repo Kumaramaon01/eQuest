@@ -33,7 +33,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
     csv2 = get_report2.to_csv("report1.csv")
 
     if get_report1 is not None:
-        st.markdown(f"""<h7 style="color:green;">🏡 Table representing Openable Area</h7>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:green;">🏡 Table representing Openable Area to Carpet Area</h7>""", unsafe_allow_html=True)
         st.write(get_report1)
         # Convert DataFrame to CSV string
         csv1 = get_report1.to_csv(index=False)
