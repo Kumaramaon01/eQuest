@@ -224,7 +224,8 @@ def get_HVAC_Zone_report(name, name1):
         igbc_vlt['Window Glazing VLT (%)'] = igbc_vlt['Window Glazing VLT (%)'].str.replace('%', '').astype(float)
         igbc_vlt['Window Glazing VLT (%)'] = pd.to_numeric(igbc_vlt['Window Glazing VLT (%)'])
         igbc_vlt['Window Area (Sqft)'] = pd.to_numeric(igbc_vlt['Window Area (Sqft)'])
-        igbc_vlt['Glazing Factor Achieved'] = igbc_vlt['Window Glazing VLT (%)'] * igbc_vlt['Window Area (Sqft)'] * 0.2 * 0.092000
+        igbc_vlt['Carpet Area(Sqft)'] = pd.to_numeric(igbc_vlt['Carpet Area(Sqft)'])
+        igbc_vlt['Glazing Factor Achieved'] = (igbc_vlt['Window Glazing VLT (%)'] * igbc_vlt['Window Area (Sqft)'] * 0.2 * 0.092000)/igbc_vlt['Carpet Area(Sqft)']
 
         #create a new column name- "Regularly Occupied Spaces Meet or Exceed the Criteria (Yes/No)" if Glazing Factor Achieved > 1 then YES else NO
         igbc_vlt['Regularly Occupied Spaces Meet or Exceed the Criteria (Yes/No)'] = None
