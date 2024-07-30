@@ -198,16 +198,16 @@ def get_HVAC_Zone_report(name, name1):
         # Define the name of the new blank column
         blank_col_name1 = 'L(M)'
         blank_col_name2 = 'W(M)'
-        blank_col_name3 = 'Openable Type'
+        blank_col_name3 = 'Openable'
 
         df1.insert(loc=df1.columns.get_loc('Carpet Area(Sqft)'), column=blank_col_name1, value=None)
         df1.insert(loc=df1.columns.get_loc('Carpet Area(Sqft)'), column=blank_col_name2, value=None)
         df1.insert(loc=df1.columns.get_loc('Window Area (Sqft)'), column=blank_col_name3, value=None)
         
         # Add new columns at the end
-        df1.insert(loc=len(df1.columns), column='Openable Area(Sqft)', value=None)
-        df1.insert(loc=len(df1.columns), column='Openable Carpet Area - Required', value=None)
-        df1.insert(loc=len(df1.columns), column='Openable Carpet Area - Achieved', value=None)
+        df1.insert(loc=len(df1.columns), column='Openable Area', value=None)
+        df1.insert(loc=len(df1.columns), column='Carpet Area - Required', value=None)
+        df1.insert(loc=len(df1.columns), column='Carpet Area - Achieved', value=None)
         # 50% value of column name- Window Area (Sqft)
         df1['Window Area (Sqft)'] = pd.to_numeric(df1['Window Area (Sqft)'], errors='coerce')
         # 50% of Area to thic column - '% of Openable Area to Carpet Area - Achieved'
