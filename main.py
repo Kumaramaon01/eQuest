@@ -289,7 +289,7 @@ def main():
         if st.button("IGBC Green 🏡", key="references"): #Queries
             st.session_state.script_choice = "reference"
     with col14:
-        if st.button("Contact Us", key="button_contact"): #Queries
+        if st.button("Help Assistant", key="button_contact"): #Queries
             st.session_state.script_choice = "ask"
     with col15:
         if st.button("Log In", key="button_login"): #Queries
