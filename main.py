@@ -19,8 +19,6 @@ from email.mime.multipart import MIMEMultipart
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
@@ -499,51 +497,51 @@ def main():
         """, unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
-        # Load pre-trained model and tokenizer
-            model_name = "microsoft/DialoGPT-medium"
-            model = AutoModelForCausalLM.from_pretrained(model_name)
-            tokenizer = AutoTokenizer.from_pretrained(model_name)
+        # # Load pre-trained model and tokenizer
+        #     model_name = "microsoft/DialoGPT-medium"
+        #     model = AutoModelForCausalLM.from_pretrained(model_name)
+        #     tokenizer = AutoTokenizer.from_pretrained(model_name)
             
-            # Initialize chat history
-            if "messages" not in st.session_state:
-                st.session_state.messages = []
+        #     # Initialize chat history
+        #     if "messages" not in st.session_state:
+        #         st.session_state.messages = []
             
-            # Display chat history
-            for message in st.session_state.messages:
-                st.write(f"**{message['user']}**: {message['text']}")
+        #     # Display chat history
+        #     for message in st.session_state.messages:
+        #         st.write(f"**{message['user']}**: {message['text']}")
             
-            # User input
-            user_input = st.text_input("You:", "")
+        #     # User input
+        #     user_input = st.text_input("You:", "")
             
-            if st.button("Send Message"):
-                if user_input:
-                    # Add user message to chat history
-                    st.session_state.messages.append({"user": "You", "text": user_input})
+        #     if st.button("Send Message"):
+        #         if user_input:
+        #             # Add user message to chat history
+        #             st.session_state.messages.append({"user": "You", "text": user_input})
             
-                    # Tokenize user input and generate response
-                    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
-                    chat_history_ids = model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-                    bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
+        #             # Tokenize user input and generate response
+        #             input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
+        #             chat_history_ids = model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+        #             bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
             
-                    # Add bot response to chat history
-                    st.session_state.messages.append({"user": "Rajeev", "text": bot_response})
+        #             # Add bot response to chat history
+        #             st.session_state.messages.append({"user": "Rajeev", "text": bot_response})
             
-                    # Rerun the app to display the updated chat history
-                    st.experimental_rerun()
+        #             # Rerun the app to display the updated chat history
+        #             st.experimental_rerun()
         # with col1:
-        #     # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-        #     email = st.text_input("Enter your mail:")
-        #     user_input = st.text_area("Enter your Queries:")
-        #     # Submit button
-        #     if st.button("Submit"):
-        #         if user_input and email:
-        #             subject = "Text Area Submission"
-        #             message = user_input
-        #             EMAIL = email
-        #             if send_email(subject, message, EMAIL, TO_EMAIL):
-        #                 st.success("Email sent successfully!")
-        #         else:
-        #             st.warning("Please enter your Queries.")
+            # st.write(icon_with_tooltip1, unsafe_allow_html=True)
+            email = st.text_input("Enter your mail:")
+            user_input = st.text_area("Enter your Queries:")
+            # Submit button
+            if st.button("Submit"):
+                if user_input and email:
+                    subject = "Text Area Submission"
+                    message = user_input
+                    EMAIL = email
+                    if send_email(subject, message, EMAIL, TO_EMAIL):
+                        st.success("Email sent successfully!")
+                else:
+                    st.warning("Please enter your Queries.")
         with col2:
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=290)
         with col3:
