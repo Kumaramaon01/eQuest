@@ -497,39 +497,6 @@ def main():
         """, unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
-        # # Load pre-trained model and tokenizer
-        #     model_name = "microsoft/DialoGPT-medium"
-        #     model = AutoModelForCausalLM.from_pretrained(model_name)
-        #     tokenizer = AutoTokenizer.from_pretrained(model_name)
-            
-        #     # Initialize chat history
-        #     if "messages" not in st.session_state:
-        #         st.session_state.messages = []
-            
-        #     # Display chat history
-        #     for message in st.session_state.messages:
-        #         st.write(f"**{message['user']}**: {message['text']}")
-            
-        #     # User input
-        #     user_input = st.text_input("You:", "")
-            
-        #     if st.button("Send Message"):
-        #         if user_input:
-        #             # Add user message to chat history
-        #             st.session_state.messages.append({"user": "You", "text": user_input})
-            
-        #             # Tokenize user input and generate response
-        #             input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
-        #             chat_history_ids = model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-        #             bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
-            
-        #             # Add bot response to chat history
-        #             st.session_state.messages.append({"user": "Rajeev", "text": bot_response})
-            
-        #             # Rerun the app to display the updated chat history
-        #             st.experimental_rerun()
-        # with col1:
-            # st.write(icon_with_tooltip1, unsafe_allow_html=True)
             email = st.text_input("Enter your mail:")
             user_input = st.text_area("Enter your Queries:")
             # Submit button
