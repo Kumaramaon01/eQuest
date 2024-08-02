@@ -196,7 +196,8 @@ def main():
         # Display the image
         st.image(logo_image_path, width=80)
     with col2:
-        st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
+        # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("# :rainbow[eQUEST Utilities]")
         
     on = st.toggle("Select Theme")
     if on:
