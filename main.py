@@ -441,9 +441,10 @@ def main():
                         # Display profile views badge
             # Display website views counter
             st.markdown("""
-                <p align="left">
-                    <img src="https://hitwebcounter.com/counter/counter.php?page=your_page_id&style=0006&nbdigits=5" alt="Website views" />
-                </p>
+                <!-- hitwebcounter Code START -->
+                <a href="https://www.hitwebcounter.com" target="_blank">
+                <img src="https://hitwebcounter.com/counter/counter.php?page=15322256&style=0001&nbdigits=5&type=page&initCount=1" title="Counter Widget" alt="Visit counter For Websites" border="0" /></a>                                    
+                <!-- hitwebcounter Code END -->
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
         with open(path, "r") as file:
