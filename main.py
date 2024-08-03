@@ -19,6 +19,7 @@ from email.mime.multipart import MIMEMultipart
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+import json
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
