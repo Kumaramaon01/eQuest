@@ -801,6 +801,6 @@ with col2:
         """, unsafe_allow_html=True
 )
 with col3:
-    st.image(right_logo_path, width=0) 
+    st.success("hi")
 with col4:
     st.image(right_logo_path, width=150) 
