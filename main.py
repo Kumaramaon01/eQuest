@@ -763,16 +763,18 @@ st.markdown(
             background-color: #f8f9fa;
             padding: 20px 0;
             color: #333;
-            text-align: center;
-            position: relative;
-            margin: 0;
         }
         .footer .social-media {
-            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .footer p {
             margin: 0;
             font-size: 14px;
+        }
+        .footer .icons {
+            margin-top: 10px;
         }
         .footer .icons a {
             margin: 0 10px;
@@ -787,15 +789,16 @@ st.markdown(
             font-size: 20px;
         }
         .footer .additional-content {
-            margin-top: 10px;
+            text-align: center;
+            margin-top: 20px;
         }
         .footer .additional-content h4 {
-            margin: 0;
+            margin-bottom: 10px;
             font-size: 18px;
             color: #007bff;
         }
         .footer .additional-content p {
-            margin: 5px 0;
+            margin: 0;
             font-size: 14px;
         }
     </style>
@@ -818,4 +821,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
