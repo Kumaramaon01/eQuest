@@ -347,39 +347,14 @@ def main():
     
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
-    <style>
-        .title {
-            color: #FF5733;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .description {
-            color: #333;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .btn {
-            background-color: #007BFF;
-            color: white;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    <div class="title">📄 INP Parser</div>
-    <div class="description">
-        <b>Purpose:</b> The INP Parser is designed to read and interpret INP files, which are the primary project files used by eQuest. These files contain all the necessary data about a building's energy model, including geometry, materials, systems, and schedules.
-    </div>
-""", unsafe_allow_html=True)
+        <h4 style="color:red;">📄 INP Parser</h4>
+        <b>Purpose:</b> The INP Parser is designed to read and interpret INP files, which are the primary project files used by eQuest. These files contain all the necessary data about a building's energy model, including geometry, materials, systems, and schedules.<br>
+        """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
-
+        
         if uploaded_file is not None:
-            st.markdown('<button class="btn" onclick="document.getElementById(\'generate-csv\').click()">Generate CSV</button>', unsafe_allow_html=True)
-            st.button("Generate CSV", key="generate-csv", on_click=inp_parserv01.main, args=(uploaded_file,))
+            if st.button("Generate CSV"):
+                inp_parserv01.main(uploaded_file)
             
     elif st.session_state.script_choice == "Purging INP":
         st.markdown("""
