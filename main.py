@@ -37,15 +37,6 @@ st.set_page_config(
     }
 )
 
-# To disable right-click functionality on your webpage, you can use JavaScript to prevent
-components.html("""
-    <script>
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
-    </script>
-""", height=0)
-
 def load_lottieurl(url: str):
     r = requests.get(url)
     if r.status_code != 200:
@@ -155,11 +146,6 @@ st.markdown(heading_style, unsafe_allow_html=True)
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
 
 def main(): 
-    # To disable right-click functionality on your webpage, you can use JavaScript to prevent
-    # Include the JavaScript file from the local server
-    components.html("""
-        <script src="disable_right_click.js"></script>
-    """, height=0)
     # Add custom CSS to set the background color and hide Streamlit branding elements
     card_button_style = """
         <style>
