@@ -452,6 +452,23 @@ def main():
             </p>
             <!-- hitwebcounter Code END -->
             """, unsafe_allow_html=True)
+
+        # Add testimonials section
+        st.markdown("""
+            <h3 style="text-align: center;">What People Say About Our Website</h3>
+            <div class="testimonial">
+                <h4>John Doe</h4>
+                <p>This is the best eQUEST utility tool I have ever used. Highly recommended!</p>
+            </div>
+            <div class="testimonial">
+                <h4>Jane Smith</h4>
+                <p>Amazing tools that save a lot of time and effort. Kudos to the team!</p>
+            </div>
+            <div class="testimonial">
+                <h4>Mike Johnson</h4>
+                <p>The user interface is very intuitive and easy to use. Great job!</p>
+            </div>
+            """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
         with open(path, "r") as file:
             url = json.load(file)
