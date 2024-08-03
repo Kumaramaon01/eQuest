@@ -433,6 +433,9 @@ def main():
                     st.balloons()
                 else:
                     st.error("❌ Incorrect username or password")
+        path = "Animation_blue_robo.json"
+        with open(path, "r") as file:
+            url = json.load(file)
         with col2:
             st_lottie(url,
                   reverse=True,
