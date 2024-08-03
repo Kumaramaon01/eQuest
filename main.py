@@ -156,6 +156,7 @@ if on:
     background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
 with col3:
     st.image("images/EDSlogo.jpg", width=120)
+st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 def main(): 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     card_button_style = """
@@ -222,7 +223,7 @@ def main():
     #     st.image("images/EDSlogo.jpg", width=120)
 
     #Navigation bar with buttons below the header
-    st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+    # st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
     # Inject CSS to make all buttons the same size
     st.markdown("""
         <style>
