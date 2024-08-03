@@ -157,6 +157,56 @@ if on:
 with col3:
     st.image("images/EDSlogo.jpg", width=120)
 st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+
+# Create two rows of columns with equal widths
+col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
+col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
+    
+# First row of buttons
+with col2:
+    if st.button("About EDS", key="button_eds"):
+        st.session_state.script_choice = "eds"
+with col3:
+    if st.button("eQUEST Utilities", key="button_utilities"):
+        st.session_state.script_choice = "about"
+with col4:
+    if st.button("INP Parser", key="button_inp_parser"):
+        st.session_state.script_choice = "INP Parser"
+with col5:
+    if st.button("Purging INP", key="button_purging_inp"):
+        st.session_state.script_choice = "Purging INP"
+with col6:
+    if st.button("SIM Parser", key="button_sim_parser"):
+        st.session_state.script_choice = "SIM Parser"
+with col7:
+    if st.button("SIM to PDF", key="button_sim_to_pdf"):
+        st.session_state.script_choice = "SIM to PDF"
+with col8:
+    if st.button("Baseline Automation", key="button_baseline_automation"):
+        st.session_state.script_choice = "baselineAutomation"
+    
+# Second row of buttons
+with col9:
+    if st.button("Schedule Generator", key="button_schedule_generator"): 
+        st.session_state.script_choice = "sh"
+with col10:
+    if st.button("QA / QC", key="button_qa_qc"):
+        st.session_state.script_choice = "q"
+with col11:
+    if st.button("Analytics", key="button_analytics"): #Queries
+        st.session_state.script_choice = "sh1"
+with col12:
+    if st.button("EXE and Resources", key="button_exe_resources"):
+        st.session_state.script_choice = "exe"
+with col13:
+    if st.button("IGBC Green 🏡", key="references"): #Queries
+        st.session_state.script_choice = "reference"
+with col14:
+    if st.button("Help Assistant", key="button_contact"): #Queries
+        st.session_state.script_choice = "ask"
+with col15:
+    if st.button("Log In", key="button_login"): #Queries
+        st.session_state.script_choice = "login"
 def main(): 
     # Add custom CSS to set the background color and hide Streamlit branding elements
     card_button_style = """
@@ -234,58 +284,57 @@ def main():
         </style>
     """, unsafe_allow_html=True)
     
-    button_id = "green_button"
-    # Create two rows of columns with equal widths
-    col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
-    col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
+    # # Create two rows of columns with equal widths
+    # col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
+    # col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
     
-    # First row of buttons
-    with col2:
-        if st.button("About EDS", key="button_eds"):
-            st.session_state.script_choice = "eds"
-    with col3:
-        if st.button("eQUEST Utilities", key="button_utilities"):
-            st.session_state.script_choice = "about"
-    with col4:
-        if st.button("INP Parser", key="button_inp_parser"):
-            st.session_state.script_choice = "INP Parser"
-    with col5:
-        if st.button("Purging INP", key="button_purging_inp"):
-            st.session_state.script_choice = "Purging INP"
-    with col6:
-        if st.button("SIM Parser", key="button_sim_parser"):
-            st.session_state.script_choice = "SIM Parser"
-    with col7:
-        if st.button("SIM to PDF", key="button_sim_to_pdf"):
-            st.session_state.script_choice = "SIM to PDF"
-    with col8:
-        if st.button("Baseline Automation", key="button_baseline_automation"):
-            st.session_state.script_choice = "baselineAutomation"
+    # # First row of buttons
+    # with col2:
+    #     if st.button("About EDS", key="button_eds"):
+    #         st.session_state.script_choice = "eds"
+    # with col3:
+    #     if st.button("eQUEST Utilities", key="button_utilities"):
+    #         st.session_state.script_choice = "about"
+    # with col4:
+    #     if st.button("INP Parser", key="button_inp_parser"):
+    #         st.session_state.script_choice = "INP Parser"
+    # with col5:
+    #     if st.button("Purging INP", key="button_purging_inp"):
+    #         st.session_state.script_choice = "Purging INP"
+    # with col6:
+    #     if st.button("SIM Parser", key="button_sim_parser"):
+    #         st.session_state.script_choice = "SIM Parser"
+    # with col7:
+    #     if st.button("SIM to PDF", key="button_sim_to_pdf"):
+    #         st.session_state.script_choice = "SIM to PDF"
+    # with col8:
+    #     if st.button("Baseline Automation", key="button_baseline_automation"):
+    #         st.session_state.script_choice = "baselineAutomation"
     
-    # Second row of buttons
-    with col9:
-        if st.button("Schedule Generator", key="button_schedule_generator"): 
-            st.session_state.script_choice = "sh"
-    with col10:
-        if st.button("QA / QC", key="button_qa_qc"):
-            st.session_state.script_choice = "q"
-    with col11:
-        if st.button("Analytics", key="button_analytics"): #Queries
-            st.session_state.script_choice = "sh1"
-    with col12:
-        if st.button("EXE and Resources", key="button_exe_resources"):
-            st.session_state.script_choice = "exe"
-    with col13:
-        if st.button("IGBC Green 🏡", key="references"): #Queries
-            st.session_state.script_choice = "reference"
-    with col14:
-        if st.button("Help Assistant", key="button_contact"): #Queries
-            st.session_state.script_choice = "ask"
-    with col15:
-        if st.button("Log In", key="button_login"): #Queries
-            st.session_state.script_choice = "login"
+    # # Second row of buttons
+    # with col9:
+    #     if st.button("Schedule Generator", key="button_schedule_generator"): 
+    #         st.session_state.script_choice = "sh"
+    # with col10:
+    #     if st.button("QA / QC", key="button_qa_qc"):
+    #         st.session_state.script_choice = "q"
+    # with col11:
+    #     if st.button("Analytics", key="button_analytics"): #Queries
+    #         st.session_state.script_choice = "sh1"
+    # with col12:
+    #     if st.button("EXE and Resources", key="button_exe_resources"):
+    #         st.session_state.script_choice = "exe"
+    # with col13:
+    #     if st.button("IGBC Green 🏡", key="references"): #Queries
+    #         st.session_state.script_choice = "reference"
+    # with col14:
+    #     if st.button("Help Assistant", key="button_contact"): #Queries
+    #         st.session_state.script_choice = "ask"
+    # with col15:
+    #     if st.button("Log In", key="button_login"): #Queries
+    #         st.session_state.script_choice = "login"
             
-    # Based on the user selection, display appropriate input fields and run the script
+    #Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
         col1, col2 = st.columns(2)
         with col1:
