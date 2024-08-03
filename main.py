@@ -442,10 +442,12 @@ def main():
             # Display website views counter
             st.markdown("""
                 <!-- hitwebcounter Code START -->
-                Vistors Count
-                <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
-                <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
-                </a>                                             
+                <h3 style="text-align: center;">Visitors Count</h3>
+                <p align="center">
+                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
+                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+                    </a>
+                </p>
                 <!-- hitwebcounter Code END -->
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
