@@ -727,23 +727,27 @@ st.markdown(
             background-color: #f8f9fa;
             padding: 20px 0;
             color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             text-align: center;
-            position: relative;
-            margin: 0;
         }
         .footer .logo {
-            margin-bottom: 10px;
+            flex: 1;
         }
         .footer .logo img {
             max-width: 150px;
             height: auto;
         }
         .footer .social-media {
-            margin-bottom: 10px;
+            flex: 2;
         }
-        .footer p {
+        .footer .social-media p {
             margin: 0;
             font-size: 14px;
+        }
+        .footer .icons {
+            margin-top: 10px;
         }
         .footer .icons a {
             margin: 0 10px;
@@ -771,8 +775,8 @@ st.markdown(
         }
     </style>
     <div class="footer">
-        <div class="logo">
-            <img src="https://path-to-your-logo/logo.png" alt="Company Logo">
+        <div class="logo left">
+            <img src="https://path-to-your-logo/logo-left.png" alt="Company Logo Left">
         </div>
         <div class="social-media">
             <p>&copy; 2024. All Rights Reserved</p>
@@ -782,16 +786,20 @@ st.markdown(
                 <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
                 <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin" style="color: #0077b5;"></i></a>
             </div>
+            <div class="additional-content">
+                <h4>Contact Us</h4>
+                <p>Email: info@edsglobal.com | Phone: +123 456 7890</p>
+                <p>Follow us on social media for the latest updates and news.</p>
+            </div>
         </div>
-        <div class="additional-content">
-            <h4>Contact Us</h4>
-            <p>Email: info@edsglobal.com | Phone: +123 456 7890</p>
-            <p>Follow us on social media for the latest updates and news.</p>
+        <div class="logo right">
+            <img src="https://path-to-your-logo/logo-right.png" alt="Company Logo Right">
         </div>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 # st.markdown("""
 #     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
