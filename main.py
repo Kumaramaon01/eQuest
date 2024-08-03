@@ -138,75 +138,7 @@ heading_style = """
     }
 </style>
 """
-
-# Render the heading with the defined style
 st.markdown(heading_style, unsafe_allow_html=True)
-# logo_url = "https://equest-utilities-edsglobal.streamlit.app/"
-# logo_image_path = "images/eQcb_142.gif"
-# col1, col2, col3 = st.columns([1,1,0.5])
-# with col1:
-#     st.image(logo_image_path, width=80)
-# with col2:
-#     # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-#     st.markdown("# :rainbow[eQUEST Utilities]")
-# on = st.toggle("Select Theme")
-# if on:
-#     # set_dark_theme()
-#     pass  # Do nothing
-#     background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
-# with col3:
-#     st.image("images/EDSlogo.jpg", width=120)
-# st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-
-# Create two rows of columns with equal widths
-# col2, col3, col4, col5, col6, col7, col8 = st.columns(7) 
-# col9, col10, col11, col12, col13, col14, col15 = st.columns(7)
-    
-# # First row of buttons
-# with col2:
-#     if st.button("About EDS", key="button_eds"):
-#         st.session_state.script_choice = "eds"
-# with col3:
-#     if st.button("eQUEST Utilities", key="button_utilities"):
-#         st.session_state.script_choice = "about"
-# with col4:
-#     if st.button("INP Parser", key="button_inp_parser"):
-#         st.session_state.script_choice = "INP Parser"
-# with col5:
-#     if st.button("Purging INP", key="button_purging_inp"):
-#         st.session_state.script_choice = "Purging INP"
-# with col6:
-#     if st.button("SIM Parser", key="button_sim_parser"):
-#         st.session_state.script_choice = "SIM Parser"
-# with col7:
-#     if st.button("SIM to PDF", key="button_sim_to_pdf"):
-#         st.session_state.script_choice = "SIM to PDF"
-# with col8:
-#     if st.button("Baseline Automation", key="button_baseline_automation"):
-#         st.session_state.script_choice = "baselineAutomation"
-    
-# # Second row of buttons
-# with col9:
-#     if st.button("Schedule Generator", key="button_schedule_generator"): 
-#         st.session_state.script_choice = "sh"
-# with col10:
-#     if st.button("QA / QC", key="button_qa_qc"):
-#         st.session_state.script_choice = "q"
-# with col11:
-#     if st.button("Analytics", key="button_analytics"): #Queries
-#         st.session_state.script_choice = "sh1"
-# with col12:
-#     if st.button("EXE and Resources", key="button_exe_resources"):
-#         st.session_state.script_choice = "exe"
-# with col13:
-#     if st.button("IGBC Green 🏡", key="references"): #Queries
-#         st.session_state.script_choice = "reference"
-# with col14:
-#     if st.button("Help Assistant", key="button_contact"): #Queries
-#         st.session_state.script_choice = "ask"
-# with col15:
-#     if st.button("Log In", key="button_login"): #Queries
-#         st.session_state.script_choice = "login"
 def main(): 
     card_button_style = """
         <style>
@@ -271,9 +203,7 @@ def main():
     with col3:
         st.image("images/EDSlogo.jpg", width=120)
 
-    #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-    # Inject CSS to make all buttons the same size
     st.markdown("""
         <style>
         .stButton button {
@@ -790,7 +720,6 @@ def main():
 if __name__ == "__main__":
     main()
     
-# Navigation bar with buttons below the header
 st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 st.markdown("""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -811,7 +740,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Designed and Developed by section
+# Footer Section
 st.markdown(
     """
     <div class="social-media" style="margin-top: 10px;">
