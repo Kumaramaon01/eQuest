@@ -439,9 +439,10 @@ def main():
                 else:
                     st.error("❌ Incorrect username or password")
                         # Display profile views badge
+            # Display website views counter
             st.markdown("""
                 <p align="left">
-                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Website%20views&color=fe428e&style=plastic" alt="RajK01" />
+                    <img src="https://hitwebcounter.com/counter/counter.php?page=your_page_id&style=0006&nbdigits=5" alt="Website views" />
                 </p>
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
@@ -713,147 +714,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
-
-# import streamlit as st
-# import subprocess
-# import os
-# import pandas as pd
-# from INP_Parser import inp_parserv01
-# from Perging_INP import perge
-# from SIM_Parser import sim_parserv01
-# from SIM2PDF import sim_print
-# from BaselineAutomation import baselineAuto
-# from ScheduleGenerator import schedule_v01
-# from ScheduleGenerator import sheduls_analytics
-# from q import qa
-# # from igbc import igbc_data
-# from streamlit_card import card
-# from PIL import Image as PILImage
-# import smtplib
-# from email.mime.text import MIMEText
-# from email.mime.multipart import MIMEMultipart
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from matplotlib.animation import FuncAnimation
-
-# # Email credentials and recipient
-# TO_EMAIL = "rajeev@edsglobal.com"
-# # Set the page configuration with additional options layout='wide',
-# st.set_page_config(
-#     page_title="eQUEST Utilities",
-#     page_icon="💡",
-#     layout='wide',  # Only 'centered' or 'wide' are valid options
-#     menu_items={                          
-#         'Get Help': 'https://www.example.com/help',
-#         'Report a bug': 'https://www.example.com/bug',
-#         'About': '# This is an **eQuest Utilities** application!'
-#     }
-# )
-
-# # Function to set the background image using CSS
-# def set_dark_theme():
-#     """
-#     Function to set a dark theme using CSS.
-#     """
-#     # Define the HTML code with CSS for a dark theme
-#     html_code = """
-#     <style>
-#     .stApp {
-#         background-color: black;  /* Set background color to black */
-#         color: white;  /* Set text color to white */
-#     }
-#     .stMarkdown, .stImage, .stDataFrame, .stTable, .stTextInput, .stButton, .stSidebar {
-#         background-color: transparent !important; /* Make elements' background transparent */
-#         color: white !important;  /* Ensure text color within these elements is white */
-#     }
-#     .stButton > button {
-#         background-color: #333; /* Dark background for buttons */
-#         color: white;  /* White text for buttons */
-#     }
-#     .stSidebar {
-#         background-color: #222; /* Slightly lighter background for sidebar */
-#     }
-#     .stTextInput > div > input {
-#         background-color: #444; /* Dark background for text input */
-#         color: white;  /* White text for text input */
-#     }
-#     </style>
-#     """
-#     # Inject the HTML code in the Streamlit app
-#     st.markdown(html_code, unsafe_allow_html=True)
-# def confetti_animation():
-#     st.markdown(
-#         """
-#         <style>
-#         @keyframes confetti {
-#             0% { transform: translateY(0) rotate(0deg); }
-#             100% { transform: translateY(-100vh) rotate(360deg); }
-#         }
-#         .confetti {
-#             position: absolute;
-#             width: 10px;
-#             height: 10px;
-#             background-color: #f00;
-#             background-image: linear-gradient(135deg, transparent 10%, #f00 10%, #f00 20%, transparent 20%, transparent 30%, #0f0 30%, #0f0 40%, transparent 40%, transparent 50%, #00f 50%, #00f 60%, transparent 60%, transparent 70%);
-#             background-size: 10px 10px;
-#             animation: confetti 5s linear infinite;
-#             opacity: 0.7;
-#         }
-#         </style>
-#         """
-#     )
-#     st.markdown('<div class="confetti"></div>', unsafe_allow_html=True)
-
-# # Function to send email
-# def send_email(subject, message, from_email, to_email):
-#     msg = MIMEMultipart()
-#     msg['From'] = from_email
-#     msg['To'] = to_email
-#     msg['Subject'] = subject
-
-#     msg.attach(MIMEText(message, 'plain'))
-#     try:
-#         server = smtplib.SMTP('smtp.gmail.com', 587)
-#         server.starttls()
-#         text = msg.as_string()
-#         server.sendmail(from_email, to_email, text)
-#         server.quit()
-#         return True
-#     except Exception as e:
-#         # print(f"Failed to send email: {e}")
-#         st.success("Email sent successfully!")
-#         return False
-
-# button_style = """
-#     <style>
-#         .stButton>button {
-#             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-#         }
-#     </style>
-# """
-
-# # Render the button with the defined style
-# st.markdown(button_style, unsafe_allow_html=True)
-
-# # Define CSS style with text-shadow effect for the heading
-# heading_style = """
-#     <style>
-#     .heading-with-shadow {
-#         text-align: left;
-#         color: red;
-#         text-shadow: 0px 8px 4px rgba(255, 255, 255, 0.4);
-#         background-color: white;
-#     }
-# </style>
-# """
-
-# # Render the heading with the defined style
-# st.markdown(heading_style, unsafe_allow_html=True)
-
-# # Define button carousel items
-# carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
 
 # def main(): 
 #     # Add custom CSS to set the background color and hide Streamlit branding elements
