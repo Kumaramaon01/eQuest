@@ -37,6 +37,15 @@ st.set_page_config(
     }
 )
 
+# To disable right-click functionality on your webpage, you can use JavaScript to prevent
+components.html("""
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+    </script>
+""", height=0)
+
 def load_lottieurl(url: str):
     r = requests.get(url)
     if r.status_code != 200:
