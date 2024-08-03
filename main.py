@@ -718,106 +718,95 @@ def main():
                     number_floor,
                     heat_type)
                 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
     
-st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
-st.markdown("""
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-    .social-media {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .social-media a {
-        margin: 0 10px;
-        text-decoration: none;
-        color: blue;
-    }
-    .social-media i {
-        font-size: 24px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# # Footer Section
-# st.markdown(
-#     """
-#     <div class="social-media" style="margin-top: 10px;">
-#         <p>@2024. All Rights Reserved</p>
-#         <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
-#         <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
-#         <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-#         <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-st.markdown(
-    """
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .footer {
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            color: #333;
-        }
-        .footer .social-media {
+    st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+    st.markdown("""
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+        .social-media {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
-        .footer p {
-            margin: 0;
-            font-size: 14px;
-        }
-        .footer .icons {
-            margin-top: 10px;
-        }
-        .footer .icons a {
+        .social-media a {
             margin: 0 10px;
-            color: #666;
             text-decoration: none;
-            transition: color 0.3s ease;
+            color: blue;
         }
-        .footer .icons a:hover {
-            color: #0077b5; /* LinkedIn color as default */
+        .social-media i {
+            font-size: 24px;
         }
-        .footer .icons a .fab {
-            font-size: 25px;
-        }
-        .footer .additional-content {
-            text-align: center;
-            margin-top: 12px;
-        }
-        .footer .additional-content h4 {
-            margin-bottom: 0px;
-            font-size: 18px;
-            color: #007bff;
-        }
-        .footer .additional-content p {
-            margin: 0;
-            font-size: 16px;
-        }
-    </style>
-    <div class="footer">
-        <div class="social-media">
-            <p>&copy; 2024. All Rights Reserved</p>
-            <div class="icons">
-                <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></a>
-                <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook" style="color: #4267B2;"></i></a>
-                <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
-                <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin" style="color: #0077b5;"></i></a>
+        </style>
+        """, unsafe_allow_html=True)
+    
+    #Footer Section
+    st.markdown(
+        """
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            .footer {
+                background-color: #f8f9fa;
+                padding: 10px 0;
+                color: #333;
+            }
+            .footer .social-media {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer p {
+                margin: 0;
+                font-size: 14px;
+            }
+            .footer .icons {
+                margin-top: 10px;
+            }
+            .footer .icons a {
+                margin: 0 10px;
+                color: #666;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .footer .icons a:hover {
+                color: #0077b5; /* LinkedIn color as default */
+            }
+            .footer .icons a .fab {
+                font-size: 25px;
+            }
+            .footer .additional-content {
+                text-align: center;
+                margin-top: 12px;
+            }
+            .footer .additional-content h4 {
+                margin-bottom: 0px;
+                font-size: 18px;
+                color: #007bff;
+            }
+            .footer .additional-content p {
+                margin: 0;
+                font-size: 16px;
+            }
+        </style>
+        <div class="footer">
+            <div class="social-media">
+                <p>&copy; 2024. All Rights Reserved</p>
+                <div class="icons">
+                    <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></a>
+                    <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook" style="color: #4267B2;"></i></a>
+                    <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
+                    <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin" style="color: #0077b5;"></i></a>
+                </div>
+            </div>
+            <div class="additional-content">
+                <h4>Contact Us</h4>
+                <p>Email: info@edsglobal.com | Phone: +123 456 7890</p>
+                <p>Follow us on social media for the latest updates and news.</p>
             </div>
         </div>
-        <div class="additional-content">
-            <h4>Contact Us</h4>
-            <p>Email: info@edsglobal.com | Phone: +123 456 7890</p>
-            <p>Follow us on social media for the latest updates and news.</p>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+        """,
+        unsafe_allow_html=True
+    )
+if __name__ == "__main__":
+    main()
