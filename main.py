@@ -761,7 +761,7 @@ st.markdown(
     <style>
         .footer {
             background-color: #f8f9fa;
-            padding: 20px 0;
+            padding: 10px 0;
             color: #333;
         }
         .footer .social-media {
@@ -786,14 +786,14 @@ st.markdown(
             color: #0077b5; /* LinkedIn color as default */
         }
         .footer .icons a .fab {
-            font-size: 20px;
+            font-size: 25px;
         }
         .footer .additional-content {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 12px;
         }
         .footer .additional-content h4 {
-            margin-bottom: 2px;
+            margin-bottom: 0px;
             font-size: 18px;
             color: #007bff;
         }
