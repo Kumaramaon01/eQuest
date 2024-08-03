@@ -464,15 +464,20 @@ def main():
                     font-weight: bold;
                     text-align: center;
                 }
+                .testimonial-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    justify-content: center;
+                    margin: 20px 0;
+                }
                 .testimonial {
                     border: 1px solid #ddd;
                     padding: 15px;
-                    margin: 15px 0;
                     border-radius: 10px;
                     background-color: #f9f9f9;
-                    max-width: 600px;
-                    margin-left: auto;
-                    margin-right: auto;
+                    max-width: 300px;
+                    width: 100%;
                 }
                 .testimonial h4 {
                     margin: 0 0 10px;
@@ -483,18 +488,28 @@ def main():
                     color: #666;
                 }
             </style>
-            <h4 style="text-align: center;">What People Say About Our Website</h4>
-            <div class="testimonial">
-                <h4>John Doe</h4>
-                <p>This is the best eQUEST utility tool I have ever used. Highly recommended!</p>
-            </div>
-            <div class="testimonial">
-                <h4>Jane Smith</h4>
-                <p>Amazing tools that save a lot of time and effort. Kudos to the team!</p>
-            </div>
-            <div class="testimonial">
-                <h4>Mike Johnson</h4>
-                <p>The user interface is very intuitive and easy to use. Great job!</p>
+            <h3 style="text-align: center;">What People Say About Our Website</h3>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <h4>John Doe</h4>
+                    <p>This is the best eQUEST utility tool I have ever used. Highly recommended!</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Jane Smith</h4>
+                    <p>Amazing tools that save a lot of time and effort. Kudos to the team!</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Mike Johnson</h4>
+                    <p>The user interface is very intuitive and easy to use. Great job!</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Emily Davis</h4>
+                    <p>Fantastic support and great features. Worth every penny!</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Chris Brown</h4>
+                    <p>Efficient and easy to navigate. This tool has made my work much easier.</p>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
