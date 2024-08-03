@@ -444,7 +444,7 @@ def main():
                         # Display profile views badge
             st.markdown("""
                 <p align="left">
-                    <img src="https://komarev.com/ghpvc/?username=Kumaramaon01&label=Profile%20views&color=fe428e&style=plastic" alt="Kumaramaon01" />
+                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Profile%20views&color=fe428e&style=plastic" alt="RajK01" />
                 </p>
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
