@@ -357,16 +357,11 @@ def main():
             st.image("https://images.jdmagicbox.com/comp/delhi/k8/011pxx11.xx11.180809193209.h6k8/catalogue/environmental-design-solutions-vasant-vihar-delhi-environmental-management-consultants-leuub0bjnn.jpg", width=590)
         
     elif st.session_state.script_choice == "sh":
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("""
-            <h4 style="color:red;">📅 Schedule Generator</h4>
-            <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
-            <br>
-            """, unsafe_allow_html=True)
-        with col2:
-            st.image("images/schedule.jpg", width=290)
-        
+        st.markdown("""
+        <h4 style="color:red;">📅 Schedule Generator</h4>
+        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized schedule tailored to your specific needs.<br>
+        <br>
+        """, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload Schedule in excel", type=["xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
             if st.button("Generate INP"):
