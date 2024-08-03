@@ -25,14 +25,6 @@ import json
 # Display the main heading with a rainbow effect
 st.markdown("""
     <style>
-        .rainbow-text {
-            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-        }
         .testimonial {
             border: 1px solid #ddd;
             padding: 15px;
@@ -49,7 +41,6 @@ st.markdown("""
             color: #666;
         }
     </style>
-    <h1 class="rainbow-text">eQUEST Utilities</h1>
     """, unsafe_allow_html=True)
 
 # Email credentials and recipient
