@@ -481,7 +481,11 @@ def main():
                 }
                 .testimonial h4 {
                     margin: 0 0 10px;
-                    color: #333;
+                    color: green;
+                }
+                .testimonial h3 {
+                    # margin: 0 0 10px;
+                    color: green;
                 }
                 .testimonial p {
                     margin: 0;
