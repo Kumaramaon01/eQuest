@@ -776,7 +776,7 @@ st.markdown(
     </style>
     <div class="footer">
         <div class="logo left">
-            <img src="https://path-to-your-logo/logo-left.png" alt="Company Logo Left">
+            <img src="images/eQcb_142.gif" alt="Company Logo Left">
         </div>
         <div class="social-media">
             <p>&copy; 2024. All Rights Reserved</p>
@@ -793,7 +793,7 @@ st.markdown(
             </div>
         </div>
         <div class="logo right">
-            <img src="https://path-to-your-logo/logo-right.png" alt="Company Logo Right">
+            <img src="images/EDSlogo.jpg" alt="Company Logo Right">
         </div>
     </div>
     """,
