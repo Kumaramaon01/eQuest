@@ -813,18 +813,15 @@ right_logo_path = 'images/EDSlogo.jpg'
 # )
 
 # Create a container for the footer
-footer = st.container()
-with footer:
-    col1, col2, col3 = st.columns([1, 2, 1])
-    
-    with col1:
-        st.image(left_logo_path, width=150)  # Adjust width as needed
-    
-    with col2:
-        st.write("© 2024. All Rights Reserved")
-        st.write("Follow us:")
-        st.write("[Twitter](https://twitter.com/edsglobal?lang=en) | [Facebook](https://www.facebook.com/Environmental.Design.Solutions/) | [Instagram](https://www.instagram.com/eds_global/?hl=en) | [LinkedIn](https://www.linkedin.com/company/environmental-design-solutions/)")
-        st.write("Contact Us: info@edsglobal.com | Phone: +123 456 7890")
-    
-    with col3:
-        st.image(right_logo_path, width=150)  # Adjust width as needed
+# footer = st.container()
+# with footer:
+col1, col2, col3 = st.columns([1, 2, 1])
+with col1:
+    st.image(left_logo_path, width=150)  # Adjust width as needed
+with col2:
+    st.write("© 2024. All Rights Reserved")
+    st.write("Follow us:")
+    st.write("[Twitter](https://twitter.com/edsglobal?lang=en) | [Facebook](https://www.facebook.com/Environmental.Design.Solutions/) | [Instagram](https://www.instagram.com/eds_global/?hl=en) | [LinkedIn](https://www.linkedin.com/company/environmental-design-solutions/)")
+    st.write("Contact Us: info@edsglobal.com | Phone: +123 456 7890")
+with col3:
+    st.image(right_logo_path, width=150) 
