@@ -443,7 +443,7 @@ def main():
             st.markdown("""
                 <!-- hitwebcounter Code START -->
                 <a href="https://www.hitwebcounter.com" target="_blank">
-                <img src="https://hitwebcounter.com/counter/counter.php?page=15322256&style=0001&nbdigits=5&type=page&initCount=1" title="Counter Widget" alt="Visit counter For Websites" border="0" /></a>                                    
+                <img src="https://hitwebcounter.com/counter/counter.php?page=15322370&style=0019&nbdigits=5&type=page&initCount=65" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                                    
                 <!-- hitwebcounter Code END -->
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
