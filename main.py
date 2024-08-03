@@ -6,6 +6,7 @@ from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
+from streamlit_lottie import st_lottie
 from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
 from ScheduleGenerator import sheduls_analytics
