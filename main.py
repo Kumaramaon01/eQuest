@@ -516,9 +516,9 @@ def main():
        
     elif st.session_state.script_choice == "ask":
         st.markdown("### :rainbow[Talk to Rajeev]")
-        # st.markdown("""
-        # <h4 style="color:red;">🖥 Talk to Rajeev</h4>
-        # """, unsafe_allow_html=True)
+        st.markdown("### 🌟 :star[Talk to Rajeev]")
+        st.markdown("### 🤖 :robot[Talk to Rajeev]")
+        st.markdown("### 🌟 :star[Talk to Rajeev]\n\n👇")
         col1, col2, col3 = st.columns(3)
         with col1:
             email = st.text_input("Enter your mail:")
