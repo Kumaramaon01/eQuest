@@ -35,6 +35,12 @@ st.set_page_config(
     }
 )
 
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
 # Function to set the background image using CSS
 def set_dark_theme():
     """
