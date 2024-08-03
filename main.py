@@ -156,12 +156,9 @@ carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM
 
 def main(): 
     # To disable right-click functionality on your webpage, you can use JavaScript to prevent
+    # Include the JavaScript file from the local server
     components.html("""
-        <script>
-            document.addEventListener('contextmenu', function(event) {
-                event.preventDefault();
-            });
-        </script>
+        <script src="disable_right_click.js"></script>
     """, height=0)
     # Add custom CSS to set the background color and hide Streamlit branding elements
     card_button_style = """
