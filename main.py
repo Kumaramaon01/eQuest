@@ -198,7 +198,7 @@ def main():
     logo_image_path = "images/eQcb_142.gif"
 
     # Header section with logo and title
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([1,1,0.5)
     with col1:
         # Display the image
         st.image(logo_image_path, width=80)
