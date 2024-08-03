@@ -488,27 +488,39 @@ def main():
                     color: #666;
                 }
             </style>
-           :rainbow[What People Say About Our Tool & Website]
-            <h3 style="text-align: center;">What People Say About Our Website</h3>
+
+            <h3 style="text-align: center; color: rainbow;">What People Say About Our Website</h3>
             <div class="testimonial-container">
                 <div class="testimonial">
-                    <h4>John Doe</h4>
+                    <h4>Robin Jain</h4>
                     <p>This is the best eQUEST utility tool I have ever used. Highly recommended!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Jane Smith</h4>
+                    <h4>Yasir Iqubal</h4>
                     <p>Amazing tools that save a lot of time and effort. Kudos to the team!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Mike Johnson</h4>
+                    <h4>Fareed Rahi</h4>
                     <p>The user interface is very intuitive and easy to use. Great job!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Emily Davis</h4>
+                    <h4>Mayank Sir</h4>
                     <p>Fantastic support and great features. Worth every penny!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Chris Brown</h4>
+                    <h4>Hisham Ahmad</h4>
+                    <p>Efficient and easy to navigate. This tool has made my work much easier.</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Ashraf Khan</h4>
+                    <p>Efficient and easy to navigate. This tool has made my work much easier.</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Jone Doe</h4>
+                    <p>Efficient and easy to navigate. This tool has made my work much easier.</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Md. Ahsan</h4>
                     <p>Efficient and easy to navigate. This tool has made my work much easier.</p>
                 </div>
             </div>
