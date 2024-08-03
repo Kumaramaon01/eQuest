@@ -741,15 +741,82 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Footer Section
+# # Footer Section
+# st.markdown(
+#     """
+#     <div class="social-media" style="margin-top: 10px;">
+#         <p>@2024. All Rights Reserved</p>
+#         <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
+#         <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
+#         <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+#         <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
+#     </div>
+#     """,
+#     unsafe_allow_html=True
+# )
+
 st.markdown(
     """
-    <div class="social-media" style="margin-top: 10px;">
-        <p>@2024. All Rights Reserved</p>
-        <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            color: #333;
+        }
+        .footer .social-media {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .footer .icons {
+            margin-top: 10px;
+        }
+        .footer .icons a {
+            margin: 0 10px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer .icons a:hover {
+            color: #0077b5; /* LinkedIn color as default */
+        }
+        .footer .icons a .fab {
+            font-size: 20px;
+        }
+        .footer .additional-content {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer .additional-content h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .footer .additional-content p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+    <div class="footer">
+        <div class="social-media">
+            <p>&copy; 2024. All Rights Reserved</p>
+            <div class="icons">
+                <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></a>
+                <a href="https://www.facebook.com/Environmental.Design.Solutions/" target="_blank"><i class="fab fa-facebook" style="color: #4267B2;"></i></a>
+                <a href="https://www.instagram.com/eds_global/?hl=en" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
+                <a href="https://www.linkedin.com/company/environmental-design-solutions/" target="_blank"><i class="fab fa-linkedin" style="color: #0077b5;"></i></a>
+            </div>
+        </div>
+        <div class="additional-content">
+            <h4>Contact Us</h4>
+            <p>Email: info@edsglobal.com | Phone: +123 456 7890</p>
+            <p>Follow us on social media for the latest updates and news.</p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
