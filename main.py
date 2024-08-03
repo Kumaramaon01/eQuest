@@ -421,15 +421,15 @@ def main():
                 
     elif st.session_state.script_choice == "login":
         st.markdown("#### :rainbow[Website Visitors Count]")
-            st.markdown("""
-                <!-- hitwebcounter Code START -->
-                <p align="center">
-                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
-                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
-                    </a>
-                </p>
-            <!-- hitwebcounter Code END -->
-            """, unsafe_allow_html=True)
+        st.markdown("""
+            <!-- hitwebcounter Code START -->
+            <p align="center">
+                <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
+                    <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+                </a>
+            </p>
+        <!-- hitwebcounter Code END -->
+        """, unsafe_allow_html=True)
         col1, col2, col3 = st.columns([0.7,1.3,1])
         with col1:
             st.markdown("""
