@@ -725,7 +725,7 @@ left_logo_path = 'images/eQcb_142.gif'
 right_logo_path = 'images/EDSlogo.jpg'
 col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
-    st.image(left_logo_path, width=150)  # Adjust width as needed
+    st.image(left_logo_path, width=100)  # Adjust width as needed
 with col2:
     st.markdown(
         """
