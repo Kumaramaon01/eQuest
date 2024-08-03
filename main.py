@@ -723,7 +723,7 @@ st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 # Define the path to your local images
 left_logo_path = 'images/eQcb_142.gif'
 right_logo_path = 'images/EDSlogo.jpg'
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3, col4 = st.columns([1, 2, 1, 1])
 with col1:
     st.image(left_logo_path, width=100)  # Adjust width as needed
 with col2:
@@ -801,4 +801,6 @@ with col2:
         """, unsafe_allow_html=True
 )
 with col3:
+    st.image(right_logo_path, width=0) 
+with col4:
     st.image(right_logo_path, width=150) 
