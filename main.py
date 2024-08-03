@@ -538,7 +538,7 @@ def main():
         with col2:
             st_lottie(url,
                   reverse=True,
-                  height=350,
+                  height=340,
                   width=400,
                   speed=1,
                   loop=True,
