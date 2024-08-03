@@ -431,7 +431,7 @@ def main():
                     </a>
                 </p>
             """, height=80)
-        col1, col2, col3 = st.columns([0.7,0.7,1.6])
+        col1, col2, col3 = st.columns(3)
         with col1:
             st.markdown("""
             <h4 style="color:red;">🔒 Login</h4>
@@ -445,7 +445,7 @@ def main():
                 if username == "admin" and password == "password":
                     st.success("🎉 Logged in as {}".format(username))
                     # Add your main app logic here after successful login
-                    st.write("Welcome to the app!")
+                    st.markdown("### :rainbow[Welcome!]")
                     st.balloons()
                 else:
                     st.error("❌ Incorrect username or password")
