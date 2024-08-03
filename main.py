@@ -793,13 +793,13 @@ st.markdown(
             margin-top: 20px;
         }
         .footer .additional-content h4 {
-            margin-bottom: 10px;
+            margin-bottom: 2px;
             font-size: 18px;
             color: #007bff;
         }
         .footer .additional-content p {
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;
         }
     </style>
     <div class="footer">
