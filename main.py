@@ -207,13 +207,13 @@ def main():
         # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
         st.markdown("# :rainbow[eQUEST Utilities]")
         
-    on = st.toggle("Select Theme")
-    if on:
-        # set_dark_theme()  # Call your function to set the dark theme
-        pass  # Do nothing
-        # Set your background image URL
-        background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
-        # Call the function to set the background
+    # on = st.toggle("Select Theme")
+    # if on:
+    #     # set_dark_theme()  # Call your function to set the dark theme
+    #     pass  # Do nothing
+    #     # Set your background image URL
+    #     background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
+    #     # Call the function to set the background
         # set_background(background_image_url)
     
     icon_with_tooltip1 = """
@@ -240,11 +240,6 @@ def main():
     with col3:
         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
         st.image("images/EDSlogo.jpg", width=120)
-        st.markdown("""
-                <p align="left">
-                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Website%20views&color=fe428e&style=plastic" alt="RajK01" />
-                </p>
-                """, unsafe_allow_html=True)
 
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
