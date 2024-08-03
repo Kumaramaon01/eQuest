@@ -745,7 +745,7 @@ st.markdown(
     <style>
         .footer {
             background-color: #f8f9fa;
-            padding: 15px 0;
+            padding: 15px 10px;
             color: #333;
         }
         .footer .social-media {
