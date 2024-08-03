@@ -488,6 +488,7 @@ def main():
                     color: #666;
                 }
             </style>
+           "#### :rainbow[What People Say About Our Tool & Website]"
             <h3 style="text-align: center;">What People Say About Our Website</h3>
             <div class="testimonial-container">
                 <div class="testimonial">
