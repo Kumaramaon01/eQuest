@@ -420,7 +420,7 @@ def main():
                 sim_parserv01.main(uploaded_file)
                 
     elif st.session_state.script_choice == "login":
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns([0.7,1.3,1])
         with col1:
             st.markdown("""
             <h4 style="color:red;">🔒 Login</h4>
