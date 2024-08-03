@@ -442,9 +442,9 @@ def main():
         st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
         
         # Display website views counter
+        st.markdown("#### :rainbow[Website Visitors Count]")
         st.markdown("""
             <!-- hitwebcounter Code START -->
-            st.markdown("##### :rainbow[Website Visitors Count]")
             <p align="center">
                 <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
                     <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
