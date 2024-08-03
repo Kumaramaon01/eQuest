@@ -719,6 +719,9 @@ if __name__ == "__main__":
     main()
     
 st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+# Define the path to your local images
+left_logo_path = 'images/eQcb_142.gif'
+right_logo_path = 'images/EDSlogo.jpg'
 st.markdown(
     """
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -774,11 +777,14 @@ st.markdown(
             font-size: 16px;
         }
     </style>
-    <div class="footer">
-        <div class="logo left">
-            <img src="images/eQcb_142.gif" alt="Company Logo Left">
+   <div class="footer">
+        <div class="logo left" style="flex: 1;">
+            <!-- Placeholder for logo on the left -->
+            <div style="max-width: 150px; margin-right: auto;">
+                <img src="data:image/jpeg;base64,{}" alt="Company Logo Left" style="width: 100%; height: auto;">
+            </div>
         </div>
-        <div class="social-media">
+        <div class="social-media" style="flex: 2;">
             <p>&copy; 2024. All Rights Reserved</p>
             <div class="icons">
                 <a href="https://twitter.com/edsglobal?lang=en" target="_blank"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></a>
@@ -792,10 +798,16 @@ st.markdown(
                 <p>Follow us on social media for the latest updates and news.</p>
             </div>
         </div>
-        <div class="logo right">
-            <img src="images/EDSlogo.jpg" alt="Company Logo Right">
+        <div class="logo right" style="flex: 1;">
+            <!-- Placeholder for logo on the right -->
+            <div style="max-width: 150px; margin-left: auto;">
+                <img src="data:image/jpeg;base64,{}" alt="Company Logo Right" style="width: 100%; height: auto;">
+            </div>
         </div>
     </div>
-    """,
+    """.format(
+        st.image(left_logo_path, format='jpeg', use_column_width=True).decode('utf-8'),
+        st.image(right_logo_path, format='jpeg', use_column_width=True).decode('utf-8')
+    ),
     unsafe_allow_html=True
 )
