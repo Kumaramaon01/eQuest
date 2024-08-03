@@ -22,27 +22,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import json
 
-# Display the main heading with a rainbow effect
-st.markdown("""
-    <style>
-        .testimonial {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .testimonial h4 {
-            margin: 0 0 10px;
-            color: #333;
-        }
-        .testimonial p {
-            margin: 0;
-            color: #666;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
 # Set the page configuration with additional options layout='wide',
