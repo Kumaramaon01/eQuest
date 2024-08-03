@@ -442,6 +442,7 @@ def main():
             # Display website views counter
             st.markdown("""
                 <!-- hitwebcounter Code START -->
+                Vistors Count
                 <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
                 <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
                 </a>                                             
