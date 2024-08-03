@@ -431,7 +431,7 @@ def main():
                     </a>
                 </p>
             """, height=80)
-        col1, col2, col3 = st.columns([0.7,1.3,1])
+        col1, col2, col3 = st.columns([0.7,0.7,1.6])
         with col1:
             st.markdown("""
             <h4 style="color:red;">🔒 Login</h4>
@@ -463,84 +463,85 @@ def main():
                   quality='high',
                   )
 
-        # Display the main heading with a rainbow effect
-        st.markdown("""
-            <style>
-                .rainbow-text {
-                    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-                    -webkit-background-clip: text;
-                    color: transparent;
-                    font-size: 2em;
-                    font-weight: bold;
-                    text-align: center;
-                }
-                .testimonial-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 15px;
-                    justify-content: center;
-                    margin: 20px 0;
-                }
-                .testimonial {
-                    border: 1px solid #ddd;
-                    padding: 15px;
-                    border-radius: 10px;
-                    background-color: #f9f9f9;
-                    max-width: 300px;
-                    width: 100%;
-                }
-                .testimonial h4 {
-                    margin: 0 0 10px;
-                    color: green;
-                }
-                .testimonial h3 {
-                    # margin: 0 0 10px;
-                    color: green;
-                }
-                .testimonial p {
-                    margin: 0;
-                    color: #666;
-                }
-            </style>
-
-            <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
-            <div class="testimonial-container">
-                <div class="testimonial">
-                    <h4>Robin Jain</h4>
-                    <p>This is the best eQUEST utility tool I have ever used. Highly recommended! The automation features are a game-changer.
-                    I highly recommend eQuest Utilities for anyone serious about optimizing their eQUEST workflow.</p>
+        with col3:
+            # Display the main heading with a rainbow effect
+            st.markdown("""
+                <style>
+                    .rainbow-text {
+                        background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+                        -webkit-background-clip: text;
+                        color: transparent;
+                        font-size: 2em;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+                    .testimonial-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                        justify-content: center;
+                        margin: 20px 0;
+                    }
+                    .testimonial {
+                        border: 1px solid #ddd;
+                        padding: 15px;
+                        border-radius: 10px;
+                        background-color: #f9f9f9;
+                        max-width: 300px;
+                        width: 100%;
+                    }
+                    .testimonial h4 {
+                        margin: 0 0 10px;
+                        color: green;
+                    }
+                    .testimonial h3 {
+                        # margin: 0 0 10px;
+                        color: green;
+                    }
+                    .testimonial p {
+                        margin: 0;
+                        color: #666;
+                    }
+                </style>
+    
+                <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
+                <div class="testimonial-container">
+                    <div class="testimonial">
+                        <h4>Robin Jain</h4>
+                        <p>This is the best eQUEST utility tool I have ever used. Highly recommended! The automation features are a game-changer.
+                        I highly recommend eQuest Utilities for anyone serious about optimizing their eQUEST workflow.</p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Yasir Iqbal</h4>
+                        <p>Amazing tools that save a lot of time and effort. Kudos to the team! Thanks Rajeev!! </p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Fareed Rahi</h4>
+                        <p>The user interface is very intuitive and easy to use. Great job!</p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Mayank Bhatnagar</h4>
+                        <p>Fantastic support and great features. Worth every penny!</p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Hisham Ahmad</h4>
+                        <p>Efficient and easy to navigate. This tool has made my work much easier. 
+                        I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Ashraf Khan</h4>
+                        <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>JMichael Brown, Energy Consultant (USA)</h4>
+                        <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
+                    </div>
+                    <div class="testimonial">
+                        <h4>Md. Ahsan</h4>
+                        <p>Exceptional tools and excellent customer service. eQuest Utilities has definitely exceeded my expectations.</p>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <h4>Yasir Iqbal</h4>
-                    <p>Amazing tools that save a lot of time and effort. Kudos to the team! Thanks Rajeev!! </p>
-                </div>
-                <div class="testimonial">
-                    <h4>Fareed Rahi</h4>
-                    <p>The user interface is very intuitive and easy to use. Great job!</p>
-                </div>
-                <div class="testimonial">
-                    <h4>Mayank Bhatnagar</h4>
-                    <p>Fantastic support and great features. Worth every penny!</p>
-                </div>
-                <div class="testimonial">
-                    <h4>Hisham Ahmad</h4>
-                    <p>Efficient and easy to navigate. This tool has made my work much easier. 
-                    I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
-                </div>
-                <div class="testimonial">
-                    <h4>Ashraf Khan</h4>
-                    <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
-                </div>
-                <div class="testimonial">
-                    <h4>JMichael Brown, Energy Consultant (USA)</h4>
-                    <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
-                </div>
-                <div class="testimonial">
-                    <h4>Md. Ahsan</h4>
-                    <p>Exceptional tools and excellent customer service. eQuest Utilities has definitely exceeded my expectations.</p>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
        
     elif st.session_state.script_choice == "reference":
         st.markdown("""
