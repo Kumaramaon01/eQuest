@@ -141,23 +141,6 @@ heading_style = """
 
 # Render the heading with the defined style
 st.markdown(heading_style, unsafe_allow_html=True)
-logo_url = "https://equest-utilities-edsglobal.streamlit.app/"
-logo_image_path = "images/eQcb_142.gif"
-col1, col2, col3 = st.columns([1,1,0.5])
-with col1:
-    # Display the image
-    st.image(logo_image_path, width=80)
-with col2:
-    # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-    st.markdown("# :rainbow[eQUEST Utilities]")
-on = st.toggle("Select Theme")
-if on:
-    # set_dark_theme()
-    pass  # Do nothing
-    background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
-with col3:
-    # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-    st.image("images/EDSlogo.jpg", width=120)
 
 # Define button carousel items
 carousel_items = ["About EDS", "About eQuest", "INP Parser", "Purging INP", "SIM Parser", "SIM to PDF", "Baseline Automation", "EXE Files", "Queries", "Visual"]
@@ -211,23 +194,21 @@ def main():
     if 'script_choice' not in st.session_state:
         st.session_state.script_choice = "about"  # Set default to "about"
         
-    # logo_url = "https://equest-utilities-edsglobal.streamlit.app/"
-    # logo_image_path = "images/eQcb_142.gif"
-    # col1, col2, col3 = st.columns([1,1,0.5])
-    # with col1:
-    #     # Display the image
-    #     st.image(logo_image_path, width=80)
-    # with col2:
-    #     # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-    #     st.markdown("# :rainbow[eQUEST Utilities]")
-    # on = st.toggle("Select Theme")
-    # if on:
-    #     # set_dark_theme()
-    #     pass  # Do nothing
-    #     background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
-    # with col3:
-    #     # st.write(icon_with_tooltip1, unsafe_allow_html=True)
-    #     st.image("images/EDSlogo.jpg", width=120)
+    logo_url = "https://equest-utilities-edsglobal.streamlit.app/"
+    logo_image_path = "images/eQcb_142.gif"
+    col1, col2, col3 = st.columns([1,1,0.5])
+    with col1:
+        st.image(logo_image_path, width=80)
+    with col2:
+        # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
+        st.markdown("# :rainbow[eQUEST Utilities]")
+    on = st.toggle("Select Theme")
+    if on:
+        # set_dark_theme()
+        pass  # Do nothing
+        background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
+    with col3:
+        st.image("images/EDSlogo.jpg", width=120)
 
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
