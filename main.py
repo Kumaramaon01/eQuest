@@ -207,12 +207,11 @@ def main():
         # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
         st.markdown("# :rainbow[eQUEST Utilities]")
         
-    # on = st.toggle("Select Theme")
-    # if on:
+    on = st.toggle("Select Theme")
+    if on:
     #     # set_dark_theme()  # Call your function to set the dark theme
-    #     pass  # Do nothing
-    #     # Set your background image URL
-    #     background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
+        pass  # Do nothing
+        background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
     #     # Call the function to set the background
         # set_background(background_image_url)
     
