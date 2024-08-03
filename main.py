@@ -806,8 +806,8 @@ st.markdown(
         </div>
     </div>
     """.format(
-        st.image(left_logo_path, format='gif', use_column_width=True).decode('utf-8'),
-        st.image(right_logo_path, format='jpg', use_column_width=True).decode('utf-8')
+        st.image(left_logo_path, format='jpeg', use_column_width=True),
+        st.image(right_logo_path, format='jpeg', use_column_width=True)
     ),
     unsafe_allow_html=True
 )
