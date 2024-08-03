@@ -515,9 +515,10 @@ def main():
                 # st.success("OUTPUT: Check your working directory for the generated PDF files.")
        
     elif st.session_state.script_choice == "ask":
-        st.markdown("""
-        <h4 style="color:red;">🖥 Contact Us</h4>
-        """, unsafe_allow_html=True)
+        st.markdown("### :rainbow[Talk to Rajeev]")
+        # st.markdown("""
+        # <h4 style="color:red;">🖥 Talk to Rajeev</h4>
+        # """, unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
             email = st.text_input("Enter your mail:")
