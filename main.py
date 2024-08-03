@@ -415,22 +415,33 @@ def main():
                 sim_parserv01.main(uploaded_file)
                 
     elif st.session_state.script_choice == "login":
-        st.markdown("""
-        <h4 style="color:red;">🔒 Login</h4>
-        """, unsafe_allow_html=True)
-        # Create input fields for username and password
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
-    
-        # Login button
-        if st.button("Login"):
-            if username == "admin" and password == "password":
-                st.success("🎉 Logged in as {}".format(username))
-                # Add your main app logic here after successful login
-                st.write("Welcome to the app!")
-                st.balloons()
-            else:
-                st.error("❌ Incorrect username or password")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("""
+            <h4 style="color:red;">🔒 Login</h4>
+            """, unsafe_allow_html=True)
+            # Create input fields for username and password
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+        
+            # Login button
+            if st.button("Login"):
+                if username == "admin" and password == "password":
+                    st.success("🎉 Logged in as {}".format(username))
+                    # Add your main app logic here after successful login
+                    st.write("Welcome to the app!")
+                    st.balloons()
+                else:
+                    st.error("❌ Incorrect username or password")
+        with col2:
+            st_lottie(url,
+                  reverse=True,
+                  height=400,
+                  width=400,
+                  speed=1,
+                  loop=True,
+                  quality='high',
+                  )
                 
     elif st.session_state.script_choice == "reference":
         st.markdown("""
