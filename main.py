@@ -290,11 +290,12 @@ def main():
         """, unsafe_allow_html=True)
         
     elif st.session_state.script_choice == "eds":
+        st.markdown("""
+            <h4 style="color:red;">🌐 Overview</h4>
+        """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            <h4 style="color:red;">🌐 Overview</h4>
-    
             Environmental Design Solutions [EDS] is a sustainability advisory firm focusing on the built environment. Since its inception in 2002,
             EDS has worked on over 800 green building and energy efficiency projects worldwide. The diverse milieu of its team of experts converges on
             climate change mitigation policies, energy efficient building design, building code development, energy efficiency policy development, energy
