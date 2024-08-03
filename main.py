@@ -759,7 +759,7 @@ st.markdown(
             color: #0077b5; /* LinkedIn color as default */
         }
         .footer .icons a .fab {
-            font-size: 24px;
+            font-size: 28px;
         }
         .footer .additional-content {
             margin-top: 10px;
