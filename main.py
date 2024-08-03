@@ -493,7 +493,7 @@ def main():
                 }
             </style>
 
-            <h3 style="text-align: center; color: rainbow;">What People Say About Our Website</h3>
+            <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
             <div class="testimonial-container">
                 <div class="testimonial">
                     <h4>Robin Jain</h4>
