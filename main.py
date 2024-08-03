@@ -442,8 +442,8 @@ def main():
             # Display website views counter
             st.markdown("""
                 <!-- hitwebcounter Code START -->
-                <a href="#" target="_blank">
-                <img src="https://hitwebcounter.com/counter/counter.php?page=15322370&style=0019&nbdigits=5&type=page&initCount=65" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                                    
+                <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
+                <img src="https://hitwebcounter.com/counter/counter.php?page=15322498&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                                             
                 <!-- hitwebcounter Code END -->
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
