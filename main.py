@@ -744,7 +744,7 @@ st.markdown(
         }
         .footer .social-media p {
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;
         }
         .footer .icons {
             margin-top: 10px;
