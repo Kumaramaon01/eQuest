@@ -441,6 +441,7 @@ def main():
                     st.balloons()
                 else:
                     st.error("❌ Incorrect username or password")
+        <p align="left"> <img src="https://komarev.com/ghpvc/?username=Kumaramaon01&label=Profile%20views&color=fe428e&style=plastic" alt="Kumaramaon01" /></p>
         path = "Animation_blue_robo.json"
         with open(path, "r") as file:
             url = json.load(file)
