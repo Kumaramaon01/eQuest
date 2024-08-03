@@ -240,6 +240,11 @@ def main():
     with col3:
         # st.write(icon_with_tooltip1, unsafe_allow_html=True)
         st.image("images/EDSlogo.jpg", width=120)
+        st.markdown("""
+                <p align="left">
+                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Website%20views&color=fe428e&style=plastic" alt="RajK01" />
+                </p>
+                """, unsafe_allow_html=True)
 
     #Navigation bar with buttons below the header
     st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
@@ -444,7 +449,7 @@ def main():
                         # Display profile views badge
             st.markdown("""
                 <p align="left">
-                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Profile%20views&color=fe428e&style=plastic" alt="RajK01" />
+                    <img src="https://komarev.com/ghpvc/?username=RajK01&label=Website%20views&color=fe428e&style=plastic" alt="RajK01" />
                 </p>
                 """, unsafe_allow_html=True)
         path = "Animation_blue_robo.json"
