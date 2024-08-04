@@ -22,7 +22,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import json
 import streamlit.components.v1 as components
-import pyttsx3
 
 # Email credentials and recipient
 TO_EMAIL = "rajeev@edsglobal.com"
