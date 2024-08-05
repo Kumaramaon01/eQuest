@@ -441,7 +441,7 @@ def main():
                     max-width: 300px;
                     width: 100%;
                 }
-                .testimonial h4 {
+                .testimonial h5 {
                     margin: 0 0 10px;
                     color: green;
                 }
@@ -483,7 +483,7 @@ def main():
                     <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
                 </div>
                 <div class="testimonial">
-                    <h4>JMichael Brown, Energy Consultant (USA)</h4>
+                    <h5>JMichael Brown, Energy Consultant (USA)</h5>
                     <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
                 </div>
                 <div class="testimonial">
