@@ -560,7 +560,7 @@ def main():
                 st.success("Multi-file processing is coming soon. For now, use the EXE for batches.")
        
     elif st.session_state.script_choice == "ask":
-        st.markdown("### 📞:rainbow[Talk to Rajeev]")
+        st.markdown("#### 📞:rainbow[Contact Us]")
         col1, col2, col3 = st.columns(3)
         with col1:
             email = st.text_input("Enter your mail:")
