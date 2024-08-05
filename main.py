@@ -415,7 +415,7 @@ def main():
                   )
     
         with col3:
-            st.markdown("### :rainbow: :rainbow[Want to Know What Our Users Are Saying? Scroll Down]")
+            st.markdown("#### :rainbow: :rainbow[Want to Know What Our Users Are Saying? Scroll Down]")
         st.markdown("""
             <style>
                 .rainbow-text {
@@ -451,7 +451,7 @@ def main():
                 }
                 .testimonial p {
                     margin: 0;
-                    color: #666;
+                    color: black;
                 }
             </style>
             <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
