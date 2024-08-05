@@ -382,16 +382,6 @@ def main():
                 sim_parserv01.main(uploaded_file)
                 
     elif st.session_state.script_choice == "login":
-        # st.markdown("#### :rainbow[Website Visitors Count]")
-        with st.container():
-            st.markdown("#### :rainbow[Website Visitors Count]")
-            components.html("""
-                <p align="center">
-                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
-                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
-                    </a>
-                </p>
-            """, height=80)
         col1, col2, col3 = st.columns(3)
         with col1:
             st.markdown("""
@@ -426,6 +416,15 @@ def main():
     
         with col3:
             st.markdown("### :rainbow: :rainbow[Want to Know What Our Users Are Saying? Scroll Down]")
+        with st.container():
+            st.markdown("#### :rainbow[Website Visitors Count]")
+            components.html("""
+                <p align="center">
+                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
+                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+                    </a>
+                </p>
+            """, height=60)
             
         st.markdown("""
             <style>
