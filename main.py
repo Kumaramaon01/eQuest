@@ -457,29 +457,29 @@ def main():
             <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
             <div class="testimonial-container">
                 <div class="testimonial">
-                    <h4>Robin Jain</h4>
+                    <h5>Robin Jain</h4>
                     <p>This is the best eQUEST utility tool I have ever used. Highly recommended! The automation features are a game-changer.
                     I highly recommend eQuest Utilities for anyone serious about optimizing their eQUEST workflow.</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Yasir Iqbal</h4>
+                    <h5>Yasir Iqbal</h4>
                     <p>Amazing tools that save a lot of time and effort. Kudos to the team! Thanks Rajeev!! </p>
                 </div>
                 <div class="testimonial">
-                    <h4>Fareed Rahi</h4>
+                    <h5>Fareed Rahi</h4>
                     <p>The user interface is very intuitive and easy to use. Great job!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Mayank Bhatnagar</h4>
+                    <h5>Mayank Bhatnagar</h4>
                     <p>Fantastic support and great features. Worth every penny!</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Hisham Ahmad</h4>
+                    <h5>Hisham Ahmad</h4>
                     <p>Efficient and easy to navigate. This tool has made my work much easier. 
                     I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Ashraf Khan</h4>
+                    <h5>Ashraf Khan</h4>
                     <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
                 </div>
                 <div class="testimonial">
@@ -487,7 +487,7 @@ def main():
                     <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
                 </div>
                 <div class="testimonial">
-                    <h4>Md. Ahsan</h4>
+                    <h5>Md. Ahsan</h4>
                     <p>Exceptional tools and excellent customer service. eQuest Utilities has definitely exceeded my expectations.</p>
                 </div>
             </div>
