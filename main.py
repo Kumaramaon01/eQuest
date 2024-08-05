@@ -416,16 +416,6 @@ def main():
     
         with col3:
             st.markdown("### :rainbow: :rainbow[Want to Know What Our Users Are Saying? Scroll Down]")
-        with st.container():
-            st.markdown("#### :rainbow[Website Visitors Count]")
-            components.html("""
-                <p align="center">
-                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
-                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
-                    </a>
-                </p>
-            """, height=60)
-            
         st.markdown("""
             <style>
                 .rainbow-text {
@@ -502,6 +492,15 @@ def main():
                 </div>
             </div>
             """, unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### :rainbow[Website Visitors Count]")
+            components.html("""
+                <p align="center">
+                    <a href="https://equest-utilities-edsglobal.streamlit.app/" target="_blank">
+                        <img src="https://hitwebcounter.com/counter/counter.php?page=15322595&style=0019&nbdigits=5&type=ip&initCount=70" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+                    </a>
+                </p>
+            """, height=10)
        
     elif st.session_state.script_choice == "reference":
         st.markdown("""
