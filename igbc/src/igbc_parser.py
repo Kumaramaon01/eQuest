@@ -11,7 +11,7 @@ def get_HVAC_Zone_report(name, name1):
     end_marker = "Electric & Fuel Meters"
     
     # Define fixed headers
-    fixed_headers = ["WINDOW", "GLASS-TYPE", "FRAME-WIDTH", "X", "Y", "L", "W", "FRAME-CONDUCT"]
+    fixed_headers = ["WINDOW", "GLASS-TYPE", "FRAME-WIDTH", "X", "Y", "HEIGHT", "WIDTH", "FRAME-CONDUCT"]
     
     # Open the .inp file for reading
     with open(name) as f:
