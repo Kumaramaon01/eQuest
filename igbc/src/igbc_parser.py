@@ -42,25 +42,24 @@ def get_HVAC_Zone_report(name, name1):
                 if section == "WINDOW":
                     if current_values:
                         # Add current values to data before starting a new section
-                        if len(current_values) == len(fixed_headers) - 1:
-                            data.append([current_values.get(header, '') for header in fixed_headers])
-                    # Use the value before = as the first column
-                    current_values = {fixed_headers[0]: section}  # Set the WINDOW column
+                        data.append([current_values.get(header, '') for header in fixed_headers])
+                    # Start a new section
+                    current_values = {fixed_headers[0]: value}  # Set the WINDOW column
                 else:
                     if section in fixed_headers:
                         current_values[section] = value
             elif line.endswith('..') and current_values:
                 # Save the last section data
-                if len(current_values) == len(fixed_headers) - 1:
-                    data.append([current_values.get(header, '') for header in fixed_headers])
+                data.append([current_values.get(header, '') for header in fixed_headers])
                 current_values = {}
     
     # Convert collected data into a DataFrame
     df1 = pd.DataFrame(data, columns=fixed_headers)
+
     start_marker1 = "Glass Types"
     end_marker1 = "Window Layers"
 
-    # Open the .inp file for reading
+    # Open the .inp file for reading again
     with open(name) as f:
         # Read each line of the file
         flist = f.readlines()
@@ -84,14 +83,13 @@ def get_HVAC_Zone_report(name, name1):
                 if value:
                     window_values1.append(value)
 
-    # Create a DataFrame with only the WINDOW column
+    # Create a DataFrame with only the GLASS-TYPE column
     vlt = None
     gl_type = pd.DataFrame(window_values1, columns=["GLASS-TYPE"])
     if gl_type.empty:
         vlt = "38%"
     else:
         vlt = "20%"
-
 
     # Initialize variables
     in_section = False
@@ -129,8 +127,8 @@ def get_HVAC_Zone_report(name, name1):
 
     # Insert the new column at the second position (index 1)
     df1.insert(1, 'Type of Window', df1.pop('Type of Window'))
-    # Now read sim file
 
+    ##########################################   READ SIM FILE NOW   ##########################################
     # Open the file named 'name' and read its contents
     with open(name1) as f:
         # Read all lines from the file and store them in a list named flist
