@@ -40,7 +40,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
         # Convert DataFrame to CSV string
         csv1 = get_report1.to_csv(index=False)
         st.download_button(
-            label="Download Report 1",
+            label="Download Report",
             data=csv1,
             file_name='report1.csv',
             mime='text/csv'
@@ -68,7 +68,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
         # Convert DataFrame to CSV string
         csv2 = get_report2.to_csv(index=False)
         st.download_button(
-            label="Download Report 2",
+            label="Download Report",
             data=csv2,
             file_name='report2.csv',
             mime='text/csv'
