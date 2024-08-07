@@ -49,7 +49,7 @@ def getINPSimFiles(input_simp_path, input_simb_path):
         st.info("Data Not found for Report 1!")
     
     if get_report2 is not None:
-        st.markdown(f"""<h7 style="color:green;">🏡 Table representing regularly occupied spaces Meet or Exceed the critaria</h7>""", unsafe_allow_html=True)
+        st.markdown(f"""<h7 style="color:green;">🏡 Table representing Daylight and regularly occupied spaces Meet or Exceed the critaria</h7>""", unsafe_allow_html=True)
         # Apply conditional formatting
         def color_cells(val):
             if val == 'YES':
