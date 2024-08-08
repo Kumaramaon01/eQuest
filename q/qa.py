@@ -1964,34 +1964,32 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
         ############################################# LVD ###############################################
         st.markdown(f"""<h6 style="color:red;">🔴 TABLE HAVING Wall, Roof, Glazing U-Value and WWR </h6>""", unsafe_allow_html=True)
-        # the two dfs are lvd_summary_p and lvd_summary_b
+        # The two dfs are lvd_summary_p and lvd_summary_b
         if lvd_summary_p.empty and lvd_summary_b.empty:
             st.markdown("""<p><strong>Note:</strong> No data found for Wall, Roof, Glazing U-Value and WWR.</p>""", unsafe_allow_html=True)
         else:
-            col1, col2 = st.columns(2)
-            with col1:
-                st.markdown(f"""<h7 style="color:red;">🔵 Proposed Table </h7>""", unsafe_allow_html=True)
-                # st.write(lvd_summary_p)
-                data = {
-                    "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
-                    "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
-                    "Proposed Design": ["", "", "", "", ""],
-                    "Baseline Design": ["", "", "", "", ""]
-                }
-                df = pd.DataFrame(data)
-                st.dataframe(df)
-
-            with col2:
-                st.markdown(f"""<h7 style="color:red;">🔵 Baseline Table </h7>""", unsafe_allow_html=True)
-                # st.write(lvd_summary_b)
-                data = {
-                    "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
-                    "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
-                    "Proposed Design": ["", "", "", "", ""],
-                    "Baseline Design": ["", "", "", "", ""]
-                }
-                df = pd.DataFrame(data)
-                st.dataframe(df)
+            st.markdown(f"""<h7 style="color:red;">🔵 Proposed and Baseline Table </h7>""", unsafe_allow_html=True)
+            data = {
+                "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
+                "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
+                "Proposed Design": ["", "", "", "", ""],
+                "Baseline Design": ["", "", "", "", ""]
+            }
+            df = pd.DataFrame(data)
+            for idx, row in df.iterrows():
+                if row["Component"] == "Wall":
+                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                elif row["Component"] == "Roof":
+                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                elif row["Component"] == "Fenestration" and row["Units"] != "SHGC":
+                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
+                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
+                elif row["Component"] == "Window to Wall Ratio":
+                    df.at[idx, "Proposed Design"] = round(pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0]) / pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0]),2)
+                    df.at[idx, "Baseline Design"] = round(pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0]) / pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0]),2)
+            st.dataframe(df)
         
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
