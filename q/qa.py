@@ -6,6 +6,97 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
+def get_lvd_Psummary(name):
+    try:
+        with open(name) as f:
+            flist = f.readlines()
+    
+            lvd_count = [] 
+            for num, line in enumerate(flist, 0):
+                if 'LV-D' in line:
+                    lvd_count.append(num)
+                if 'LV-E' in line:
+                    numend = num
+            numstart = lvd_count[0] 
+            lvd_rpt = flist[numstart:numend]
+            
+            lvd_str = []
+            for line in lvd_rpt:
+                if ('NORTH' in line  or 'SOUTH' in line or 'NORTH-EAST' in line or 'EAST' in line
+                    or 'NORTH-WEST' in line  or 'SOUTH-WEST' in line or 'SOUTH-EAST' in line or 'WEST' in line
+                    or "ROOF" in line or 'UNDERGRND' in line or 'ALL WALLS' in line or 'BUILDING' in line or 
+                    'WALLS+ROOFS' in line):
+                    lvd_str.append(line)
+                    
+            result = []  
+            for line in lvd_str:
+                lvd_list = []
+                splitter = line.split()
+                space_name = " ".join(splitter[:-6])
+                lvd_list=splitter[-6:]
+                lvd_list.insert(0,space_name)
+                result.append(lvd_list)
+            
+            # converting result to dataframe.
+            lvd_summ = pd.DataFrame(result) 
+            # allot with column names
+            lvd_summ.columns = ['AZIMUTH', 'AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)', 'AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)', 'AVERAGE U-VALUE(WALLS+WINDOWS)(BTU/HR-SQFT-F)', 
+                              'WINDOW(AREA)(SQFT)', 'WALL(AREA)(SQFT)', 'WINDOW+WALL(AREA)(SQFT)']
+            lvd_summ = lvd_summ[pd.to_numeric(lvd_summ['WINDOW+WALL(AREA)(SQFT)'], errors='coerce').notna()]
+            
+            
+        return lvd_summ
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        columns = ['AZIMUTH', 'AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)', 'AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)', 'AVERAGE U-VALUE(WALLS+WINDOWS)(BTU/HR-SQFT-F)', 
+                              'WINDOW(AREA)(SQFT)', 'WALL(AREA)(SQFT)', 'WINDOW+WALL(AREA)(SQFT)']
+        return pd.DataFrame(columns=columns)
+
+def get_lvd_Bsummary(name):
+    try:
+        with open(name) as f:
+            flist = f.readlines()
+    
+            lvd_count = [] 
+            for num, line in enumerate(flist, 0):
+                if 'LV-D' in line:
+                    lvd_count.append(num)
+                if 'LV-E' in line:
+                    numend = num
+            numstart = lvd_count[0] 
+            lvd_rpt = flist[numstart:numend]
+            
+            lvd_str = []
+            for line in lvd_rpt:
+                if ('NORTH' in line  or 'SOUTH' in line or 'NORTH-EAST' in line or 'EAST' in line
+                    or 'NORTH-WEST' in line  or 'SOUTH-WEST' in line or 'SOUTH-EAST' in line or 'WEST' in line
+                    or "ROOF" in line or 'UNDERGRND' in line or 'ALL WALLS' in line or 'BUILDING' in line or 
+                    'WALLS+ROOFS' in line):
+                    lvd_str.append(line)
+                    
+            result = []  
+            for line in lvd_str:
+                lvd_list = []
+                splitter = line.split()
+                space_name = " ".join(splitter[:-6])
+                lvd_list=splitter[-6:]
+                lvd_list.insert(0,space_name)
+                result.append(lvd_list)
+            
+            # converting result to dataframe.
+            lvd_summ = pd.DataFrame(result) 
+            # allot with column names
+            lvd_summ.columns = ['AZIMUTH', 'AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)', 'AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)', 'AVERAGE U-VALUE(WALLS+WINDOWS)(BTU/HR-SQFT-F)', 
+                              'WINDOW(AREA)(SQFT)', 'WALL(AREA)(SQFT)', 'WINDOW+WALL(AREA)(SQFT)']
+            lvd_summ = lvd_summ[pd.to_numeric(lvd_summ['WINDOW+WALL(AREA)(SQFT)'], errors='coerce').notna()]
+            
+        return lvd_summ
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        columns = ['AZIMUTH', 'AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)', 'AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)', 'AVERAGE U-VALUE(WALLS+WINDOWS)(BTU/HR-SQFT-F)', 
+                              'WINDOW(AREA)(SQFT)', 'WALL(AREA)(SQFT)', 'WINDOW+WALL(AREA)(SQFT)']
+        return pd.DataFrame(columns=columns)
+
 def getTwoSimFiles(input_simp_path, input_simb_path):
     if input_simp_path is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
@@ -25,6 +116,12 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         
     sim_p_path = sim_p_path.replace('\n', '\r\n')
     sim_b_path = sim_b_path.replace('\n', '\r\n')
+
+    lvd_summary_p = get_lvd_Psummary(sim_p_path)
+    lvd_summary_b = get_lvd_Bsummary(sim_b_path)
+    # st.write(lvd_summary_p)
+    # st.write(lvd_summary_b)
+
     # if st.button("Based on Metering"):
     #     prop_data = psf.get_PSF_report_Prop(sim_p_path)
     #     base_data = psf.get_PSF_report_Base(sim_b_path)
@@ -1857,6 +1954,45 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
         else:
             st.write(data_mbtu)
             
+        # Adding a dotted line using HTML and CSS
+        st.markdown(
+            """
+            <hr style="border: none; border-top: 2px dotted #bbb; margin: 20px 0;">
+            """,
+            unsafe_allow_html=True
+        )
+
+        ############################################# LVD ###############################################
+        st.markdown(f"""<h6 style="color:red;">🔴 TABLE HAVING Wall, Roof, Glazing U-Value and WWR </h6>""", unsafe_allow_html=True)
+        # the two dfs are lvd_summary_p and lvd_summary_b
+        if lvd_summary_p.empty and lvd_summary_b.empty:
+            st.markdown("""<p><strong>Note:</strong> No data found for Wall, Roof, Glazing U-Value and WWR.</p>""", unsafe_allow_html=True)
+        else:
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown(f"""<h7 style="color:red;">🔵 Proposed Table </h7>""", unsafe_allow_html=True)
+                # st.write(lvd_summary_p)
+                data = {
+                    "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
+                    "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
+                    "Proposed Design": ["", "", "", "", ""],
+                    "Baseline Design": ["", "", "", "", ""]
+                }
+                df = pd.DataFrame(data)
+                st.dataframe(df)
+
+            with col2:
+                st.markdown(f"""<h7 style="color:red;">🔵 Baseline Table </h7>""", unsafe_allow_html=True)
+                # st.write(lvd_summary_b)
+                data = {
+                    "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
+                    "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
+                    "Proposed Design": ["", "", "", "", ""],
+                    "Baseline Design": ["", "", "", "", ""]
+                }
+                df = pd.DataFrame(data)
+                st.dataframe(df)
+        
         if prop_data is None or base_data is None:
             st.error("Error: Failed to retrieve simulation data.")
             return
