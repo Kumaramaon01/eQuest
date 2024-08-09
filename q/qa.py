@@ -1987,12 +1987,17 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
                     df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
                 elif row["Component"] == "Window to Wall Ratio":
+                    # For Proposed Design
                     window_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
                     window_wall_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
-                    df.at[idx, "Proposed Design"] = round((window_area_p * 100) / window_wall_area_p, 2)
+                    proposed_percentage = round((window_area_p * 100) / window_wall_area_p, 2)
+                    df.at[idx, "Proposed Design"] = f"{proposed_percentage}%"
+                
+                    # For Baseline Design
                     window_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
                     window_wall_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
-                    df.at[idx, "Baseline Design"] = round((window_area_b * 100) / window_wall_area_b, 2)
+                    baseline_percentage = round((window_area_b * 100) / window_wall_area_b, 2)
+                    df.at[idx, "Baseline Design"] = f"{baseline_percentage}%"
             st.dataframe(df)
         
         if prop_data is None or base_data is None:
