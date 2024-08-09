@@ -1322,684 +1322,677 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
 
         ################################################## MASTER TABLE ##############################################
-        
-        st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVING SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
-        # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
-        if data_kwh_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
-        else:
-            data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
-            # Extract the last column values
-            last_column_values = data_kwh_sum1.iloc[:, -1].values
-            # Unpack the values into separate variables
-            kw_proposed_total, kwh_proposed_total, kw_baseline_total, kwh_baseline_total = last_column_values
-            
-            # Step 2: Define the new empty row (NaN values)
-            empty_row = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_kwh_sum1.iloc[:2]       # Up to the second row
-            df_part2 = data_kwh_sum1.iloc[2:]       # From the third row onward
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_kwh_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
-            
-            empty_row1 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
-            df_part1 = data_kwh_sum1.iloc[:5]
-            data_kwh_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_kwh_sum1.columns}
-            new_row[data_kwh_sum1.columns[0]] = "% Contribution"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            new_row = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_kwh_sum1.columns[3:]:
-                if kwh_proposed_total != 0:
-                    new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
-                elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] == 0:
-                    new_row[col] = '0.0%'
-                elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] != 0:
-                    new_row[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-            
-            new_row1 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_kwh_sum1.columns[3:]:
-                if kwh_baseline_total != 0:
-                    new_row1[col] = f'{round(data_kwh_sum1[col].iloc[4]*100 / kwh_baseline_total,1)}%'
-                elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] == 0:
-                    new_row1[col] = '0.0%'
-                elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] != 0:
-                    new_row1[col] = '-'
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row1])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            # Step 2: Define the new empty row (NaN values)
-            empty_row2 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_kwh_sum1.iloc[:9]       # Up to the second row
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_kwh_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_kwh_sum1.columns}
-            new_row[data_kwh_sum1.columns[0]] = "% Savings"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            new_row0 = {
-                'Filename': 'Energy',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_kwh_sum1.columns[3:]:
-                if data_kwh_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
-                    new_row0[col] = f'{round((1 - (data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[4]))*100,1)}%'
-                elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] == 0:
-                    new_row0[col] = '100.0%'
-                elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] != 0:
-                    new_row0[col] = '-'
-            
-            new_row_df = pd.DataFrame([new_row0])
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-            new_row00 = {
-                'Filename': 'Demand',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_kwh_sum1.columns[3:]:
-                if data_kwh_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
-                    new_row00[col] = f'{round((1 - (data_kwh_sum1[col].iloc[0] / data_kwh_sum1[col].iloc[3]))*100,1)}%'
-                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[3] == 0:
-                    new_row00[col] = '100.0%'
-                elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[0] != 0:
-                    new_row00[col] = '-'
-            
-            new_row_df = pd.DataFrame([new_row00])
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            empty_row3 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
-            df_part1 = data_kwh_sum1.iloc[:13] # upto 13 rows
-            data_kwh_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_kwh_sum1.columns}
-            new_row[data_kwh_sum1.columns[0]] = "EFLH"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            new_row2 = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_kwh_sum1.columns[3:]:
-                if data_kwh_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
-                    new_row2[col] = round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0], 1)
-                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] == 0:
-                    new_row2[col] = '0.0'
-                elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] != 0:
-                    new_row2[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row2])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            new_row3 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_kwh_sum1.columns[3:]:
-                if data_kwh_sum1[col].iloc[3] != 0:
-                    new_row3[col] = round(data_kwh_sum1[col].iloc[4] / data_kwh_sum1[col].iloc[3], 1)
-                elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[4] == 0:
-                    new_row3[col] = '0.0'
-                elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[4] != 0:
-                    new_row3[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row3])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-
-            new_row4 = {
-                'Filename': '% Difference',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_kwh_sum1.columns[3:]:
-                try:
-                    # Ensure the values are numeric
-                    val_16 = float(data_kwh_sum1[col].iloc[16])
-                    val_15 = float(data_kwh_sum1[col].iloc[15])
-                    
-                    if val_16 != 0:
-                        new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
-                    elif val_16 == 0 and val_15 == 0:
-                        new_row4[col] = '100.0%'
-                    elif val_16 == 0 and val_15 != 0:
-                        new_row4[col] = '-'
-                except ValueError:
-                    new_row4[col] = 'Invalid data'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row4])
-            data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
-            st.write(data_kwh_sum1)
-
-        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
-        # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-        if data_therm_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-        else:
-            data_therm_sum1 = data_therm.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
-            # Extract the last column values
-            last_column_values = data_therm_sum1.iloc[:, -1].values
-            # Unpack the values into separate variables
-            therm_proposed_total, thermhr_proposed_total, therm_baseline_total, thermhr_baseline_total = last_column_values
-            
-            # Step 2: Define the new empty row (NaN values)
-            empty_row = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_therm_sum1.iloc[:2]       # Up to the second row
-            df_part2 = data_therm_sum1.iloc[2:]       # From the third row onward
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_therm_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
-            
-            empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
-            df_part1 = data_therm_sum1.iloc[:5]
-            data_therm_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_therm_sum1.columns}
-            new_row[data_therm_sum1.columns[0]] = "% Contribution"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            new_row = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_therm_sum1.columns[3:]:
-                if thermhr_proposed_total != 0:
-                    new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
-                elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] == 0:
-                    new_row[col] = '0.0%'
-                elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] != 0:
-                    new_row[col] = '-'
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-            new_row1 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_therm_sum1.columns[3:]:
-                if thermhr_baseline_total != 0:
-                    new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
-                elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] == 0:
-                    new_row1[col] = '0.0%'
-                elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] != 0:
-                    new_row1[col] = '-'
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row1])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            # Step 2: Define the new empty row (NaN values)
-            empty_row2 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_therm_sum1.iloc[:9]       # Up to the second row
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_therm_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_therm_sum1.columns}
-            new_row[data_therm_sum1.columns[0]] = "% Savings"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            new_row0 = {
-                'Filename': 'Energy',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
-                    new_row0[col] = f'{round((1 - (data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[4])) * 100, 1)}%'
-                elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[1] == 0:
-                    new_row0[col] = '100.0%'
-                elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[1] != 0:
-                    new_row0[col] = '-'
-
-            new_row_df = pd.DataFrame([new_row0])
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-            new_row00 = {
-                'Filename': 'Demand',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
-                    new_row00[col] = f'{round((1 - (data_therm_sum1[col].iloc[0] / data_therm_sum1[col].iloc[3]))*100,1)}%'
-                elif data_therm_sum1[col].iloc[3] == 0 and data_therm_sum1[col].iloc[0] == 0:
-                    new_row00[col] = '100.0%'
-                elif data_therm_sum1[col].iloc[3] == 0 and data_therm_sum1[col].iloc[0] != 0:
-                    new_row00[col] = '-'
-            
-            new_row_df = pd.DataFrame([new_row00])
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            empty_row3 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
-            df_part1 = data_therm_sum1.iloc[:13] # upto 13 rows
-            data_therm_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_therm_sum1.columns}
-            new_row[data_therm_sum1.columns[0]] = "EFLH"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            new_row2 = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
-                    new_row2[col] = round(data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[0], 1)
-                elif data_therm_sum1[col].iloc[1] == 0 and data_therm_sum1[col].iloc[0] == 0:
-                    new_row2[col] = '0.0'
-                elif data_therm_sum1[col].iloc[1] != 0 and data_therm_sum1[col].iloc[0] == 0:
-                    new_row2[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row2])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            new_row3 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_therm_sum1.columns[3:]:
-                if data_therm_sum1[col].iloc[3] != 0:
-                    new_row3[col] = round(data_therm_sum1[col].iloc[4] / data_therm_sum1[col].iloc[3],1)
-                elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[3] == 0:
-                    new_row3[col] = '0.0'
-                elif data_therm_sum1[col].iloc[4] != 0 and data_therm_sum1[col].iloc[3] == 0:
-                    new_row3[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row3])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-
-            new_row4 = {
-                'Filename': '% Difference',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_therm_sum1.columns[3:]:
-                try:
-                    # Ensure the values are numeric
-                    val_16 = float(data_therm_sum1[col].iloc[16])
-                    val_15 = float(data_therm_sum1[col].iloc[15])
-                    
-                    if val_16 != 0:
-                        new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
-                    elif val_16 == 0 and val_15 == 0:
-                        new_row4[col] = '100.0%'
-                    elif val_16 == 0 and val_15 != 0:
-                        new_row4[col] = '-'
-                except ValueError:
-                    new_row4[col] = 'Invalid data'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row4])
-            data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
-            st.write(data_therm_sum1)
-        
-        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
-         # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
-        if data_mbtu_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-        else:
-            data_mbtu_sum1 = data_mbtu.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
-            # Extract the last column values
-            last_column_values = data_mbtu_sum1.iloc[:, -1].values
-            # Unpack the values into separate variables
-            mbtu_proposed_total, mbtuhr_proposed_total, mbtu_baseline_total, mbtuhr_baseline_total = last_column_values
-            
-            # Step 2: Define the new empty row (NaN values)
-            empty_row = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_mbtu_sum1.iloc[:2]       # Up to the second row
-            df_part2 = data_mbtu_sum1.iloc[2:]       # From the third row onward
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_mbtu_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
-            
-            empty_row1 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
-            df_part1 = data_mbtu_sum1.iloc[:5]
-            data_mbtu_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_mbtu_sum1.columns}
-            new_row[data_mbtu_sum1.columns[0]] = "% Contribution"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            new_row = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_mbtu_sum1.columns[3:]:
-                if mbtuhr_proposed_total != 0:
-                    new_row[col] = f'{round(data_mbtu_sum1[col].iloc[1]*100 / mbtuhr_proposed_total,1)}%'
-                elif mbtuhr_proposed_total == 0 and data_mbtu_sum1[col].iloc[1] == 0:
-                    new_row[col] = '0.0%'
-                elif data_mbtu_sum1[col].iloc[1] != 0 and mbtuhr_proposed_total == 0:
-                    new_row[col] = '-'
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-            new_row1 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_mbtu_sum1.columns[3:]:
-                if mbtuhr_baseline_total != 0:
-                    new_row1[col] = f'{round(data_mbtu_sum1[col].iloc[4]*100 / mbtuhr_baseline_total,1)}%'
-                elif mbtuhr_baseline_total == 0 and data_mbtu_sum1[col].iloc[4] == 0:
-                    new_row1[col] = '0.0%'
-                elif data_mbtu_sum1[col].iloc[4] != 0 and mbtuhr_baseline_total == 0:
-                    new_row1[col] = '-'
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row1])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            # Step 2: Define the new empty row (NaN values)
-            empty_row2 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
-            # Step 3: Split the DataFrame and insert the new empty row
-            df_part1 = data_mbtu_sum1.iloc[:9]       # Up to the second row
-
-            # Step 4: Concatenate the parts to form the final DataFrame
-            data_mbtu_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_mbtu_sum1.columns}
-            new_row[data_mbtu_sum1.columns[0]] = "% Savings"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            new_row0 = {
-                'Filename': 'Energy',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_mbtu_sum1.columns[3:]:
-                if data_mbtu_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
-                    new_row0[col] = f'{round((1 - (data_mbtu_sum1[col].iloc[1] / data_mbtu_sum1[col].iloc[4]))*100,1)}%'
-                elif data_mbtu_sum1[col].iloc[4] == 0 and data_mbtu_sum1[col].iloc[1] == 0:
-                    new_row0[col] = '100.0%'
-                elif data_mbtu_sum1[col].iloc[4] == 0 and data_mbtu_sum1[col].iloc[1] != 0:
-                # else:
-                    new_row0[col] = '-'
-            
-            new_row_df = pd.DataFrame([new_row0])
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-            new_row00 = {
-                'Filename': 'Demand',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_mbtu_sum1.columns[3:]:
-                if data_mbtu_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
-                    new_row00[col] = f'{round((1 - (data_mbtu_sum1[col].iloc[0] / data_mbtu_sum1[col].iloc[3]))*100,1)}%'
-                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[0] == 0:
-                    new_row00[col] = '100.0%'
-                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[0] != 0:
-                # else:
-                    new_row00[col] = '-'
-            
-            new_row_df = pd.DataFrame([new_row00])
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            empty_row3 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
-            df_part1 = data_mbtu_sum1.iloc[:13] # upto 13 rows
-            data_mbtu_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
-
-            # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
-            new_row = {col: '' for col in data_mbtu_sum1.columns}
-            new_row[data_mbtu_sum1.columns[0]] = "EFLH"
-            
-            # Convert the new row to a DataFrame
-            new_row_df = pd.DataFrame([new_row])
-            
-            # Step 3: Append the new row to the DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            new_row2 = {
-                'Filename': 'Proposed',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_mbtu_sum1.columns[3:]:
-                if data_mbtu_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
-                    new_row2[col] = round(data_mbtu_sum1[col].iloc[1] / data_mbtu_sum1[col].iloc[0], 1)
-                elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] == 0:
-                    new_row2[col] = '0.0'
-                elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] != 0:
-                    new_row2[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row2])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            new_row3 = {
-                'Filename': 'Baseline',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-            for col in data_mbtu_sum1.columns[3:]:
-                if data_mbtu_sum1[col].iloc[3] != 0:
-                    new_row3[col] = round(data_mbtu_sum1[col].iloc[4] / data_mbtu_sum1[col].iloc[3],1)
-                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] == 0:
-                    new_row3[col] = '0.0'
-                elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] != 0:
-                    new_row3[col] = '-'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row3])
-            # Concatenate the new row DataFrame with the existing DataFrame
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-
-            new_row4 = {
-                'Filename': '% Difference',  
-                'UNIT': '', 
-                'Meterings': ''
-            }
-
-            for col in data_mbtu_sum1.columns[3:]:
-                try:
-                    # Ensure the values are numeric
-                    val_16 = float(data_mbtu_sum1[col].iloc[16])
-                    val_15 = float(data_mbtu_sum1[col].iloc[15])
-                    
-                    if val_16 != 0:
-                        new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
-                    elif val_16 == 0 and val_15 == 0:
-                        new_row4[col] = '100.0%'
-                    elif val_16 == 0 and val_15 != 0:
-                        new_row4[col] = '-'
-                except ValueError:
-                    new_row4[col] = 'Invalid data'
-            
-            # Create a DataFrame from the new row
-            new_row_df = pd.DataFrame([new_row4])
-            data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
-            st.write(data_mbtu_sum1)
-            
-        ###############################################################################################################
-        ################################################## Other Tables ###############################################
-        ###############################################################################################################
-
-        st.markdown(f"""<h6 style="color:red;">🔴 ENERGY SAVINGS AND DEMAND SAVINGS (in %) </h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
-        
-        # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
-        if data_kwh_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
-        else:
-            st.write(data_kwh_sum)
-            
-        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
-        # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
-        if data_therm_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-        else:
-            st.write(data_therm_sum)
-        
-        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
-         # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
-        if data_mbtu_sum.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-        else:
-            st.write(data_mbtu_sum)
-
-        ############################################# PSF ###############################################
-        
-        st.markdown(f"""<h6 style="color:red;">🔴 PS-F TABLE FOR ALL UNITS AND ALL METERS</h6>""", unsafe_allow_html=True)
-        st.markdown(f"""<h7 style="color:blue;">🔵 kWH & kW</h7>""", unsafe_allow_html=True)
-
-        if data_kwh.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for kWH.</p>""", unsafe_allow_html=True)
-            # st.info("No data found for KWH & KW")
-        else:
-            st.write(data_kwh)
-        
-        st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
-        if data_therm.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
-            # st.info("No data found for THERM & MAX THERM/HR")
-        else:
-            st.write(data_therm)
-
-        st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
-        if data_mbtu.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
-            # st.info("No data found for MBTU & MAX MBTU/HR")
-        else:
-            st.write(data_mbtu)
-            
-        # Adding a dotted line using HTML and CSS
-        st.markdown(
-            """
-            <hr style="border: none; border-top: 2px dotted #bbb; margin: 20px 0;">
-            """,
-            unsafe_allow_html=True
-        )
-
-        ############################################# LVD ###############################################
-        st.markdown(f"""<h6 style="color:red;">🔴 TABLE HAVING Wall, Roof, Glazing U-Value and WWR </h6>""", unsafe_allow_html=True)
-        # The two dfs are lvd_summary_p and lvd_summary_b
-        if lvd_summary_p.empty and lvd_summary_b.empty:
-            st.markdown("""<p><strong>Note:</strong> No data found for Wall, Roof, Glazing U-Value and WWR.</p>""", unsafe_allow_html=True)
-        else:
-            st.markdown(f"""<h7 style="color:red;">🔵 Proposed and Baseline Table </h7>""", unsafe_allow_html=True)
-            data = {
-                "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
-                "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
-                "Proposed Design": ["", "", "", "", ""],
-                "Baseline Design": ["", "", "", "", ""]
-            }
-            df = pd.DataFrame(data)
-            for idx, row in df.iterrows():
-                if row["Component"] == "Wall":
-                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
-                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
-                elif row["Component"] == "Roof":
-                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
-                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
-                elif row["Component"] == "Fenestration" and row["Units"] != "SHGC":
-                    df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
-                    df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
-                elif row["Component"] == "Window to Wall Ratio":
-                    # For Proposed Design
-                    window_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
-                    window_wall_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
-                    proposed_percentage = round((window_area_p * 100) / window_wall_area_p, 2)
-                    df.at[idx, "Proposed Design"] = f"{proposed_percentage}%"
+        with st.expander("Explore Tables"):
+            st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVING SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
+            # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+            if data_kwh_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
+            else:
+                data_kwh_sum1 = data_kwh.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+                # Extract the last column values
+                last_column_values = data_kwh_sum1.iloc[:, -1].values
+                # Unpack the values into separate variables
+                kw_proposed_total, kwh_proposed_total, kw_baseline_total, kwh_baseline_total = last_column_values
                 
-                    # For Baseline Design
-                    window_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
-                    window_wall_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
-                    baseline_percentage = round((window_area_b * 100) / window_wall_area_b, 2)
-                    df.at[idx, "Baseline Design"] = f"{baseline_percentage}%"
-            st.dataframe(df)
+                # Step 2: Define the new empty row (NaN values)
+                empty_row = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_kwh_sum1.iloc[:2]       # Up to the second row
+                df_part2 = data_kwh_sum1.iloc[2:]       # From the third row onward
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_kwh_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
+                
+                empty_row1 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+                df_part1 = data_kwh_sum1.iloc[:5]
+                data_kwh_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_kwh_sum1.columns}
+                new_row[data_kwh_sum1.columns[0]] = "% Contribution"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                new_row = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_kwh_sum1.columns[3:]:
+                    if kwh_proposed_total != 0:
+                        new_row[col] = f'{round(data_kwh_sum1[col].iloc[1]*100 / kwh_proposed_total,1)}%'
+                    elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] == 0:
+                        new_row[col] = '0.0%'
+                    elif kwh_proposed_total == 0 and data_kwh_sum1[col].iloc[1] != 0:
+                        new_row[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+                
+                new_row1 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_kwh_sum1.columns[3:]:
+                    if kwh_baseline_total != 0:
+                        new_row1[col] = f'{round(data_kwh_sum1[col].iloc[4]*100 / kwh_baseline_total,1)}%'
+                    elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] == 0:
+                        new_row1[col] = '0.0%'
+                    elif kwh_baseline_total == 0 and data_kwh_sum1[col].iloc[4] != 0:
+                        new_row1[col] = '-'
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row1])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                # Step 2: Define the new empty row (NaN values)
+                empty_row2 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_kwh_sum1.iloc[:9]       # Up to the second row
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_kwh_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_kwh_sum1.columns}
+                new_row[data_kwh_sum1.columns[0]] = "% Savings"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                new_row0 = {
+                    'Filename': 'Energy',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_kwh_sum1.columns[3:]:
+                    if data_kwh_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
+                        new_row0[col] = f'{round((1 - (data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[4]))*100,1)}%'
+                    elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] == 0:
+                        new_row0[col] = '100.0%'
+                    elif data_kwh_sum1[col].iloc[4] == 0 and data_kwh_sum1[col].iloc[1] != 0:
+                        new_row0[col] = '-'
+                
+                new_row_df = pd.DataFrame([new_row0])
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+                new_row00 = {
+                    'Filename': 'Demand',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_kwh_sum1.columns[3:]:
+                    if data_kwh_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
+                        new_row00[col] = f'{round((1 - (data_kwh_sum1[col].iloc[0] / data_kwh_sum1[col].iloc[3]))*100,1)}%'
+                    elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[3] == 0:
+                        new_row00[col] = '100.0%'
+                    elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[0] != 0:
+                        new_row00[col] = '-'
+                
+                new_row_df = pd.DataFrame([new_row00])
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                empty_row3 = pd.DataFrame([['']*data_kwh_sum1.shape[1]], columns=data_kwh_sum1.columns)
+                df_part1 = data_kwh_sum1.iloc[:13] # upto 13 rows
+                data_kwh_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_kwh_sum1.columns}
+                new_row[data_kwh_sum1.columns[0]] = "EFLH"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                new_row2 = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_kwh_sum1.columns[3:]:
+                    if data_kwh_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
+                        new_row2[col] = round(data_kwh_sum1[col].iloc[1] / data_kwh_sum1[col].iloc[0], 1)
+                    elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] == 0:
+                        new_row2[col] = '0.0'
+                    elif data_kwh_sum1[col].iloc[0] == 0 and data_kwh_sum1[col].iloc[1] != 0:
+                        new_row2[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row2])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                new_row3 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_kwh_sum1.columns[3:]:
+                    if data_kwh_sum1[col].iloc[3] != 0:
+                        new_row3[col] = round(data_kwh_sum1[col].iloc[4] / data_kwh_sum1[col].iloc[3], 1)
+                    elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[4] == 0:
+                        new_row3[col] = '0.0'
+                    elif data_kwh_sum1[col].iloc[3] == 0 and data_kwh_sum1[col].iloc[4] != 0:
+                        new_row3[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row3])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+    
+                new_row4 = {
+                    'Filename': '% Difference',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_kwh_sum1.columns[3:]:
+                    try:
+                        # Ensure the values are numeric
+                        val_16 = float(data_kwh_sum1[col].iloc[16])
+                        val_15 = float(data_kwh_sum1[col].iloc[15])
+                        
+                        if val_16 != 0:
+                            new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
+                        elif val_16 == 0 and val_15 == 0:
+                            new_row4[col] = '100.0%'
+                        elif val_16 == 0 and val_15 != 0:
+                            new_row4[col] = '-'
+                    except ValueError:
+                        new_row4[col] = 'Invalid data'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row4])
+                data_kwh_sum1 = pd.concat([data_kwh_sum1, new_row_df], ignore_index=True)
+                st.write(data_kwh_sum1)
+    
+            st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
+            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+            if data_therm_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+            else:
+                data_therm_sum1 = data_therm.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+                # Extract the last column values
+                last_column_values = data_therm_sum1.iloc[:, -1].values
+                # Unpack the values into separate variables
+                therm_proposed_total, thermhr_proposed_total, therm_baseline_total, thermhr_baseline_total = last_column_values
+                
+                # Step 2: Define the new empty row (NaN values)
+                empty_row = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_therm_sum1.iloc[:2]       # Up to the second row
+                df_part2 = data_therm_sum1.iloc[2:]       # From the third row onward
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_therm_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
+                
+                empty_row1 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+                df_part1 = data_therm_sum1.iloc[:5]
+                data_therm_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_therm_sum1.columns}
+                new_row[data_therm_sum1.columns[0]] = "% Contribution"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                new_row = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_therm_sum1.columns[3:]:
+                    if thermhr_proposed_total != 0:
+                        new_row[col] = f'{round(data_therm_sum1[col].iloc[1]*100 / thermhr_proposed_total,1)}%'
+                    elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] == 0:
+                        new_row[col] = '0.0%'
+                    elif thermhr_proposed_total == 0 and data_therm_sum1[col].iloc[1] != 0:
+                        new_row[col] = '-'
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+                new_row1 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_therm_sum1.columns[3:]:
+                    if thermhr_baseline_total != 0:
+                        new_row1[col] = f'{round(data_therm_sum1[col].iloc[4]*100 / thermhr_baseline_total,1)}%'
+                    elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] == 0:
+                        new_row1[col] = '0.0%'
+                    elif thermhr_baseline_total == 0 and data_therm_sum1[col].iloc[4] != 0:
+                        new_row1[col] = '-'
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row1])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                # Step 2: Define the new empty row (NaN values)
+                empty_row2 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_therm_sum1.iloc[:9]       # Up to the second row
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_therm_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_therm_sum1.columns}
+                new_row[data_therm_sum1.columns[0]] = "% Savings"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                new_row0 = {
+                    'Filename': 'Energy',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_therm_sum1.columns[3:]:
+                    if data_therm_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
+                        new_row0[col] = f'{round((1 - (data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[4])) * 100, 1)}%'
+                    elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[1] == 0:
+                        new_row0[col] = '100.0%'
+                    elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[1] != 0:
+                        new_row0[col] = '-'
+    
+                new_row_df = pd.DataFrame([new_row0])
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+                new_row00 = {
+                    'Filename': 'Demand',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_therm_sum1.columns[3:]:
+                    if data_therm_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
+                        new_row00[col] = f'{round((1 - (data_therm_sum1[col].iloc[0] / data_therm_sum1[col].iloc[3]))*100,1)}%'
+                    elif data_therm_sum1[col].iloc[3] == 0 and data_therm_sum1[col].iloc[0] == 0:
+                        new_row00[col] = '100.0%'
+                    elif data_therm_sum1[col].iloc[3] == 0 and data_therm_sum1[col].iloc[0] != 0:
+                        new_row00[col] = '-'
+                
+                new_row_df = pd.DataFrame([new_row00])
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                empty_row3 = pd.DataFrame([['']*data_therm_sum1.shape[1]], columns=data_therm_sum1.columns)
+                df_part1 = data_therm_sum1.iloc[:13] # upto 13 rows
+                data_therm_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_therm_sum1.columns}
+                new_row[data_therm_sum1.columns[0]] = "EFLH"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                new_row2 = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_therm_sum1.columns[3:]:
+                    if data_therm_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
+                        new_row2[col] = round(data_therm_sum1[col].iloc[1] / data_therm_sum1[col].iloc[0], 1)
+                    elif data_therm_sum1[col].iloc[1] == 0 and data_therm_sum1[col].iloc[0] == 0:
+                        new_row2[col] = '0.0'
+                    elif data_therm_sum1[col].iloc[1] != 0 and data_therm_sum1[col].iloc[0] == 0:
+                        new_row2[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row2])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                new_row3 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_therm_sum1.columns[3:]:
+                    if data_therm_sum1[col].iloc[3] != 0:
+                        new_row3[col] = round(data_therm_sum1[col].iloc[4] / data_therm_sum1[col].iloc[3],1)
+                    elif data_therm_sum1[col].iloc[4] == 0 and data_therm_sum1[col].iloc[3] == 0:
+                        new_row3[col] = '0.0'
+                    elif data_therm_sum1[col].iloc[4] != 0 and data_therm_sum1[col].iloc[3] == 0:
+                        new_row3[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row3])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+    
+                new_row4 = {
+                    'Filename': '% Difference',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_therm_sum1.columns[3:]:
+                    try:
+                        # Ensure the values are numeric
+                        val_16 = float(data_therm_sum1[col].iloc[16])
+                        val_15 = float(data_therm_sum1[col].iloc[15])
+                        
+                        if val_16 != 0:
+                            new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
+                        elif val_16 == 0 and val_15 == 0:
+                            new_row4[col] = '100.0%'
+                        elif val_16 == 0 and val_15 != 0:
+                            new_row4[col] = '-'
+                    except ValueError:
+                        new_row4[col] = 'Invalid data'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row4])
+                data_therm_sum1 = pd.concat([data_therm_sum1, new_row_df], ignore_index=True)
+                st.write(data_therm_sum1)
+            
+            st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
+             # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+            if data_mbtu_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+            else:
+                data_mbtu_sum1 = data_mbtu.groupby(['Filename', 'UNIT']).sum().reset_index().sort_values(by=['Filename', 'UNIT'], ascending=False)
+                # Extract the last column values
+                last_column_values = data_mbtu_sum1.iloc[:, -1].values
+                # Unpack the values into separate variables
+                mbtu_proposed_total, mbtuhr_proposed_total, mbtu_baseline_total, mbtuhr_baseline_total = last_column_values
+                
+                # Step 2: Define the new empty row (NaN values)
+                empty_row = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_mbtu_sum1.iloc[:2]       # Up to the second row
+                df_part2 = data_mbtu_sum1.iloc[2:]       # From the third row onward
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_mbtu_sum1 = pd.concat([df_part1, empty_row, df_part2], ignore_index=True)
+                
+                empty_row1 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+                df_part1 = data_mbtu_sum1.iloc[:5]
+                data_mbtu_sum1 = pd.concat([df_part1, empty_row], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_mbtu_sum1.columns}
+                new_row[data_mbtu_sum1.columns[0]] = "% Contribution"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                new_row = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_mbtu_sum1.columns[3:]:
+                    if mbtuhr_proposed_total != 0:
+                        new_row[col] = f'{round(data_mbtu_sum1[col].iloc[1]*100 / mbtuhr_proposed_total,1)}%'
+                    elif mbtuhr_proposed_total == 0 and data_mbtu_sum1[col].iloc[1] == 0:
+                        new_row[col] = '0.0%'
+                    elif data_mbtu_sum1[col].iloc[1] != 0 and mbtuhr_proposed_total == 0:
+                        new_row[col] = '-'
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+                new_row1 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_mbtu_sum1.columns[3:]:
+                    if mbtuhr_baseline_total != 0:
+                        new_row1[col] = f'{round(data_mbtu_sum1[col].iloc[4]*100 / mbtuhr_baseline_total,1)}%'
+                    elif mbtuhr_baseline_total == 0 and data_mbtu_sum1[col].iloc[4] == 0:
+                        new_row1[col] = '0.0%'
+                    elif data_mbtu_sum1[col].iloc[4] != 0 and mbtuhr_baseline_total == 0:
+                        new_row1[col] = '-'
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row1])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                # Step 2: Define the new empty row (NaN values)
+                empty_row2 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+                # Step 3: Split the DataFrame and insert the new empty row
+                df_part1 = data_mbtu_sum1.iloc[:9]       # Up to the second row
+    
+                # Step 4: Concatenate the parts to form the final DataFrame
+                data_mbtu_sum1 = pd.concat([df_part1, empty_row2], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_mbtu_sum1.columns}
+                new_row[data_mbtu_sum1.columns[0]] = "% Savings"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                new_row0 = {
+                    'Filename': 'Energy',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_mbtu_sum1.columns[3:]:
+                    if data_mbtu_sum1[col].iloc[4] != 0:  # Check to avoid division by zero
+                        new_row0[col] = f'{round((1 - (data_mbtu_sum1[col].iloc[1] / data_mbtu_sum1[col].iloc[4]))*100,1)}%'
+                    elif data_mbtu_sum1[col].iloc[4] == 0 and data_mbtu_sum1[col].iloc[1] == 0:
+                        new_row0[col] = '100.0%'
+                    elif data_mbtu_sum1[col].iloc[4] == 0 and data_mbtu_sum1[col].iloc[1] != 0:
+                    # else:
+                        new_row0[col] = '-'
+                
+                new_row_df = pd.DataFrame([new_row0])
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+                new_row00 = {
+                    'Filename': 'Demand',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_mbtu_sum1.columns[3:]:
+                    if data_mbtu_sum1[col].iloc[3] != 0:  # Check to avoid division by zero
+                        new_row00[col] = f'{round((1 - (data_mbtu_sum1[col].iloc[0] / data_mbtu_sum1[col].iloc[3]))*100,1)}%'
+                    elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[0] == 0:
+                        new_row00[col] = '100.0%'
+                    elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[0] != 0:
+                    # else:
+                        new_row00[col] = '-'
+                
+                new_row_df = pd.DataFrame([new_row00])
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                empty_row3 = pd.DataFrame([['']*data_mbtu_sum1.shape[1]], columns=data_mbtu_sum1.columns)
+                df_part1 = data_mbtu_sum1.iloc[:13] # upto 13 rows
+                data_mbtu_sum1 = pd.concat([df_part1, empty_row3], ignore_index=True)
+    
+                # Step 2: Dynamically create the new row with a value in the first column and empty strings in other columns
+                new_row = {col: '' for col in data_mbtu_sum1.columns}
+                new_row[data_mbtu_sum1.columns[0]] = "EFLH"
+                
+                # Convert the new row to a DataFrame
+                new_row_df = pd.DataFrame([new_row])
+                
+                # Step 3: Append the new row to the DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                new_row2 = {
+                    'Filename': 'Proposed',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_mbtu_sum1.columns[3:]:
+                    if data_mbtu_sum1[col].iloc[0] != 0:  # Check to avoid division by zero
+                        new_row2[col] = round(data_mbtu_sum1[col].iloc[1] / data_mbtu_sum1[col].iloc[0], 1)
+                    elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] == 0:
+                        new_row2[col] = '0.0'
+                    elif data_mbtu_sum1[col].iloc[0] == 0 and data_mbtu_sum1[col].iloc[1] != 0:
+                        new_row2[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row2])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                new_row3 = {
+                    'Filename': 'Baseline',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+                for col in data_mbtu_sum1.columns[3:]:
+                    if data_mbtu_sum1[col].iloc[3] != 0:
+                        new_row3[col] = round(data_mbtu_sum1[col].iloc[4] / data_mbtu_sum1[col].iloc[3],1)
+                    elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] == 0:
+                        new_row3[col] = '0.0'
+                    elif data_mbtu_sum1[col].iloc[3] == 0 and data_mbtu_sum1[col].iloc[4] != 0:
+                        new_row3[col] = '-'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row3])
+                # Concatenate the new row DataFrame with the existing DataFrame
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+    
+                new_row4 = {
+                    'Filename': '% Difference',  
+                    'UNIT': '', 
+                    'Meterings': ''
+                }
+    
+                for col in data_mbtu_sum1.columns[3:]:
+                    try:
+                        # Ensure the values are numeric
+                        val_16 = float(data_mbtu_sum1[col].iloc[16])
+                        val_15 = float(data_mbtu_sum1[col].iloc[15])
+                        
+                        if val_16 != 0:
+                            new_row4[col] = f'{round((1 - (val_15 / val_16)) * 100, 1)}%'
+                        elif val_16 == 0 and val_15 == 0:
+                            new_row4[col] = '100.0%'
+                        elif val_16 == 0 and val_15 != 0:
+                            new_row4[col] = '-'
+                    except ValueError:
+                        new_row4[col] = 'Invalid data'
+                
+                # Create a DataFrame from the new row
+                new_row_df = pd.DataFrame([new_row4])
+                data_mbtu_sum1 = pd.concat([data_mbtu_sum1, new_row_df], ignore_index=True)
+                st.write(data_mbtu_sum1)
+                
+            ###############################################################################################################
+            ################################################## Other Tables ###############################################
+            ###############################################################################################################
+    
+            st.markdown(f"""<h6 style="color:red;">🔴 ENERGY SAVINGS AND DEMAND SAVINGS (in %) </h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
+            
+            # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
+            if data_kwh_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for kWH & MAX kW.</p>""", unsafe_allow_html=True)
+            else:
+                st.write(data_kwh_sum)
+                
+            st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
+            # if empty dataframe then write message in markdown - No THERM & MAX THERM/HR data found in the selected data
+            if data_therm_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+            else:
+                st.write(data_therm_sum)
+            
+            st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
+             # if empty dataframe then write message in markdown - No MBTU & MAX MBTU data found in the selected data
+            if data_mbtu_sum.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+            else:
+                st.write(data_mbtu_sum)
+    
+            ############################################# PSF ###############################################
+            
+            st.markdown(f"""<h6 style="color:red;">🔴 PS-F TABLE FOR ALL UNITS AND ALL METERS</h6>""", unsafe_allow_html=True)
+            st.markdown(f"""<h7 style="color:blue;">🔵 kWH & kW</h7>""", unsafe_allow_html=True)
+    
+            if data_kwh.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for kWH.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for KWH & KW")
+            else:
+                st.write(data_kwh)
+            
+            st.markdown(f"""<h7 style="color:red;">🔴 THERM & MAX THERM/HR</h7>""", unsafe_allow_html=True)
+            if data_therm.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for THERM & MAX THERM/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for THERM & MAX THERM/HR")
+            else:
+                st.write(data_therm)
+    
+            st.markdown(f"""<h7 style="color:orange;">🟠 MBTU & MAX MBTU/HR</h7>""", unsafe_allow_html=True)
+            if data_mbtu.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+                # st.info("No data found for MBTU & MAX MBTU/HR")
+            else:
+                st.write(data_mbtu)
         
-        if prop_data is None or base_data is None:
-            st.error("Error: Failed to retrieve simulation data.")
-            return
+        ############################################# LVD ###############################################
+        with st.expander("LV-D Report Summary"):
+            st.markdown(f"""<h6 style="color:red;">🔴 TABLE HAVING Wall, Roof, Glazing U-Value and WWR </h6>""", unsafe_allow_html=True)
+            # The two dfs are lvd_summary_p and lvd_summary_b
+            if lvd_summary_p.empty and lvd_summary_b.empty:
+                st.markdown("""<p><strong>Note:</strong> No data found for Wall, Roof, Glazing U-Value and WWR.</p>""", unsafe_allow_html=True)
+            else:
+                st.markdown(f"""<h7 style="color:red;">🔵 Proposed and Baseline Table </h7>""", unsafe_allow_html=True)
+                data = {
+                    "Component": ["Wall", "Roof", "Fenestration", "Fenestration", "Window to Wall Ratio"],
+                    "Units": ["U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "U-value (BTU/hr.ft²°F)", "SHGC", "%"],
+                    "Proposed Design": ["", "", "", "", ""],
+                    "Baseline Design": ["", "", "", "", ""]
+                }
+                df = pd.DataFrame(data)
+                for idx, row in df.iterrows():
+                    if row["Component"] == "Wall":
+                        df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                        df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                    elif row["Component"] == "Roof":
+                        df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                        df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ROOF"]["AVERAGE(U-VALUE/WALLS)(BTU/HR-SQFT-F)"].values[0]
+                    elif row["Component"] == "Fenestration" and row["Units"] != "SHGC":
+                        df.at[idx, "Proposed Design"] = lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
+                        df.at[idx, "Baseline Design"] = lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["AVERAGE(U-VALUE/WINDOWS)(BTU/HR-SQFT-F)"].values[0]
+                    elif row["Component"] == "Window to Wall Ratio":
+                        # For Proposed Design
+                        window_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
+                        window_wall_area_p = pd.to_numeric(lvd_summary_p[lvd_summary_p["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
+                        proposed_percentage = round((window_area_p * 100) / window_wall_area_p, 2)
+                        df.at[idx, "Proposed Design"] = f"{proposed_percentage}%"
+                    
+                        # For Baseline Design
+                        window_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW(AREA)(SQFT)"].values[0])
+                        window_wall_area_b = pd.to_numeric(lvd_summary_b[lvd_summary_b["AZIMUTH"] == "ALL WALLS"]["WINDOW+WALL(AREA)(SQFT)"].values[0])
+                        baseline_percentage = round((window_area_b * 100) / window_wall_area_b, 2)
+                        df.at[idx, "Baseline Design"] = f"{baseline_percentage}%"
+                st.dataframe(df)
+            
+            if prop_data is None or base_data is None:
+                st.error("Error: Failed to retrieve simulation data.")
+                return
