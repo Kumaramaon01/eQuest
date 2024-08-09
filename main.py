@@ -483,7 +483,7 @@ def main():
                     <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
                 </div>
                 <div class="testimonial">
-                    <h5>JMichael Brown, Energy Consultant (USA)</h5>
+                    <h5>Mukul Chaudhary</h5>
                     <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
                 </div>
                 <div class="testimonial">
@@ -619,7 +619,7 @@ def main():
         # Adding spacing for better layout
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
-        <h5 style="color:black; text-align:left;">📄 Guidelines for Exe Files</h5>
+        <h5 style="color:black; text-align:left;">📄 Guidelines for EXE Files</h5>
         <ul style="list-style-type:none; padding-left:0;">
             <li style="margin-bottom:10px;">
                 <b style="color:red;">SIM to PDF:</b> 
