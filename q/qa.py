@@ -1322,7 +1322,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
 
         ################################################## MASTER TABLE ##############################################
-        with st.expander("Explore Tables"):
+        with st.expander("💾 **Explore Tables** "):
             st.markdown(f"""<h6 style="color:red;">🔴 MASTER TABLE HAVING SAVINGS(in %), EFLH, % CONTRIBUTION BASED ON UNITS </h6>""", unsafe_allow_html=True)
             st.markdown(f"""<h7 style="color:blue;">🔵 kWH & MAX kW</h7>""", unsafe_allow_html=True)
             # if empty dataframe then write message in markdown - No KWH & MAX KW data found in the selected data
@@ -1955,7 +1955,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 st.write(data_mbtu)
         
         ############################################# LVD ###############################################
-        with st.expander("**LV-D Report Summary** 💡"):
+        with st.expander("📘 **LV-D Report Summary**"):
             st.markdown(f"""<h6 style="color:red;">🔴 TABLE HAVING Wall, Roof, Glazing U-Value and WWR </h6>""", unsafe_allow_html=True)
             # The two dfs are lvd_summary_p and lvd_summary_b
             if lvd_summary_p.empty and lvd_summary_b.empty:
