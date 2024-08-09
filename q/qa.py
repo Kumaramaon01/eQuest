@@ -1320,6 +1320,15 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 st.plotly_chart(fig3)
         else:
             st.markdown("""<p><strong>Note:</strong> No data found for MBTU & MAX MBTU/HR.</p>""", unsafe_allow_html=True)
+        # Custom CSS for the expander text color
+        st.markdown("""
+            <style>
+            .streamlit-expanderHeader {
+                color: red;
+                font-weight: bold;
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
         ################################################## MASTER TABLE ##############################################
         with st.expander("📋 **Explore Tables** "):
