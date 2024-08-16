@@ -194,7 +194,24 @@ def main():
         st.image(logo_image_path, width=80)
     with col2:
         # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-        st.markdown("# :rainbow[eQUEST Utilities]")
+        # st.markdown("# :rainbow[eQUEST Utilities]")
+        fire_effect_css = """
+        <style>
+        @keyframes fire {
+            0% { color: orange; text-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow, 0 0 20px red, 0 0 25px yellow, 0 0 30px orange, 0 0 35px red; }
+            50% { color: red; text-shadow: 0 0 5px orange, 0 0 10px yellow, 0 0 15px red, 0 0 20px orange, 0 0 25px yellow, 0 0 30px red, 0 0 35px orange; }
+            100% { color: orange; text-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow, 0 0 20px red, 0 0 25px yellow, 0 0 30px orange, 0 0 35px red; }
+        }
+        .heading-with-fire {
+            font-size: 3em;
+            font-weight: bold;
+            animation: fire 1.5s infinite;
+        }
+        </style>
+        """
+        st.markdown(fire_effect_css, unsafe_allow_html=True)
+        st.markdown("<h1 class='heading-with-fire'>eQUEST Utilities</h1>", unsafe_allow_html=True)
+
     on = st.toggle("Select Theme")
     if on:
         # set_dark_theme()
