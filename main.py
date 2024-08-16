@@ -194,41 +194,7 @@ def main():
         st.image(logo_image_path, width=80)
     with col2:
         # st.markdown("<h1 class='heading-with-shadow'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-        # st.markdown("# :rainbow[eQUEST Utilities]")
-        # Define CSS for a more dynamic fire effect
-        fire_motion_css = """
-        <style>
-        @keyframes fire {
-            0% {
-                color: #ff4500;
-                text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 15px #ff4500, 0 0 20px #ff4500;
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                color: #ff6347;
-                text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347, 0 0 30px #ff6347, 0 0 40px #ff6347;
-                transform: translateY(-10px) rotate(2deg);
-            }
-            100% {
-                color: #ff4500;
-                text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 15px #ff4500, 0 0 20px #ff4500;
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-        
-        .heading-with-fire-motion {
-            font-size: 3em;
-            font-weight: bold;
-            animation: fire 1s infinite;
-            display: inline-block;
-        }
-        </style>
-        """
-        
-        # Apply the CSS and render the text with the fire motion effect
-        st.markdown(fire_motion_css, unsafe_allow_html=True)
-        st.markdown("<h1 class='heading-with-fire-motion'>eQUEST Utilities</h1>", unsafe_allow_html=True)
-
+        st.markdown("# :rainbow[eQUEST Utilities]")
 
     on = st.toggle("Select Theme")
     if on:
