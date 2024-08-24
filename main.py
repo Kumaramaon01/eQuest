@@ -198,7 +198,7 @@ def main():
 
     on = st.toggle("Select Theme")
     if on:
-        # set_dark_theme()
+        set_dark_theme()
         pass  # Do nothing
         background_image_url = "https://i.pinimg.com/originals/cf/04/e9/cf04e9530f25312133dc7f93586591ff.gif"
     with col3:
