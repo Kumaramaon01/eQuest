@@ -274,13 +274,13 @@ def main():
             eQUEST Utilities is a comprehensive suite of tools designed to help you work with eQUEST more efficiently. 
             Our utilities include:
     
-            👉 <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.<br>
-            👉 <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.<br>
-            👉 <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.<br>
-            👉 <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.<br>
-            👉 <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.<br>
-            👉 <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.<br>
-            👉 <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.<br><br>
+            🔍 <b style="color:red;">INP Parser:</b> A tool to parse INP files and extract meaningful data.<br>
+            🧹 <b style="color:red;">Purging INP:</b> A utility to update and clean your INP files.<br>
+            📈 <b style="color:red;">SIM Parser:</b> A parser for SIM files to streamline your simulation data processing.<br>
+            📄 <b style="color:red;">SIM to PDF Converter:</b> Easily convert your SIM files into PDF format for better sharing and documentation.<br>
+            ⚙️ <b style="color:red;">Baseline Automation:</b> Modifies INP files based on the user input.<br>
+            📅 <b style="color:red;">Schedule Generator:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules.<br>
+            ✅ <b style="color:red;">Quality Check / Quality Assurance:</b> A quality check, also known as quality control (QC), refers to the process of ensuring that a product or service meets a defined set of quality criteria or standards.<br><br>
             
             """, unsafe_allow_html=True)
         with col2:
