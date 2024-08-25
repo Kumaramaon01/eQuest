@@ -269,7 +269,7 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            <h4 style="color:red;">🌟Start Your Success with eQUEST Utilities</h4>
+            <h4 style="color:red;">🌟 Start Your Success with eQUEST Utilities</h4>
     
             eQUEST Utilities is a comprehensive suite of tools designed to help you work with eQUEST more efficiently. 
             Our utilities include:
