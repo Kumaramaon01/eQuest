@@ -114,8 +114,8 @@ def getScheduleINP(data):
                 for schedule_row_index in range(day_row_index + 1, len(data)):
                     schedule_name = data.iloc[schedule_row_index, 0]
 
-                    if schedule_name.lower() in ["month", "day"]:
-                        break
+                    # if schedule_name.lower() in ["month", "day"]:
+                    #     break
 
                     row_values = data.iloc[schedule_row_index, 1:13].tolist()
                     formatted_days = ', '.join(f'"{value}"' for value in row_values if pd.notnull(value))
