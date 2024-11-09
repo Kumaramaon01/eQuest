@@ -416,7 +416,7 @@ def main():
                   )
     
         with col3:
-            st.markdown("#### :rainbow: :rainbow[Want to Know What Our Users Are Saying? Scroll Down]")
+            st.markdown("#### :rainbow: :rainbow[]")
         st.markdown("""
             <style>
                 .rainbow-text {
