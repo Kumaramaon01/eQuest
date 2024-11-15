@@ -258,7 +258,7 @@ def main():
         if st.button("IGBC Green 🏡", key="references"): #Queries
             st.session_state.script_choice = "reference"
     with col14:
-        if st.button("Calibration", key="button_contact"): #Queries
+        if st.button("Calibration Tool", key="button_contact"): #Queries
             st.session_state.script_choice = "cal"
     with col15:
         if st.button("Log In", key="button_login"): #Queries
