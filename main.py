@@ -249,7 +249,7 @@ def main():
         if st.button("QA / QC", key="button_qa_qc"):
             st.session_state.script_choice = "q"
     with col11:
-        if st.button("Analytics", key="button_analytics"): #Queries
+        if st.button("Polygon Parser", key="button_analytics"): #Queries
             st.session_state.script_choice = "sh1"
     with col12:
         if st.button("EXE and Resources", key="button_exe_resources"):
@@ -334,17 +334,15 @@ def main():
     
     elif st.session_state.script_choice == "sh1":
         st.markdown("""
-        <h4 style="color:red;">📈 Analytics Dashboard</h4>
-        <b>Purpose:</b> Our CSV-Based Schedule Generator Tool is designed to simplify and automate the process of creating schedules. By leveraging data from a CSV file, this tool efficiently generates a structured and optimized bar chart and pie chart of Daily Schedules Visualizations. <br>
+        <h4 style="color:red;">📈 Polygon Parser</h4>
+        <b>Purpose:</b> A Polygon Parser is a tool or script designed to extract and analyze polygon data, usually from text or file formats such as JSON, XML, or custom structures. This parser typically processes attributes of polygons like their vertices, edges, and associated metadata. <br>
         <br>
         """, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload an INP file", type="inp", accept_multiple_files=False)
         
-        uploaded_file = st.file_uploader("Upload Schedule in excel", type=["xlsx"], accept_multiple_files=False)
         if uploaded_file is not None:
-            # if st.button("View Analytics"):
-            sheduls_analytics.get_schedule(uploaded_file)
-        schedule_v01.analytics(uploaded_file)
-        schedule_v01.analytics1(uploaded_file)
+            if st.button("Generate CSV"):
+                polygon_parserv01.main(uploaded_file)
     
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
