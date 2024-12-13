@@ -334,7 +334,7 @@ def main():
     
     elif st.session_state.script_choice == "sh1":
         st.markdown("""
-        <h4 style="color:red;">📈 Polygon Parser</h4>
+        <h4 style="color:red;">📄 Polygon Parser</h4>
         <b>Purpose:</b> A Polygon Parser is a tool or script designed to extract and analyze polygon data, usually from text or file formats such as JSON, XML, or custom structures. This parser typically processes attributes of polygons like their vertices, edges, and associated metadata. <br>
         <br>
         """, unsafe_allow_html=True)
