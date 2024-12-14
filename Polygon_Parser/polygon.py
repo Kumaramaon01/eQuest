@@ -131,5 +131,3 @@ def main(uploaded_file):
 if __name__ == "__main__":
     uploaded_file = st.file_uploader("Upload your INP file", type=["inp"])
     main(uploaded_file)
-
-polygon_df = extract_polygons(inp_file_path)
