@@ -6,6 +6,7 @@ from INP_Parser import inp_parserv01
 from Perging_INP import perge
 from SIM_Parser import sim_parserv01
 from SIM2PDF import sim_print
+from Polygon_Parser import polygon
 from streamlit_lottie import st_lottie
 from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
@@ -342,7 +343,7 @@ def main():
         
         if uploaded_file is not None:
             if st.button("Generate CSV"):
-                polygon_parserv01.main(uploaded_file)
+                polygon.main(uploaded_file)
     
     elif st.session_state.script_choice == "INP Parser":
         st.markdown("""
