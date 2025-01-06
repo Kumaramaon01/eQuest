@@ -262,8 +262,8 @@ def main():
         if st.button("Calibration Tool", key="button_contact"): #Queries
             st.session_state.script_choice = "cal"
     with col15:
-        if st.button("Log In", key="button_login"): #Queries
-            st.session_state.script_choice = "login"
+        if st.button("", key="button_login"): #Queries
+            st.session_state.script_choice = "logi"
             
     #Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
