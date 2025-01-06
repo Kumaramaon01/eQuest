@@ -564,6 +564,7 @@ def main():
         <h4 style="color:blue;">🔧 Calibration Tool</h4>
         <b>Purpose:</b> This tool calibrates energy simulation models to align with actual measured data, ensuring greater accuracy in predicting energy performance. By refining the model based on real-world usage, it enhances the reliability of energy audits, retrofits, and performance assessments.
         """, unsafe_allow_html=True)
+        st.info("This feature will be available soon!")
 
     elif st.session_state.script_choice == "exe":
         st.markdown("""
