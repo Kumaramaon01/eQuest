@@ -1,5 +1,6 @@
 import glob as gb
 import os
+import re
 import warnings
 import pandas as pd
 import xlwings as xw # Xlwings is a Python library that makes it easy to call Python from Excel
@@ -10,7 +11,6 @@ def get_PSF_report(name):
     try:
         with open(name) as f:
             flist = f.readlines()
-    
             pse_count = [] 
             for num, line in enumerate(flist, 0):
                 if 'PS-F' in line:
@@ -24,6 +24,7 @@ def get_PSF_report(name):
             psf_type = []
             # Iterate through each line in lvb_rpt
             for line in pse_rpt:
+                line = re.sub(r'(\d)\.(\d+)\.', r'\1. \2.', line)
                 # Check conditions and append lines containing relevant data to lvb_str list
                 if (('.' in line and 'KW' in line and "=" not in line) or 
                     ('JAN' in line or 'FEB' in line or 'MAR' in line
@@ -113,18 +114,7 @@ def get_PSF_report(name):
     
             # Reset index after concatenation
             psf_df.reset_index(drop=True, inplace=True)
-
-            # This is the additional code to shift the columns after detecting double dots
-            for index, row in psf_df.iterrows():
-                # Check if there are any columns with double dots
-                for i, value in enumerate(row):
-                    if isinstance(value, str) and '..' in value:
-                        # Shift the values to the left if double dots are found
-                        psf_df.iloc[index, i] = row[i+1] if i+1 < len(row) else row[i]
-                        if i+1 < len(row):
-                            psf_df.iloc[index, i+1] = value
-
-            # Return the updated DataFrame
+    
             return psf_df
     except Exception as e:
         print(f"An error occurred: {e}")

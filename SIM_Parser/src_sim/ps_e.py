@@ -24,6 +24,7 @@ def get_PSE_report(name):
             pse_type = []
             # Iterate through each line in lvb_rpt
             for line in pse_rpt:
+                line = re.sub(r'(\d)\.(\d+)\.', r'\1. \2.', line)
                 # Check conditions and append lines containing relevant data to lvb_str list
                 if (('.' in line and 'KW' in line) or ('JAN' in line or 'FEB' in line or 'MAR' in line
                       or 'JUN' in line or 'APR' in line or 'MAY' in line or 'JUN' in line or 'JUL' in line or 'AUG' in line or

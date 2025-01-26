@@ -33,6 +33,7 @@ def get_LSC_report(name):
             space = []
             # move in each line of lsc_rpt based on condition and store in lsc_str list
             for line in lsc_rpt:
+                line = re.sub(r'(\d)\.(\d+)\.', r'\1. \2.', line)
                 if ('.' in line and 'WALL CONDUCTION' in line or 'ROOF CONDUCTION' in line or
                     'WINDOW GLASS+FRM COND' in line or 'WINDOW GLASS SOLAR' in line or 'DOOR CONDUCTION' in line or
                     'INTERNAL SURFACE COND' in line or 'UNDERGROUND SURF COND' in line or 'OCCUPANTS TO SPACE' in line
