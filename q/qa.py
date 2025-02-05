@@ -754,7 +754,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
             for col in columns:
                 st.write(data_kwh_sum)
-                st.write(data_kwh_sum.shape)
+                # st.write(data_kwh_sum.shape)
                 value4 = data_kwh_sum.loc[4, col]
                 value3 = data_kwh_sum.loc[3, col]
                 
@@ -763,8 +763,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 elif value3 == 0 and value4 != 0:
                     ratio = '-'
                 else:
-                    st.success(value4)
-                    st.success(value3)
+                    # st.success(value4)
+                    # st.success(value3)
                     ratio = value4 / value3
                     
                 if ratio == '-':
