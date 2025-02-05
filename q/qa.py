@@ -753,22 +753,16 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             ]
 
             for col in columns:
-                value3, value4 = 0, 0
-                if 4 in data_kwh_sum.index and col in data_kwh_sum.columns:
-                    value4 = data_kwh_sum.loc[4, col]
-                else:
-                    print(f"Row index 4 or column {col} not found in DataFrame")
-                
-                if 3 in data_kwh_sum.index and col in data_kwh_sum.columns:
-                    value3 = data_kwh_sum.loc[3, col]
-                else:
-                    print(f"Row index 3 or column {col} not found in DataFrame")
+                value4 = data_kwh_sum.loc[4, col]
+                value3 = data_kwh_sum.loc[3, col]
                 
                 if value3 == 0 and value4 == 0:
                     ratio = 0
                 elif value3 == 0 and value4 != 0:
                     ratio = '-'
                 else:
+                    st.success(value4)
+                    st.success(value3)
                     ratio = value4 / value3
                     
                 if ratio == '-':
@@ -815,8 +809,6 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                         ratio1 = '-'
                     else:
                         value3 = value3.replace("%", "")
-                        st.success(value0)
-                        st.success(value3)
                         ratio1 = float(value0)/float(value3)
                     new_row_last[col] = [f'{ratio1:.1f}'] if ratio1 != '-' else [ratio1]
 
