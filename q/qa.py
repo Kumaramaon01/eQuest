@@ -814,6 +814,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     elif value3 == 0 and value0 != 0:
                         ratio1 = '-'
                     else:
+                        value3 = value3.replace("%", "")
                         st.success(value0)
                         st.success(value3)
                         ratio1 = value0/value3
