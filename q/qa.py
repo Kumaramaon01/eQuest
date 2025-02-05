@@ -753,6 +753,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             ]
 
             for col in columns:
+                value3, value4 = 0, 0
                 if 4 in data_kwh_sum.index and col in data_kwh_sum.columns:
                     value4 = data_kwh_sum.loc[4, col]
                 else:
