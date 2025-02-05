@@ -758,7 +758,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 else:
                     print(f"Row index 4 or column {col} not found in DataFrame")
                 
-                if 4 in data_kwh_sum.index and col in data_kwh_sum.columns:
+                if 3 in data_kwh_sum.index and col in data_kwh_sum.columns:
                     value3 = data_kwh_sum.loc[3, col]
                 else:
                     print(f"Row index 3 or column {col} not found in DataFrame")
