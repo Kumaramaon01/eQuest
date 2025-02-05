@@ -806,7 +806,8 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 for col in columns:
                     value0 = data_kwh_sum.loc[0, col]
                     value3 = data_kwh_sum.loc[3, col]
-
+                    st.success(value0)
+                    st.success(value3)
                     if value0 == 0 and value3 == 0:
                         ratio1 = 0
                     elif value0 == 0 and value3 != 0:
