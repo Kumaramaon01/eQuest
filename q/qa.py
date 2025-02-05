@@ -753,7 +753,10 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
             ]
 
             for col in columns:
-                value4 = data_kwh_sum.loc[4, col]
+                if 4 in data_kwh_sum.index and col in data_kwh_sum.columns:
+                    value4 = data_kwh_sum.loc[4, col]
+                else:
+                    print(f"Row index 4 or column {col} not found in DataFrame")
                 value3 = data_kwh_sum.loc[3, col]
                 
                 if value3 == 0 and value4 == 0:
