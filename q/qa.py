@@ -804,28 +804,18 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                 ]
                 
                 for col in columns:
-                    # Retrieve values safely
-                    value0 = data_kwh_sum.loc[0, col] if 0 in data_kwh_sum.index and col in data_kwh_sum.columns else 0
-                    value3 = data_kwh_sum.loc[3, col] if 3 in data_kwh_sum.index and col in data_kwh_sum.columns else 0
-                    
-                    # Convert to numeric (handles strings like "100.0%" safely)
-                    value0 = pd.to_numeric(str(value0).replace('%', ''), errors='coerce')
-                    value3 = pd.to_numeric(str(value3).replace('%', ''), errors='coerce')
-                    
-                    st.success(value0)
-                    st.success(value3)
-                    
-                    # Handle division safely
-                    if pd.isna(value0) or pd.isna(value3):  # Handles NaN cases
-                        ratio1 = '-'
-                    elif value0 == 0 and value3 == 0:
+                    value0 = data_kwh_sum.loc[0, col]
+                    value3 = data_kwh_sum.loc[3, col]
+
+                    if value0 == 0 and value3 == 0:
                         ratio1 = 0
                     elif value0 == 0 and value3 != 0:
                         ratio1 = 0
                     elif value3 == 0 and value0 != 0:
                         ratio1 = '-'
                     else:
-                        ratio1 = value0 / value3  # Safe division
+                        ratio1 = value0/value3
+                    new_row_last[col] = [f'{ratio1:.1f}'] if ratio1 != '-' else [ratio1]
 
                 for col in columns:
                     value1 = data_kwh_sum.loc[1, col]
