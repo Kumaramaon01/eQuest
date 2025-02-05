@@ -816,7 +816,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
                     else:
                         st.success(value0)
                         st.success(value0)
-                        ratio1 = value0/value3
+                        ratio1 = float(value0/value3)
                     new_row_last[col] = [f'{ratio1:.1f}'] if ratio1 != '-' else [ratio1]
 
                 for col in columns:
