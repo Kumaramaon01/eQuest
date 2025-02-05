@@ -754,6 +754,7 @@ def getTwoSimFiles(input_simp_path, input_simb_path):
 
             for col in columns:
                 st.write(data_kwh_sum)
+                st.write(data_kwh_sum.shape)
                 value4 = data_kwh_sum.loc[4, col]
                 value3 = data_kwh_sum.loc[3, col]
                 
