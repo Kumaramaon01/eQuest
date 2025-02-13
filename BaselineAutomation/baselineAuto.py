@@ -98,12 +98,12 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
 
         ###################################################### PURGING #######################################################
         ##### Removing unique value from data or purging ######
-        perge_data_annual = perging.perging_data_annual(modify_lpd)
-        perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
-        perge_data_day = perging.perging_data_day(perge_data_weekly)
-        construction_delete = CLM_delete.perging_data_const(perge_data_day)
-        layers_delete = CLM_delete.perging_data_layer(construction_delete)
-        material_delete = CLM_delete.perging_data_material(layers_delete)
+        # perge_data_annual = perging.perging_data_annual(modify_lpd)
+        # perge_data_weekly = perging.perging_data_weekly(perge_data_annual)
+        # perge_data_day = perging.perging_data_day(perge_data_weekly)
+        # construction_delete = CLM_delete.perging_data_const(perge_data_day)
+        # layers_delete = CLM_delete.perging_data_layer(construction_delete)
+        # material_delete = CLM_delete.perging_data_material(layers_delete)
          
         directory_path, filename = os.path.split(inp_path)
         new_filename = re.sub(r'\.inp?$', '_Baseline_Automation.inp', filename, flags=re.IGNORECASE)
@@ -111,7 +111,7 @@ def getInp(input_inp_path, sim_file_path, input_climate, input_building_type, in
         
         # Write modified inp file 
         with open(new_filename, 'w', newline = '\r\n') as file:
-            file.writelines(material_delete)
+            file.writelines(modify_lpd)
 
         with open(new_filename, 'rb') as f:
             st.download_button(
