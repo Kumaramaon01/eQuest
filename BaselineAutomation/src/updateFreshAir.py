@@ -61,7 +61,7 @@ def updateBCVentilation(zone_space_df, inp_data, sim_data):
         
 
     ############################################# NOW INP FILE ################################################
-    with open(inp_data, 'r') as file:
+    with open(inp_data, 'r', encoding='utf-8', errors='replace') as file:
         inp_data = file.readlines()
         
     # C-ACTIVITY-DESC
