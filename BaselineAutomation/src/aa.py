@@ -2,7 +2,7 @@ import pandas as pd
 
 def zoneSpace(file_path):
     # Step 1: Read the input file
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
         inp_data = file.readlines()
 
     # Step 2: Identify the markers for the "HVAC Systems / Zones" section
