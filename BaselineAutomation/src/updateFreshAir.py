@@ -4,7 +4,7 @@ import ast
 
 def updateBCVentilation(zone_space_df, inp_data, sim_data):
     # Calculate Total People and Total Area from LV-B report
-    with open(sim_data, 'r') as file:
+    with open(sim_data, 'r', encoding='utf-8', errors='replace') as file:
         sim = file.readlines()
 
         # Initialize an empty list to store line numbers where 'LV-B' occurs
