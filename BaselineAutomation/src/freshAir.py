@@ -4,7 +4,7 @@ import ast
 
 def updateFresh(new_df, inp_data):
     # Step 1: Read the input file
-    with open(inp_data, 'r') as file:
+    with open(inp_data, 'r', encoding='utf-8', errors='replace') as file:
         inp_data = file.readlines()
 
     # Step 2: Identify the markers for the "HVAC Systems / Zones" section
