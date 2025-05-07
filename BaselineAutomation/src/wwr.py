@@ -4,7 +4,7 @@ import re
 import streamlit as st
 
 def UpdateWWR(sim_file, amenity_data):
-    with open(sim_file, 'r') as file:
+    with open(sim_file, 'r', encoding='utf-8', errors='replace') as file:
         sim_data = file.readlines()
 
     lvd_count = [] 
