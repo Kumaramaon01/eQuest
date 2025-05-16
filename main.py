@@ -443,13 +443,23 @@ def main():
             else:
                 st.info("Please upload all 4 rotation SIM files for Performance Outputs.")
         elif analysis_option == "Shading and Fenestration":
-            if st.button("Process Shading and Fenestration"):
-                lv_d.generateFenestration(uploaded_0_degree, uploaded_proposed_file)
+            col1, col2 = st.columns(2)
+            with col1:
+                uploaded_0_degree = st.file_uploader("Upload a Baseline SIM File", type=["sim"], accept_multiple_files=False)
+            with col2:
+                uploaded_proposed_file = st.file_uploader("Upload Proposed SIM File", type=["sim"], accept_multiple_files=False)
+            if uploaded_0_degree is not None and uploaded_proposed_file is not None:
+                if st.button("Generate Reports"):
+                    lv_d.generateFenestration(uploaded_0_degree, uploaded_proposed_file)
 
         elif analysis_option == "Lighting":
-            if uploaded_0_degree is not None:
-                uploaded_INP_file = st.file_uploader("Upload a INP file", type=["inp"], accept_multiple_files=False)
-                if st.button("Process Lighting"):
+            col1, col2 = st.columns(2)
+            with col1:
+                uploaded_0_degree = st.file_uploader("Upload a Baseline SIM File", type=["sim"], accept_multiple_files=False)
+            with col2:
+                uploaded_proposed_file = st.file_uploader("Upload Proposed SIM File", type=["sim"], accept_multiple_files=False)
+            if uploaded_0_degree is not None and uploaded_proposed_file is not None:
+                if st.button("Generate Reports"):
                     lighting.generateLighting(uploaded_0_degree, uploaded_proposed_file, uploaded_INP_file)
             else:
                 st.info("Please upload the Baseline SIM file for Lighting analysis.")
