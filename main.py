@@ -11,6 +11,8 @@ from streamlit_lottie import st_lottie
 from BaselineAutomation import baselineAuto
 from ScheduleGenerator import schedule_v01
 from ScheduleGenerator import sheduls_analytics
+from MEP_Calculator import ps_e
+from MEP_Calculator import lv_d
 from q import qa
 from igbc import igbc_data
 from streamlit_card import card
@@ -262,8 +264,8 @@ def main():
         if st.button("Calibration Tool", key="button_contact"): #Queries
             st.session_state.script_choice = "cal"
     with col15:
-        if st.button("Log In", key="button_login"): #Queries
-            st.session_state.script_choice = "login"
+        if st.button("MEPC Tool", key="mep_calculator"): #Queries
+            st.session_state.script_choice = "mepc"
             
     #Based on the user selection, display appropriate input fields and run the script
     if st.session_state.script_choice == "about":
@@ -381,117 +383,79 @@ def main():
             if st.button("Generate CSV"):
                 sim_parserv01.main(uploaded_file)
                 
-    elif st.session_state.script_choice == "login":
+    elif st.session_state.script_choice == "mepc":
+        st.markdown("""
+        <h4 style="color:red;">♻️ MEPC Tool</h4>
+        <b>Purpose:</b>The MEP Calculator is a tool designed to support energy-efficient building projects, including LEED-certified initiatives. It helps update and analyze MEP performance values using simulation files. 
+        Evaluate performance outputs such as Lighting, Shading & Fenestration, and Energy End-Use metrics.<br><br>
+        """, unsafe_allow_html=True)
+        st.markdown("""<h6 style="color:red;">🔴 Select Calculator Type</h6>""", unsafe_allow_html=True)
+        # analysis_option = st.radio("Choose the type of analysis to perform:", 
+        #                         ("Performance Outputs", "Shading and Fenestration", "Lighting"))
+        if "analysis_option" not in st.session_state:
+            st.session_state.analysis_option = None
+
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown("""
-            <h4 style="color:red;">🔒 Login</h4>
-            """, unsafe_allow_html=True)
-            # Create input fields for username and password
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
-        
-            # Login button
-            if st.button("Login"):
-                if username == "admin" and password == "password":
-                    st.success("🎉 Logged in as {}".format(username))
-                    # Add your main app logic here after successful login
-                    st.markdown("### :rainbow[Welcome!]")
-                    st.balloons()
-                else:
-                    st.error("❌ Incorrect username or password")
-                    
-        path = "Animation_blue_robo.json"
-        with open(path, "r") as file:
-            url = json.load(file)
+            if st.button("Performance Output"):
+                st.session_state.analysis_option = "Performance Outputs"
         with col2:
-            st_lottie(url,
-                  reverse=True,
-                  height=310,
-                  width=400,
-                  speed=1,
-                  loop=True,
-                  quality='high',
-                  )
-    
+            if st.button("Shade & Fenes."):
+                st.session_state.analysis_option = "Shading and Fenestration"
         with col3:
-            st.markdown("#### :rainbow: :rainbow[]")
-        st.markdown("""
-            <style>
-                .rainbow-text {
-                    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-                    -webkit-background-clip: text;
-                    color: transparent;
-                    font-size: 2em;
-                    font-weight: bold;
-                    text-align: center;
-                }
-                .testimonial-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 15px;
-                    justify-content: center;
-                    margin: 20px 0;
-                }
-                .testimonial {
-                    border: 1px solid #ddd;
-                    padding: 15px;
-                    border-radius: 10px;
-                    background-color: #f9f9f9;
-                    max-width: 300px;
-                    width: 100%;
-                }
-                .testimonial h5 {
-                    margin: 0 0 10px;
-                    color: green;
-                }
-                .testimonial h3 {
-                    # margin: 0 0 10px;
-                    color: green;
-                }
-                .testimonial p {
-                    margin: 0;
-                    color: black;
-                }
-            </style>
-            <h4 style="text-align: center;">What People Say About Our Tool & Website</h4>
-            <div class="testimonial-container">
-                <div class="testimonial">
-                    <h5>Robin Jain</h4>
-                    <p>This is the best eQUEST utility tool I have ever used. Highly recommended! The automation features are a game-changer.
-                    I highly recommend eQuest Utilities for anyone serious about optimizing their eQUEST workflow.</p>
-                </div>
-                <div class="testimonial">
-                    <h5>Yasir Iqbal</h4>
-                    <p>Amazing tools that save a lot of time and effort. Kudos to the team! Thanks Rajeev!! </p>
-                </div>
-                <div class="testimonial">
-                    <h5>Fareed Rahi</h4>
-                    <p>The user interface is very intuitive and easy to use. Great job!</p>
-                </div>
-                <div class="testimonial">
-                    <h5>Mayank Bhatnagar</h4>
-                    <p>Fantastic support and great features. Worth every penny!</p>
-                </div>
-                <div class="testimonial">
-                    <h5>Hisham Ahmad</h4>
-                    <p>Efficient and easy to navigate. This tool has made my work much easier. 
-                    I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
-                </div>
-                <div class="testimonial">
-                    <h5>Ashraf Khan</h4>
-                    <p>I love how user-friendly and efficient the eQuest Utilities tools are. They’ve made my job much easier and more productive.</p>
-                </div>
-                <div class="testimonial">
-                    <h5>Mukul Chaudhary</h5>
-                    <p>The support and features provided by eQuest Utilities are top-notch. It's a must-have for anyone working with eQUEST. </p>
-                </div>
-                <div class="testimonial">
-                    <h5>Md. Ahsan</h4>
-                    <p>Exceptional tools and excellent customer service. eQuest Utilities has definitely exceeded my expectations.</p>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            if st.button("Lighting"):
+                st.session_state.analysis_option = "Lighting"
+        if st.session_state.analysis_option:
+            st.write(f"You selected: **{st.session_state.analysis_option}**")
+        analysis_option = st.session_state.analysis_option
+
+        csv_file = r'MEP_Calculator/tables/MEP Calculator.csv'
+        df = pd.read_csv(csv_file)
+        st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+        
+        # if uploaded_proposed_file is not None and uploaded_0_degree is not None:
+        if analysis_option == "Performance Outputs":
+            col1, col2, col3, col4, col5 = st.columns(5)
+            with col1:
+                uploaded_0_degree = st.file_uploader("Upload 0° SIM File", type=["sim"], accept_multiple_files=False)
+            with col2:
+                uploaded_90_degree = st.file_uploader("Upload 90° SIM File", type=["sim"], accept_multiple_files=False)
+            with col3:
+                uploaded_180_degree = st.file_uploader("Upload 180° SIM File", type=["sim"], accept_multiple_files=False)
+            with col4:
+                uploaded_270_degree = st.file_uploader("Upload 270° SIM File", type=["sim"], accept_multiple_files=False)
+            with col5:
+                uploaded_proposed_file = st.file_uploader("Upload a Proposed SIM file", type=["sim"], accept_multiple_files=False)
+
+            if uploaded_90_degree is not None and uploaded_180_degree is not None and uploaded_270_degree is not None:
+                if st.button("Generate Reports"):
+                    st.markdown(
+                        """
+                        <div style='background-color:#fff3cd;padding:10px;border-left:6px solid #ffecb5;'>
+                            <strong>Disclaimer:</strong> <br>1. This tool is used when completing baseline results for each of the four building orientations.<br>
+                            2. This Tool looks at PS-E Meters and assumes all <strong>electric</strong> meters currently.
+                            Units used are <strong>kWh</strong> (Consumption) and <strong>kW</strong> (Demand).
+                        </div><br>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                    ps_e.get_END_USE_Proposed(df, uploaded_0_degree, uploaded_90_degree, uploaded_180_degree, uploaded_270_degree, uploaded_proposed_file)
+            else:
+                st.info("Please upload all 4 rotation SIM files for Performance Outputs.")
+        elif analysis_option == "Shading and Fenestration":
+            if st.button("Process Shading and Fenestration"):
+                lv_d.generateFenestration(uploaded_0_degree, uploaded_proposed_file)
+
+        elif analysis_option == "Lighting":
+            if uploaded_0_degree is not None:
+                uploaded_INP_file = st.file_uploader("Upload a INP file", type=["inp"], accept_multiple_files=False)
+                if st.button("Process Lighting"):
+                    lighting.generateLighting(uploaded_0_degree, uploaded_proposed_file, uploaded_INP_file)
+            else:
+                st.info("Please upload the Baseline SIM file for Lighting analysis.")
+        else:
+            st.info("Please upload at least the 0° and Proposed SIM files to proceed.")
+
         with st.container():
             st.markdown("#### :rainbow[Website Visitors Count]")
             components.html("""
