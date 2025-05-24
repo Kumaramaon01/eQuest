@@ -21,7 +21,6 @@ mdurl==0.1.2
 numpy==1.26.4
 openpyxl
 packaging==24.0
-pandas==2.2.2
 plotly==5.15.0
 pillow==10.3.0
 protobuf==4.25.3
